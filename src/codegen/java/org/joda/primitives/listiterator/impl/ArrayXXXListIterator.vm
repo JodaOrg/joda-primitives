@@ -1,0 +1,125 @@
+${license}
+package org.joda.primitives.listiterator.impl;
+
+import java.util.NoSuchElementException;
+
+import org.joda.primitives.${Type}Utils;
+import org.joda.primitives.listiterator.${Type}ListIterator;
+
+/**
+ * An iterator over an array of <code>${type}</code> values.
+ * <p>
+ * This class implements {@link java.util.ListIterator ListIterator} allowing
+ * seamless integration with other APIs.
+ * <p>
+ * The iterator can be reset to the start if required.
+ * <code>add()</code> and <code>remove()</code> are unsupported, but
+ * <code>set()</code> is supported.
+ *
+ * @author Stephen Colebourne
+ * @version CODE GENERATED
+ * @since 1.0
+ */
+public class Array${Type}ListIterator implements ${Type}ListIterator {
+    // This file is CODE GENERATED. Do not change manually.
+
+    /** The array to iterate over */
+    protected final ${type}[] iArray;
+    /** Cursor position */
+    protected int iCursor = 0;
+    /** Last returned position */
+    protected int iLast = -1;
+
+    /**
+     * Constructs an iterator over an <code>${type}</code> array.
+     * 
+     * @param array  the array to iterate over, must not be null
+     * @throws IllegalArgumentException if the array is null
+     */
+    public Array${Type}ListIterator(${type}[] array) {
+        super();
+        if (array == null) {
+            throw new IllegalArgumentException("Array must not be null");
+        }
+        this.iArray = array;
+    }
+
+    //-----------------------------------------------------------------------
+    public boolean isModifiable() {
+        return true;
+    }
+
+    public boolean isResetable() {
+        return true;
+    }
+
+    //-----------------------------------------------------------------------
+    public boolean hasNext() {
+        return (iCursor < iArray.length);
+    }
+
+    public int nextIndex() {
+        return iCursor;
+    }
+
+    public ${type} next${Type}() {
+        if (hasNext() == false) {
+            throw new NoSuchElementException("No more elements available");
+        }
+        iLast = iCursor;
+        return iArray[iCursor++];
+    }
+
+    public Object next() {
+        return ${Type}Utils.toObject(next${Type}());
+    }
+
+    public boolean hasPrevious() {
+        return (iCursor > 0);
+    }
+
+    public int previousIndex() {
+        return iCursor - 1;
+    }
+
+    public ${type} previous${Type}() {
+        if (hasPrevious() == false) {
+            throw new NoSuchElementException("No more elements available");
+        }
+        iLast = --iCursor;
+        return iArray[iCursor];
+    }
+
+    public Object previous() {
+        return ${Type}Utils.toObject(previous${Type}());
+    }
+
+    public void add(${type} value) {
+        throw new UnsupportedOperationException("Array${Type}ListIterator does not support add");
+    }
+
+    public void add(Object value) {
+        throw new UnsupportedOperationException("Array${Type}ListIterator does not support add");
+    }
+
+    public void remove() {
+        throw new UnsupportedOperationException("Array${Type}ListIterator does not support remove");
+    }
+
+    public void set(${type} value) {
+        if (iLast < 0) {
+            throw new IllegalStateException("Array${Type}ListIterator cannot be set until next is called");
+        }
+        iArray[iLast] = value;
+    }
+
+    public void set(Object value) {
+        set(${Type}Utils.toPrimitive(value));
+    }
+
+    public void reset() {
+        iCursor = 0;
+        iLast = -1;
+    }
+
+}

@@ -1,0 +1,27 @@
+${license}
+package org.joda.primitives.iterator;
+
+/**
+ * Defines an iterator over primitive <code>${type}</code> values.
+ * <p>
+ * This interface extends {@link java.util.Iterator Iterator} allowing
+ * seamless integration with other APIs.
+ * 
+ * @author Stephen Colebourne
+ * @version CODE GENERATED
+ * @since 1.0
+ */
+public interface ${Type}Iterator extends PrimitiveIterator {
+    // This file is CODE GENERATED. Do not change manually.
+
+    // Mandatory operations
+    //-----------------------------------------------------------------------
+    /**
+     * Gets the next value from the iterator
+     *
+     * @return the next available value
+     * @throws NoSuchElementException if there are no more values available
+     */
+    ${type} next${Type}();
+
+}

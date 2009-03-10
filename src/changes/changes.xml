@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<document>
+  <properties>
+    <title>Java primitives - Changes</title>
+    <author>Stephen Colebourne</author>
+  </properties>
+
+  <body>
+    <release version="0.6" date="unreleased">
+      <action dev="scolebourne" type="fix" >
+        Move to Maven 2
+      </action>
+    </release>
+    <release version="0.5" date="unreleased">
+      <action dev="scolebourne" type="fix" >
+        Improve test coverage
+      </action>
+      <action dev="scolebourne" type="fix" >
+        Switch first() and last() object methods to return null if list is empty
+      </action>
+      <action dev="scolebourne" type="fix" >
+        Rename containsSome() to containsAny()
+      </action>
+      <action dev="scolebourne" type="fix" >
+        Switch website to cobertura and add changes file
+      </action>
+    </release>
+  </body>
+</document>

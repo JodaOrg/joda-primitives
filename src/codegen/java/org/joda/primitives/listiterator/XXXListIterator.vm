@@ -1,0 +1,47 @@
+${license}
+package org.joda.primitives.listiterator;
+
+import org.joda.primitives.iterator.${Type}Iterator;
+
+/**
+ * Defines a list iterator over primitive <code>${type}</code> values.
+ * 
+ * @author Stephen Colebourne
+ * @version CODE GENERATED
+ * @since 1.0
+ */
+public interface ${Type}ListIterator extends ${Type}Iterator, PrimitiveListIterator {
+    // This file is CODE GENERATED. Do not change manually.
+
+    // Mandatory operations
+    //-----------------------------------------------------------------------
+    /**
+     * Gets the previous value from the iterator.
+     *
+     * @return the previous available value
+     * @throws NoSuchElementException if there are no more values available
+     */
+    ${type} previous${Type}();
+
+    // Optional operations
+    //-----------------------------------------------------------------------
+    /**
+     * Adds the specified value to the list underlying the iterator at the
+     * current iteration index.
+     *
+     * @param value  the value to add
+     * @throws IllegalStateException if the iterator cannot be added to at present
+     * @throws UnsupportedOperationException if not supported by this collection
+     */
+    void add(${type} value);
+
+    /**
+     * Sets the last retrieved value from the iterator.
+     *
+     * @param value  the value to set
+     * @throws IllegalStateException if the iterator cannot be set to at present
+     * @throws UnsupportedOperationException if not supported by this collection
+     */
+    void set(${type} value);
+
+}

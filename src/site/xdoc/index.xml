@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+
+<document>
+
+ <properties>
+  <title>Joda Primitives</title>
+  <author>Stephen Colebourne</author>
+ </properties>
+
+ <body>
+
+<section name="Joda Primitives">
+
+<p>
+Joda Primitives provides collections and utilities to bridge the gap between objects
+and primitive types in Java.
+</p>
+
+<p>
+Current interfaces and implementations include:
+</p>
+<ul>
+<li>Collection</li>
+<li>List</li>
+<li>Iterator</li>
+<li>ListIterator</li>
+</ul>
+
+<p>
+Each collection implementation stores the data as a primitive object.
+The interfaces provide dedicated methods to access those primitives.
+If you need a list of numbers or booleans, then these classes are ideal.
+A primitive collection uses less memory, performs more quickly and saves on garbage collection.
+All this is due to the fact that no Object wrapper class has to be created.
+</p>
+
+<p>
+This project is an offshoot of <a href="http://jakarta.apache.org/commons/primitives">Commons Primitives</a>.
+The two projects have very different designs.
+Commons Primitives defines interfaces independent of the JDK collection interfaces.
+Joda Primitives defines interfaces that extend the JDK collection interfaces.
+This project offers deeper direct integration, however this results in certain method names
+being different from JDK collections.
+</p>
+
+<p>
+Joda Primitives is licensed under the business-friendly <a href="license.html">Apache 2.0 licence</a>.
+</p>
+
+</section>
+
+<section name="Documentation">
+<p>
+Various documentation is available:
+<ul>
+<!--li>Two user guides - <a href="quickstart.html">quick</a> and <a href="userguide.html">full</a></li-->
+<!--li>The javadoc for the <a href="api-release/index.html">current release</a></li-->
+<li>The javadoc for the <a href="apidocs/index.html">latest SVN</a></li>
+<li>A <a href="faq.html">FAQ</a> list</li>
+<!--li>Information on <a href="installation.html">downloading and installing</a> Joda-Time</li-->
+<li>The <a href="http://joda-primitives.svn.sourceforge.net/viewvc/joda-primitives/trunk/">SVN repository</a></li>
+</ul>
+</p>
+</section>
+
+<section name="Releases">
+<p>
+None yet...
+</p>
+</section>
+
+<section name="Contact">
+<p>
+If you have any questions, or want to volunteer to help, just email Stephen Colebourne
+via scolebourne.at.users.sourceforge.net.
+</p>
+<p>
+<br />
+<br />
+<br />
+<br />
+<br />
+</p>
+</section>
+</body>
+</document>

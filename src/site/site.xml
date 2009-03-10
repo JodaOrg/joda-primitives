@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="Joda-Primitives">
+  <publishDate position="navigation-bottom" format="yyyy-MM-dd"/>
+  <bannerLeft>
+    <name>Joda.org</name>
+    <src>http://joda-primitives.sourceforge.net/images/joda.png</src>
+    <href>http://joda.sourceforge.net/</href>
+  </bannerLeft>
+  <bannerRight>
+    <name>Joda Primitives</name>
+    <src>http://joda-primitives.sourceforge.net/images/jodaprimitives.png</src>
+    <href>http://joda-primitives.sourceforge.net/</href>
+  </bannerRight>
+
+  <body>
+    <menu name="Joda Primitives">
+      <item name="Overview" href="/index.html"/>
+      <!--item name="Users guide" href="/userguide.html"/-->
+      <item name="FAQ" href="/faq.html"/>
+      <!--item name="Javadoc (Release)" href="/api-0.1/index.html"/-->
+      <item name="License" href="/license.html"/>
+    </menu>
+
+    <menu name="Development">
+      <item name="Sourceforge" href="http://sourceforge.net/projects/joda-primitives/"/>
+      <!--item name="Test results" href="/junit-report.html"/-->
+      <!--item name="Test coverage" href="/cobertura/index.html"/-->
+      <item name="Mailing lists" href="/mail-lists.html"/>
+      <item name="Tasks" href="/tasks.html"/>
+      <item name="SVN" href="http://joda-primitives.svn.sourceforge.net/viewvc/joda-primitives/trunk/"/>
+      <item name="Javadoc (Latest)" href="/apidocs/index.html"/>
+    </menu>
+
+    <menu name="Joda">
+      <item name="Joda home" href="http://joda.sourceforge.net"/>
+      <item name="Time" href="http://joda-time.sourceforge.net/index.html"/>
+      <item name="Beans" href="http://joda.sourceforge.net/beans.html"/>
+    </menu>
+
+    <menu ref="reports"/>
+  </body>
+
+  <poweredBy>
+    <logo name="Sourceforge" href="http://sourceforge.net/projects/joda-primitives/"
+        img="http://sourceforge.net/sflogo.php?group_id=94952&amp;type=2" width="125" height="37" />
+  </poweredBy>
+</project>

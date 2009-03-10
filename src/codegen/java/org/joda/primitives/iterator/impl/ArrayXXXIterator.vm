@@ -1,0 +1,77 @@
+${license}
+package org.joda.primitives.iterator.impl;
+
+import java.util.NoSuchElementException;
+
+import org.joda.primitives.${Type}Utils;
+import org.joda.primitives.iterator.${Type}Iterator;
+
+/**
+ * An iterator over an array of <code>${type}</code> values.
+ * <p>
+ * This class implements {@link java.util.Iterator Iterator} allowing
+ * seamless integration with other APIs.
+ * <p>
+ * The iterator can be reset to the start if required.
+ * It is unmodifiable and <code>remove()</code> is unsupported.
+ *
+ * @author Stephen Colebourne
+ * @version CODE GENERATED
+ * @since 1.0
+ */
+public class Array${Type}Iterator implements ${Type}Iterator {
+    // This file is CODE GENERATED. Do not change manually.
+
+    /** The array to iterate over */
+    protected final ${type}[] iArray;
+    /** Cursor position */
+    protected int iCursor = 0;
+
+    /**
+     * Constructs an iterator over an <code>${type}</code> array.
+     * 
+     * @param array  the array to iterate over, must not be null
+     * @throws IllegalArgumentException if the array is null
+     */
+    public Array${Type}Iterator(${type}[] array) {
+        super();
+        if (array == null) {
+            throw new IllegalArgumentException("Array must not be null");
+        }
+        this.iArray = array;
+    }
+
+    //-----------------------------------------------------------------------
+    public boolean isModifiable() {
+        return false;
+    }
+
+    public boolean isResetable() {
+        return true;
+    }
+
+    //-----------------------------------------------------------------------
+    public boolean hasNext() {
+        return (iCursor < iArray.length);
+    }
+
+    public ${type} next${Type}() {
+        if (hasNext() == false) {
+            throw new NoSuchElementException("No more elements available");
+        }
+        return iArray[iCursor++];
+    }
+
+    public Object next() {
+        return ${Type}Utils.toObject(next${Type}());
+    }
+
+    public void remove() {
+        throw new UnsupportedOperationException("Array${Type}Iterator does not support remove");
+    }
+
+    public void reset() {
+        iCursor = 0;
+    }
+
+}

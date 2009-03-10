@@ -1,0 +1,393 @@
+${license}
+package org.joda.primitives.collection.impl;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.commons.collections.collection.AbstractTestCollection;
+import org.joda.primitives.${Type}Utils;
+import org.joda.primitives.collection.${Type}Collection;
+import org.joda.primitives.iterator.${Type}Iterator;
+
+/**
+ * Abstract base class for testing Abstract${Type}Collection subclasses.
+ *
+ * @author Stephen Colebourne
+ * @version CODE GENERATED
+ * @since 1.0
+ */
+public abstract class AbstractTest${Type}Collection extends AbstractTestCollection {
+    // This file is CODE GENERATED. Do not change manually.
+    
+    public AbstractTest${Type}Collection(String name) {
+        super(name);
+    }
+    
+    //-----------------------------------------------------------------------
+    /**
+     * Override to indicate that clone is not supported for this object.
+     */
+    public boolean isCloneSupported() {
+        return true;
+    }
+    
+    //-----------------------------------------------------------------------
+    public boolean isNullSupported() {
+        return false;
+    }
+
+    public Collection makeConfirmedCollection() {
+        return new ArrayList();
+    }
+
+    public Collection makeConfirmedFullCollection() {
+        List list = new ArrayList();
+        list.addAll(Arrays.asList(getFullNonNullElements()));
+        return list;
+    }
+
+    public Object[] getFullNonNullElements() {
+        return new Object[] {
+            ${testValues}
+        };
+    }
+    
+    public Object[] getOtherNonNullElements() {
+        return new Object[] {
+            ${otherValues}
+        };
+    }
+    
+    public void testIsModifiable() {
+        ${Type}Collection ic = (${Type}Collection) makeFullCollection();
+        assertEquals(isAddSupported() || isRemoveSupported(), ic.isModifiable());
+    }
+    
+    public void testToValueArray() {
+        ${Type}Collection ic = (${Type}Collection) makeFullCollection();
+        ${type}[] values = ic.to${Type}Array();
+        int i = 0;
+        for (${Type}Iterator it = ic.${type}Iterator(); it.hasNext(); i++) {
+            ${type} next = it.next${Type}();
+            assertEquals(values[i], next${assertExtra});
+        }
+    }
+    
+    public void testToValueArrayEmpty() {
+        ${Type}Collection ic = (${Type}Collection) makeFullCollection();
+        ic.clear();
+        ${type}[] values = ic.to${Type}Array();
+        assertEquals(0, values.length);
+    }
+    
+    public void testToValueArrayInsert() {
+        ${Type}Collection ic = (${Type}Collection) makeFullCollection();
+        ${type}[] array = new ${type}[2];
+        try {
+            ic.to${Type}Array(array, -1);
+            fail();
+        } catch (IndexOutOfBoundsException ex) {}
+        
+        ${type}[] values = ic.to${Type}Array();
+        
+        // array null
+        ${type}[] result = ic.to${Type}Array(null, 1);
+        assertEquals(${testValue0}, result[0]${assertExtra});
+        for (int i = 1; i < result.length; i++) {
+            assertEquals(values[i - 1], result[i]${assertExtra});
+        }
+        
+        // array too small
+#if(${type} == 'boolean')
+        array = new ${type}[1];
+        array[0] = ${testValue2};
+        result = ic.to${Type}Array(array, 1);
+        assertEquals(${testValue2}, array[0]${assertExtra});
+        assertEquals(ic.size() + 1, result.length);
+        assertEquals(${testValue2}, result[0]${assertExtra});
+        for (int i = 0; i < values.length; i++) {
+            assertEquals(values[i], result[i + 1]${assertExtra});
+        }
+#else
+        array = new ${type}[2];
+        array[0] = ${testValue2};
+        array[1] = ${testValue1};
+        result = ic.to${Type}Array(array, 1);
+        assertEquals(${testValue2}, array[0]${assertExtra});
+        assertEquals(${testValue1}, array[1]${assertExtra});
+        assertEquals(ic.size() + 1, result.length);
+        assertEquals(${testValue2}, result[0]${assertExtra});
+        for (int i = 0; i < values.length; i++) {
+            assertEquals(values[i], result[i + 1]${assertExtra});
+        }
+#end
+        
+        // array big enough
+        array = new ${type}[values.length + 2];
+        Arrays.fill(array, ${testValue2});
+        result = ic.to${Type}Array(array, 1);
+        assertSame(array, result);
+        assertEquals(${testValue2}, array[0]${assertExtra});
+        assertEquals(${testValue2}, array[array.length - 1]${assertExtra});
+        for (int i = 0; i < values.length; i++) {
+            assertEquals(values[i], result[i + 1]${assertExtra});
+        }
+    }
+    
+    //-----------------------------------------------------------------------
+    public void testContainsAllArray() {
+        resetFull();
+        ${Type}Collection coll = (${Type}Collection) collection;
+        assertEquals(true, coll.containsAll((${type}[]) null));
+    }
+
+    public void testContainsAllTypedCollection() {
+        resetFull();
+        ${Type}Collection coll = (${Type}Collection) collection;
+        ${Type}Collection clone = (${Type}Collection) coll.clone();
+        
+        assertEquals(true, coll.containsAll(clone));
+        assertEquals(true, clone.containsAll(coll));
+        
+        Iterator it = clone.iterator();
+        it.next();
+        it.remove();
+        assertEquals(true, coll.containsAll(clone));
+        assertEquals(false, clone.containsAll(coll));
+        
+        assertEquals(true, coll.containsAll((${Type}Collection) null));
+        clone.clear();
+        assertEquals(false, coll.containsAny(clone));
+    }
+
+#if(${type} != "boolean" && ${type} != "float" && ${type} != "double")
+    public void testContainsAllRange() {
+        resetEmpty();
+        ${Type}Collection coll = (${Type}Collection) collection;
+        coll.add((${type}) 2);
+        coll.add((${type}) 3);
+        coll.add((${type}) 4);
+        coll.add((${type}) 5);
+        assertEquals(false, coll.containsAll((${type}) 0, (${type}) 1));
+        assertEquals(false, coll.containsAll((${type}) 6, (${type}) 7));
+        
+        assertEquals(true, coll.containsAll((${type}) 3, (${type}) 4));
+        assertEquals(true, coll.containsAll((${type}) 3, (${type}) 5));
+        assertEquals(false, coll.containsAll((${type}) 3, (${type}) 6));
+        assertEquals(true, coll.containsAll((${type}) 2, (${type}) 4));
+        assertEquals(true, coll.containsAll((${type}) 2, (${type}) 5));
+        assertEquals(false, coll.containsAll((${type}) 2, (${type}) 6));
+        assertEquals(false, coll.containsAll((${type}) 1, (${type}) 4));
+        assertEquals(false, coll.containsAll((${type}) 1, (${type}) 5));
+        assertEquals(false, coll.containsAll((${type}) 1, (${type}) 6));
+        
+        assertEquals(true, coll.containsAll((${type}) 4, (${type}) 3));
+        assertEquals(true, coll.containsAll((${type}) 5, (${type}) 3));
+        assertEquals(true, coll.containsAll((${type}) 6, (${type}) 3));
+        assertEquals(true, coll.containsAll((${type}) 4, (${type}) 2));
+        assertEquals(true, coll.containsAll((${type}) 5, (${type}) 2));
+        assertEquals(true, coll.containsAll((${type}) 6, (${type}) 2));
+        assertEquals(true, coll.containsAll((${type}) 4, (${type}) 1));
+        assertEquals(true, coll.containsAll((${type}) 5, (${type}) 1));
+        assertEquals(true, coll.containsAll((${type}) 6, (${type}) 1));
+    }
+
+#end    
+    //-----------------------------------------------------------------------
+    public void testContainsAnyArray() {
+        resetFull();
+        ${Type}Collection coll = (${Type}Collection) collection;
+        assertEquals(false, coll.containsAny((${type}[]) null));
+        assertEquals(false, coll.containsAny(new ${type}[0]));
+        assertEquals(true, coll.containsAny(new ${type}[] {${Type}Utils.toPrimitive(getFullElements()[0])}));
+        assertEquals(false, coll.containsAny(new ${type}[] {${Type}Utils.toPrimitive(getOtherElements()[0])}));
+    }
+
+    public void testContainsAnyTypedCollection() {
+        resetFull();
+        ${Type}Collection coll = (${Type}Collection) collection;
+        ${Type}Collection clone = (${Type}Collection) coll.clone();
+        
+        assertEquals(true, coll.containsAny(clone));
+        assertEquals(true, clone.containsAny(coll));
+        
+        Iterator it = clone.iterator();
+        Object obj = it.next();
+        clone.clear();
+        clone.add(obj);
+        assertEquals(true, coll.containsAny(clone));
+        assertEquals(true, clone.containsAny(coll));
+        
+        coll.remove(obj);
+        assertEquals(false, coll.containsAny(clone));
+        assertEquals(false, clone.containsAny(coll));
+        
+        assertEquals(false, coll.containsAny((${Type}Collection) null));
+        clone.clear();
+        assertEquals(false, coll.containsAny(clone));
+    }
+
+#if(${type} != "boolean" && ${type} != "float" && ${type} != "double")
+    public void testContainsAnyRange() {
+        resetEmpty();
+        ${Type}Collection coll = (${Type}Collection) collection;
+        coll.add((${type}) 2);
+        coll.add((${type}) 3);
+        coll.add((${type}) 4);
+        coll.add((${type}) 5);
+        assertEquals(false, coll.containsAny((${type}) 0, (${type}) 1));
+        assertEquals(false, coll.containsAny((${type}) 6, (${type}) 7));
+        
+        assertEquals(true, coll.containsAny((${type}) 3, (${type}) 4));
+        assertEquals(true, coll.containsAny((${type}) 3, (${type}) 5));
+        assertEquals(true, coll.containsAny((${type}) 3, (${type}) 6));
+        assertEquals(true, coll.containsAny((${type}) 2, (${type}) 4));
+        assertEquals(true, coll.containsAny((${type}) 2, (${type}) 5));
+        assertEquals(true, coll.containsAny((${type}) 2, (${type}) 6));
+        assertEquals(true, coll.containsAny((${type}) 1, (${type}) 4));
+        assertEquals(true, coll.containsAny((${type}) 1, (${type}) 5));
+        assertEquals(true, coll.containsAny((${type}) 1, (${type}) 6));
+        
+        assertEquals(false, coll.containsAny((${type}) 4, (${type}) 3));
+        assertEquals(false, coll.containsAny((${type}) 5, (${type}) 3));
+        assertEquals(false, coll.containsAny((${type}) 6, (${type}) 3));
+        assertEquals(false, coll.containsAny((${type}) 4, (${type}) 2));
+        assertEquals(false, coll.containsAny((${type}) 5, (${type}) 2));
+        assertEquals(false, coll.containsAny((${type}) 6, (${type}) 2));
+        assertEquals(false, coll.containsAny((${type}) 4, (${type}) 1));
+        assertEquals(false, coll.containsAny((${type}) 5, (${type}) 1));
+        assertEquals(false, coll.containsAny((${type}) 6, (${type}) 1));
+    }
+
+#end
+    //-----------------------------------------------------------------------
+    public void testAddAllArray() {
+        resetFull();
+        ${Type}Collection coll = (${Type}Collection) collection;
+        coll.addAll((${type}[]) null);
+        verify();
+    }
+
+#if(${type} != "boolean" && ${type} != "float" && ${type} != "double")
+    public void testAddAllRange() {
+        resetEmpty();
+        ${Type}Collection coll = (${Type}Collection) collection;
+        assertEquals(0, coll.size());
+        coll.addAll((${type}) 2, (${type}) 5);
+        assertEquals(4, coll.size());
+        assertEquals(true, coll.contains((${type}) 2));
+        assertEquals(true, coll.contains((${type}) 3));
+        assertEquals(true, coll.contains((${type}) 4));
+        assertEquals(true, coll.contains((${type}) 5));
+    }
+
+    public void testAddAllReverseRange() {
+        resetEmpty();
+        ${Type}Collection coll = (${Type}Collection) collection;
+        assertEquals(0, coll.size());
+        coll.addAll((${type}) 5, (${type}) 2);
+        assertEquals(0, coll.size());
+    }
+
+#end
+    //-----------------------------------------------------------------------
+    public void testRemoveAll() {
+        resetFull();
+        ${Type}Collection coll = (${Type}Collection) collection;
+        ${type} first = coll.${type}Iterator().next${Type}();
+        coll.add(first);
+        int size = coll.size();
+        
+        coll.removeAll(first);
+        assertEquals(size - 2, coll.size());
+        assertEquals(false, coll.contains(first));
+    }
+
+    public void testRemoveAllArray() {
+        resetFull();
+        ${Type}Collection coll = (${Type}Collection) collection;
+        coll.removeAll((${type}[]) null);
+        verify();
+    }
+
+#if(${type} != "boolean" && ${type} != "float" && ${type} != "double")
+    public void testRemoveAllRange() {
+        resetEmpty();
+        ${Type}Collection coll = (${Type}Collection) collection;
+        coll.addAll((${type}) 2, (${type}) 6);
+        
+        coll.removeAll((${type}) 3, (${type}) 5);
+        assertEquals(2, coll.size());
+        assertEquals(true, coll.contains((${type}) 2));
+        assertEquals(true, coll.contains((${type}) 6));
+    }
+
+    public void testRemoveAllReverseRange() {
+        resetEmpty();
+        ${Type}Collection coll = (${Type}Collection) collection;
+        coll.addAll((${type}) 2, (${type}) 6);
+        
+        coll.removeAll((${type}) 4, (${type}) 3);
+        assertEquals(5, coll.size());
+        assertEquals(true, coll.contains((${type}) 2));
+        assertEquals(true, coll.contains((${type}) 3));
+        assertEquals(true, coll.contains((${type}) 4));
+        assertEquals(true, coll.contains((${type}) 5));
+        assertEquals(true, coll.contains((${type}) 6));
+    }
+
+#end
+    //-----------------------------------------------------------------------
+    public void testRetainAllArray() {
+        resetFull();
+        ${Type}Collection coll = (${Type}Collection) collection;
+        coll.retainAll((${type}[]) null);
+        confirmed.clear();
+        verify();
+    }
+
+#if(${type} != "boolean" && ${type} != "float" && ${type} != "double")
+    public void testRetainAllRange() {
+        resetEmpty();
+        ${Type}Collection coll = (${Type}Collection) collection;
+        coll.addAll((${type}) 2, (${type}) 6);
+        
+        coll.retainAll((${type}) 3, (${type}) 5);
+        assertEquals(3, coll.size());
+        assertEquals(true, coll.contains((${type}) 3));
+        assertEquals(true, coll.contains((${type}) 4));
+        assertEquals(true, coll.contains((${type}) 5));
+    }
+
+    public void testRetainAllReverseRange() {
+        resetEmpty();
+        ${Type}Collection coll = (${Type}Collection) collection;
+        coll.addAll((${type}) 2, (${type}) 6);
+        
+        coll.retainAll((${type}) 4, (${type}) 3);
+        assertEquals(0, coll.size());
+    }
+
+#end
+    //-----------------------------------------------------------------------
+    public void testClone() {
+        resetFull();
+        ${Type}Collection coll = (${Type}Collection) collection;
+        if (isCloneSupported()) {
+            ${Type}Collection coll2 = (${Type}Collection) coll.clone();
+            assertTrue(coll != coll2);
+            assertTrue(coll.size() == coll2.size());
+            assertTrue(coll.containsAll(coll2));
+            assertTrue(coll2.containsAll(coll));
+        } else {
+            try {
+                coll.clone();
+                fail();
+            } catch (UnsupportedOperationException ex) {}
+        }
+    }
+    
+}

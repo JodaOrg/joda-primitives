@@ -1,0 +1,170 @@
+${license}
+package org.joda.primitives.collection.impl;
+
+import java.lang.reflect.Array;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
+
+import junit.framework.TestSuite;
+import junit.textui.TestRunner;
+
+/**
+ * Test Array${Type}Collection.
+ *
+ * @author Stephen Colebourne
+ * @version CODE GENERATED
+ * @since 1.0
+ */
+public class TestArray${Type}Collection extends AbstractTest${Type}Collection {
+    // This file is CODE GENERATED. Do not change manually.
+
+    public TestArray${Type}Collection(String name) {
+        super(name);
+    }
+
+    //-----------------------------------------------------------------------
+    public static void main(String[] args) {
+        TestRunner.run(suite());
+    }
+
+    public static TestSuite suite() {
+        return new TestSuite(TestArray${Type}Collection.class);
+    }
+
+    //-----------------------------------------------------------------------
+    public boolean isFailFastSupported() {
+        return false;
+    }
+
+    public Collection makeCollection() {
+        return new Array${Type}Collection();
+    }
+
+    //-----------------------------------------------------------------------
+    protected int dataLength(Object obj) throws Exception {
+        Field field = obj.getClass().getDeclaredField("iData");
+        field.setAccessible(true);
+        Object value = field.get(obj);
+        return Array.getLength(value);
+    }
+
+    //-----------------------------------------------------------------------
+    public void testConstructor() throws Exception {
+        Array${Type}Collection c = new Array${Type}Collection();
+        assertEquals(0, c.size());
+        assertEquals(0, dataLength(c));
+    }
+
+    public void testConstructor_int() throws Exception {
+        Array${Type}Collection c = new Array${Type}Collection(2);
+        assertEquals(0, c.size());
+        assertEquals(2, dataLength(c));
+        
+        c = new Array${Type}Collection(0);
+        assertEquals(0, c.size());
+        assertEquals(0, dataLength(c));
+        
+        c = new Array${Type}Collection(-2);
+        assertEquals(0, c.size());
+        assertEquals(0, dataLength(c));
+    }
+
+    public void testConstructor_${type}array() throws Exception {
+        ${type}[] a = new ${type}[] {${testValue0}, ${testValue1}, ${testValue2}};
+        Array${Type}Collection c = new Array${Type}Collection(a);
+        assertEquals(3, c.size());
+        assertEquals(3, dataLength(c));
+        assertEquals(true, Arrays.equals(c.to${Type}Array(), a));
+        
+        c = new Array${Type}Collection((${type}[]) null);
+        assertEquals(0, c.size());
+        assertEquals(0, dataLength(c));
+    }
+
+    public void testConstructor_Collection() throws Exception {
+        Array${Type}Collection c = new Array${Type}Collection((Collection) null);
+        assertEquals(0, c.size());
+        assertEquals(0, dataLength(c));
+        
+        Collection coll = new ArrayList();
+        coll.add(${toObjectPre}${testValue0}${toObjectPost});
+        c = new Array${Type}Collection(coll);
+        assertEquals(1, c.size());
+        assertEquals(1, dataLength(c));
+        assertEquals(${testValue0}, c.${type}Iterator().next${Type}()${assertExtra});
+        
+        Array${Type}Collection c2 = new Array${Type}Collection(c);
+        assertEquals(1, c2.size());
+        assertEquals(1, dataLength(c2));
+        assertEquals(${testValue0}, c2.${type}Iterator().next${Type}()${assertExtra});
+        c2.clear();
+        assertEquals(0, c2.size());
+        assertEquals(1, c.size());
+    }
+
+    public void testConstructor_Iterator() throws Exception {
+        Array${Type}Collection c = new Array${Type}Collection((Iterator) null);
+        assertEquals(0, c.size());
+        assertEquals(0, dataLength(c));
+        
+        Collection coll = new ArrayList();
+        coll.add(${toObjectPre}${testValue0}${toObjectPost});
+        c = new Array${Type}Collection(coll.iterator());
+        assertEquals(1, c.size());
+        assertEquals(4, dataLength(c));
+        assertEquals(${testValue0}, c.${type}Iterator().next${Type}()${assertExtra});
+        
+        Array${Type}Collection c2 = new Array${Type}Collection(c.iterator());
+        assertEquals(1, c2.size());
+        assertEquals(4, dataLength(c2));
+        assertEquals(${testValue0}, c2.${type}Iterator().next${Type}()${assertExtra});
+        c2.clear();
+        assertEquals(0, c2.size());
+        assertEquals(1, c.size());
+    }
+
+    public void testOptimize() throws Exception {
+        ${type}[] a = new ${type}[] {${testValue0}, ${testValue1}, ${testValue2}};
+        Array${Type}Collection c = new Array${Type}Collection(a);
+        assertEquals(3, c.size());
+        assertEquals(3, dataLength(c));
+        
+        c.removeFirst(${testValue1});
+        assertEquals(2, c.size());
+        assertEquals(3, dataLength(c));
+        
+        c.optimize();
+        assertEquals(2, c.size());
+        assertEquals(2, dataLength(c));
+        assertEquals(true, c.contains(${testValue0}));
+        assertEquals(true, c.contains(${testValue2}));
+        
+        c.optimize();
+        assertEquals(2, c.size());
+        assertEquals(2, dataLength(c));
+        assertEquals(true, c.contains(${testValue0}));
+        assertEquals(true, c.contains(${testValue2}));
+    }
+
+    public void testEnsureCapacity() throws Exception {
+        ${type}[] a = new ${type}[] {${testValue0}, ${testValue1}, ${testValue2}};
+        Array${Type}Collection c = new Array${Type}Collection(a);
+        assertEquals(3, dataLength(c));
+        
+        c.ensureCapacity(0);
+        assertEquals(3, dataLength(c));
+        
+        c.ensureCapacity(-1);
+        assertEquals(3, dataLength(c));
+        
+        c.ensureCapacity(5);
+        assertEquals(7, dataLength(c));
+        
+        c.ensureCapacity(100);
+        assertEquals(100, dataLength(c));
+    }
+
+}

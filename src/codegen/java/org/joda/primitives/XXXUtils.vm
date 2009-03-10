@@ -1,0 +1,74 @@
+${license}
+package org.joda.primitives;
+
+import java.util.Collection;
+import java.util.Iterator;
+
+import org.joda.primitives.collection.${Type}Collection;
+
+/**
+ * Provides utility methods and constants for <code>${type}</code>.
+ * 
+ * @author Stephen Colebourne
+ * @version CODE GENERATED
+ * @since 1.0
+ */
+public class ${Type}Utils {
+    // This file is CODE GENERATED. Do not change manually.
+    
+    /**
+     * Immutable empty array.
+     */
+    public static final ${type}[] ${emptyArray} = new ${type}[0];
+    
+    /**
+     * Constructor that should not usually be used.
+     */
+    public ${Type}Utils() {
+        super();
+    }
+
+    /**
+     * Wraps an <code>${type}</code> with an Object wrapper.
+     * 
+     * @param value  the primitive value
+     * @return the Object wrapper
+     */
+    public static ${object} toObject(${type} value) {
+        return ${toObjectPre}value${toObjectPost};
+    }
+
+    /**
+     * Unwraps the <code>${object}</code> to retrieve the primitive <code>${type}</code>.
+     * 
+     * @param value  the Object wrapper, must not be null
+     * @return the primitive value
+     * @throws NullPointerException if the value if null
+     * @throws ClassCastException if the object is not <code>${object}</code>
+     */
+    public static ${type} toPrimitive(Object value) {
+        return ((${object}) value).${type}Value();
+    }
+
+    /**
+     * Unwraps a <code>Collection</code> to retrieve the primitive <code>${type}</code>.
+     * 
+     * @param coll  the Collection of ${object}, must not be null
+     * @return the primitive value array
+     * @throws NullPointerException if the collection if null
+     * @throws ClassCastException if any object is not <code>${object}</code>
+     */
+    public static ${type}[] toPrimitiveArray(Collection coll) {
+        if (coll instanceof ${Type}Collection) {
+            return ((${Type}Collection) coll).to${Type}Array();
+        }
+        ${type}[] result = new ${type}[coll.size()];
+        int i = 0;
+        for (Iterator it = coll.iterator(); it.hasNext(); i++) {
+            ${object} value = (${object}) it.next();
+            result[i] = value.${type}Value();
+        }
+        return result;
+    }
+
+}

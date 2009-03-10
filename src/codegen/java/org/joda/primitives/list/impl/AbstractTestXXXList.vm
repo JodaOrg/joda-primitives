@@ -1,0 +1,253 @@
+${license}
+package org.joda.primitives.list.impl;
+
+import java.util.Arrays;
+
+import org.apache.commons.collections.list.AbstractTestList;
+import org.joda.primitives.list.${Type}List;
+import org.joda.primitives.iterator.${Type}Iterator;
+
+/**
+ * Abstract base class for testing Abstract${Type}List subclasses.
+ *
+ * @author Stephen Colebourne
+ * @version CODE GENERATED
+ * @since 1.0
+ */
+public abstract class AbstractTest${Type}List extends AbstractTestList {
+    // This file is CODE GENERATED. Do not change manually.
+
+    public AbstractTest${Type}List(String name) {
+        super(name);
+    }
+
+    //-----------------------------------------------------------------------
+    /**
+     * Override to indicate that clone is not supported for this object.
+     */
+    public boolean isCloneSupported() {
+        return true;
+    }
+
+    //-----------------------------------------------------------------------
+    public boolean isNullSupported() {
+        return false;
+    }
+
+    public Object[] getFullNonNullElements() {
+        return new Object[] {
+            ${testValues}
+        };
+    }
+
+    public Object[] getOtherNonNullElements() {
+        return new Object[] {
+            ${otherValues}
+        };
+    }
+
+    public void testIsModifiable() {
+        resetFull();
+        ${Type}List plist = (${Type}List) collection;
+        assertEquals(isAddSupported() || isRemoveSupported() || isSetSupported(), plist.isModifiable());
+    }
+
+    public void testToValueArray() {
+        resetFull();
+        ${Type}List plist = (${Type}List) collection;
+        ${type}[] values = plist.to${Type}Array();
+        int i = 0;
+        for (${Type}Iterator it = plist.${type}Iterator(); it.hasNext(); i++) {
+            ${type} next = it.next${Type}();
+            assertEquals(values[i], next${assertExtra});
+        }
+    }
+
+    public void testToValueArrayInsert() {
+        resetFull();
+        ${Type}List plist = (${Type}List) collection;
+        ${type}[] array = new ${type}[2];
+        try {
+            plist.to${Type}Array(array, -1);
+            fail();
+        } catch (IndexOutOfBoundsException ex) {}
+        
+        ${type}[] values = plist.to${Type}Array();
+        
+        // array null
+        ${type}[] result = plist.to${Type}Array(null, 1);
+        assertEquals(${testValue0}, result[0]${assertExtra});
+        for (int i = 1; i < result.length; i++) {
+            assertEquals(values[i - 1], result[i]${assertExtra});
+        }
+        
+        // array too small
+#if(${type} == 'boolean')
+        array = new ${type}[1];
+        array[0] = ${testValue2};
+        result = plist.to${Type}Array(array, 1);
+        assertEquals(${testValue2}, array[0]${assertExtra});
+        assertEquals(plist.size() + 1, result.length);
+        assertEquals(${testValue2}, result[0]${assertExtra});
+        for (int i = 0; i < values.length; i++) {
+            assertEquals(values[i], result[i + 1]${assertExtra});
+        }
+#else
+        array = new ${type}[2];
+        array[0] = ${testValue2};
+        array[1] = ${testValue1};
+        result = plist.to${Type}Array(array, 1);
+        assertEquals(${testValue2}, array[0]${assertExtra});
+        assertEquals(${testValue1}, array[1]${assertExtra});
+        assertEquals(plist.size() + 1, result.length);
+        assertEquals(${testValue2}, result[0]${assertExtra});
+        for (int i = 0; i < values.length; i++) {
+            assertEquals(values[i], result[i + 1]${assertExtra});
+        }
+#end
+        
+        // array big enough
+        array = new ${type}[values.length + 2];
+        Arrays.fill(array, ${testValue2});
+        result = plist.to${Type}Array(array, 1);
+        assertSame(array, result);
+        assertEquals(${testValue2}, array[0]${assertExtra});
+        assertEquals(${testValue2}, array[array.length - 1]${assertExtra});
+        for (int i = 0; i < values.length; i++) {
+            assertEquals(values[i], result[i + 1]${assertExtra});
+        }
+    }
+
+    //-----------------------------------------------------------------------
+    public void testContainsAllArray() {
+        resetFull();
+        ${Type}List plist = (${Type}List) collection;
+        assertEquals(true, plist.containsAll((${type}[]) null));
+    }
+
+    public void testAddAllArray() {
+        resetFull();
+        ${Type}List plist = (${Type}List) collection;
+        plist.addAll((${type}[]) null);
+        verify();
+    }
+
+    public void testAddAllArrayIndexed() {
+        resetFull();
+        ${Type}List plist = (${Type}List) collection;
+        plist.addAll(0, (${type}[]) null);
+        verify();
+    }
+
+    public void testRemoveAllArray() {
+        resetFull();
+        ${Type}List plist = (${Type}List) collection;
+        plist.removeAll((${type}[]) null);
+        verify();
+    }
+
+    public void testRetainAllArray() {
+        resetFull();
+        ${Type}List plist = (${Type}List) collection;
+        plist.retainAll((${type}[]) null);
+        confirmed.clear();
+        verify();
+    }
+
+#if(${type} == 'char')
+    //-----------------------------------------------------------------------
+    public void testToStringContents() {
+        resetEmpty();
+        CharList plist = (CharList) collection;
+        plist.add('a');
+        plist.add('b');
+        plist.add('c');
+        assertEquals("abc", plist.toStringContents());
+    }
+
+#end
+    //-----------------------------------------------------------------------
+    public void testFirst${Type}_empty() {
+        resetEmpty();
+        ${Type}List plist = (${Type}List) collection;
+        try {
+            plist.first${Type}();
+            fail();
+        } catch (IndexOutOfBoundsException ex) {
+            // expected
+        }
+    }
+
+    public void testFirst${Type}_notEmpty() {
+        resetEmpty();
+        ${Type}List plist = (${Type}List) collection;
+        plist.add(${testValue0});
+        plist.add(${testValue1});
+        assertEquals(${testValue0}, plist.first${Type}()${assertExtra});
+    }
+
+    public void testLast${Type}_empty() {
+        resetEmpty();
+        ${Type}List plist = (${Type}List) collection;
+        try {
+            plist.last${Type}();
+            fail();
+        } catch (IndexOutOfBoundsException ex) {
+            // expected
+        }
+    }
+
+    public void testLast${Type}_notEmpty() {
+        resetEmpty();
+        ${Type}List plist = (${Type}List) collection;
+        plist.add(${testValue0});
+        plist.add(${testValue1});
+        assertEquals(${testValue1}, plist.last${Type}()${assertExtra});
+    }
+
+    //-----------------------------------------------------------------------
+    public void testFirst_empty() {
+        resetEmpty();
+        ${Type}List plist = (${Type}List) collection;
+        assertNull(plist.first());
+    }
+
+    public void testFirst_notEmpty() {
+        resetEmpty();
+        ${Type}List plist = (${Type}List) collection;
+        plist.add(${testValue0});
+        plist.add(${testValue1});
+        assertEquals(${toObjectPre}${testValue0}${toObjectPost}, plist.first());
+    }
+
+    public void testLast_empty() {
+        resetEmpty();
+        ${Type}List plist = (${Type}List) collection;
+        assertNull(plist.last());
+    }
+
+    public void testLast_notEmpty() {
+        resetEmpty();
+        ${Type}List plist = (${Type}List) collection;
+        plist.add(${testValue0});
+        plist.add(${testValue1});
+        assertEquals(${toObjectPre}${testValue1}${toObjectPost}, plist.last());
+    }
+
+    //-----------------------------------------------------------------------
+    public void testClone() {
+        resetFull();
+        ${Type}List coll = (${Type}List) collection;
+        if (isCloneSupported()) {
+            ${Type}List coll2 = (${Type}List) coll.clone();
+            assertTrue(coll != coll2);
+            assertEquals(coll, coll2);
+        } else {
+            try {
+                coll.clone();
+                fail();
+            } catch (UnsupportedOperationException ex) {}
+        }
+    }
+
+}
