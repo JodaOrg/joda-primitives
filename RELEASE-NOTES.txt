@@ -1,0 +1,15 @@
+
+Joda-Primitives
+===============
+Joda-Primitives provides collections and utilities for working with primitive types.
+
+v0.6
+----
+First published release
+
+
+Feedback
+--------
+All feedback is welcomed at joda-interest@lists.sourceforge.net.
+
+The Joda team

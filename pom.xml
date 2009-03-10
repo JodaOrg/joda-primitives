@@ -70,6 +70,7 @@
         <targetPath>META-INF</targetPath>
         <directory>.</directory>
         <includes>
+          <include>LICENSE.txt</include>
           <include>NOTICE.txt</include>
         </includes>
       </resource>
@@ -97,8 +98,7 @@
         <artifactId>maven-assembly-plugin</artifactId>
         <configuration>
           <descriptors>
-            <descriptor>src/main/assembly/bin.xml</descriptor>
-            <descriptor>src/main/assembly/src.xml</descriptor>
+            <descriptor>dist.xml</descriptor>
           </descriptors>
           <tarLongFileMode>gnu</tarLongFileMode>
         </configuration>
@@ -190,13 +190,13 @@
   <distributionManagement>
     <repository>
       <uniqueVersion>false</uniqueVersion>
-      <id>default-repo</id>
+      <id>sf-repo-joda-primitives</id>
       <name>Sourceforge Repository</name>
       <url>scp://web.sourceforge.net/home/groups/j/jo/joda-primitives/htdocs/repo</url>
       <layout>default</layout>
     </repository>
     <site>
-      <id>default-site</id>
+      <id>sf-web-joda-primitives</id>
       <name>Sourceforge Site</name>
       <url>scp://web.sourceforge.net/home/groups/j/jo/joda-primitives/htdocs</url>
     </site>
