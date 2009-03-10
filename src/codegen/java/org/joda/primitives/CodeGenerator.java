@@ -31,7 +31,6 @@ import org.apache.velocity.app.Velocity;
  * Generates the entire suite of classes.
  * 
  * @author Stephen Colebourne
- * @version $Id: CodeGenerator.java,v 1.6 2006/07/15 18:56:59 scolebourne Exp $
  * @since 1.0
  */
 public class CodeGenerator {
@@ -86,7 +85,7 @@ public class CodeGenerator {
      * Initialize by reading the license.
      */
     private static void init() throws Exception {
-        BufferedReader in = new BufferedReader(new FileReader("src/codegen/LICENSE-HEADER.txt"));
+        BufferedReader in = new BufferedReader(new FileReader("src/codegen/java/LICENSE-HEADER.txt"));
         StringBuffer buf = new StringBuffer();
         String line = null;
         while ((line = in.readLine()) != null) {
@@ -103,7 +102,7 @@ public class CodeGenerator {
      * Process a single template.
      */
     private static void process(final String templateName) throws Exception {
-        final Template template = Velocity.getTemplate("src/codegen/" + templateName + ".vm");
+        final Template template = Velocity.getTemplate("src/codegen/java/" + templateName + ".vm");
         
         // init data
         for (int i = 0; i < TYPES.length; i++) {
@@ -126,15 +125,15 @@ public class CodeGenerator {
                     templateName.lastIndexOf('\\') : templateName.lastIndexOf('/');
             String dirName = templateName.substring(0, lastSlash);
             if (fileName.indexOf("Test") >= 0) {
-                dirName = "src/test/" + dirName;
+                dirName = "src/test/java/" + dirName;
                 new File(dirName).mkdir();
-                FileWriter writer = new FileWriter("src/test/" + fileName);
+                FileWriter writer = new FileWriter("src/test/java/" + fileName);
                 writer.write(sw.toString());
                 writer.close();
             } else {
-                dirName = "src/java/" + dirName;
+                dirName = "src/main/java/" + dirName;
                 new File(dirName).mkdir();
-                FileWriter writer = new FileWriter("src/java/" + fileName);
+                FileWriter writer = new FileWriter("src/main/java/" + fileName);
                 writer.write(sw.toString());
                 writer.close();
             }
@@ -270,24 +269,24 @@ public class CodeGenerator {
     }
 
     private static final String[] TEMPLATE_FILENAMES = new String[] {
-//        "org/joda/primitives/XXXUtils",
-//        
-//        "org/joda/primitives/collection/XXXCollection",
-//        "org/joda/primitives/iterator/XXXIterator",
-//        "org/joda/primitives/list/XXXList",
-//        "org/joda/primitives/listiterator/XXXListIterator",
-//        
-//        "org/joda/primitives/iterator/impl/ArrayXXXIterator",
-//        "org/joda/primitives/collection/impl/AbstractXXXCollection",
+        "org/joda/primitives/XXXUtils",
+        
+        "org/joda/primitives/collection/XXXCollection",
+        "org/joda/primitives/iterator/XXXIterator",
+        "org/joda/primitives/list/XXXList",
+        "org/joda/primitives/listiterator/XXXListIterator",
+        
+        "org/joda/primitives/iterator/impl/ArrayXXXIterator",
+        "org/joda/primitives/collection/impl/AbstractXXXCollection",
         "org/joda/primitives/collection/impl/ArrayXXXCollection",
-//        "org/joda/primitives/listiterator/impl/ArrayXXXListIterator",
-//        "org/joda/primitives/list/impl/AbstractXXXList",
-//        "org/joda/primitives/list/impl/ArrayXXXList",
-//        
-//        "org/joda/primitives/collection/impl/AbstractTestXXXCollection",
+        "org/joda/primitives/listiterator/impl/ArrayXXXListIterator",
+        "org/joda/primitives/list/impl/AbstractXXXList",
+        "org/joda/primitives/list/impl/ArrayXXXList",
+        
+        "org/joda/primitives/collection/impl/AbstractTestXXXCollection",
         "org/joda/primitives/collection/impl/TestArrayXXXCollection",
-//        "org/joda/primitives/list/impl/AbstractTestXXXList",
-//        "org/joda/primitives/list/impl/TestArrayXXXList",
+        "org/joda/primitives/list/impl/AbstractTestXXXList",
+        "org/joda/primitives/list/impl/TestArrayXXXList",
     };
 
 }
