@@ -26,6 +26,6 @@ import org.joda.primitives.iterator.PrimitiveIterator;
  * @version $Id: PrimitiveListIterator.java,v 1.4 2006/03/27 22:42:11 scolebourne Exp $
  * @since 1.0
  */
-public interface PrimitiveListIterator extends PrimitiveIterator, ListIterator {
+public interface PrimitiveListIterator<N> extends PrimitiveIterator<N>, ListIterator<N> {
 
 }

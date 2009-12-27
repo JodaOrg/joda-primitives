@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -72,13 +72,13 @@ public class LongUtils {
      * @throws NullPointerException if the collection if null
      * @throws ClassCastException if any object is not <code>Long</code>
      */
-    public static long[] toPrimitiveArray(Collection coll) {
+    public static long[] toPrimitiveArray(Collection <?> coll) {
         if (coll instanceof LongCollection) {
             return ((LongCollection) coll).toLongArray();
         }
         long[] result = new long[coll.size()];
         int i = 0;
-        for (Iterator it = coll.iterator(); it.hasNext(); i++) {
+        for (Iterator<?> it = coll.iterator(); it.hasNext(); i++) {
             Long value = (Long) it.next();
             result[i] = value.longValue();
         }

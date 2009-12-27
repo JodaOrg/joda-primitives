@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -400,7 +400,7 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
      * @return value at the index
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    public Object get(int index) {
+    public Integer get(int index) {
         return IntUtils.toObject(getInt(index));
     }
 
@@ -409,7 +409,7 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
      *
      * @return an iterator over this list
      */
-    public ListIterator listIterator() {
+    public ListIterator<Integer> listIterator() {
         return intListIterator();
     }
 
@@ -420,7 +420,7 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
      * @return an iterator over this list
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    public ListIterator listIterator(int index) {
+    public ListIterator<Integer> listIterator(int index) {
         return intListIterator(index);
     }
 
@@ -429,7 +429,7 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
      *
      * @return value at index zero or null if the size is zero
      */
-    public Object first() {
+    public Integer first() {
         if (size() == 0) {
             return null;
         }
@@ -441,7 +441,7 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
      *
      * @return value at index <code>size() - 1</code> or null if the size is zero
      */
-    public Object last() {
+    public Integer last() {
         if (size() == 0) {
             return null;
         }
@@ -517,7 +517,7 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public boolean add(Object value) {
+    public boolean add(Integer value) {
         checkAddModifiable();
         return add(size(), IntUtils.toPrimitive(value));
     }
@@ -535,7 +535,7 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public void add(int index, Object value) {
+    public void add(int index, Integer value) {
         checkAddModifiable();
         checkIndex(index);
         add(index, IntUtils.toPrimitive(value));
@@ -555,7 +555,7 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public boolean addAll(int index, Collection coll) {
+    public boolean addAll(int index, Collection<? extends Integer> coll) {
         checkAddModifiable();
         checkIndex(index);
         return addAll(index, IntUtils.toPrimitiveArray(coll));
@@ -573,7 +573,7 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
      * @throws IndexOutOfBoundsException if the index is invalid
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public Object remove(int index) {
+    public Integer remove(int index) {
         checkRemoveModifiable();
         return IntUtils.toObject(removeIntAt(index));
     }
@@ -590,7 +590,7 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public Object set(int index, Object value) {
+    public Integer set(int index, Integer value) {
         checkSetModifiable();
         checkIndexExists(index);
         return IntUtils.toObject(set(index, IntUtils.toPrimitive(value)));
@@ -609,7 +609,7 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
      * @return a new IntList for the subList
      * @throws IndexOutOfBoundsException if either index is invalid
      */
-    public List subList(int fromIndexInclusive, int toIndexExclusive) {
+    public List<Integer> subList(int fromIndexInclusive, int toIndexExclusive) {
         return subIntList(fromIndexInclusive, toIndexExclusive);
     }
 
@@ -637,13 +637,13 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
                 }
             }
             return true;
-        } else if (obj instanceof List) {
-            List other = (List) obj;
+        } else if (obj instanceof List<?>) {
+            List<?> other = (List<?>) obj;
             if (size() != other.size()) {
                 return false;
             }
             IntIterator it1 = intListIterator();
-            Iterator it2 = other.listIterator();
+            Iterator<?> it2 = other.listIterator();
             while (it1.hasNext() && it2.hasNext()) {
                 Object next = it2.next();
                 if (isToPrimitivePossible(next) == false) {
@@ -666,7 +666,7 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
      */
     public int hashCode() {
         int hashCode = 1;
-        Iterator it = iterator();
+        Iterator<Integer> it = iterator();
         while (it.hasNext()) {
             Object obj = it.next();
             hashCode = 31 * hashCode + (obj == null ? 0 : obj.hashCode());
@@ -806,7 +806,7 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
             return iList.getInt(iCursor++);
         }
 
-        public Object next() {
+        public Integer next() {
             return iList.toObject(nextInt());
         }
 
@@ -827,7 +827,7 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
             return iList.getInt(iCursor);
         }
 
-        public Object previous() {
+        public Integer previous() {
             return iList.toObject(previousInt());
         }
 
@@ -856,7 +856,7 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
             }
         }
 
-        public void add(Object obj) {
+        public void add(Integer obj) {
             iList.checkAddModifiable();
             add(iList.toPrimitive(obj));
         }
@@ -873,7 +873,7 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
             }
         }
 
-        public void set(Object obj) {
+        public void set(Integer obj) {
             iList.checkSetModifiable();
             set(iList.toPrimitive(obj));
         }

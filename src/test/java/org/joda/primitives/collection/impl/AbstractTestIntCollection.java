@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -53,24 +53,24 @@ public abstract class AbstractTestIntCollection extends AbstractTestCollection {
         return false;
     }
 
-    public Collection makeConfirmedCollection() {
-        return new ArrayList();
+    public Collection<Integer> makeConfirmedCollection() {
+        return new ArrayList<Integer>();
     }
 
-    public Collection makeConfirmedFullCollection() {
-        List list = new ArrayList();
+    public Collection<Integer> makeConfirmedFullCollection() {
+        List<Integer> list = new ArrayList<Integer>();
         list.addAll(Arrays.asList(getFullNonNullElements()));
         return list;
     }
 
-    public Object[] getFullNonNullElements() {
-        return new Object[] {
+    public Integer[] getFullNonNullElements() {
+        return new Integer[] {
             new Integer(2),new Integer(-2),new Integer(38),new Integer(0),new Integer(10000),new Integer(202),new Integer(Integer.MIN_VALUE),new Integer(Integer.MAX_VALUE)
         };
     }
     
-    public Object[] getOtherNonNullElements() {
-        return new Object[] {
+    public Integer[] getOtherNonNullElements() {
+        return new Integer[] {
             new Integer(-33),new Integer(66),new Integer(-99)
         };
     }
@@ -154,7 +154,7 @@ public abstract class AbstractTestIntCollection extends AbstractTestCollection {
         assertEquals(true, coll.containsAll(clone));
         assertEquals(true, clone.containsAll(coll));
         
-        Iterator it = clone.iterator();
+        Iterator<Integer> it = clone.iterator();
         it.next();
         it.remove();
         assertEquals(true, coll.containsAll(clone));
@@ -214,8 +214,8 @@ public abstract class AbstractTestIntCollection extends AbstractTestCollection {
         assertEquals(true, coll.containsAny(clone));
         assertEquals(true, clone.containsAny(coll));
         
-        Iterator it = clone.iterator();
-        Object obj = it.next();
+        Iterator<Integer> it = clone.iterator();
+        Integer obj = it.next();
         clone.clear();
         clone.add(obj);
         assertEquals(true, coll.containsAny(clone));

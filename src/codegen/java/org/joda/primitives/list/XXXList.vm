@@ -16,7 +16,7 @@ import org.joda.primitives.listiterator.${Type}ListIterator;
  * @version CODE GENERATED
  * @since 1.0
  */
-public interface ${Type}List extends PrimitiveList, ${Type}Collection {
+public interface ${Type}List extends PrimitiveList<${object}>, ${Type}Collection {
     // This file is CODE GENERATED. Do not change manually.
 
     // Mandatory operations
@@ -180,7 +180,7 @@ public interface ${Type}List extends PrimitiveList, ${Type}Collection {
      * @throws IndexOutOfBoundsException if the index is invalid
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    Object remove(int index);
+    ${object} remove(int index);
 
     /**
      * Removes a primitive value by index from the list (optional operation).

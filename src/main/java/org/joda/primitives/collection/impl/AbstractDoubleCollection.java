@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ import org.joda.primitives.iterator.DoubleIterator;
  * @since 1.0
  */
 public abstract class AbstractDoubleCollection
-        extends AbstractPrimitiveCollectable
+        extends AbstractPrimitiveCollectable<Double>
         implements DoubleCollection {
     // This file is CODE GENERATED. Do not change manually.
 
@@ -441,7 +441,7 @@ public abstract class AbstractDoubleCollection
      *
      * @return an iterator over this collection
      */
-    public Iterator iterator() {
+    public Iterator<Double> iterator() {
         return doubleIterator();
     }
 
@@ -465,7 +465,7 @@ public abstract class AbstractDoubleCollection
      * @param coll  the collection of values to search for
      * @return <code>true</code> if all the values are found
      */
-    public boolean containsAll(Collection coll) {
+    public boolean containsAll(Collection<?> coll) {
         if (coll == this || coll.size() == 0) {
             return true;
         }
@@ -484,7 +484,7 @@ public abstract class AbstractDoubleCollection
      * @param coll  the collection of values to search for
      * @return <code>true</code> if at least one of the values is found
      */
-    public boolean containsAny(Collection coll) {
+    public boolean containsAny(Collection<Double> coll) {
         if (size() == 0 || coll.size() == 0) {
             return false;
         }
@@ -514,21 +514,22 @@ public abstract class AbstractDoubleCollection
      * @param array  the array to populate
      * @return an array of <code>Double</code>
      */
-    public Object[] toArray(Object[] array) {
+    @SuppressWarnings("unchecked")
+    public <T> T[] toArray(T[] array) {
         int size = size();
         if (array.length < size) {
-            array = (Object[]) Array.newInstance(array.getClass().getComponentType(), size);
+          array = (T[]) Array.newInstance(array.getClass().getComponentType(), size);
         }
 
-        Iterator it = iterator();
+        Iterator<Double> it = iterator();
         for (int i = 0; i < size; i++) {
-            array[i] = it.next();
+            array[i] = (T)it.next();
         }
 
         if (array.length > size) {
             array[size] = null;
         }
-
+        
         return array;
     }
 
@@ -545,7 +546,7 @@ public abstract class AbstractDoubleCollection
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public boolean add(Object value) {
+    public boolean add(Double value) {
         checkAddModifiable();
         return add(toPrimitive(value));
     }
@@ -565,7 +566,7 @@ public abstract class AbstractDoubleCollection
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public boolean addAll(Collection coll) {
+    public boolean addAll(Collection<? extends Double> coll) {
         checkAddModifiable();
         return addAll(toPrimitiveArray(coll));
     }
@@ -600,7 +601,7 @@ public abstract class AbstractDoubleCollection
      * @return <code>true</code> if this list was modified by this method call
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public boolean removeAll(Collection coll) {
+    public boolean removeAll(Collection<?> coll) {
         checkRemoveModifiable();
         if (coll == this) {
             int size = size();
@@ -623,7 +624,7 @@ public abstract class AbstractDoubleCollection
      * @return <code>true</code> if this list was modified by this method call
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public boolean retainAll(Collection coll) {
+    public boolean retainAll(Collection<?> coll) {
         checkRemoveModifiable();
         if (coll == this) {
             return false;
@@ -771,7 +772,7 @@ public abstract class AbstractDoubleCollection
      * @throws NullPointerException if the value is null and this is unacceptable
      * @throws ClassCastException if any object is of an unsuitable type
      */
-    protected double[] toPrimitiveArray(Collection coll) {
+    protected double[] toPrimitiveArray(Collection<?> coll) {
         return DoubleUtils.toPrimitiveArray(coll);
     }
 

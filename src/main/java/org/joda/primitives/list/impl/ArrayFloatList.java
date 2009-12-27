@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -90,7 +90,7 @@ public class ArrayFloatList extends AbstractFloatList implements Cloneable {
      * 
      * @param coll  a collection of values to copy, null treated as zero size collection
      */
-    public ArrayFloatList(Collection coll) {
+    public ArrayFloatList(Collection<Float> coll) {
         super();
         if (coll == null) {
             iData = FloatUtils.EMPTY_FLOAT_ARRAY;

@@ -11,7 +11,7 @@ package org.joda.primitives.iterator;
  * @version CODE GENERATED
  * @since 1.0
  */
-public interface ${Type}Iterator extends PrimitiveIterator {
+public interface ${Type}Iterator extends PrimitiveIterator<${object}> {
     // This file is CODE GENERATED. Do not change manually.
 
     // Mandatory operations

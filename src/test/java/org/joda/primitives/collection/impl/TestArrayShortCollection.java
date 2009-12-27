@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ public class TestArrayShortCollection extends AbstractTestShortCollection {
         return false;
     }
 
-    public Collection makeCollection() {
+    public Collection<Short> makeCollection() {
         return new ArrayShortCollection();
     }
 
@@ -99,11 +99,11 @@ public class TestArrayShortCollection extends AbstractTestShortCollection {
     }
 
     public void testConstructor_Collection() throws Exception {
-        ArrayShortCollection c = new ArrayShortCollection((Collection) null);
+        ArrayShortCollection c = new ArrayShortCollection((Collection<Short>) null);
         assertEquals(0, c.size());
         assertEquals(0, dataLength(c));
         
-        Collection coll = new ArrayList();
+        Collection<Short> coll = new ArrayList<Short>();
         coll.add(new Short((short) 0));
         c = new ArrayShortCollection(coll);
         assertEquals(1, c.size());
@@ -120,11 +120,11 @@ public class TestArrayShortCollection extends AbstractTestShortCollection {
     }
 
     public void testConstructor_Iterator() throws Exception {
-        ArrayShortCollection c = new ArrayShortCollection((Iterator) null);
+        ArrayShortCollection c = new ArrayShortCollection((Iterator<Short>) null);
         assertEquals(0, c.size());
         assertEquals(0, dataLength(c));
         
-        Collection coll = new ArrayList();
+        Collection<Short> coll = new ArrayList<Short>();
         coll.add(new Short((short) 0));
         c = new ArrayShortCollection(coll.iterator());
         assertEquals(1, c.size());

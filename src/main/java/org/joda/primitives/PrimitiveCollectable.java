@@ -22,7 +22,7 @@ package org.joda.primitives;
  * @version $Id: PrimitiveCollectable.java,v 1.4 2006/03/27 22:42:11 scolebourne Exp $
  * @since 1.0
  */
-public interface PrimitiveCollectable {
+public interface PrimitiveCollectable<N> {
 
     // Mandatory operations
     //-----------------------------------------------------------------------

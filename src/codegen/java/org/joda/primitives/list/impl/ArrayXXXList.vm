@@ -76,7 +76,7 @@ public class Array${Type}List extends Abstract${Type}List implements Cloneable {
      * 
      * @param coll  a collection of values to copy, null treated as zero size collection
      */
-    public Array${Type}List(Collection coll) {
+    public Array${Type}List(Collection<${object}> coll) {
         super();
         if (coll == null) {
             iData = ${Type}Utils.${emptyArray};

@@ -34,14 +34,14 @@ public abstract class AbstractTest${Type}List extends AbstractTestList {
         return false;
     }
 
-    public Object[] getFullNonNullElements() {
-        return new Object[] {
+    public ${object}[] getFullNonNullElements() {
+        return new ${object}[] {
             ${testValues}
         };
     }
 
-    public Object[] getOtherNonNullElements() {
-        return new Object[] {
+    public ${object}[] getOtherNonNullElements() {
+        return new ${object}[] {
             ${otherValues}
         };
     }

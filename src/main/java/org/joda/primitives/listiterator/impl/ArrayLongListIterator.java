@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -84,7 +84,7 @@ public class ArrayLongListIterator implements LongListIterator {
         return iArray[iCursor++];
     }
 
-    public Object next() {
+    public Long next() {
         return LongUtils.toObject(nextLong());
     }
 
@@ -104,7 +104,7 @@ public class ArrayLongListIterator implements LongListIterator {
         return iArray[iCursor];
     }
 
-    public Object previous() {
+    public Long previous() {
         return LongUtils.toObject(previousLong());
     }
 
@@ -112,7 +112,7 @@ public class ArrayLongListIterator implements LongListIterator {
         throw new UnsupportedOperationException("ArrayLongListIterator does not support add");
     }
 
-    public void add(Object value) {
+    public void add(Long value) {
         throw new UnsupportedOperationException("ArrayLongListIterator does not support add");
     }
 
@@ -127,7 +127,7 @@ public class ArrayLongListIterator implements LongListIterator {
         iArray[iLast] = value;
     }
 
-    public void set(Object value) {
+    public void set(Long value) {
         set(LongUtils.toPrimitive(value));
     }
 

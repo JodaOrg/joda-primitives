@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -53,24 +53,24 @@ public abstract class AbstractTestBooleanCollection extends AbstractTestCollecti
         return false;
     }
 
-    public Collection makeConfirmedCollection() {
-        return new ArrayList();
+    public Collection<Boolean> makeConfirmedCollection() {
+        return new ArrayList<Boolean>();
     }
 
-    public Collection makeConfirmedFullCollection() {
-        List list = new ArrayList();
+    public Collection<Boolean> makeConfirmedFullCollection() {
+        List<Boolean> list = new ArrayList<Boolean>();
         list.addAll(Arrays.asList(getFullNonNullElements()));
         return list;
     }
 
-    public Object[] getFullNonNullElements() {
-        return new Object[] {
+    public Boolean[] getFullNonNullElements() {
+        return new Boolean[] {
             Boolean.TRUE
         };
     }
     
-    public Object[] getOtherNonNullElements() {
-        return new Object[] {
+    public Boolean[] getOtherNonNullElements() {
+        return new Boolean[] {
             Boolean.FALSE
         };
     }
@@ -152,7 +152,7 @@ public abstract class AbstractTestBooleanCollection extends AbstractTestCollecti
         assertEquals(true, coll.containsAll(clone));
         assertEquals(true, clone.containsAll(coll));
         
-        Iterator it = clone.iterator();
+        Iterator<Boolean> it = clone.iterator();
         it.next();
         it.remove();
         assertEquals(true, coll.containsAll(clone));
@@ -181,8 +181,8 @@ public abstract class AbstractTestBooleanCollection extends AbstractTestCollecti
         assertEquals(true, coll.containsAny(clone));
         assertEquals(true, clone.containsAny(coll));
         
-        Iterator it = clone.iterator();
-        Object obj = it.next();
+        Iterator<Boolean> it = clone.iterator();
+        Boolean obj = it.next();
         clone.clear();
         clone.add(obj);
         assertEquals(true, coll.containsAny(clone));

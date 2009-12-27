@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -48,14 +48,14 @@ public abstract class AbstractTestIntList extends AbstractTestList {
         return false;
     }
 
-    public Object[] getFullNonNullElements() {
-        return new Object[] {
+    public Integer[] getFullNonNullElements() {
+        return new Integer[] {
             new Integer(2),new Integer(-2),new Integer(38),new Integer(0),new Integer(10000),new Integer(202),new Integer(Integer.MIN_VALUE),new Integer(Integer.MAX_VALUE)
         };
     }
 
-    public Object[] getOtherNonNullElements() {
-        return new Object[] {
+    public Integer[] getOtherNonNullElements() {
+        return new Integer[] {
             new Integer(-33),new Integer(66),new Integer(-99)
         };
     }

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ public class TestArrayFloatCollection extends AbstractTestFloatCollection {
         return false;
     }
 
-    public Collection makeCollection() {
+    public Collection<Float> makeCollection() {
         return new ArrayFloatCollection();
     }
 
@@ -99,11 +99,11 @@ public class TestArrayFloatCollection extends AbstractTestFloatCollection {
     }
 
     public void testConstructor_Collection() throws Exception {
-        ArrayFloatCollection c = new ArrayFloatCollection((Collection) null);
+        ArrayFloatCollection c = new ArrayFloatCollection((Collection<Float>) null);
         assertEquals(0, c.size());
         assertEquals(0, dataLength(c));
         
-        Collection coll = new ArrayList();
+        Collection<Float> coll = new ArrayList<Float>();
         coll.add(new Float(0f));
         c = new ArrayFloatCollection(coll);
         assertEquals(1, c.size());
@@ -120,11 +120,11 @@ public class TestArrayFloatCollection extends AbstractTestFloatCollection {
     }
 
     public void testConstructor_Iterator() throws Exception {
-        ArrayFloatCollection c = new ArrayFloatCollection((Iterator) null);
+        ArrayFloatCollection c = new ArrayFloatCollection((Iterator<Float>) null);
         assertEquals(0, c.size());
         assertEquals(0, dataLength(c));
         
-        Collection coll = new ArrayList();
+        Collection<Float> coll = new ArrayList<Float>();
         coll.add(new Float(0f));
         c = new ArrayFloatCollection(coll.iterator());
         assertEquals(1, c.size());

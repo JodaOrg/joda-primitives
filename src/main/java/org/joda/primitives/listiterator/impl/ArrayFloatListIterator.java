@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -84,7 +84,7 @@ public class ArrayFloatListIterator implements FloatListIterator {
         return iArray[iCursor++];
     }
 
-    public Object next() {
+    public Float next() {
         return FloatUtils.toObject(nextFloat());
     }
 
@@ -104,7 +104,7 @@ public class ArrayFloatListIterator implements FloatListIterator {
         return iArray[iCursor];
     }
 
-    public Object previous() {
+    public Float previous() {
         return FloatUtils.toObject(previousFloat());
     }
 
@@ -112,7 +112,7 @@ public class ArrayFloatListIterator implements FloatListIterator {
         throw new UnsupportedOperationException("ArrayFloatListIterator does not support add");
     }
 
-    public void add(Object value) {
+    public void add(Float value) {
         throw new UnsupportedOperationException("ArrayFloatListIterator does not support add");
     }
 
@@ -127,7 +127,7 @@ public class ArrayFloatListIterator implements FloatListIterator {
         iArray[iLast] = value;
     }
 
-    public void set(Object value) {
+    public void set(Float value) {
         set(FloatUtils.toPrimitive(value));
     }
 

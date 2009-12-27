@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -48,14 +48,14 @@ public abstract class AbstractTestByteList extends AbstractTestList {
         return false;
     }
 
-    public Object[] getFullNonNullElements() {
-        return new Object[] {
+    public Byte[] getFullNonNullElements() {
+        return new Byte[] {
             new Byte((byte)2),new Byte((byte)-2),new Byte((byte)38),new Byte((byte)0),new Byte((byte)126),new Byte((byte)202),new Byte(Byte.MIN_VALUE),new Byte(Byte.MAX_VALUE)
         };
     }
 
-    public Object[] getOtherNonNullElements() {
-        return new Object[] {
+    public Byte[] getOtherNonNullElements() {
+        return new Byte[] {
             new Byte((byte)-33),new Byte((byte)66),new Byte((byte)-99)
         };
     }

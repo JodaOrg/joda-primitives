@@ -25,5 +25,10 @@
         Switch website to cobertura and add changes file
       </action>
     </release>
+    <release version="0.7" date="unreleased">
+      <action dev="jtiscione" type="fix">
+        Converted all library and test source files to use generics at 1.5 level
+      </action>
+    </release>
   </body>
 </document>

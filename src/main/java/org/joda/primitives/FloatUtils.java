@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -72,13 +72,13 @@ public class FloatUtils {
      * @throws NullPointerException if the collection if null
      * @throws ClassCastException if any object is not <code>Float</code>
      */
-    public static float[] toPrimitiveArray(Collection coll) {
+    public static float[] toPrimitiveArray(Collection <?> coll) {
         if (coll instanceof FloatCollection) {
             return ((FloatCollection) coll).toFloatArray();
         }
         float[] result = new float[coll.size()];
         int i = 0;
-        for (Iterator it = coll.iterator(); it.hasNext(); i++) {
+        for (Iterator<?> it = coll.iterator(); it.hasNext(); i++) {
             Float value = (Float) it.next();
             result[i] = value.floatValue();
         }

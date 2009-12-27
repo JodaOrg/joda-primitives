@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -96,7 +96,7 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
      *
      * @param coll  a collection of values to copy, null treated as zero size collection
      */
-    public ArrayByteCollection(Collection coll) {
+    public ArrayByteCollection(Collection<?> coll) {
         super();
         if (coll == null) {
             iData = ByteUtils.EMPTY_BYTE_ARRAY;
@@ -116,7 +116,7 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
      *
      * @param it  an iterator of values to extract, null treated as zero size collection
      */
-    public ArrayByteCollection(Iterator it) {
+    public ArrayByteCollection(Iterator<Byte> it) {
         super();
         if (it == null) {
             iData = ByteUtils.EMPTY_BYTE_ARRAY;
@@ -398,7 +398,7 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
             return iCollection.iData[iCursor++];
         }
 
-        public Object next() {
+        public Byte next() {
             return iCollection.toObject(nextByte());
         }
 

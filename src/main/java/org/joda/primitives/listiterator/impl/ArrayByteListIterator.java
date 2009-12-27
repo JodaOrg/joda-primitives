@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -84,7 +84,7 @@ public class ArrayByteListIterator implements ByteListIterator {
         return iArray[iCursor++];
     }
 
-    public Object next() {
+    public Byte next() {
         return ByteUtils.toObject(nextByte());
     }
 
@@ -104,7 +104,7 @@ public class ArrayByteListIterator implements ByteListIterator {
         return iArray[iCursor];
     }
 
-    public Object previous() {
+    public Byte previous() {
         return ByteUtils.toObject(previousByte());
     }
 
@@ -112,7 +112,7 @@ public class ArrayByteListIterator implements ByteListIterator {
         throw new UnsupportedOperationException("ArrayByteListIterator does not support add");
     }
 
-    public void add(Object value) {
+    public void add(Byte value) {
         throw new UnsupportedOperationException("ArrayByteListIterator does not support add");
     }
 
@@ -127,7 +127,7 @@ public class ArrayByteListIterator implements ByteListIterator {
         iArray[iLast] = value;
     }
 
-    public void set(Object value) {
+    public void set(Byte value) {
         set(ByteUtils.toPrimitive(value));
     }
 

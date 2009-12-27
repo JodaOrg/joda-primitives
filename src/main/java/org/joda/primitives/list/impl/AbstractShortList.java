@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -400,7 +400,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
      * @return value at the index
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    public Object get(int index) {
+    public Short get(int index) {
         return ShortUtils.toObject(getShort(index));
     }
 
@@ -409,7 +409,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
      *
      * @return an iterator over this list
      */
-    public ListIterator listIterator() {
+    public ListIterator<Short> listIterator() {
         return shortListIterator();
     }
 
@@ -420,7 +420,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
      * @return an iterator over this list
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    public ListIterator listIterator(int index) {
+    public ListIterator<Short> listIterator(int index) {
         return shortListIterator(index);
     }
 
@@ -429,7 +429,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
      *
      * @return value at index zero or null if the size is zero
      */
-    public Object first() {
+    public Short first() {
         if (size() == 0) {
             return null;
         }
@@ -441,7 +441,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
      *
      * @return value at index <code>size() - 1</code> or null if the size is zero
      */
-    public Object last() {
+    public Short last() {
         if (size() == 0) {
             return null;
         }
@@ -517,7 +517,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public boolean add(Object value) {
+    public boolean add(Short value) {
         checkAddModifiable();
         return add(size(), ShortUtils.toPrimitive(value));
     }
@@ -535,7 +535,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public void add(int index, Object value) {
+    public void add(int index, Short value) {
         checkAddModifiable();
         checkIndex(index);
         add(index, ShortUtils.toPrimitive(value));
@@ -555,7 +555,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public boolean addAll(int index, Collection coll) {
+    public boolean addAll(int index, Collection<? extends Short> coll) {
         checkAddModifiable();
         checkIndex(index);
         return addAll(index, ShortUtils.toPrimitiveArray(coll));
@@ -573,7 +573,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
      * @throws IndexOutOfBoundsException if the index is invalid
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public Object remove(int index) {
+    public Short remove(int index) {
         checkRemoveModifiable();
         return ShortUtils.toObject(removeShortAt(index));
     }
@@ -590,7 +590,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public Object set(int index, Object value) {
+    public Short set(int index, Short value) {
         checkSetModifiable();
         checkIndexExists(index);
         return ShortUtils.toObject(set(index, ShortUtils.toPrimitive(value)));
@@ -609,7 +609,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
      * @return a new ShortList for the subList
      * @throws IndexOutOfBoundsException if either index is invalid
      */
-    public List subList(int fromIndexInclusive, int toIndexExclusive) {
+    public List<Short> subList(int fromIndexInclusive, int toIndexExclusive) {
         return subShortList(fromIndexInclusive, toIndexExclusive);
     }
 
@@ -637,13 +637,13 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
                 }
             }
             return true;
-        } else if (obj instanceof List) {
-            List other = (List) obj;
+        } else if (obj instanceof List<?>) {
+            List<?> other = (List<?>) obj;
             if (size() != other.size()) {
                 return false;
             }
             ShortIterator it1 = shortListIterator();
-            Iterator it2 = other.listIterator();
+            Iterator<?> it2 = other.listIterator();
             while (it1.hasNext() && it2.hasNext()) {
                 Object next = it2.next();
                 if (isToPrimitivePossible(next) == false) {
@@ -666,7 +666,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
      */
     public int hashCode() {
         int hashCode = 1;
-        Iterator it = iterator();
+        Iterator<Short> it = iterator();
         while (it.hasNext()) {
             Object obj = it.next();
             hashCode = 31 * hashCode + (obj == null ? 0 : obj.hashCode());
@@ -806,7 +806,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
             return iList.getShort(iCursor++);
         }
 
-        public Object next() {
+        public Short next() {
             return iList.toObject(nextShort());
         }
 
@@ -827,7 +827,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
             return iList.getShort(iCursor);
         }
 
-        public Object previous() {
+        public Short previous() {
             return iList.toObject(previousShort());
         }
 
@@ -856,7 +856,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
             }
         }
 
-        public void add(Object obj) {
+        public void add(Short obj) {
             iList.checkAddModifiable();
             add(iList.toPrimitive(obj));
         }
@@ -873,7 +873,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
             }
         }
 
-        public void set(Object obj) {
+        public void set(Short obj) {
             iList.checkSetModifiable();
             set(iList.toPrimitive(obj));
         }

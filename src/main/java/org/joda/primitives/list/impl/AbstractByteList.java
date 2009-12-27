@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -400,7 +400,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
      * @return value at the index
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    public Object get(int index) {
+    public Byte get(int index) {
         return ByteUtils.toObject(getByte(index));
     }
 
@@ -409,7 +409,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
      *
      * @return an iterator over this list
      */
-    public ListIterator listIterator() {
+    public ListIterator<Byte> listIterator() {
         return byteListIterator();
     }
 
@@ -420,7 +420,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
      * @return an iterator over this list
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    public ListIterator listIterator(int index) {
+    public ListIterator<Byte> listIterator(int index) {
         return byteListIterator(index);
     }
 
@@ -429,7 +429,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
      *
      * @return value at index zero or null if the size is zero
      */
-    public Object first() {
+    public Byte first() {
         if (size() == 0) {
             return null;
         }
@@ -441,7 +441,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
      *
      * @return value at index <code>size() - 1</code> or null if the size is zero
      */
-    public Object last() {
+    public Byte last() {
         if (size() == 0) {
             return null;
         }
@@ -517,7 +517,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public boolean add(Object value) {
+    public boolean add(Byte value) {
         checkAddModifiable();
         return add(size(), ByteUtils.toPrimitive(value));
     }
@@ -535,7 +535,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public void add(int index, Object value) {
+    public void add(int index, Byte value) {
         checkAddModifiable();
         checkIndex(index);
         add(index, ByteUtils.toPrimitive(value));
@@ -555,7 +555,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public boolean addAll(int index, Collection coll) {
+    public boolean addAll(int index, Collection<? extends Byte> coll) {
         checkAddModifiable();
         checkIndex(index);
         return addAll(index, ByteUtils.toPrimitiveArray(coll));
@@ -573,7 +573,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
      * @throws IndexOutOfBoundsException if the index is invalid
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public Object remove(int index) {
+    public Byte remove(int index) {
         checkRemoveModifiable();
         return ByteUtils.toObject(removeByteAt(index));
     }
@@ -590,7 +590,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public Object set(int index, Object value) {
+    public Byte set(int index, Byte value) {
         checkSetModifiable();
         checkIndexExists(index);
         return ByteUtils.toObject(set(index, ByteUtils.toPrimitive(value)));
@@ -609,7 +609,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
      * @return a new ByteList for the subList
      * @throws IndexOutOfBoundsException if either index is invalid
      */
-    public List subList(int fromIndexInclusive, int toIndexExclusive) {
+    public List<Byte> subList(int fromIndexInclusive, int toIndexExclusive) {
         return subByteList(fromIndexInclusive, toIndexExclusive);
     }
 
@@ -637,13 +637,13 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
                 }
             }
             return true;
-        } else if (obj instanceof List) {
-            List other = (List) obj;
+        } else if (obj instanceof List<?>) {
+            List<?> other = (List<?>) obj;
             if (size() != other.size()) {
                 return false;
             }
             ByteIterator it1 = byteListIterator();
-            Iterator it2 = other.listIterator();
+            Iterator<?> it2 = other.listIterator();
             while (it1.hasNext() && it2.hasNext()) {
                 Object next = it2.next();
                 if (isToPrimitivePossible(next) == false) {
@@ -666,7 +666,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
      */
     public int hashCode() {
         int hashCode = 1;
-        Iterator it = iterator();
+        Iterator<Byte> it = iterator();
         while (it.hasNext()) {
             Object obj = it.next();
             hashCode = 31 * hashCode + (obj == null ? 0 : obj.hashCode());
@@ -806,7 +806,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
             return iList.getByte(iCursor++);
         }
 
-        public Object next() {
+        public Byte next() {
             return iList.toObject(nextByte());
         }
 
@@ -827,7 +827,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
             return iList.getByte(iCursor);
         }
 
-        public Object previous() {
+        public Byte previous() {
             return iList.toObject(previousByte());
         }
 
@@ -856,7 +856,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
             }
         }
 
-        public void add(Object obj) {
+        public void add(Byte obj) {
             iList.checkAddModifiable();
             add(iList.toPrimitive(obj));
         }
@@ -873,7 +873,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
             }
         }
 
-        public void set(Object obj) {
+        public void set(Byte obj) {
             iList.checkSetModifiable();
             set(iList.toPrimitive(obj));
         }

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ public class TestArrayCharCollection extends AbstractTestCharCollection {
         return false;
     }
 
-    public Collection makeCollection() {
+    public Collection<Character> makeCollection() {
         return new ArrayCharCollection();
     }
 
@@ -99,11 +99,11 @@ public class TestArrayCharCollection extends AbstractTestCharCollection {
     }
 
     public void testConstructor_Collection() throws Exception {
-        ArrayCharCollection c = new ArrayCharCollection((Collection) null);
+        ArrayCharCollection c = new ArrayCharCollection((Collection<Character>) null);
         assertEquals(0, c.size());
         assertEquals(0, dataLength(c));
         
-        Collection coll = new ArrayList();
+        Collection<Character> coll = new ArrayList<Character>();
         coll.add(new Character((char) 0));
         c = new ArrayCharCollection(coll);
         assertEquals(1, c.size());
@@ -120,11 +120,11 @@ public class TestArrayCharCollection extends AbstractTestCharCollection {
     }
 
     public void testConstructor_Iterator() throws Exception {
-        ArrayCharCollection c = new ArrayCharCollection((Iterator) null);
+        ArrayCharCollection c = new ArrayCharCollection((Iterator<Character>) null);
         assertEquals(0, c.size());
         assertEquals(0, dataLength(c));
         
-        Collection coll = new ArrayList();
+        Collection<Character> coll = new ArrayList<Character>();
         coll.add(new Character((char) 0));
         c = new ArrayCharCollection(coll.iterator());
         assertEquals(1, c.size());

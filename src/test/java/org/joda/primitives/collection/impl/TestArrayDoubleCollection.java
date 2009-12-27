@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ public class TestArrayDoubleCollection extends AbstractTestDoubleCollection {
         return false;
     }
 
-    public Collection makeCollection() {
+    public Collection<Double> makeCollection() {
         return new ArrayDoubleCollection();
     }
 
@@ -99,11 +99,11 @@ public class TestArrayDoubleCollection extends AbstractTestDoubleCollection {
     }
 
     public void testConstructor_Collection() throws Exception {
-        ArrayDoubleCollection c = new ArrayDoubleCollection((Collection) null);
+        ArrayDoubleCollection c = new ArrayDoubleCollection((Collection<Double>) null);
         assertEquals(0, c.size());
         assertEquals(0, dataLength(c));
         
-        Collection coll = new ArrayList();
+        Collection<Double> coll = new ArrayList<Double>();
         coll.add(new Double(0d));
         c = new ArrayDoubleCollection(coll);
         assertEquals(1, c.size());
@@ -120,11 +120,11 @@ public class TestArrayDoubleCollection extends AbstractTestDoubleCollection {
     }
 
     public void testConstructor_Iterator() throws Exception {
-        ArrayDoubleCollection c = new ArrayDoubleCollection((Iterator) null);
+        ArrayDoubleCollection c = new ArrayDoubleCollection((Iterator<Double>) null);
         assertEquals(0, c.size());
         assertEquals(0, dataLength(c));
         
-        Collection coll = new ArrayList();
+        Collection<Double> coll = new ArrayList<Double>();
         coll.add(new Double(0d));
         c = new ArrayDoubleCollection(coll.iterator());
         assertEquals(1, c.size());

@@ -397,7 +397,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      * @return value at the index
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    public Object get(int index) {
+    public ${object} get(int index) {
         return ${Type}Utils.toObject(get${Type}(index));
     }
 
@@ -406,7 +406,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      *
      * @return an iterator over this list
      */
-    public ListIterator listIterator() {
+    public ListIterator<${object}> listIterator() {
         return ${type}ListIterator();
     }
 
@@ -417,7 +417,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      * @return an iterator over this list
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    public ListIterator listIterator(int index) {
+    public ListIterator<${object}> listIterator(int index) {
         return ${type}ListIterator(index);
     }
 
@@ -426,7 +426,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      *
      * @return value at index zero or null if the size is zero
      */
-    public Object first() {
+    public ${object} first() {
         if (size() == 0) {
             return null;
         }
@@ -438,7 +438,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      *
      * @return value at index <code>size() - 1</code> or null if the size is zero
      */
-    public Object last() {
+    public ${object} last() {
         if (size() == 0) {
             return null;
         }
@@ -514,7 +514,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public boolean add(Object value) {
+    public boolean add(${object} value) {
         checkAddModifiable();
         return add(size(), ${Type}Utils.toPrimitive(value));
     }
@@ -532,7 +532,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public void add(int index, Object value) {
+    public void add(int index, ${object} value) {
         checkAddModifiable();
         checkIndex(index);
         add(index, ${Type}Utils.toPrimitive(value));
@@ -552,7 +552,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public boolean addAll(int index, Collection coll) {
+    public boolean addAll(int index, Collection<? extends ${object}> coll) {
         checkAddModifiable();
         checkIndex(index);
         return addAll(index, ${Type}Utils.toPrimitiveArray(coll));
@@ -570,7 +570,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      * @throws IndexOutOfBoundsException if the index is invalid
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public Object remove(int index) {
+    public ${object} remove(int index) {
         checkRemoveModifiable();
         return ${Type}Utils.toObject(remove${Type}At(index));
     }
@@ -587,7 +587,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public Object set(int index, Object value) {
+    public ${object} set(int index, ${object} value) {
         checkSetModifiable();
         checkIndexExists(index);
         return ${Type}Utils.toObject(set(index, ${Type}Utils.toPrimitive(value)));
@@ -606,7 +606,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      * @return a new ${Type}List for the subList
      * @throws IndexOutOfBoundsException if either index is invalid
      */
-    public List subList(int fromIndexInclusive, int toIndexExclusive) {
+    public List<${object}> subList(int fromIndexInclusive, int toIndexExclusive) {
         return sub${Type}List(fromIndexInclusive, toIndexExclusive);
     }
 
@@ -634,13 +634,13 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
                 }
             }
             return true;
-        } else if (obj instanceof List) {
-            List other = (List) obj;
+        } else if (obj instanceof List<?>) {
+            List<?> other = (List<?>) obj;
             if (size() != other.size()) {
                 return false;
             }
             ${Type}Iterator it1 = ${type}ListIterator();
-            Iterator it2 = other.listIterator();
+            Iterator<?> it2 = other.listIterator();
             while (it1.hasNext() && it2.hasNext()) {
                 Object next = it2.next();
                 if (isToPrimitivePossible(next) == false) {
@@ -663,7 +663,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      */
     public int hashCode() {
         int hashCode = 1;
-        Iterator it = iterator();
+        Iterator<${object}> it = iterator();
         while (it.hasNext()) {
             Object obj = it.next();
             hashCode = 31 * hashCode + (obj == null ? 0 : obj.hashCode());
@@ -803,7 +803,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
             return iList.get${Type}(iCursor++);
         }
 
-        public Object next() {
+        public ${object} next() {
             return iList.toObject(next${Type}());
         }
 
@@ -824,7 +824,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
             return iList.get${Type}(iCursor);
         }
 
-        public Object previous() {
+        public ${object} previous() {
             return iList.toObject(previous${Type}());
         }
 
@@ -853,7 +853,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
             }
         }
 
-        public void add(Object obj) {
+        public void add(${object} obj) {
             iList.checkAddModifiable();
             add(iList.toPrimitive(obj));
         }
@@ -870,7 +870,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
             }
         }
 
-        public void set(Object obj) {
+        public void set(${object} obj) {
             iList.checkSetModifiable();
             set(iList.toPrimitive(obj));
         }

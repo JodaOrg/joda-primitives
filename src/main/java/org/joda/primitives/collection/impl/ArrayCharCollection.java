@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -96,7 +96,7 @@ public class ArrayCharCollection extends AbstractCharCollection implements Clone
      *
      * @param coll  a collection of values to copy, null treated as zero size collection
      */
-    public ArrayCharCollection(Collection coll) {
+    public ArrayCharCollection(Collection<?> coll) {
         super();
         if (coll == null) {
             iData = CharUtils.EMPTY_CHAR_ARRAY;
@@ -116,7 +116,7 @@ public class ArrayCharCollection extends AbstractCharCollection implements Clone
      *
      * @param it  an iterator of values to extract, null treated as zero size collection
      */
-    public ArrayCharCollection(Iterator it) {
+    public ArrayCharCollection(Iterator<Character> it) {
         super();
         if (it == null) {
             iData = CharUtils.EMPTY_CHAR_ARRAY;
@@ -398,7 +398,7 @@ public class ArrayCharCollection extends AbstractCharCollection implements Clone
             return iCollection.iData[iCursor++];
         }
 
-        public Object next() {
+        public Character next() {
             return iCollection.toObject(nextChar());
         }
 

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -84,7 +84,7 @@ public class ArrayShortListIterator implements ShortListIterator {
         return iArray[iCursor++];
     }
 
-    public Object next() {
+    public Short next() {
         return ShortUtils.toObject(nextShort());
     }
 
@@ -104,7 +104,7 @@ public class ArrayShortListIterator implements ShortListIterator {
         return iArray[iCursor];
     }
 
-    public Object previous() {
+    public Short previous() {
         return ShortUtils.toObject(previousShort());
     }
 
@@ -112,7 +112,7 @@ public class ArrayShortListIterator implements ShortListIterator {
         throw new UnsupportedOperationException("ArrayShortListIterator does not support add");
     }
 
-    public void add(Object value) {
+    public void add(Short value) {
         throw new UnsupportedOperationException("ArrayShortListIterator does not support add");
     }
 
@@ -127,7 +127,7 @@ public class ArrayShortListIterator implements ShortListIterator {
         iArray[iLast] = value;
     }
 
-    public void set(Object value) {
+    public void set(Short value) {
         set(ShortUtils.toPrimitive(value));
     }
 

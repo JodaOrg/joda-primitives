@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -48,14 +48,14 @@ public abstract class AbstractTestBooleanList extends AbstractTestList {
         return false;
     }
 
-    public Object[] getFullNonNullElements() {
-        return new Object[] {
+    public Boolean[] getFullNonNullElements() {
+        return new Boolean[] {
             Boolean.TRUE
         };
     }
 
-    public Object[] getOtherNonNullElements() {
-        return new Object[] {
+    public Boolean[] getOtherNonNullElements() {
+        return new Boolean[] {
             Boolean.FALSE
         };
     }

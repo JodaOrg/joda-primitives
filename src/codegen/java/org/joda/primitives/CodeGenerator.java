@@ -143,9 +143,10 @@ public class CodeGenerator {
     //-----------------------------------------------------------------------
     private static String LICENSE = "";
     
-    private static final Map[] TYPES = new Map[] {
-        new HashMap(), new HashMap(), new HashMap(), new HashMap(),
-        new HashMap(), new HashMap(), new HashMap(), new HashMap()
+    @SuppressWarnings("unchecked")
+    private static final Map<String,String>[] TYPES = new Map[] {
+        new HashMap<String,String>(), new HashMap<String,String>(), new HashMap<String,String>(), new HashMap<String,String>(),
+        new HashMap<String,String>(), new HashMap<String,String>(), new HashMap<String,String>(), new HashMap<String,String>()
     };
     
     static {

@@ -15,7 +15,7 @@ import org.joda.primitives.iterator.${Type}Iterator;
  * @version CODE GENERATED
  * @since 1.0
  */
-public interface ${Type}Collection extends PrimitiveCollection {
+public interface ${Type}Collection extends PrimitiveCollection<${object}> {
     // This file is CODE GENERATED. Do not change manually.
 
     // Mandatory operations

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -409,7 +409,7 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
      * @return value at the index
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    public Object get(int index) {
+    public Character get(int index) {
         return CharUtils.toObject(getChar(index));
     }
 
@@ -418,7 +418,7 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
      *
      * @return an iterator over this list
      */
-    public ListIterator listIterator() {
+    public ListIterator<Character> listIterator() {
         return charListIterator();
     }
 
@@ -429,7 +429,7 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
      * @return an iterator over this list
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    public ListIterator listIterator(int index) {
+    public ListIterator<Character> listIterator(int index) {
         return charListIterator(index);
     }
 
@@ -438,7 +438,7 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
      *
      * @return value at index zero or null if the size is zero
      */
-    public Object first() {
+    public Character first() {
         if (size() == 0) {
             return null;
         }
@@ -450,7 +450,7 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
      *
      * @return value at index <code>size() - 1</code> or null if the size is zero
      */
-    public Object last() {
+    public Character last() {
         if (size() == 0) {
             return null;
         }
@@ -526,7 +526,7 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public boolean add(Object value) {
+    public boolean add(Character value) {
         checkAddModifiable();
         return add(size(), CharUtils.toPrimitive(value));
     }
@@ -544,7 +544,7 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public void add(int index, Object value) {
+    public void add(int index, Character value) {
         checkAddModifiable();
         checkIndex(index);
         add(index, CharUtils.toPrimitive(value));
@@ -564,7 +564,7 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public boolean addAll(int index, Collection coll) {
+    public boolean addAll(int index, Collection<? extends Character> coll) {
         checkAddModifiable();
         checkIndex(index);
         return addAll(index, CharUtils.toPrimitiveArray(coll));
@@ -582,7 +582,7 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
      * @throws IndexOutOfBoundsException if the index is invalid
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public Object remove(int index) {
+    public Character remove(int index) {
         checkRemoveModifiable();
         return CharUtils.toObject(removeCharAt(index));
     }
@@ -599,7 +599,7 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public Object set(int index, Object value) {
+    public Character set(int index, Character value) {
         checkSetModifiable();
         checkIndexExists(index);
         return CharUtils.toObject(set(index, CharUtils.toPrimitive(value)));
@@ -618,7 +618,7 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
      * @return a new CharList for the subList
      * @throws IndexOutOfBoundsException if either index is invalid
      */
-    public List subList(int fromIndexInclusive, int toIndexExclusive) {
+    public List<Character> subList(int fromIndexInclusive, int toIndexExclusive) {
         return subCharList(fromIndexInclusive, toIndexExclusive);
     }
 
@@ -646,13 +646,13 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
                 }
             }
             return true;
-        } else if (obj instanceof List) {
-            List other = (List) obj;
+        } else if (obj instanceof List<?>) {
+            List<?> other = (List<?>) obj;
             if (size() != other.size()) {
                 return false;
             }
             CharIterator it1 = charListIterator();
-            Iterator it2 = other.listIterator();
+            Iterator<?> it2 = other.listIterator();
             while (it1.hasNext() && it2.hasNext()) {
                 Object next = it2.next();
                 if (isToPrimitivePossible(next) == false) {
@@ -675,7 +675,7 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
      */
     public int hashCode() {
         int hashCode = 1;
-        Iterator it = iterator();
+        Iterator<Character> it = iterator();
         while (it.hasNext()) {
             Object obj = it.next();
             hashCode = 31 * hashCode + (obj == null ? 0 : obj.hashCode());
@@ -815,7 +815,7 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
             return iList.getChar(iCursor++);
         }
 
-        public Object next() {
+        public Character next() {
             return iList.toObject(nextChar());
         }
 
@@ -836,7 +836,7 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
             return iList.getChar(iCursor);
         }
 
-        public Object previous() {
+        public Character previous() {
             return iList.toObject(previousChar());
         }
 
@@ -865,7 +865,7 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
             }
         }
 
-        public void add(Object obj) {
+        public void add(Character obj) {
             iList.checkAddModifiable();
             add(iList.toPrimitive(obj));
         }
@@ -882,7 +882,7 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
             }
         }
 
-        public void set(Object obj) {
+        public void set(Character obj) {
             iList.checkSetModifiable();
             set(iList.toPrimitive(obj));
         }

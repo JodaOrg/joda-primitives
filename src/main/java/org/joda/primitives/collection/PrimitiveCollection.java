@@ -32,7 +32,7 @@ import org.joda.primitives.PrimitiveCollectable;
  * @version $Id: PrimitiveCollection.java,v 1.6 2006/07/15 16:01:55 scolebourne Exp $
  * @since 1.0
  */
-public interface PrimitiveCollection extends PrimitiveCollectable, Collection {
+public interface PrimitiveCollection<N> extends PrimitiveCollectable<N>, Collection<N> {
 
     /**
      * Checks if this collection contains any of the values in the specified collection.
@@ -41,6 +41,6 @@ public interface PrimitiveCollection extends PrimitiveCollectable, Collection {
      * @param values  the values to search for, null treated as empty collection
      * @return <code>true</code> if at least one of the values is found
      */
-    boolean containsAny(Collection values);
+    boolean containsAny(Collection<N> values);
 
 }

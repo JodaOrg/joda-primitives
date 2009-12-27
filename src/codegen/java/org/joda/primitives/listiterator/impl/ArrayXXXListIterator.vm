@@ -70,7 +70,7 @@ public class Array${Type}ListIterator implements ${Type}ListIterator {
         return iArray[iCursor++];
     }
 
-    public Object next() {
+    public ${object} next() {
         return ${Type}Utils.toObject(next${Type}());
     }
 
@@ -90,7 +90,7 @@ public class Array${Type}ListIterator implements ${Type}ListIterator {
         return iArray[iCursor];
     }
 
-    public Object previous() {
+    public ${object} previous() {
         return ${Type}Utils.toObject(previous${Type}());
     }
 
@@ -98,7 +98,7 @@ public class Array${Type}ListIterator implements ${Type}ListIterator {
         throw new UnsupportedOperationException("Array${Type}ListIterator does not support add");
     }
 
-    public void add(Object value) {
+    public void add(${object} value) {
         throw new UnsupportedOperationException("Array${Type}ListIterator does not support add");
     }
 
@@ -113,7 +113,7 @@ public class Array${Type}ListIterator implements ${Type}ListIterator {
         iArray[iLast] = value;
     }
 
-    public void set(Object value) {
+    public void set(${object} value) {
         set(${Type}Utils.toPrimitive(value));
     }
 

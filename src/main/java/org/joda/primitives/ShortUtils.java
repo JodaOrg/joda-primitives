@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -72,13 +72,13 @@ public class ShortUtils {
      * @throws NullPointerException if the collection if null
      * @throws ClassCastException if any object is not <code>Short</code>
      */
-    public static short[] toPrimitiveArray(Collection coll) {
+    public static short[] toPrimitiveArray(Collection <?> coll) {
         if (coll instanceof ShortCollection) {
             return ((ShortCollection) coll).toShortArray();
         }
         short[] result = new short[coll.size()];
         int i = 0;
-        for (Iterator it = coll.iterator(); it.hasNext(); i++) {
+        for (Iterator<?> it = coll.iterator(); it.hasNext(); i++) {
             Short value = (Short) it.next();
             result[i] = value.shortValue();
         }

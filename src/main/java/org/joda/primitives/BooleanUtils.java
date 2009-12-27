@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -72,13 +72,13 @@ public class BooleanUtils {
      * @throws NullPointerException if the collection if null
      * @throws ClassCastException if any object is not <code>Boolean</code>
      */
-    public static boolean[] toPrimitiveArray(Collection coll) {
+    public static boolean[] toPrimitiveArray(Collection <?> coll) {
         if (coll instanceof BooleanCollection) {
             return ((BooleanCollection) coll).toBooleanArray();
         }
         boolean[] result = new boolean[coll.size()];
         int i = 0;
-        for (Iterator it = coll.iterator(); it.hasNext(); i++) {
+        for (Iterator<?> it = coll.iterator(); it.hasNext(); i++) {
             Boolean value = (Boolean) it.next();
             result[i] = value.booleanValue();
         }

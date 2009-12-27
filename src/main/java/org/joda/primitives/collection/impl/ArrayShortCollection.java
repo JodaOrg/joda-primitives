@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -96,7 +96,7 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
      *
      * @param coll  a collection of values to copy, null treated as zero size collection
      */
-    public ArrayShortCollection(Collection coll) {
+    public ArrayShortCollection(Collection<?> coll) {
         super();
         if (coll == null) {
             iData = ShortUtils.EMPTY_SHORT_ARRAY;
@@ -116,7 +116,7 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
      *
      * @param it  an iterator of values to extract, null treated as zero size collection
      */
-    public ArrayShortCollection(Iterator it) {
+    public ArrayShortCollection(Iterator<Short> it) {
         super();
         if (it == null) {
             iData = ShortUtils.EMPTY_SHORT_ARRAY;
@@ -398,7 +398,7 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
             return iCollection.iData[iCursor++];
         }
 
-        public Object next() {
+        public Short next() {
             return iCollection.toObject(nextShort());
         }
 

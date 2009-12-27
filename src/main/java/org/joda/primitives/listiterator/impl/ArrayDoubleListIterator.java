@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -84,7 +84,7 @@ public class ArrayDoubleListIterator implements DoubleListIterator {
         return iArray[iCursor++];
     }
 
-    public Object next() {
+    public Double next() {
         return DoubleUtils.toObject(nextDouble());
     }
 
@@ -104,7 +104,7 @@ public class ArrayDoubleListIterator implements DoubleListIterator {
         return iArray[iCursor];
     }
 
-    public Object previous() {
+    public Double previous() {
         return DoubleUtils.toObject(previousDouble());
     }
 
@@ -112,7 +112,7 @@ public class ArrayDoubleListIterator implements DoubleListIterator {
         throw new UnsupportedOperationException("ArrayDoubleListIterator does not support add");
     }
 
-    public void add(Object value) {
+    public void add(Double value) {
         throw new UnsupportedOperationException("ArrayDoubleListIterator does not support add");
     }
 
@@ -127,7 +127,7 @@ public class ArrayDoubleListIterator implements DoubleListIterator {
         iArray[iLast] = value;
     }
 
-    public void set(Object value) {
+    public void set(Double value) {
         set(DoubleUtils.toPrimitive(value));
     }
 

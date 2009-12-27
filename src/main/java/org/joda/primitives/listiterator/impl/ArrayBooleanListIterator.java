@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -84,7 +84,7 @@ public class ArrayBooleanListIterator implements BooleanListIterator {
         return iArray[iCursor++];
     }
 
-    public Object next() {
+    public Boolean next() {
         return BooleanUtils.toObject(nextBoolean());
     }
 
@@ -104,7 +104,7 @@ public class ArrayBooleanListIterator implements BooleanListIterator {
         return iArray[iCursor];
     }
 
-    public Object previous() {
+    public Boolean previous() {
         return BooleanUtils.toObject(previousBoolean());
     }
 
@@ -112,7 +112,7 @@ public class ArrayBooleanListIterator implements BooleanListIterator {
         throw new UnsupportedOperationException("ArrayBooleanListIterator does not support add");
     }
 
-    public void add(Object value) {
+    public void add(Boolean value) {
         throw new UnsupportedOperationException("ArrayBooleanListIterator does not support add");
     }
 
@@ -127,7 +127,7 @@ public class ArrayBooleanListIterator implements BooleanListIterator {
         iArray[iLast] = value;
     }
 
-    public void set(Object value) {
+    public void set(Boolean value) {
         set(BooleanUtils.toPrimitive(value));
     }
 

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ public class TestArrayCharList extends AbstractTestCharList {
         return false;
     }
 
-    public List makeEmptyList() {
+    public List<Character> makeEmptyList() {
         return new ArrayCharList();
     }
 
@@ -101,11 +101,11 @@ public class TestArrayCharList extends AbstractTestCharList {
     }
 
     public void testConstructor_Collection() throws Exception {
-        ArrayCharList c = new ArrayCharList((Collection) null);
+        ArrayCharList c = new ArrayCharList((Collection<Character>) null);
         assertEquals(0, c.size());
         assertEquals(0, dataLength(c));
         
-        Collection coll = new ArrayList();
+        Collection<Character> coll = new ArrayList<Character>();
         coll.add(new Character((char) 0));
         c = new ArrayCharList(coll);
         assertEquals(1, c.size());

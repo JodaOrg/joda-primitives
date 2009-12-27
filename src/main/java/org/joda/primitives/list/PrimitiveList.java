@@ -31,7 +31,7 @@ import org.joda.primitives.collection.PrimitiveCollection;
  * @version $Id: PrimitiveList.java,v 1.5 2006/03/27 22:42:12 scolebourne Exp $
  * @since 1.0
  */
-public interface PrimitiveList extends PrimitiveCollection, List {
+public interface PrimitiveList<N> extends PrimitiveCollection<N>, List<N> {
 
     /**
      * Gets the first list value.

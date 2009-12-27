@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -400,7 +400,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      * @return value at the index
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    public Object get(int index) {
+    public Double get(int index) {
         return DoubleUtils.toObject(getDouble(index));
     }
 
@@ -409,7 +409,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      *
      * @return an iterator over this list
      */
-    public ListIterator listIterator() {
+    public ListIterator<Double> listIterator() {
         return doubleListIterator();
     }
 
@@ -420,7 +420,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      * @return an iterator over this list
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    public ListIterator listIterator(int index) {
+    public ListIterator<Double> listIterator(int index) {
         return doubleListIterator(index);
     }
 
@@ -429,7 +429,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      *
      * @return value at index zero or null if the size is zero
      */
-    public Object first() {
+    public Double first() {
         if (size() == 0) {
             return null;
         }
@@ -441,7 +441,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      *
      * @return value at index <code>size() - 1</code> or null if the size is zero
      */
-    public Object last() {
+    public Double last() {
         if (size() == 0) {
             return null;
         }
@@ -517,7 +517,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public boolean add(Object value) {
+    public boolean add(Double value) {
         checkAddModifiable();
         return add(size(), DoubleUtils.toPrimitive(value));
     }
@@ -535,7 +535,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public void add(int index, Object value) {
+    public void add(int index, Double value) {
         checkAddModifiable();
         checkIndex(index);
         add(index, DoubleUtils.toPrimitive(value));
@@ -555,7 +555,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public boolean addAll(int index, Collection coll) {
+    public boolean addAll(int index, Collection<? extends Double> coll) {
         checkAddModifiable();
         checkIndex(index);
         return addAll(index, DoubleUtils.toPrimitiveArray(coll));
@@ -573,7 +573,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      * @throws IndexOutOfBoundsException if the index is invalid
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public Object remove(int index) {
+    public Double remove(int index) {
         checkRemoveModifiable();
         return DoubleUtils.toObject(removeDoubleAt(index));
     }
@@ -590,7 +590,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public Object set(int index, Object value) {
+    public Double set(int index, Double value) {
         checkSetModifiable();
         checkIndexExists(index);
         return DoubleUtils.toObject(set(index, DoubleUtils.toPrimitive(value)));
@@ -609,7 +609,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      * @return a new DoubleList for the subList
      * @throws IndexOutOfBoundsException if either index is invalid
      */
-    public List subList(int fromIndexInclusive, int toIndexExclusive) {
+    public List<Double> subList(int fromIndexInclusive, int toIndexExclusive) {
         return subDoubleList(fromIndexInclusive, toIndexExclusive);
     }
 
@@ -637,13 +637,13 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
                 }
             }
             return true;
-        } else if (obj instanceof List) {
-            List other = (List) obj;
+        } else if (obj instanceof List<?>) {
+            List<?> other = (List<?>) obj;
             if (size() != other.size()) {
                 return false;
             }
             DoubleIterator it1 = doubleListIterator();
-            Iterator it2 = other.listIterator();
+            Iterator<?> it2 = other.listIterator();
             while (it1.hasNext() && it2.hasNext()) {
                 Object next = it2.next();
                 if (isToPrimitivePossible(next) == false) {
@@ -666,7 +666,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      */
     public int hashCode() {
         int hashCode = 1;
-        Iterator it = iterator();
+        Iterator<Double> it = iterator();
         while (it.hasNext()) {
             Object obj = it.next();
             hashCode = 31 * hashCode + (obj == null ? 0 : obj.hashCode());
@@ -806,7 +806,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
             return iList.getDouble(iCursor++);
         }
 
-        public Object next() {
+        public Double next() {
             return iList.toObject(nextDouble());
         }
 
@@ -827,7 +827,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
             return iList.getDouble(iCursor);
         }
 
-        public Object previous() {
+        public Double previous() {
             return iList.toObject(previousDouble());
         }
 
@@ -856,7 +856,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
             }
         }
 
-        public void add(Object obj) {
+        public void add(Double obj) {
             iList.checkAddModifiable();
             add(iList.toPrimitive(obj));
         }
@@ -873,7 +873,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
             }
         }
 
-        public void set(Object obj) {
+        public void set(Double obj) {
             iList.checkSetModifiable();
             set(iList.toPrimitive(obj));
         }

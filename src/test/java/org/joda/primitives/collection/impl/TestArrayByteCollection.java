@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ public class TestArrayByteCollection extends AbstractTestByteCollection {
         return false;
     }
 
-    public Collection makeCollection() {
+    public Collection<Byte> makeCollection() {
         return new ArrayByteCollection();
     }
 
@@ -99,11 +99,11 @@ public class TestArrayByteCollection extends AbstractTestByteCollection {
     }
 
     public void testConstructor_Collection() throws Exception {
-        ArrayByteCollection c = new ArrayByteCollection((Collection) null);
+        ArrayByteCollection c = new ArrayByteCollection((Collection<Byte>) null);
         assertEquals(0, c.size());
         assertEquals(0, dataLength(c));
         
-        Collection coll = new ArrayList();
+        Collection<Byte> coll = new ArrayList<Byte>();
         coll.add(new Byte((byte) 0));
         c = new ArrayByteCollection(coll);
         assertEquals(1, c.size());
@@ -120,11 +120,11 @@ public class TestArrayByteCollection extends AbstractTestByteCollection {
     }
 
     public void testConstructor_Iterator() throws Exception {
-        ArrayByteCollection c = new ArrayByteCollection((Iterator) null);
+        ArrayByteCollection c = new ArrayByteCollection((Iterator<Byte>) null);
         assertEquals(0, c.size());
         assertEquals(0, dataLength(c));
         
-        Collection coll = new ArrayList();
+        Collection<Byte> coll = new ArrayList<Byte>();
         coll.add(new Byte((byte) 0));
         c = new ArrayByteCollection(coll.iterator());
         assertEquals(1, c.size());

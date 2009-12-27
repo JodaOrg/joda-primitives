@@ -41,7 +41,7 @@ public class TestArray${Type}List extends AbstractTest${Type}List {
         return false;
     }
 
-    public List makeEmptyList() {
+    public List<${object}> makeEmptyList() {
         return new Array${Type}List();
     }
 
@@ -87,11 +87,11 @@ public class TestArray${Type}List extends AbstractTest${Type}List {
     }
 
     public void testConstructor_Collection() throws Exception {
-        Array${Type}List c = new Array${Type}List((Collection) null);
+        Array${Type}List c = new Array${Type}List((Collection<${object}>) null);
         assertEquals(0, c.size());
         assertEquals(0, dataLength(c));
         
-        Collection coll = new ArrayList();
+        Collection<${object}> coll = new ArrayList<${object}>();
         coll.add(${toObjectPre}${testValue0}${toObjectPost});
         c = new Array${Type}List(coll);
         assertEquals(1, c.size());

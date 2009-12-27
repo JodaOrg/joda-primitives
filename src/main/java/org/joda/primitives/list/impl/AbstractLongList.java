@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -400,7 +400,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
      * @return value at the index
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    public Object get(int index) {
+    public Long get(int index) {
         return LongUtils.toObject(getLong(index));
     }
 
@@ -409,7 +409,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
      *
      * @return an iterator over this list
      */
-    public ListIterator listIterator() {
+    public ListIterator<Long> listIterator() {
         return longListIterator();
     }
 
@@ -420,7 +420,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
      * @return an iterator over this list
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    public ListIterator listIterator(int index) {
+    public ListIterator<Long> listIterator(int index) {
         return longListIterator(index);
     }
 
@@ -429,7 +429,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
      *
      * @return value at index zero or null if the size is zero
      */
-    public Object first() {
+    public Long first() {
         if (size() == 0) {
             return null;
         }
@@ -441,7 +441,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
      *
      * @return value at index <code>size() - 1</code> or null if the size is zero
      */
-    public Object last() {
+    public Long last() {
         if (size() == 0) {
             return null;
         }
@@ -517,7 +517,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public boolean add(Object value) {
+    public boolean add(Long value) {
         checkAddModifiable();
         return add(size(), LongUtils.toPrimitive(value));
     }
@@ -535,7 +535,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public void add(int index, Object value) {
+    public void add(int index, Long value) {
         checkAddModifiable();
         checkIndex(index);
         add(index, LongUtils.toPrimitive(value));
@@ -555,7 +555,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public boolean addAll(int index, Collection coll) {
+    public boolean addAll(int index, Collection<? extends Long> coll) {
         checkAddModifiable();
         checkIndex(index);
         return addAll(index, LongUtils.toPrimitiveArray(coll));
@@ -573,7 +573,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
      * @throws IndexOutOfBoundsException if the index is invalid
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public Object remove(int index) {
+    public Long remove(int index) {
         checkRemoveModifiable();
         return LongUtils.toObject(removeLongAt(index));
     }
@@ -590,7 +590,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
      * @throws IllegalArgumentException if value is rejected by this collection
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    public Object set(int index, Object value) {
+    public Long set(int index, Long value) {
         checkSetModifiable();
         checkIndexExists(index);
         return LongUtils.toObject(set(index, LongUtils.toPrimitive(value)));
@@ -609,7 +609,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
      * @return a new LongList for the subList
      * @throws IndexOutOfBoundsException if either index is invalid
      */
-    public List subList(int fromIndexInclusive, int toIndexExclusive) {
+    public List<Long> subList(int fromIndexInclusive, int toIndexExclusive) {
         return subLongList(fromIndexInclusive, toIndexExclusive);
     }
 
@@ -637,13 +637,13 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
                 }
             }
             return true;
-        } else if (obj instanceof List) {
-            List other = (List) obj;
+        } else if (obj instanceof List<?>) {
+            List<?> other = (List<?>) obj;
             if (size() != other.size()) {
                 return false;
             }
             LongIterator it1 = longListIterator();
-            Iterator it2 = other.listIterator();
+            Iterator<?> it2 = other.listIterator();
             while (it1.hasNext() && it2.hasNext()) {
                 Object next = it2.next();
                 if (isToPrimitivePossible(next) == false) {
@@ -666,7 +666,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
      */
     public int hashCode() {
         int hashCode = 1;
-        Iterator it = iterator();
+        Iterator<Long> it = iterator();
         while (it.hasNext()) {
             Object obj = it.next();
             hashCode = 31 * hashCode + (obj == null ? 0 : obj.hashCode());
@@ -806,7 +806,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
             return iList.getLong(iCursor++);
         }
 
-        public Object next() {
+        public Long next() {
             return iList.toObject(nextLong());
         }
 
@@ -827,7 +827,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
             return iList.getLong(iCursor);
         }
 
-        public Object previous() {
+        public Long previous() {
             return iList.toObject(previousLong());
         }
 
@@ -856,7 +856,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
             }
         }
 
-        public void add(Object obj) {
+        public void add(Long obj) {
             iList.checkAddModifiable();
             add(iList.toPrimitive(obj));
         }
@@ -873,7 +873,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
             }
         }
 
-        public void set(Object obj) {
+        public void set(Long obj) {
             iList.checkSetModifiable();
             set(iList.toPrimitive(obj));
         }

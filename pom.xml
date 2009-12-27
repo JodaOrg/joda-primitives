@@ -8,7 +8,7 @@
   <artifactId>joda-primitives</artifactId>
   <packaging>jar</packaging>
   <name>Joda primitives</name>
-  <version>0.6</version>
+  <version>0.7</version>
   <description>Collections and utilities based on primitives types</description>
   <url>http://joda-primitives.sourceforge.net</url>
   <issueManagement>
@@ -38,6 +38,12 @@
     </developer>
     <developer>
       <name>Maarten Coene</name>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>Jason Tiscione</name>
       <roles>
         <role>Developer</role>
       </roles>
@@ -82,8 +88,13 @@
         <configuration>
           <verbose>true</verbose>
           <fork>true</fork>
+          <!-- 
           <executable>C:\java\jdk1.4.2\bin\javac</executable>
-          <compilerVersion>1.4</compilerVersion>
+           -->
+          <executable>C:\PROGRA~1\Java\jdk1.6.0_12\bin\javac</executable>
+          <compilerVersion>1.6</compilerVersion>
+          <source>1.5</source>
+          <target>1.5</target>
         </configuration>
       </plugin>
       <plugin>
@@ -102,7 +113,11 @@
         <configuration>
           <linksource>true</linksource>
           <links>
+            <!--
             <link>http://java.sun.com/j2se/1.4.2/docs/api/</link>
+            <link>http://java.sun.com/javase/6/docs/api/</link>
+            -->
+            <link>http://java.sun.com/j2se/1.5.0/docs/api/</link>
           </links>
         </configuration>
         <executions>
@@ -198,7 +213,11 @@
         <configuration>
           <linksource>true</linksource>
           <links>
+            <!--
             <link>http://java.sun.com/j2se/1.4.2/docs/api/</link>
+            <link>http://java.sun.com/javase/6/docs/api/</link>
+            -->
+            <link>http://java.sun.com/j2se/1.5.0/docs/api/</link>
             <link>http://joda-primitives.sourceforge.net/api-release/</link>
           </links>
         </configuration>

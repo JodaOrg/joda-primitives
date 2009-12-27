@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ import org.joda.primitives.iterator.CharIterator;
  * @version CODE GENERATED
  * @since 1.0
  */
-public interface CharCollection extends PrimitiveCollection {
+public interface CharCollection extends PrimitiveCollection<Character> {
     // This file is CODE GENERATED. Do not change manually.
 
     // Mandatory operations

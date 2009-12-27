@@ -10,7 +10,7 @@ import org.joda.primitives.iterator.${Type}Iterator;
  * @version CODE GENERATED
  * @since 1.0
  */
-public interface ${Type}ListIterator extends ${Type}Iterator, PrimitiveListIterator {
+public interface ${Type}ListIterator extends ${Type}Iterator, PrimitiveListIterator<${object}> {
     // This file is CODE GENERATED. Do not change manually.
 
     // Mandatory operations

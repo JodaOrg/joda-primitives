@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -96,7 +96,7 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
      *
      * @param coll  a collection of values to copy, null treated as zero size collection
      */
-    public ArrayLongCollection(Collection coll) {
+    public ArrayLongCollection(Collection<?> coll) {
         super();
         if (coll == null) {
             iData = LongUtils.EMPTY_LONG_ARRAY;
@@ -116,7 +116,7 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
      *
      * @param it  an iterator of values to extract, null treated as zero size collection
      */
-    public ArrayLongCollection(Iterator it) {
+    public ArrayLongCollection(Iterator<Long> it) {
         super();
         if (it == null) {
             iData = LongUtils.EMPTY_LONG_ARRAY;
@@ -402,7 +402,7 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
             return iCollection.iData[iCursor++];
         }
 
-        public Object next() {
+        public Long next() {
             return iCollection.toObject(nextLong());
         }
 

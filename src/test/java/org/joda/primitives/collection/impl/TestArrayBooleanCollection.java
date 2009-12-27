@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ public class TestArrayBooleanCollection extends AbstractTestBooleanCollection {
         return false;
     }
 
-    public Collection makeCollection() {
+    public Collection<Boolean> makeCollection() {
         return new ArrayBooleanCollection();
     }
 
@@ -99,11 +99,11 @@ public class TestArrayBooleanCollection extends AbstractTestBooleanCollection {
     }
 
     public void testConstructor_Collection() throws Exception {
-        ArrayBooleanCollection c = new ArrayBooleanCollection((Collection) null);
+        ArrayBooleanCollection c = new ArrayBooleanCollection((Collection<Boolean>) null);
         assertEquals(0, c.size());
         assertEquals(0, dataLength(c));
         
-        Collection coll = new ArrayList();
+        Collection<Boolean> coll = new ArrayList<Boolean>();
         coll.add((false ? Boolean.TRUE : Boolean.FALSE));
         c = new ArrayBooleanCollection(coll);
         assertEquals(1, c.size());
@@ -120,11 +120,11 @@ public class TestArrayBooleanCollection extends AbstractTestBooleanCollection {
     }
 
     public void testConstructor_Iterator() throws Exception {
-        ArrayBooleanCollection c = new ArrayBooleanCollection((Iterator) null);
+        ArrayBooleanCollection c = new ArrayBooleanCollection((Iterator<Boolean>) null);
         assertEquals(0, c.size());
         assertEquals(0, dataLength(c));
         
-        Collection coll = new ArrayList();
+        Collection<Boolean> coll = new ArrayList<Boolean>();
         coll.add((false ? Boolean.TRUE : Boolean.FALSE));
         c = new ArrayBooleanCollection(coll.iterator());
         assertEquals(1, c.size());

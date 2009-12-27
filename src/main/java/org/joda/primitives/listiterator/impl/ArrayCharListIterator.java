@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -84,7 +84,7 @@ public class ArrayCharListIterator implements CharListIterator {
         return iArray[iCursor++];
     }
 
-    public Object next() {
+    public Character next() {
         return CharUtils.toObject(nextChar());
     }
 
@@ -104,7 +104,7 @@ public class ArrayCharListIterator implements CharListIterator {
         return iArray[iCursor];
     }
 
-    public Object previous() {
+    public Character previous() {
         return CharUtils.toObject(previousChar());
     }
 
@@ -112,7 +112,7 @@ public class ArrayCharListIterator implements CharListIterator {
         throw new UnsupportedOperationException("ArrayCharListIterator does not support add");
     }
 
-    public void add(Object value) {
+    public void add(Character value) {
         throw new UnsupportedOperationException("ArrayCharListIterator does not support add");
     }
 
@@ -127,7 +127,7 @@ public class ArrayCharListIterator implements CharListIterator {
         iArray[iLast] = value;
     }
 
-    public void set(Object value) {
+    public void set(Character value) {
         set(CharUtils.toPrimitive(value));
     }
 

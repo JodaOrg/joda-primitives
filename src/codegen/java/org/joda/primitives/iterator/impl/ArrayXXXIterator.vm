@@ -62,7 +62,7 @@ public class Array${Type}Iterator implements ${Type}Iterator {
         return iArray[iCursor++];
     }
 
-    public Object next() {
+    public ${object} next() {
         return ${Type}Utils.toObject(next${Type}());
     }
 

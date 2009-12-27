@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import org.joda.primitives.listiterator.ShortListIterator;
  * @version CODE GENERATED
  * @since 1.0
  */
-public interface ShortList extends PrimitiveList, ShortCollection {
+public interface ShortList extends PrimitiveList<Short>, ShortCollection {
     // This file is CODE GENERATED. Do not change manually.
 
     // Mandatory operations
@@ -185,7 +185,7 @@ public interface ShortList extends PrimitiveList, ShortCollection {
      * @throws IndexOutOfBoundsException if the index is invalid
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    Object remove(int index);
+    Short remove(int index);
 
     /**
      * Removes a primitive value by index from the list (optional operation).

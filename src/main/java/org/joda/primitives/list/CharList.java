@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import org.joda.primitives.listiterator.CharListIterator;
  * @version CODE GENERATED
  * @since 1.0
  */
-public interface CharList extends PrimitiveList, CharCollection {
+public interface CharList extends PrimitiveList<Character>, CharCollection {
     // This file is CODE GENERATED. Do not change manually.
 
     // Mandatory operations
@@ -192,7 +192,7 @@ public interface CharList extends PrimitiveList, CharCollection {
      * @throws IndexOutOfBoundsException if the index is invalid
      * @throws UnsupportedOperationException if not supported by this collection
      */
-    Object remove(int index);
+    Character remove(int index);
 
     /**
      * Removes a primitive value by index from the list (optional operation).

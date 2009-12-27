@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ public class TestArrayIntCollection extends AbstractTestIntCollection {
         return false;
     }
 
-    public Collection makeCollection() {
+    public Collection<Integer> makeCollection() {
         return new ArrayIntCollection();
     }
 
@@ -99,11 +99,11 @@ public class TestArrayIntCollection extends AbstractTestIntCollection {
     }
 
     public void testConstructor_Collection() throws Exception {
-        ArrayIntCollection c = new ArrayIntCollection((Collection) null);
+        ArrayIntCollection c = new ArrayIntCollection((Collection<Integer>) null);
         assertEquals(0, c.size());
         assertEquals(0, dataLength(c));
         
-        Collection coll = new ArrayList();
+        Collection<Integer> coll = new ArrayList<Integer>();
         coll.add(new Integer(0));
         c = new ArrayIntCollection(coll);
         assertEquals(1, c.size());
@@ -120,11 +120,11 @@ public class TestArrayIntCollection extends AbstractTestIntCollection {
     }
 
     public void testConstructor_Iterator() throws Exception {
-        ArrayIntCollection c = new ArrayIntCollection((Iterator) null);
+        ArrayIntCollection c = new ArrayIntCollection((Iterator<Integer>) null);
         assertEquals(0, c.size());
         assertEquals(0, dataLength(c));
         
-        Collection coll = new ArrayList();
+        Collection<Integer> coll = new ArrayList<Integer>();
         coll.add(new Integer(0));
         c = new ArrayIntCollection(coll.iterator());
         assertEquals(1, c.size());

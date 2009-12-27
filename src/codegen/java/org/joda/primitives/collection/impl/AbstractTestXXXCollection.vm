@@ -39,24 +39,24 @@ public abstract class AbstractTest${Type}Collection extends AbstractTestCollecti
         return false;
     }
 
-    public Collection makeConfirmedCollection() {
-        return new ArrayList();
+    public Collection<${object}> makeConfirmedCollection() {
+        return new ArrayList<${object}>();
     }
 
-    public Collection makeConfirmedFullCollection() {
-        List list = new ArrayList();
+    public Collection<${object}> makeConfirmedFullCollection() {
+        List<${object}> list = new ArrayList<${object}>();
         list.addAll(Arrays.asList(getFullNonNullElements()));
         return list;
     }
 
-    public Object[] getFullNonNullElements() {
-        return new Object[] {
+    public ${object}[] getFullNonNullElements() {
+        return new ${object}[] {
             ${testValues}
         };
     }
     
-    public Object[] getOtherNonNullElements() {
-        return new Object[] {
+    public ${object}[] getOtherNonNullElements() {
+        return new ${object}[] {
             ${otherValues}
         };
     }
@@ -152,7 +152,7 @@ public abstract class AbstractTest${Type}Collection extends AbstractTestCollecti
         assertEquals(true, coll.containsAll(clone));
         assertEquals(true, clone.containsAll(coll));
         
-        Iterator it = clone.iterator();
+        Iterator<${object}> it = clone.iterator();
         it.next();
         it.remove();
         assertEquals(true, coll.containsAll(clone));
@@ -214,8 +214,8 @@ public abstract class AbstractTest${Type}Collection extends AbstractTestCollecti
         assertEquals(true, coll.containsAny(clone));
         assertEquals(true, clone.containsAny(coll));
         
-        Iterator it = clone.iterator();
-        Object obj = it.next();
+        Iterator<${object}> it = clone.iterator();
+        ${object} obj = it.next();
         clone.clear();
         clone.add(obj);
         assertEquals(true, coll.containsAny(clone));

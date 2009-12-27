@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -53,24 +53,24 @@ public abstract class AbstractTestCharCollection extends AbstractTestCollection 
         return false;
     }
 
-    public Collection makeConfirmedCollection() {
-        return new ArrayList();
+    public Collection<Character> makeConfirmedCollection() {
+        return new ArrayList<Character>();
     }
 
-    public Collection makeConfirmedFullCollection() {
-        List list = new ArrayList();
+    public Collection<Character> makeConfirmedFullCollection() {
+        List<Character> list = new ArrayList<Character>();
         list.addAll(Arrays.asList(getFullNonNullElements()));
         return list;
     }
 
-    public Object[] getFullNonNullElements() {
-        return new Object[] {
+    public Character[] getFullNonNullElements() {
+        return new Character[] {
             new Character((char)2),new Character('a'),new Character('@'),new Character('Z'),new Character((char)5000),new Character((char)202),new Character(Character.MIN_VALUE),new Character(Character.MAX_VALUE)
         };
     }
     
-    public Object[] getOtherNonNullElements() {
-        return new Object[] {
+    public Character[] getOtherNonNullElements() {
+        return new Character[] {
             new Character('S'),new Character('J'),new Character('C')
         };
     }
@@ -154,7 +154,7 @@ public abstract class AbstractTestCharCollection extends AbstractTestCollection 
         assertEquals(true, coll.containsAll(clone));
         assertEquals(true, clone.containsAll(coll));
         
-        Iterator it = clone.iterator();
+        Iterator<Character> it = clone.iterator();
         it.next();
         it.remove();
         assertEquals(true, coll.containsAll(clone));
@@ -214,8 +214,8 @@ public abstract class AbstractTestCharCollection extends AbstractTestCollection 
         assertEquals(true, coll.containsAny(clone));
         assertEquals(true, clone.containsAny(coll));
         
-        Iterator it = clone.iterator();
-        Object obj = it.next();
+        Iterator<Character> it = clone.iterator();
+        Character obj = it.next();
         clone.clear();
         clone.add(obj);
         assertEquals(true, coll.containsAny(clone));

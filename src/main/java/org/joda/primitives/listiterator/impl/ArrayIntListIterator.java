@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -84,7 +84,7 @@ public class ArrayIntListIterator implements IntListIterator {
         return iArray[iCursor++];
     }
 
-    public Object next() {
+    public Integer next() {
         return IntUtils.toObject(nextInt());
     }
 
@@ -104,7 +104,7 @@ public class ArrayIntListIterator implements IntListIterator {
         return iArray[iCursor];
     }
 
-    public Object previous() {
+    public Integer previous() {
         return IntUtils.toObject(previousInt());
     }
 
@@ -112,7 +112,7 @@ public class ArrayIntListIterator implements IntListIterator {
         throw new UnsupportedOperationException("ArrayIntListIterator does not support add");
     }
 
-    public void add(Object value) {
+    public void add(Integer value) {
         throw new UnsupportedOperationException("ArrayIntListIterator does not support add");
     }
 
@@ -127,7 +127,7 @@ public class ArrayIntListIterator implements IntListIterator {
         iArray[iLast] = value;
     }
 
-    public void set(Object value) {
+    public void set(Integer value) {
         set(IntUtils.toPrimitive(value));
     }
 

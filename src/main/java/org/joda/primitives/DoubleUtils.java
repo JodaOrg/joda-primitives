@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -72,13 +72,13 @@ public class DoubleUtils {
      * @throws NullPointerException if the collection if null
      * @throws ClassCastException if any object is not <code>Double</code>
      */
-    public static double[] toPrimitiveArray(Collection coll) {
+    public static double[] toPrimitiveArray(Collection <?> coll) {
         if (coll instanceof DoubleCollection) {
             return ((DoubleCollection) coll).toDoubleArray();
         }
         double[] result = new double[coll.size()];
         int i = 0;
-        for (Iterator it = coll.iterator(); it.hasNext(); i++) {
+        for (Iterator<?> it = coll.iterator(); it.hasNext(); i++) {
             Double value = (Double) it.next();
             result[i] = value.doubleValue();
         }

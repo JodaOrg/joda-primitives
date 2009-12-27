@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ package org.joda.primitives.iterator;
  * @version CODE GENERATED
  * @since 1.0
  */
-public interface ByteIterator extends PrimitiveIterator {
+public interface ByteIterator extends PrimitiveIterator<Byte> {
     // This file is CODE GENERATED. Do not change manually.
 
     // Mandatory operations

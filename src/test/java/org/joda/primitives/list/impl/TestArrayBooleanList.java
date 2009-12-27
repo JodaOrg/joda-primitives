@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ public class TestArrayBooleanList extends AbstractTestBooleanList {
         return false;
     }
 
-    public List makeEmptyList() {
+    public List<Boolean> makeEmptyList() {
         return new ArrayBooleanList();
     }
 
@@ -101,11 +101,11 @@ public class TestArrayBooleanList extends AbstractTestBooleanList {
     }
 
     public void testConstructor_Collection() throws Exception {
-        ArrayBooleanList c = new ArrayBooleanList((Collection) null);
+        ArrayBooleanList c = new ArrayBooleanList((Collection<Boolean>) null);
         assertEquals(0, c.size());
         assertEquals(0, dataLength(c));
         
-        Collection coll = new ArrayList();
+        Collection<Boolean> coll = new ArrayList<Boolean>();
         coll.add((false ? Boolean.TRUE : Boolean.FALSE));
         c = new ArrayBooleanList(coll);
         assertEquals(1, c.size());

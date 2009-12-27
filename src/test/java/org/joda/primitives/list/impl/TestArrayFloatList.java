@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ public class TestArrayFloatList extends AbstractTestFloatList {
         return false;
     }
 
-    public List makeEmptyList() {
+    public List<Float> makeEmptyList() {
         return new ArrayFloatList();
     }
 
@@ -101,11 +101,11 @@ public class TestArrayFloatList extends AbstractTestFloatList {
     }
 
     public void testConstructor_Collection() throws Exception {
-        ArrayFloatList c = new ArrayFloatList((Collection) null);
+        ArrayFloatList c = new ArrayFloatList((Collection<Float>) null);
         assertEquals(0, c.size());
         assertEquals(0, dataLength(c));
         
-        Collection coll = new ArrayList();
+        Collection<Float> coll = new ArrayList<Float>();
         coll.add(new Float(0f));
         c = new ArrayFloatList(coll);
         assertEquals(1, c.size());

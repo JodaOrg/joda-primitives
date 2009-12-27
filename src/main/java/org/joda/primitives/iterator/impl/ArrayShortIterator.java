@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -76,7 +76,7 @@ public class ArrayShortIterator implements ShortIterator {
         return iArray[iCursor++];
     }
 
-    public Object next() {
+    public Short next() {
         return ShortUtils.toObject(nextShort());
     }
 

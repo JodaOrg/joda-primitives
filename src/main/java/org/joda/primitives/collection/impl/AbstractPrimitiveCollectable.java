@@ -24,7 +24,7 @@ import org.joda.primitives.PrimitiveCollectable;
  * @version $Id: AbstractPrimitiveCollectable.java,v 1.4 2006/03/27 22:42:11 scolebourne Exp $
  * @since 1.0
  */
-public abstract class AbstractPrimitiveCollectable implements PrimitiveCollectable {
+public abstract class AbstractPrimitiveCollectable<N> implements PrimitiveCollectable<N> {
     
     /**
      * Constructor.

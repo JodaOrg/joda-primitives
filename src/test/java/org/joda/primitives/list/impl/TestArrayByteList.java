@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne
+ *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ public class TestArrayByteList extends AbstractTestByteList {
         return false;
     }
 
-    public List makeEmptyList() {
+    public List<Byte> makeEmptyList() {
         return new ArrayByteList();
     }
 
@@ -101,11 +101,11 @@ public class TestArrayByteList extends AbstractTestByteList {
     }
 
     public void testConstructor_Collection() throws Exception {
-        ArrayByteList c = new ArrayByteList((Collection) null);
+        ArrayByteList c = new ArrayByteList((Collection<Byte>) null);
         assertEquals(0, c.size());
         assertEquals(0, dataLength(c));
         
-        Collection coll = new ArrayList();
+        Collection<Byte> coll = new ArrayList<Byte>();
         coll.add(new Byte((byte) 0));
         c = new ArrayByteList(coll);
         assertEquals(1, c.size());
