@@ -13,7 +13,6 @@
                 <include>NOTICE.txt</include>
                 <include>pom.xml</include>
                 <include>RELEASE-NOTES.txt</include>
-                <include>assemble.xml</include>
             </includes>
         </fileSet>
         <fileSet>

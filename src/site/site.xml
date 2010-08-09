@@ -3,12 +3,12 @@
   <publishDate position="navigation-bottom" format="yyyy-MM-dd"/>
   <bannerLeft>
     <name>Joda.org</name>
-    <src>http://joda-primitives.sourceforge.net/images/joda.png</src>
+    <!--src>http://joda-primitives.sourceforge.net/images/joda.png</src-->
     <href>http://joda.sourceforge.net/</href>
   </bannerLeft>
   <bannerRight>
-    <name>Joda Primitives</name>
-    <src>http://joda-primitives.sourceforge.net/images/jodaprimitives.png</src>
+    <name>Joda-Primitives</name>
+    <!--src>http://joda-primitives.sourceforge.net/images/jodaprimitives.png</src-->
     <href>http://joda-primitives.sourceforge.net/</href>
   </bannerRight>
 
@@ -25,19 +25,24 @@
       <item name="Sourceforge" href="http://sourceforge.net/projects/joda-primitives/"/>
       <!--item name="Test results" href="/junit-report.html"/-->
       <!--item name="Test coverage" href="/cobertura/index.html"/-->
-      <item name="Mailing lists" href="/mail-lists.html"/>
-      <item name="Tasks" href="/tasks.html"/>
-      <item name="SVN" href="http://joda-primitives.svn.sourceforge.net/viewvc/joda-primitives/trunk/"/>
-      <item name="Javadoc (Latest)" href="/apidocs/index.html"/>
+      <item name="Mailing lists" href="mail-lists.html"/>
+      <item name="Tasks" href="tasks.html"/>
+      <item name="Subversion" href="http://joda-primitives.svn.sourceforge.net/viewvc/joda-primitives/trunk/"/>
+      <item name="Javadoc (Development)" href="apidocs/index.html"/>
     </menu>
 
     <menu name="Joda">
       <item name="Joda home" href="http://joda.sourceforge.net"/>
+      <item name="Beans" href="http://joda-beans.sourceforge.net/index.html"/>
+      <item name="Money" href="http://joda-money.sourceforge.net/index.html"/>
       <item name="Time" href="http://joda-time.sourceforge.net/index.html"/>
-      <item name="Beans" href="http://joda.sourceforge.net/beans.html"/>
     </menu>
 
     <menu ref="reports"/>
+
+    <menu name="Website">
+      <item name="Privacy" href="privacy.html"/>
+    </menu>
   </body>
 
   <poweredBy>
