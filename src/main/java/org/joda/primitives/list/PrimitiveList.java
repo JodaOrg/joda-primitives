@@ -48,10 +48,14 @@ public interface PrimitiveList<E> extends PrimitiveCollection<E>, List<E> {
 
     /**
      * Removes a range of values from the list (optional operation).
+     * <p>
+     * This method is optional, throwing an UnsupportedOperationException if the
+     * list cannot be modified.
      *
      * @param fromIndexInclusive  the start of the range to remove, inclusive
      * @param toIndexExclusive  the end of the range to remove, exclusive
      * @return <code>true</code> if the collection was modified
+     * @throws IndexOutOfBoundsException if the index is invalid
      * @throws UnsupportedOperationException if remove is not supported
      */
     boolean removeRange(int fromIndexInclusive, int toIndexExclusive);
