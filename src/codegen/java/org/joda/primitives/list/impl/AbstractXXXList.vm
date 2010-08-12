@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 import org.joda.primitives.${Type}Utils;
@@ -48,8 +47,8 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      *
      * @return an iterator over this list, not null
      */
-    public ${Type}Iterator iterator() {
-        return ${type}ListIterator(0);
+    public ${Type}ListIterator iterator() {
+        return listIterator(0);
     }
 
     /**
@@ -59,8 +58,8 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      *
      * @return an iterator over this list, not null
      */
-    public ${Type}ListIterator ${type}ListIterator() {
-        return ${type}ListIterator(0);
+    public ${Type}ListIterator listIterator() {
+        return listIterator(0);
     }
 
     /**
@@ -70,7 +69,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      * @return an iterator over this list, not null
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    public ${Type}ListIterator ${type}ListIterator(int index) {
+    public ${Type}ListIterator listIterator(int index) {
         checkIndex(index);
         return new PListIterator(this, index);
     }
@@ -202,7 +201,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      *
      * @param fromIndexInclusive  the index to start from, inclusive
      * @param toIndexExclusive  the index to end at, exclusive
-     * @return a new array containing a copy of the range of elements
+     * @return a new array containing a copy of the range of elements, not null
      * @throws IndexOutOfBoundsException if either index is invalid
      */
     public ${type}[] to${Type}Array(int fromIndexInclusive, int toIndexExclusive) {
@@ -225,10 +224,10 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      *
      * @param fromIndexInclusive  the index to start from, inclusive
      * @param toIndexExclusive  the index to end at, exclusive
-     * @return a new ${Type}List for the subList
+     * @return a new ${Type}List for the subList, not null
      * @throws IndexOutOfBoundsException if either index is invalid
      */
-    public ${Type}List sub${Type}List(int fromIndexInclusive, int toIndexExclusive) {
+    public ${Type}List subList(int fromIndexInclusive, int toIndexExclusive) {
         return null; // TODO
     }
 
@@ -399,26 +398,6 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      */
     public ${object} get(int index) {
         return ${Type}Utils.toObject(get${Type}(index));
-    }
-
-    /**
-     * Gets a list iterator over this list.
-     *
-     * @return an iterator over this list
-     */
-    public ListIterator<${object}> listIterator() {
-        return ${type}ListIterator();
-    }
-
-    /**
-     * Gets a list iterator over this list from a start index.
-     *
-     * @param index  the index to start from
-     * @return an iterator over this list
-     * @throws IndexOutOfBoundsException if the index is invalid
-     */
-    public ListIterator<${object}> listIterator(int index) {
-        return ${type}ListIterator(index);
     }
 
     /**
@@ -593,23 +572,6 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
         return ${Type}Utils.toObject(set(index, ${Type}Utils.toPrimitive(value)));
     }
 
-    /**
-     * Gets a range view of part of this list.
-     * <p>
-     * This method allows operations to work on a range within the greater list.
-     * Changes made to the either object will affect the other.
-     * <p>
-     * This implementation uses <code>sub${Type}List(int, int)</code>.
-     *
-     * @param fromIndexInclusive  the index to start from, inclusive
-     * @param toIndexExclusive  the index to end at, exclusive
-     * @return a new ${Type}List for the subList
-     * @throws IndexOutOfBoundsException if either index is invalid
-     */
-    public List<${object}> subList(int fromIndexInclusive, int toIndexExclusive) {
-        return sub${Type}List(fromIndexInclusive, toIndexExclusive);
-    }
-
     //-----------------------------------------------------------------------
     /**
      * Compares this list to another as per the contract of <code>List</code>.
@@ -626,8 +588,8 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
             if (size() != other.size()) {
                 return false;
             }
-            ${Type}Iterator it1 = ${type}ListIterator();
-            ${Type}Iterator it2 = other.${type}ListIterator();
+            ${Type}Iterator it1 = listIterator();
+            ${Type}Iterator it2 = other.listIterator();
             while (it1.hasNext() && it2.hasNext()) {
                 if (it1.next${Type}() != it2.next${Type}()) {
                     return false;
@@ -639,7 +601,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
             if (size() != other.size()) {
                 return false;
             }
-            ${Type}Iterator it1 = ${type}ListIterator();
+            ${Type}Iterator it1 = listIterator();
             Iterator<?> it2 = other.listIterator();
             while (it1.hasNext() && it2.hasNext()) {
                 Object next = it2.next();

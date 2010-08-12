@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
+ *  Copyright 2001-2010 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ public class TestArrayShortCollection extends AbstractTestShortCollection {
 
     //-----------------------------------------------------------------------
     protected int dataLength(Object obj) throws Exception {
-        Field field = obj.getClass().getDeclaredField("iData");
+        Field field = obj.getClass().getDeclaredField("data");
         field.setAccessible(true);
         Object value = field.get(obj);
         return Array.getLength(value);

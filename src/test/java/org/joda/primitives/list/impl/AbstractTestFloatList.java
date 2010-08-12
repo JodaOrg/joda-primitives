@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
+ *  Copyright 2001-2010 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 package org.joda.primitives.list.impl;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.collections.list.AbstractTestList;
 import org.joda.primitives.list.FloatList;
@@ -118,6 +119,17 @@ public abstract class AbstractTestFloatList extends AbstractTestList {
         for (int i = 0; i < values.length; i++) {
             assertEquals(values[i], result[i + 1], 0.00001f);
         }
+    }
+
+    //-----------------------------------------------------------------------
+    public void testRemoveRange() {
+        resetFull();
+        int size = collection.size();
+        FloatList plist = (FloatList) collection;
+        plist.removeRange(size - 4, size - 2);
+        ((List<?>) confirmed).remove(size - 4);
+        ((List<?>) confirmed).remove(size - 4);
+        verify();
     }
 
     //-----------------------------------------------------------------------

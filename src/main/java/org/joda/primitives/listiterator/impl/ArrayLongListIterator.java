@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
+ *  Copyright 2001-2010 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -38,11 +38,11 @@ public class ArrayLongListIterator implements LongListIterator {
     // This file is CODE GENERATED. Do not change manually.
 
     /** The array to iterate over */
-    protected final long[] iArray;
+    protected final long[] array;
     /** Cursor position */
-    protected int iCursor = 0;
+    protected int cursor = 0;
     /** Last returned position */
-    protected int iLast = -1;
+    protected int last = -1;
 
     /**
      * Constructs an iterator over an <code>long</code> array.
@@ -55,7 +55,7 @@ public class ArrayLongListIterator implements LongListIterator {
         if (array == null) {
             throw new IllegalArgumentException("Array must not be null");
         }
-        this.iArray = array;
+        this.array = array;
     }
 
     //-----------------------------------------------------------------------
@@ -69,19 +69,19 @@ public class ArrayLongListIterator implements LongListIterator {
 
     //-----------------------------------------------------------------------
     public boolean hasNext() {
-        return (iCursor < iArray.length);
+        return (cursor < array.length);
     }
 
     public int nextIndex() {
-        return iCursor;
+        return cursor;
     }
 
     public long nextLong() {
         if (hasNext() == false) {
             throw new NoSuchElementException("No more elements available");
         }
-        iLast = iCursor;
-        return iArray[iCursor++];
+        last = cursor;
+        return array[cursor++];
     }
 
     public Long next() {
@@ -89,19 +89,19 @@ public class ArrayLongListIterator implements LongListIterator {
     }
 
     public boolean hasPrevious() {
-        return (iCursor > 0);
+        return (cursor > 0);
     }
 
     public int previousIndex() {
-        return iCursor - 1;
+        return cursor - 1;
     }
 
     public long previousLong() {
         if (hasPrevious() == false) {
             throw new NoSuchElementException("No more elements available");
         }
-        iLast = --iCursor;
-        return iArray[iCursor];
+        last = --cursor;
+        return array[cursor];
     }
 
     public Long previous() {
@@ -121,10 +121,10 @@ public class ArrayLongListIterator implements LongListIterator {
     }
 
     public void set(long value) {
-        if (iLast < 0) {
+        if (last < 0) {
             throw new IllegalStateException("ArrayLongListIterator cannot be set until next is called");
         }
-        iArray[iLast] = value;
+        array[last] = value;
     }
 
     public void set(Long value) {
@@ -132,8 +132,8 @@ public class ArrayLongListIterator implements LongListIterator {
     }
 
     public void reset() {
-        iCursor = 0;
-        iLast = -1;
+        cursor = 0;
+        last = -1;
     }
 
 }

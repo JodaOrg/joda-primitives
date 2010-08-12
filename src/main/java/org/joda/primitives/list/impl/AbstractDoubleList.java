@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
+ *  Copyright 2001-2010 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ import java.util.Collection;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 import org.joda.primitives.DoubleUtils;
@@ -62,8 +61,8 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      *
      * @return an iterator over this list, not null
      */
-    public DoubleIterator iterator() {
-        return doubleListIterator(0);
+    public DoubleListIterator iterator() {
+        return listIterator(0);
     }
 
     /**
@@ -73,8 +72,8 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      *
      * @return an iterator over this list, not null
      */
-    public DoubleListIterator doubleListIterator() {
-        return doubleListIterator(0);
+    public DoubleListIterator listIterator() {
+        return listIterator(0);
     }
 
     /**
@@ -84,7 +83,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      * @return an iterator over this list, not null
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    public DoubleListIterator doubleListIterator(int index) {
+    public DoubleListIterator listIterator(int index) {
         checkIndex(index);
         return new PListIterator(this, index);
     }
@@ -205,7 +204,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      *
      * @param fromIndexInclusive  the index to start from, inclusive
      * @param toIndexExclusive  the index to end at, exclusive
-     * @return a new array containing a copy of the range of elements
+     * @return a new array containing a copy of the range of elements, not null
      * @throws IndexOutOfBoundsException if either index is invalid
      */
     public double[] toDoubleArray(int fromIndexInclusive, int toIndexExclusive) {
@@ -228,10 +227,10 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      *
      * @param fromIndexInclusive  the index to start from, inclusive
      * @param toIndexExclusive  the index to end at, exclusive
-     * @return a new DoubleList for the subList
+     * @return a new DoubleList for the subList, not null
      * @throws IndexOutOfBoundsException if either index is invalid
      */
-    public DoubleList subDoubleList(int fromIndexInclusive, int toIndexExclusive) {
+    public DoubleList subList(int fromIndexInclusive, int toIndexExclusive) {
         return null; // TODO
     }
 
@@ -402,26 +401,6 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      */
     public Double get(int index) {
         return DoubleUtils.toObject(getDouble(index));
-    }
-
-    /**
-     * Gets a list iterator over this list.
-     *
-     * @return an iterator over this list
-     */
-    public ListIterator<Double> listIterator() {
-        return doubleListIterator();
-    }
-
-    /**
-     * Gets a list iterator over this list from a start index.
-     *
-     * @param index  the index to start from
-     * @return an iterator over this list
-     * @throws IndexOutOfBoundsException if the index is invalid
-     */
-    public ListIterator<Double> listIterator(int index) {
-        return doubleListIterator(index);
     }
 
     /**
@@ -596,23 +575,6 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
         return DoubleUtils.toObject(set(index, DoubleUtils.toPrimitive(value)));
     }
 
-    /**
-     * Gets a range view of part of this list.
-     * <p>
-     * This method allows operations to work on a range within the greater list.
-     * Changes made to the either object will affect the other.
-     * <p>
-     * This implementation uses <code>subDoubleList(int, int)</code>.
-     *
-     * @param fromIndexInclusive  the index to start from, inclusive
-     * @param toIndexExclusive  the index to end at, exclusive
-     * @return a new DoubleList for the subList
-     * @throws IndexOutOfBoundsException if either index is invalid
-     */
-    public List<Double> subList(int fromIndexInclusive, int toIndexExclusive) {
-        return subDoubleList(fromIndexInclusive, toIndexExclusive);
-    }
-
     //-----------------------------------------------------------------------
     /**
      * Compares this list to another as per the contract of <code>List</code>.
@@ -629,8 +591,8 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
             if (size() != other.size()) {
                 return false;
             }
-            DoubleIterator it1 = doubleListIterator();
-            DoubleIterator it2 = other.doubleListIterator();
+            DoubleIterator it1 = listIterator();
+            DoubleIterator it2 = other.listIterator();
             while (it1.hasNext() && it2.hasNext()) {
                 if (it1.nextDouble() != it2.nextDouble()) {
                     return false;
@@ -642,7 +604,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
             if (size() != other.size()) {
                 return false;
             }
-            DoubleIterator it1 = doubleListIterator();
+            DoubleIterator it1 = listIterator();
             Iterator<?> it2 = other.listIterator();
             while (it1.hasNext() && it2.hasNext()) {
                 Object next = it2.next();

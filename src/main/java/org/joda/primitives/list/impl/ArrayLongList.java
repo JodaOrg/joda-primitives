@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
+ *  Copyright 2001-2010 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -44,16 +44,16 @@ public class ArrayLongList extends AbstractLongList implements Cloneable {
     private static final int GROWTH_FACTOR_DIVISOR = 2;
 
     /** The array of elements */
-    private long[] iData;
+    private long[] data;
     /** The current size */
-    private int iSize;
+    private int size;
 
     /**
      * Constructor.
      */
     public ArrayLongList() {
         super();
-        iData = LongUtils.EMPTY_LONG_ARRAY;
+        data = LongUtils.EMPTY_LONG_ARRAY;
     }
 
     /**
@@ -64,9 +64,9 @@ public class ArrayLongList extends AbstractLongList implements Cloneable {
     public ArrayLongList(int initialSize) {
         super();
         if (initialSize <= 0) {
-            iData = LongUtils.EMPTY_LONG_ARRAY;
+            data = LongUtils.EMPTY_LONG_ARRAY;
         } else {
-            iData = new long[initialSize];
+            data = new long[initialSize];
         }
     }
 
@@ -78,10 +78,10 @@ public class ArrayLongList extends AbstractLongList implements Cloneable {
     public ArrayLongList(long[] values) {
         super();
         if (values == null) {
-            iData = LongUtils.EMPTY_LONG_ARRAY;
+            data = LongUtils.EMPTY_LONG_ARRAY;
         } else {
-            iData = (long[]) values.clone();
-            iSize = values.length;
+            data = (long[]) values.clone();
+            size = values.length;
         }
     }
 
@@ -93,15 +93,15 @@ public class ArrayLongList extends AbstractLongList implements Cloneable {
     public ArrayLongList(Collection<Long> coll) {
         super();
         if (coll == null) {
-            iData = LongUtils.EMPTY_LONG_ARRAY;
+            data = LongUtils.EMPTY_LONG_ARRAY;
         } else if (coll instanceof ArrayLongList) {
             ArrayLongList c = (ArrayLongList) coll;
-            this.iData = new long[c.iSize];
-            System.arraycopy(c.iData, 0, this.iData, 0, c.iSize);
-            iSize = c.iSize;
+            this.data = new long[c.size];
+            System.arraycopy(c.data, 0, this.data, 0, c.size);
+            size = c.size;
         } else {
-            iData = toPrimitiveArray(coll);
-            iSize = coll.size();
+            data = toPrimitiveArray(coll);
+            size = coll.size();
         }
     }
 
@@ -113,7 +113,7 @@ public class ArrayLongList extends AbstractLongList implements Cloneable {
      * @return the current size
      */
     public int size() {
-        return iSize;
+        return size;
     }
 
     /**
@@ -125,7 +125,7 @@ public class ArrayLongList extends AbstractLongList implements Cloneable {
      */
     public long getLong(int index) {
         checkIndexExists(index);
-        return iData[index];
+        return data[index];
     }
 
     /**
@@ -139,10 +139,10 @@ public class ArrayLongList extends AbstractLongList implements Cloneable {
     public boolean add(int index, long value) {
         checkAddModifiable();
         checkIndex(index);
-        ensureCapacity(iSize + 1);
-        System.arraycopy(iData, index, iData, index + 1, iSize - index);
-        iData[index] = value;
-        iSize++;
+        ensureCapacity(size + 1);
+        System.arraycopy(data, index, data, index + 1, size - index);
+        data[index] = value;
+        size++;
         return true;
     }
 
@@ -156,10 +156,28 @@ public class ArrayLongList extends AbstractLongList implements Cloneable {
     public long removeLongAt(int index) {
         checkRemoveModifiable();
         checkIndexExists(index);
-        long result = iData[index];
-        System.arraycopy(iData, index + 1, iData, index, iSize - 1 - index);
-        iSize--;
+        long result = data[index];
+        System.arraycopy(data, index + 1, data, index, size - 1 - index);
+        size--;
         return result;
+    }
+
+    /**
+     * Removes a range of values from the list.
+     *
+     * @param fromIndexInclusive  the start of the range to remove, inclusive
+     * @param toIndexExclusive  the end of the range to remove, exclusive
+     * @return <code>true</code> if the collection was modified
+     */
+    public boolean removeRange(int fromIndexInclusive, int toIndexExclusive) {
+        checkRemoveModifiable();
+        checkRange(fromIndexInclusive, toIndexExclusive);
+        if (fromIndexInclusive == toIndexExclusive) {
+            return false;
+        }
+        System.arraycopy(data, toIndexExclusive, data, fromIndexInclusive, size - toIndexExclusive);
+        size -= (toIndexExclusive - fromIndexInclusive);
+        return true;
     }
 
     /**
@@ -173,8 +191,8 @@ public class ArrayLongList extends AbstractLongList implements Cloneable {
     public long set(int index, long value) {
         checkSetModifiable();
         checkIndexExists(index);
-        long result = iData[index];
-        iData[index] = value;
+        long result = data[index];
+        data[index] = value;
         return result;
     }
 
@@ -187,10 +205,10 @@ public class ArrayLongList extends AbstractLongList implements Cloneable {
      * the size of the collection.
      */
     public void optimize() {
-        if (iSize < iData.length) {
-            long[] array = new long[iSize];
-            System.arraycopy(iData, 0, array, 0, iSize);
-            iData = array;
+        if (size < data.length) {
+            long[] array = new long[size];
+            System.arraycopy(data, 0, array, 0, size);
+            data = array;
         }
     }
 
@@ -202,7 +220,7 @@ public class ArrayLongList extends AbstractLongList implements Cloneable {
      * The collection/map will have a zero size after this method completes.
      */
     public void clear() {
-        iSize = 0;
+        size = 0;
     }
 
     /**
@@ -214,8 +232,8 @@ public class ArrayLongList extends AbstractLongList implements Cloneable {
      * @return <code>true</code> if the value is found
      */
     public boolean contains(long value) {
-        for (int i = 0; i < iSize; i++) {
-            if (iData[i] == value) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == value) {
                 return true;
             }
         }
@@ -237,10 +255,10 @@ public class ArrayLongList extends AbstractLongList implements Cloneable {
             return false;
         }
         int len = values.length;
-        ensureCapacity(iSize + len);
-        System.arraycopy(iData, index, iData, index + len, iSize - index);
-        System.arraycopy(values, 0, iData, index, len);
-        iSize += len;
+        ensureCapacity(size + len);
+        System.arraycopy(data, index, data, index + len, size - index);
+        System.arraycopy(values, 0, data, index, len);
+        size += len;
         return true;
     }
 
@@ -288,7 +306,7 @@ public class ArrayLongList extends AbstractLongList implements Cloneable {
      */
     public Object clone() {
         ArrayLongList cloned = (ArrayLongList) super.clone();
-        cloned.iData = (long[]) iData.clone();
+        cloned.data = (long[]) data.clone();
         return cloned;
     }
 
@@ -302,7 +320,7 @@ public class ArrayLongList extends AbstractLongList implements Cloneable {
      * @param size  the number of items to copy
      */
     protected void arrayCopy(int fromIndex, long[] dest, int destIndex, int size) {
-        System.arraycopy(iData, fromIndex, dest, destIndex, size);
+        System.arraycopy(data, fromIndex, dest, destIndex, size);
     }
 
     // Internal implementation
@@ -313,7 +331,7 @@ public class ArrayLongList extends AbstractLongList implements Cloneable {
      * @param capacity  the amount to expand to
      */
     protected void ensureCapacity(int capacity) {
-        int len = iData.length;
+        int len = data.length;
         if (capacity <= len) {
             return;
         }
@@ -325,8 +343,8 @@ public class ArrayLongList extends AbstractLongList implements Cloneable {
             newLen = MIN_GROWTH_SIZE;
         }
         long[] newArray = new long[newLen];
-        System.arraycopy(iData, 0, newArray, 0, len);
-        iData = newArray;
+        System.arraycopy(data, 0, newArray, 0, len);
+        data = newArray;
     }
 
 }

@@ -2,6 +2,7 @@ ${license}
 package org.joda.primitives.list.impl;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.collections.list.AbstractTestList;
 import org.joda.primitives.list.${Type}List;
@@ -116,6 +117,22 @@ public abstract class AbstractTest${Type}List extends AbstractTestList {
         for (int i = 0; i < values.length; i++) {
             assertEquals(values[i], result[i + 1]${assertExtra});
         }
+    }
+
+    //-----------------------------------------------------------------------
+    public void testRemoveRange() {
+        resetFull();
+        int size = collection.size();
+        ${Type}List plist = (${Type}List) collection;
+#if(${type} == 'boolean')
+        plist.removeRange(size - 1, size);
+        ((List<?>) confirmed).remove(size - 1);
+#else
+        plist.removeRange(size - 4, size - 2);
+        ((List<?>) confirmed).remove(size - 4);
+        ((List<?>) confirmed).remove(size - 4);
+#end
+        verify();
     }
 
     //-----------------------------------------------------------------------

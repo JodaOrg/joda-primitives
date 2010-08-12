@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2006 Stephen Colebourne
+ *  Copyright 2001-2010 Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,13 +24,12 @@ import org.joda.primitives.list.CharList;
  * seamless integration with other APIs.
  *
  * @author Stephen Colebourne
- * @version $Id: StringBufferCharList.java,v 1.4 2006/03/27 22:42:11 scolebourne Exp $
  * @since 1.0
  */
 public class StringBufferCharList extends AbstractCharList {
 
     /** The String being wrapped */    
-    protected final StringBuffer iStringBuffer;
+    protected final StringBuffer stringBuffer;
     
     /**
      * Decorates the specified string buffer with a StringBufferCharList.
@@ -55,7 +54,7 @@ public class StringBufferCharList extends AbstractCharList {
      */
     public StringBufferCharList() {
         super();
-        this.iStringBuffer = new StringBuffer();
+        this.stringBuffer = new StringBuffer();
     }
     
     /**
@@ -69,8 +68,8 @@ public class StringBufferCharList extends AbstractCharList {
         if (list == null) {
             throw new IllegalArgumentException("List must not be null");
         }
-        this.iStringBuffer = new StringBuffer(list.size());
-        this.iStringBuffer.append(list.toCharArray());
+        this.stringBuffer = new StringBuffer(list.size());
+        this.stringBuffer.append(list.toCharArray());
     }
     
     /**
@@ -84,7 +83,7 @@ public class StringBufferCharList extends AbstractCharList {
         if (str == null) {
             throw new IllegalArgumentException("String must not be null");
         }
-        this.iStringBuffer = new StringBuffer(str);
+        this.stringBuffer = new StringBuffer(str);
     }
     
     /**
@@ -98,7 +97,7 @@ public class StringBufferCharList extends AbstractCharList {
         if (buf == null) {
             throw new IllegalArgumentException("StringBuffer must not be null");
         }
-        this.iStringBuffer = buf;
+        this.stringBuffer = buf;
     }
     
     // Implementation
@@ -111,7 +110,7 @@ public class StringBufferCharList extends AbstractCharList {
      */
     public char getChar(int index) {
         checkIndexExists(index);
-        return iStringBuffer.charAt(index);
+        return stringBuffer.charAt(index);
     }
 
     /**
@@ -120,7 +119,7 @@ public class StringBufferCharList extends AbstractCharList {
      * @return the string length
      */
     public int size() {
-        return iStringBuffer.length();
+        return stringBuffer.length();
     }
 
     /**
@@ -134,7 +133,7 @@ public class StringBufferCharList extends AbstractCharList {
     public boolean add(int index, char value) {
         checkAddModifiable();
         checkIndex(index);
-        iStringBuffer.insert(index, value);
+        stringBuffer.insert(index, value);
         return true;
     }
 
@@ -148,8 +147,8 @@ public class StringBufferCharList extends AbstractCharList {
     public char removeIndex(int index) {
         checkRemoveModifiable();
         checkIndexExists(index);
-        char old = iStringBuffer.charAt(index);
-        iStringBuffer.deleteCharAt(index);
+        char old = stringBuffer.charAt(index);
+        stringBuffer.deleteCharAt(index);
         return old;
     }
 
@@ -166,8 +165,8 @@ public class StringBufferCharList extends AbstractCharList {
     public char set(int index, char value) {
         checkSetModifiable();
         checkIndexExists(index);
-        char old = iStringBuffer.charAt(index);
-        iStringBuffer.setCharAt(index, value);
+        char old = stringBuffer.charAt(index);
+        stringBuffer.setCharAt(index, value);
         return old;
     }
 
@@ -217,7 +216,7 @@ public class StringBufferCharList extends AbstractCharList {
      */
     public boolean add(char value) {
         checkAddModifiable();
-        iStringBuffer.append(value);
+        stringBuffer.append(value);
         return true;
     }
 
@@ -233,7 +232,7 @@ public class StringBufferCharList extends AbstractCharList {
         if (values == null || values.length == 0) {
             return false;
         }
-        iStringBuffer.append(values);
+        stringBuffer.append(values);
         return true;
     }
 
@@ -251,7 +250,7 @@ public class StringBufferCharList extends AbstractCharList {
         if (values == null || values.length == 0) {
             return false;
         }
-        iStringBuffer.insert(index, values);
+        stringBuffer.insert(index, values);
         return true;
     }
 
@@ -268,7 +267,7 @@ public class StringBufferCharList extends AbstractCharList {
         if (fromIndexInclusive == toIndexExclusive) {
             return false;
         }
-        iStringBuffer.delete(fromIndexInclusive, toIndexExclusive);
+        stringBuffer.delete(fromIndexInclusive, toIndexExclusive);
         return true;
     }
 
@@ -278,7 +277,7 @@ public class StringBufferCharList extends AbstractCharList {
      * @return the underlying string, not null
      */
     public String toStringContents() {
-        return iStringBuffer.substring(0, iStringBuffer.length());
+        return stringBuffer.substring(0, stringBuffer.length());
     }
 
     //-----------------------------------------------------------------------
@@ -292,7 +291,7 @@ public class StringBufferCharList extends AbstractCharList {
      * @param size  the number of items to copy
      */
     protected void arrayCopy(int fromIndex, char[] dest, int destIndex, int size) {
-        iStringBuffer.getChars(fromIndex, fromIndex + size, dest, destIndex);
+        stringBuffer.getChars(fromIndex, fromIndex + size, dest, destIndex);
     }
 
 }

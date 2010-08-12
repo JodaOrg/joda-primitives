@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
+ *  Copyright 2001-2010 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -19,7 +19,6 @@ import java.util.Collection;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 import org.joda.primitives.FloatUtils;
@@ -62,8 +61,8 @@ public abstract class AbstractFloatList extends AbstractFloatCollection implemen
      *
      * @return an iterator over this list, not null
      */
-    public FloatIterator iterator() {
-        return floatListIterator(0);
+    public FloatListIterator iterator() {
+        return listIterator(0);
     }
 
     /**
@@ -73,8 +72,8 @@ public abstract class AbstractFloatList extends AbstractFloatCollection implemen
      *
      * @return an iterator over this list, not null
      */
-    public FloatListIterator floatListIterator() {
-        return floatListIterator(0);
+    public FloatListIterator listIterator() {
+        return listIterator(0);
     }
 
     /**
@@ -84,7 +83,7 @@ public abstract class AbstractFloatList extends AbstractFloatCollection implemen
      * @return an iterator over this list, not null
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    public FloatListIterator floatListIterator(int index) {
+    public FloatListIterator listIterator(int index) {
         checkIndex(index);
         return new PListIterator(this, index);
     }
@@ -205,7 +204,7 @@ public abstract class AbstractFloatList extends AbstractFloatCollection implemen
      *
      * @param fromIndexInclusive  the index to start from, inclusive
      * @param toIndexExclusive  the index to end at, exclusive
-     * @return a new array containing a copy of the range of elements
+     * @return a new array containing a copy of the range of elements, not null
      * @throws IndexOutOfBoundsException if either index is invalid
      */
     public float[] toFloatArray(int fromIndexInclusive, int toIndexExclusive) {
@@ -228,10 +227,10 @@ public abstract class AbstractFloatList extends AbstractFloatCollection implemen
      *
      * @param fromIndexInclusive  the index to start from, inclusive
      * @param toIndexExclusive  the index to end at, exclusive
-     * @return a new FloatList for the subList
+     * @return a new FloatList for the subList, not null
      * @throws IndexOutOfBoundsException if either index is invalid
      */
-    public FloatList subFloatList(int fromIndexInclusive, int toIndexExclusive) {
+    public FloatList subList(int fromIndexInclusive, int toIndexExclusive) {
         return null; // TODO
     }
 
@@ -402,26 +401,6 @@ public abstract class AbstractFloatList extends AbstractFloatCollection implemen
      */
     public Float get(int index) {
         return FloatUtils.toObject(getFloat(index));
-    }
-
-    /**
-     * Gets a list iterator over this list.
-     *
-     * @return an iterator over this list
-     */
-    public ListIterator<Float> listIterator() {
-        return floatListIterator();
-    }
-
-    /**
-     * Gets a list iterator over this list from a start index.
-     *
-     * @param index  the index to start from
-     * @return an iterator over this list
-     * @throws IndexOutOfBoundsException if the index is invalid
-     */
-    public ListIterator<Float> listIterator(int index) {
-        return floatListIterator(index);
     }
 
     /**
@@ -596,23 +575,6 @@ public abstract class AbstractFloatList extends AbstractFloatCollection implemen
         return FloatUtils.toObject(set(index, FloatUtils.toPrimitive(value)));
     }
 
-    /**
-     * Gets a range view of part of this list.
-     * <p>
-     * This method allows operations to work on a range within the greater list.
-     * Changes made to the either object will affect the other.
-     * <p>
-     * This implementation uses <code>subFloatList(int, int)</code>.
-     *
-     * @param fromIndexInclusive  the index to start from, inclusive
-     * @param toIndexExclusive  the index to end at, exclusive
-     * @return a new FloatList for the subList
-     * @throws IndexOutOfBoundsException if either index is invalid
-     */
-    public List<Float> subList(int fromIndexInclusive, int toIndexExclusive) {
-        return subFloatList(fromIndexInclusive, toIndexExclusive);
-    }
-
     //-----------------------------------------------------------------------
     /**
      * Compares this list to another as per the contract of <code>List</code>.
@@ -629,8 +591,8 @@ public abstract class AbstractFloatList extends AbstractFloatCollection implemen
             if (size() != other.size()) {
                 return false;
             }
-            FloatIterator it1 = floatListIterator();
-            FloatIterator it2 = other.floatListIterator();
+            FloatIterator it1 = listIterator();
+            FloatIterator it2 = other.listIterator();
             while (it1.hasNext() && it2.hasNext()) {
                 if (it1.nextFloat() != it2.nextFloat()) {
                     return false;
@@ -642,7 +604,7 @@ public abstract class AbstractFloatList extends AbstractFloatCollection implemen
             if (size() != other.size()) {
                 return false;
             }
-            FloatIterator it1 = floatListIterator();
+            FloatIterator it1 = listIterator();
             Iterator<?> it2 = other.listIterator();
             while (it1.hasNext() && it2.hasNext()) {
                 Object next = it2.next();

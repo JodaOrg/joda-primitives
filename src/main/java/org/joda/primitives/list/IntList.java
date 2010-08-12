@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
+ *  Copyright 2001-2010 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -61,20 +61,20 @@ public interface IntList extends PrimitiveList<Integer>, IntCollection {
     int lastInt();
 
     /**
-     * Gets a list iterator over this list.
+     * Gets a list iterator over this list capable of accessing the primitive values.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
-    IntListIterator intListIterator();
+    IntListIterator listIterator();
 
     /**
-     * Gets a list iterator over this list from a start index.
+     * Gets a list iterator over this list from a start index capable of accessing the primitive values.
      *
      * @param index  the index to start from
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    IntListIterator intListIterator(int index);
+    IntListIterator listIterator(int index);
 
     /**
      * Gets the first index of the specified primitive value.
@@ -123,7 +123,7 @@ public interface IntList extends PrimitiveList<Integer>, IntCollection {
      *
      * @param fromIndexInclusive  the index to start from, inclusive
      * @param toIndexExclusive  the index to end at, exclusive
-     * @return a new array containing a copy of the range of elements
+     * @return a new array containing a copy of the range of elements, not null
      * @throws IndexOutOfBoundsException if either index is invalid
      */
     int[] toIntArray(int fromIndexInclusive, int toIndexExclusive);
@@ -136,10 +136,10 @@ public interface IntList extends PrimitiveList<Integer>, IntCollection {
      *
      * @param fromIndexInclusive  the index to start from, inclusive
      * @param toIndexExclusive  the index to end at, exclusive
-     * @return a new IntList for the subList
+     * @return a new IntList for the subList, not null
      * @throws IndexOutOfBoundsException if either index is invalid
      */
-    IntList subIntList(int fromIndexInclusive, int toIndexExclusive);
+    IntList subList(int fromIndexInclusive, int toIndexExclusive);
 
     // Optional operations
     //-----------------------------------------------------------------------

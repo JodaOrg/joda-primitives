@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
+ *  Copyright 2001-2010 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 package org.joda.primitives.list.impl;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.collections.list.AbstractTestList;
 import org.joda.primitives.list.BooleanList;
@@ -116,6 +117,16 @@ public abstract class AbstractTestBooleanList extends AbstractTestList {
         for (int i = 0; i < values.length; i++) {
             assertEquals(values[i], result[i + 1]);
         }
+    }
+
+    //-----------------------------------------------------------------------
+    public void testRemoveRange() {
+        resetFull();
+        int size = collection.size();
+        BooleanList plist = (BooleanList) collection;
+        plist.removeRange(size - 1, size);
+        ((List<?>) confirmed).remove(size - 1);
+        verify();
     }
 
     //-----------------------------------------------------------------------

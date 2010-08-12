@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
+ *  Copyright 2001-2010 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -61,20 +61,20 @@ public interface BooleanList extends PrimitiveList<Boolean>, BooleanCollection {
     boolean lastBoolean();
 
     /**
-     * Gets a list iterator over this list.
+     * Gets a list iterator over this list capable of accessing the primitive values.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
-    BooleanListIterator booleanListIterator();
+    BooleanListIterator listIterator();
 
     /**
-     * Gets a list iterator over this list from a start index.
+     * Gets a list iterator over this list from a start index capable of accessing the primitive values.
      *
      * @param index  the index to start from
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    BooleanListIterator booleanListIterator(int index);
+    BooleanListIterator listIterator(int index);
 
     /**
      * Gets the first index of the specified primitive value.
@@ -123,7 +123,7 @@ public interface BooleanList extends PrimitiveList<Boolean>, BooleanCollection {
      *
      * @param fromIndexInclusive  the index to start from, inclusive
      * @param toIndexExclusive  the index to end at, exclusive
-     * @return a new array containing a copy of the range of elements
+     * @return a new array containing a copy of the range of elements, not null
      * @throws IndexOutOfBoundsException if either index is invalid
      */
     boolean[] toBooleanArray(int fromIndexInclusive, int toIndexExclusive);
@@ -136,10 +136,10 @@ public interface BooleanList extends PrimitiveList<Boolean>, BooleanCollection {
      *
      * @param fromIndexInclusive  the index to start from, inclusive
      * @param toIndexExclusive  the index to end at, exclusive
-     * @return a new BooleanList for the subList
+     * @return a new BooleanList for the subList, not null
      * @throws IndexOutOfBoundsException if either index is invalid
      */
-    BooleanList subBooleanList(int fromIndexInclusive, int toIndexExclusive);
+    BooleanList subList(int fromIndexInclusive, int toIndexExclusive);
 
     // Optional operations
     //-----------------------------------------------------------------------

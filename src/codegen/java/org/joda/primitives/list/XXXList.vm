@@ -47,20 +47,20 @@ public interface ${Type}List extends PrimitiveList<${object}>, ${Type}Collection
     ${type} last${Type}();
 
     /**
-     * Gets a list iterator over this list.
+     * Gets a list iterator over this list capable of accessing the primitive values.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
-    ${Type}ListIterator ${type}ListIterator();
+    ${Type}ListIterator listIterator();
 
     /**
-     * Gets a list iterator over this list from a start index.
+     * Gets a list iterator over this list from a start index capable of accessing the primitive values.
      *
      * @param index  the index to start from
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      * @throws IndexOutOfBoundsException if the index is invalid
      */
-    ${Type}ListIterator ${type}ListIterator(int index);
+    ${Type}ListIterator listIterator(int index);
 
     /**
      * Gets the first index of the specified primitive value.
@@ -118,7 +118,7 @@ public interface ${Type}List extends PrimitiveList<${object}>, ${Type}Collection
      *
      * @param fromIndexInclusive  the index to start from, inclusive
      * @param toIndexExclusive  the index to end at, exclusive
-     * @return a new array containing a copy of the range of elements
+     * @return a new array containing a copy of the range of elements, not null
      * @throws IndexOutOfBoundsException if either index is invalid
      */
     ${type}[] to${Type}Array(int fromIndexInclusive, int toIndexExclusive);
@@ -131,10 +131,10 @@ public interface ${Type}List extends PrimitiveList<${object}>, ${Type}Collection
      *
      * @param fromIndexInclusive  the index to start from, inclusive
      * @param toIndexExclusive  the index to end at, exclusive
-     * @return a new ${Type}List for the subList
+     * @return a new ${Type}List for the subList, not null
      * @throws IndexOutOfBoundsException if either index is invalid
      */
-    ${Type}List sub${Type}List(int fromIndexInclusive, int toIndexExclusive);
+    ${Type}List subList(int fromIndexInclusive, int toIndexExclusive);
 
     // Optional operations
     //-----------------------------------------------------------------------

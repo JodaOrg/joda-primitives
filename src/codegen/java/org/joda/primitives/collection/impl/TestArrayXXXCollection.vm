@@ -45,7 +45,7 @@ public class TestArray${Type}Collection extends AbstractTest${Type}Collection {
 
     //-----------------------------------------------------------------------
     protected int dataLength(Object obj) throws Exception {
-        Field field = obj.getClass().getDeclaredField("iData");
+        Field field = obj.getClass().getDeclaredField("data");
         field.setAccessible(true);
         Object value = field.get(obj);
         return Array.getLength(value);

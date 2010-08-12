@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2009 Stephen Colebourne, Jason Tiscione
+ *  Copyright 2001-2010 Stephen Colebourne, Jason Tiscione
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -44,16 +44,16 @@ public class ArrayDoubleList extends AbstractDoubleList implements Cloneable {
     private static final int GROWTH_FACTOR_DIVISOR = 2;
 
     /** The array of elements */
-    private double[] iData;
+    private double[] data;
     /** The current size */
-    private int iSize;
+    private int size;
 
     /**
      * Constructor.
      */
     public ArrayDoubleList() {
         super();
-        iData = DoubleUtils.EMPTY_DOUBLE_ARRAY;
+        data = DoubleUtils.EMPTY_DOUBLE_ARRAY;
     }
 
     /**
@@ -64,9 +64,9 @@ public class ArrayDoubleList extends AbstractDoubleList implements Cloneable {
     public ArrayDoubleList(int initialSize) {
         super();
         if (initialSize <= 0) {
-            iData = DoubleUtils.EMPTY_DOUBLE_ARRAY;
+            data = DoubleUtils.EMPTY_DOUBLE_ARRAY;
         } else {
-            iData = new double[initialSize];
+            data = new double[initialSize];
         }
     }
 
@@ -78,10 +78,10 @@ public class ArrayDoubleList extends AbstractDoubleList implements Cloneable {
     public ArrayDoubleList(double[] values) {
         super();
         if (values == null) {
-            iData = DoubleUtils.EMPTY_DOUBLE_ARRAY;
+            data = DoubleUtils.EMPTY_DOUBLE_ARRAY;
         } else {
-            iData = (double[]) values.clone();
-            iSize = values.length;
+            data = (double[]) values.clone();
+            size = values.length;
         }
     }
 
@@ -93,15 +93,15 @@ public class ArrayDoubleList extends AbstractDoubleList implements Cloneable {
     public ArrayDoubleList(Collection<Double> coll) {
         super();
         if (coll == null) {
-            iData = DoubleUtils.EMPTY_DOUBLE_ARRAY;
+            data = DoubleUtils.EMPTY_DOUBLE_ARRAY;
         } else if (coll instanceof ArrayDoubleList) {
             ArrayDoubleList c = (ArrayDoubleList) coll;
-            this.iData = new double[c.iSize];
-            System.arraycopy(c.iData, 0, this.iData, 0, c.iSize);
-            iSize = c.iSize;
+            this.data = new double[c.size];
+            System.arraycopy(c.data, 0, this.data, 0, c.size);
+            size = c.size;
         } else {
-            iData = toPrimitiveArray(coll);
-            iSize = coll.size();
+            data = toPrimitiveArray(coll);
+            size = coll.size();
         }
     }
 
@@ -113,7 +113,7 @@ public class ArrayDoubleList extends AbstractDoubleList implements Cloneable {
      * @return the current size
      */
     public int size() {
-        return iSize;
+        return size;
     }
 
     /**
@@ -125,7 +125,7 @@ public class ArrayDoubleList extends AbstractDoubleList implements Cloneable {
      */
     public double getDouble(int index) {
         checkIndexExists(index);
-        return iData[index];
+        return data[index];
     }
 
     /**
@@ -139,10 +139,10 @@ public class ArrayDoubleList extends AbstractDoubleList implements Cloneable {
     public boolean add(int index, double value) {
         checkAddModifiable();
         checkIndex(index);
-        ensureCapacity(iSize + 1);
-        System.arraycopy(iData, index, iData, index + 1, iSize - index);
-        iData[index] = value;
-        iSize++;
+        ensureCapacity(size + 1);
+        System.arraycopy(data, index, data, index + 1, size - index);
+        data[index] = value;
+        size++;
         return true;
     }
 
@@ -156,10 +156,28 @@ public class ArrayDoubleList extends AbstractDoubleList implements Cloneable {
     public double removeDoubleAt(int index) {
         checkRemoveModifiable();
         checkIndexExists(index);
-        double result = iData[index];
-        System.arraycopy(iData, index + 1, iData, index, iSize - 1 - index);
-        iSize--;
+        double result = data[index];
+        System.arraycopy(data, index + 1, data, index, size - 1 - index);
+        size--;
         return result;
+    }
+
+    /**
+     * Removes a range of values from the list.
+     *
+     * @param fromIndexInclusive  the start of the range to remove, inclusive
+     * @param toIndexExclusive  the end of the range to remove, exclusive
+     * @return <code>true</code> if the collection was modified
+     */
+    public boolean removeRange(int fromIndexInclusive, int toIndexExclusive) {
+        checkRemoveModifiable();
+        checkRange(fromIndexInclusive, toIndexExclusive);
+        if (fromIndexInclusive == toIndexExclusive) {
+            return false;
+        }
+        System.arraycopy(data, toIndexExclusive, data, fromIndexInclusive, size - toIndexExclusive);
+        size -= (toIndexExclusive - fromIndexInclusive);
+        return true;
     }
 
     /**
@@ -173,8 +191,8 @@ public class ArrayDoubleList extends AbstractDoubleList implements Cloneable {
     public double set(int index, double value) {
         checkSetModifiable();
         checkIndexExists(index);
-        double result = iData[index];
-        iData[index] = value;
+        double result = data[index];
+        data[index] = value;
         return result;
     }
 
@@ -187,10 +205,10 @@ public class ArrayDoubleList extends AbstractDoubleList implements Cloneable {
      * the size of the collection.
      */
     public void optimize() {
-        if (iSize < iData.length) {
-            double[] array = new double[iSize];
-            System.arraycopy(iData, 0, array, 0, iSize);
-            iData = array;
+        if (size < data.length) {
+            double[] array = new double[size];
+            System.arraycopy(data, 0, array, 0, size);
+            data = array;
         }
     }
 
@@ -202,7 +220,7 @@ public class ArrayDoubleList extends AbstractDoubleList implements Cloneable {
      * The collection/map will have a zero size after this method completes.
      */
     public void clear() {
-        iSize = 0;
+        size = 0;
     }
 
     /**
@@ -214,8 +232,8 @@ public class ArrayDoubleList extends AbstractDoubleList implements Cloneable {
      * @return <code>true</code> if the value is found
      */
     public boolean contains(double value) {
-        for (int i = 0; i < iSize; i++) {
-            if (iData[i] == value) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == value) {
                 return true;
             }
         }
@@ -237,10 +255,10 @@ public class ArrayDoubleList extends AbstractDoubleList implements Cloneable {
             return false;
         }
         int len = values.length;
-        ensureCapacity(iSize + len);
-        System.arraycopy(iData, index, iData, index + len, iSize - index);
-        System.arraycopy(values, 0, iData, index, len);
-        iSize += len;
+        ensureCapacity(size + len);
+        System.arraycopy(data, index, data, index + len, size - index);
+        System.arraycopy(values, 0, data, index, len);
+        size += len;
         return true;
     }
 
@@ -288,7 +306,7 @@ public class ArrayDoubleList extends AbstractDoubleList implements Cloneable {
      */
     public Object clone() {
         ArrayDoubleList cloned = (ArrayDoubleList) super.clone();
-        cloned.iData = (double[]) iData.clone();
+        cloned.data = (double[]) data.clone();
         return cloned;
     }
 
@@ -302,7 +320,7 @@ public class ArrayDoubleList extends AbstractDoubleList implements Cloneable {
      * @param size  the number of items to copy
      */
     protected void arrayCopy(int fromIndex, double[] dest, int destIndex, int size) {
-        System.arraycopy(iData, fromIndex, dest, destIndex, size);
+        System.arraycopy(data, fromIndex, dest, destIndex, size);
     }
 
     // Internal implementation
@@ -313,7 +331,7 @@ public class ArrayDoubleList extends AbstractDoubleList implements Cloneable {
      * @param capacity  the amount to expand to
      */
     protected void ensureCapacity(int capacity) {
-        int len = iData.length;
+        int len = data.length;
         if (capacity <= len) {
             return;
         }
@@ -325,8 +343,8 @@ public class ArrayDoubleList extends AbstractDoubleList implements Cloneable {
             newLen = MIN_GROWTH_SIZE;
         }
         double[] newArray = new double[newLen];
-        System.arraycopy(iData, 0, newArray, 0, len);
-        iData = newArray;
+        System.arraycopy(data, 0, newArray, 0, len);
+        data = newArray;
     }
 
 }

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2006 Stephen Colebourne
+ *  Copyright 2001-2010 Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -195,7 +195,7 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      * @return a new CharList for the subList, not null
      * @throws IndexOutOfBoundsException if either index is invalid
      */
-    public CharList subCharList(int fromIndexInclusive, int toIndexExclusive) {
+    public CharList subList(int fromIndexInclusive, int toIndexExclusive) {
         checkRange(fromIndexInclusive, toIndexExclusive);
         return new StringCharList(string.substring(fromIndexInclusive, toIndexExclusive));
     }
