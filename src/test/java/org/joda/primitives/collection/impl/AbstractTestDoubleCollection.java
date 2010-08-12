@@ -84,7 +84,7 @@ public abstract class AbstractTestDoubleCollection extends AbstractTestCollectio
         DoubleCollection ic = (DoubleCollection) makeFullCollection();
         double[] values = ic.toDoubleArray();
         int i = 0;
-        for (DoubleIterator it = ic.doubleIterator(); it.hasNext(); i++) {
+        for (DoubleIterator it = ic.iterator(); it.hasNext(); i++) {
             double next = it.nextDouble();
             assertEquals(values[i], next, 0.00001d);
         }
@@ -211,7 +211,7 @@ public abstract class AbstractTestDoubleCollection extends AbstractTestCollectio
     public void testRemoveAll() {
         resetFull();
         DoubleCollection coll = (DoubleCollection) collection;
-        double first = coll.doubleIterator().nextDouble();
+        double first = coll.iterator().nextDouble();
         coll.add(first);
         int size = coll.size();
         

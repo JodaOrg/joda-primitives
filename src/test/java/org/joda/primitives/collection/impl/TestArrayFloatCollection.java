@@ -108,12 +108,12 @@ public class TestArrayFloatCollection extends AbstractTestFloatCollection {
         c = new ArrayFloatCollection(coll);
         assertEquals(1, c.size());
         assertEquals(1, dataLength(c));
-        assertEquals(0f, c.floatIterator().nextFloat(), 0.00001f);
+        assertEquals(0f, c.iterator().nextFloat(), 0.00001f);
         
         ArrayFloatCollection c2 = new ArrayFloatCollection(c);
         assertEquals(1, c2.size());
         assertEquals(1, dataLength(c2));
-        assertEquals(0f, c2.floatIterator().nextFloat(), 0.00001f);
+        assertEquals(0f, c2.iterator().nextFloat(), 0.00001f);
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());
@@ -129,12 +129,12 @@ public class TestArrayFloatCollection extends AbstractTestFloatCollection {
         c = new ArrayFloatCollection(coll.iterator());
         assertEquals(1, c.size());
         assertEquals(4, dataLength(c));
-        assertEquals(0f, c.floatIterator().nextFloat(), 0.00001f);
+        assertEquals(0f, c.iterator().nextFloat(), 0.00001f);
         
         ArrayFloatCollection c2 = new ArrayFloatCollection(c.iterator());
         assertEquals(1, c2.size());
         assertEquals(4, dataLength(c2));
-        assertEquals(0f, c2.floatIterator().nextFloat(), 0.00001f);
+        assertEquals(0f, c2.iterator().nextFloat(), 0.00001f);
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());

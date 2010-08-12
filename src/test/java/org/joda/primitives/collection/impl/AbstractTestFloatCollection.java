@@ -84,7 +84,7 @@ public abstract class AbstractTestFloatCollection extends AbstractTestCollection
         FloatCollection ic = (FloatCollection) makeFullCollection();
         float[] values = ic.toFloatArray();
         int i = 0;
-        for (FloatIterator it = ic.floatIterator(); it.hasNext(); i++) {
+        for (FloatIterator it = ic.iterator(); it.hasNext(); i++) {
             float next = it.nextFloat();
             assertEquals(values[i], next, 0.00001f);
         }
@@ -211,7 +211,7 @@ public abstract class AbstractTestFloatCollection extends AbstractTestCollection
     public void testRemoveAll() {
         resetFull();
         FloatCollection coll = (FloatCollection) collection;
-        float first = coll.floatIterator().nextFloat();
+        float first = coll.iterator().nextFloat();
         coll.add(first);
         int size = coll.size();
         

@@ -37,9 +37,9 @@ public class ArrayDoubleIterator implements DoubleIterator {
     // This file is CODE GENERATED. Do not change manually.
 
     /** The array to iterate over */
-    protected final double[] iArray;
+    protected final double[] array;
     /** Cursor position */
-    protected int iCursor = 0;
+    protected int cursor = 0;
 
     /**
      * Constructs an iterator over an <code>double</code> array.
@@ -52,7 +52,7 @@ public class ArrayDoubleIterator implements DoubleIterator {
         if (array == null) {
             throw new IllegalArgumentException("Array must not be null");
         }
-        this.iArray = array;
+        this.array = array;
     }
 
     //-----------------------------------------------------------------------
@@ -66,14 +66,14 @@ public class ArrayDoubleIterator implements DoubleIterator {
 
     //-----------------------------------------------------------------------
     public boolean hasNext() {
-        return (iCursor < iArray.length);
+        return (cursor < array.length);
     }
 
     public double nextDouble() {
         if (hasNext() == false) {
             throw new NoSuchElementException("No more elements available");
         }
-        return iArray[iCursor++];
+        return array[cursor++];
     }
 
     public Double next() {
@@ -85,7 +85,7 @@ public class ArrayDoubleIterator implements DoubleIterator {
     }
 
     public void reset() {
-        iCursor = 0;
+        cursor = 0;
     }
 
 }

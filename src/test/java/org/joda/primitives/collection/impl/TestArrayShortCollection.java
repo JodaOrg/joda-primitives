@@ -108,12 +108,12 @@ public class TestArrayShortCollection extends AbstractTestShortCollection {
         c = new ArrayShortCollection(coll);
         assertEquals(1, c.size());
         assertEquals(1, dataLength(c));
-        assertEquals((short) 0, c.shortIterator().nextShort());
+        assertEquals((short) 0, c.iterator().nextShort());
         
         ArrayShortCollection c2 = new ArrayShortCollection(c);
         assertEquals(1, c2.size());
         assertEquals(1, dataLength(c2));
-        assertEquals((short) 0, c2.shortIterator().nextShort());
+        assertEquals((short) 0, c2.iterator().nextShort());
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());
@@ -129,12 +129,12 @@ public class TestArrayShortCollection extends AbstractTestShortCollection {
         c = new ArrayShortCollection(coll.iterator());
         assertEquals(1, c.size());
         assertEquals(4, dataLength(c));
-        assertEquals((short) 0, c.shortIterator().nextShort());
+        assertEquals((short) 0, c.iterator().nextShort());
         
         ArrayShortCollection c2 = new ArrayShortCollection(c.iterator());
         assertEquals(1, c2.size());
         assertEquals(4, dataLength(c2));
-        assertEquals((short) 0, c2.shortIterator().nextShort());
+        assertEquals((short) 0, c2.iterator().nextShort());
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());

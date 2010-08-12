@@ -50,16 +50,16 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
     private static final int GROWTH_FACTOR_DIVISOR = 2;
 
     /** The array of elements */
-    private float[] iData;
+    private float[] data;
     /** The current size */
-    private int iSize;
+    private int size;
 
     /**
      * Constructor.
      */
     public ArrayFloatCollection() {
         super();
-        iData = FloatUtils.EMPTY_FLOAT_ARRAY;
+        data = FloatUtils.EMPTY_FLOAT_ARRAY;
     }
 
     /**
@@ -70,9 +70,9 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
     public ArrayFloatCollection(int initialSize) {
         super();
         if (initialSize <= 0) {
-            iData = FloatUtils.EMPTY_FLOAT_ARRAY;
+            data = FloatUtils.EMPTY_FLOAT_ARRAY;
         } else {
-            iData = new float[initialSize];
+            data = new float[initialSize];
         }
     }
 
@@ -84,10 +84,10 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
     public ArrayFloatCollection(float[] values) {
         super();
         if (values == null) {
-            iData = FloatUtils.EMPTY_FLOAT_ARRAY;
+            data = FloatUtils.EMPTY_FLOAT_ARRAY;
         } else {
-            iData = (float[]) values.clone();
-            iSize = values.length;
+            data = (float[]) values.clone();
+            size = values.length;
         }
     }
 
@@ -99,15 +99,15 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
     public ArrayFloatCollection(Collection<?> coll) {
         super();
         if (coll == null) {
-            iData = FloatUtils.EMPTY_FLOAT_ARRAY;
+            data = FloatUtils.EMPTY_FLOAT_ARRAY;
         } else if (coll instanceof FloatCollection) {
             FloatCollection c = (FloatCollection) coll;
-            iSize = c.size();
-            iData = new float[iSize];
-            c.toFloatArray(iData, 0);
+            size = c.size();
+            data = new float[size];
+            c.toFloatArray(data, 0);
         } else {
-            iData = toPrimitiveArray(coll);
-            iSize = coll.size();
+            data = toPrimitiveArray(coll);
+            size = coll.size();
         }
     }
 
@@ -119,15 +119,15 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
     public ArrayFloatCollection(Iterator<Float> it) {
         super();
         if (it == null) {
-            iData = FloatUtils.EMPTY_FLOAT_ARRAY;
+            data = FloatUtils.EMPTY_FLOAT_ARRAY;
         } else if (it instanceof FloatIterator) {
             FloatIterator typed = (FloatIterator) it;
-            iData = new float[MIN_GROWTH_SIZE];
+            data = new float[MIN_GROWTH_SIZE];
             while (typed.hasNext()) {
                 add(typed.nextFloat());
             }
         } else {
-            iData = new float[MIN_GROWTH_SIZE];
+            data = new float[MIN_GROWTH_SIZE];
             while (it.hasNext()) {
                 add(it.next());
             }
@@ -142,15 +142,15 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
      * @return the current size
      */
     public int size() {
-        return iSize;
+        return size;
     }
 
     /**
-     * Gets an iterator over this collection.
+     * Gets an iterator over this collection capable of accessing the primitive values.
      *
      * @return an iterator over this collection
      */
-    public FloatIterator floatIterator() {
+    public FloatIterator iterator() {
         return new PIterator(this);
     }
 
@@ -162,8 +162,8 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
      * @throws IllegalArgumentException if value is rejected by this collection
      */
     public boolean add(float value) {
-        ensureCapacity(iSize + 1);
-        iData[iSize++] = value;
+        ensureCapacity(size + 1);
+        data[size++] = value;
         return true;
     }
 
@@ -176,10 +176,10 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
      * the size of the collection.
      */
     public void optimize() {
-        if (iSize < iData.length) {
-            float[] array = new float[iSize];
-            System.arraycopy(iData, 0, array, 0, iSize);
-            iData = array;
+        if (size < data.length) {
+            float[] array = new float[size];
+            System.arraycopy(data, 0, array, 0, size);
+            data = array;
         }
     }
 
@@ -219,8 +219,8 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
      * @return <code>true</code> if the value is found
      */
     public boolean contains(float value) {
-        for (int i = 0; i < iSize; i++) {
-            if (iData[i] == value) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == value) {
                 return true;
             }
         }
@@ -234,7 +234,7 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
      * This implementation resets the size, but does not reduce the internal storage array.
      */
     public void clear() {
-        iSize = 0;
+        size = 0;
     }
 
     /**
@@ -263,9 +263,9 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
             return false;
         }
         int len = values.size();
-        ensureCapacity(iSize + len);
-        values.toFloatArray(iData, iSize);
-        iSize += len;
+        ensureCapacity(size + len);
+        values.toFloatArray(data, size);
+        size += len;
         return true;
     }
 
@@ -276,7 +276,7 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
      */
     public Object clone() {
         ArrayFloatCollection cloned = (ArrayFloatCollection) super.clone();
-        cloned.iData = (float[]) iData.clone();
+        cloned.data = (float[]) data.clone();
         return cloned;
     }
 
@@ -290,7 +290,7 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
      * @param size  the number of items to copy
      */
     protected void arrayCopy(int fromIndex, float[] dest, int destIndex, int size) {
-        System.arraycopy(iData, fromIndex, dest, destIndex, size);
+        System.arraycopy(data, fromIndex, dest, destIndex, size);
     }
 
     // Internal implementation
@@ -305,9 +305,9 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
      */
     protected boolean doAdd(int index, float[] values) {
         int len = values.length;
-        ensureCapacity(iSize + len);
-        System.arraycopy(values, 0, iData, iSize, len);
-        iSize += len;
+        ensureCapacity(size + len);
+        System.arraycopy(values, 0, data, size, len);
+        size += len;
         return (len > 0);
     }
 
@@ -317,8 +317,8 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
      * @param index  the index, valid
      */
     protected void doRemoveIndex(int index) {
-        System.arraycopy(iData, index + 1, iData, index, iSize - 1 - index);
-        iSize--;
+        System.arraycopy(data, index + 1, data, index, size - 1 - index);
+        size--;
     }
 
     /**
@@ -328,7 +328,7 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
      * @param reqCapacity  the amount to expand to
      */
     protected void ensureCapacity(int reqCapacity) {
-        int curCapacity = iData.length;
+        int curCapacity = data.length;
         if (reqCapacity <= curCapacity) {
             return;
         }
@@ -340,8 +340,8 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
             newCapacity = reqCapacity;
         }
         float[] newArray = new float[newCapacity];
-        System.arraycopy(iData, 0, newArray, 0, curCapacity);
-        iData = newArray;
+        System.arraycopy(data, 0, newArray, 0, curCapacity);
+        data = newArray;
     }
 
     // Iterator
@@ -351,41 +351,41 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
      */
     protected static class PIterator implements FloatIterator {
 
-        private final ArrayFloatCollection iCollection;
-        private int iCursor = 0;
-        private boolean iCanRemove = false;
+        private final ArrayFloatCollection collection;
+        private int cursor = 0;
+        private boolean canRemove = false;
 
         protected PIterator(ArrayFloatCollection coll) {
             super();
-            this.iCollection = coll;
+            this.collection = coll;
         }
 
         public boolean hasNext() {
-            return (iCursor < iCollection.iSize);
+            return (cursor < collection.size);
         }
 
         public float nextFloat() {
             if (hasNext() == false) {
                 throw new NoSuchElementException("No more elements available");
             }
-            iCanRemove = true;
-            return iCollection.iData[iCursor++];
+            canRemove = true;
+            return collection.data[cursor++];
         }
 
         public Float next() {
-            return iCollection.toObject(nextFloat());
+            return collection.toObject(nextFloat());
         }
 
         public void remove() {
-            if (iCanRemove == false) {
+            if (canRemove == false) {
                 throw new IllegalStateException("Element cannot be removed");
             }
-            iCollection.doRemoveIndex(--iCursor);
-            iCanRemove = false;
+            collection.doRemoveIndex(--cursor);
+            canRemove = false;
         }
 
         public boolean isModifiable() {
-            return iCollection.isModifiable();
+            return collection.isModifiable();
         }
 
         public boolean isResetable() {
@@ -393,7 +393,7 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
         }
 
         public void reset() {
-            iCursor = 0;
+            cursor = 0;
         }
     }
 

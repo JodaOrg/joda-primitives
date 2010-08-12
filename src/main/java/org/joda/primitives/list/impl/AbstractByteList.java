@@ -60,9 +60,9 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
     /**
      * Gets an iterator over this list.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
-    public ByteIterator byteIterator() {
+    public ByteIterator iterator() {
         return byteListIterator(0);
     }
 
@@ -71,7 +71,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
      * <p>
      * This implementation uses <code>byteListIterator(int)</code>.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
     public ByteListIterator byteListIterator() {
         return byteListIterator(0);
@@ -81,7 +81,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
      * Gets a list iterator over this list from a start index.
      *
      * @param index  the index to start from
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      * @throws IndexOutOfBoundsException if the index is invalid
      */
     public ByteListIterator byteListIterator(int index) {

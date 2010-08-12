@@ -110,12 +110,12 @@ public class TestArrayDoubleList extends AbstractTestDoubleList {
         c = new ArrayDoubleList(coll);
         assertEquals(1, c.size());
         assertEquals(1, dataLength(c));
-        assertEquals(0d, c.doubleIterator().nextDouble(), 0.00001d);
+        assertEquals(0d, c.iterator().nextDouble(), 0.00001d);
         
         ArrayDoubleList c2 = new ArrayDoubleList(c);
         assertEquals(1, c2.size());
         assertEquals(1, dataLength(c2));
-        assertEquals(0d, c2.doubleIterator().nextDouble(), 0.00001d);
+        assertEquals(0d, c2.iterator().nextDouble(), 0.00001d);
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());
@@ -163,14 +163,14 @@ public class TestArrayDoubleList extends AbstractTestDoubleList {
         double[] a = new double[] {0d, -0.9d, 3.5d};
         ArrayDoubleList c = new ArrayDoubleList(a);
         
-        assertEquals(true, c.doubleIterator().isModifiable());
+        assertEquals(true, c.iterator().isModifiable());
     }
 
     public void testIteratorReset() throws Exception {
         double[] a = new double[] {0d, -0.9d, 3.5d};
         ArrayDoubleList c = new ArrayDoubleList(a);
         
-        DoubleIterator it = c.doubleIterator();
+        DoubleIterator it = c.iterator();
         assertEquals(true, it.isResetable());
         assertEquals(0d, it.nextDouble(), 0.00001d);
         assertEquals(-0.9d, it.nextDouble(), 0.00001d);

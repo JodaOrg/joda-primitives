@@ -108,12 +108,12 @@ public class TestArrayByteCollection extends AbstractTestByteCollection {
         c = new ArrayByteCollection(coll);
         assertEquals(1, c.size());
         assertEquals(1, dataLength(c));
-        assertEquals((byte) 0, c.byteIterator().nextByte());
+        assertEquals((byte) 0, c.iterator().nextByte());
         
         ArrayByteCollection c2 = new ArrayByteCollection(c);
         assertEquals(1, c2.size());
         assertEquals(1, dataLength(c2));
-        assertEquals((byte) 0, c2.byteIterator().nextByte());
+        assertEquals((byte) 0, c2.iterator().nextByte());
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());
@@ -129,12 +129,12 @@ public class TestArrayByteCollection extends AbstractTestByteCollection {
         c = new ArrayByteCollection(coll.iterator());
         assertEquals(1, c.size());
         assertEquals(4, dataLength(c));
-        assertEquals((byte) 0, c.byteIterator().nextByte());
+        assertEquals((byte) 0, c.iterator().nextByte());
         
         ArrayByteCollection c2 = new ArrayByteCollection(c.iterator());
         assertEquals(1, c2.size());
         assertEquals(4, dataLength(c2));
-        assertEquals((byte) 0, c2.byteIterator().nextByte());
+        assertEquals((byte) 0, c2.iterator().nextByte());
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());

@@ -71,7 +71,7 @@ public abstract class AbstractTestByteList extends AbstractTestList {
         ByteList plist = (ByteList) collection;
         byte[] values = plist.toByteArray();
         int i = 0;
-        for (ByteIterator it = plist.byteIterator(); it.hasNext(); i++) {
+        for (ByteIterator it = plist.iterator(); it.hasNext(); i++) {
             byte next = it.nextByte();
             assertEquals(values[i], next);
         }

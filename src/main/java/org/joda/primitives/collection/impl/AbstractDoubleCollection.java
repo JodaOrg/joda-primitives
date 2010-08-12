@@ -61,7 +61,7 @@ public abstract class AbstractDoubleCollection
      * @return <code>true</code> if the value is found
      */
     public boolean contains(double value) {
-        for (DoubleIterator it = doubleIterator(); it.hasNext();) {
+        for (DoubleIterator it = iterator(); it.hasNext();) {
             if (it.nextDouble() == value) {
                 return true;
             }
@@ -100,7 +100,7 @@ public abstract class AbstractDoubleCollection
      */
     public boolean containsAll(DoubleCollection values) {
         if (values != null) {
-            for (DoubleIterator it = values.doubleIterator(); it.hasNext(); ) {
+            for (DoubleIterator it = values.iterator(); it.hasNext(); ) {
                 if (contains(it.nextDouble()) == false) {
                     return false;
                 }
@@ -140,7 +140,7 @@ public abstract class AbstractDoubleCollection
      */
     public boolean containsAny(DoubleCollection values) {
         if (values != null) {
-            for (DoubleIterator it = values.doubleIterator(); it.hasNext(); ) {
+            for (DoubleIterator it = values.iterator(); it.hasNext(); ) {
                 if (contains(it.nextDouble())) {
                     return true;
                 }
@@ -212,13 +212,13 @@ public abstract class AbstractDoubleCollection
      * This method is optional, throwing an UnsupportedOperationException if the
      * collection/map cannot be cleared.
      * <p>
-     * This implementation uses <code>doubleIterator()</code>.
+     * This implementation uses <code>iterator()</code>.
      *
      * @throws UnsupportedOperationException if method not supported by this collection
      */
     public void clear() {
         checkRemoveModifiable();
-        for (DoubleIterator it = doubleIterator(); it.hasNext();) {
+        for (DoubleIterator it = iterator(); it.hasNext();) {
             it.nextDouble();
             it.remove();
         }
@@ -273,7 +273,7 @@ public abstract class AbstractDoubleCollection
         checkAddModifiable();
         boolean changed = false;
         if (values != null) {
-            for (DoubleIterator it = values.doubleIterator(); it.hasNext(); ) {
+            for (DoubleIterator it = values.iterator(); it.hasNext(); ) {
                 changed |= add(it.nextDouble());
             }
         }
@@ -281,9 +281,9 @@ public abstract class AbstractDoubleCollection
     }
 
     /**
-     * Removes the first occurrance of the specified primitive value from this collection
+     * Removes the first occurrence of the specified primitive value from this collection
      * <p>
-     * This implementation uses <code>doubleIterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param value  the value to remove
      * @return <code>true</code> if this collection was modified by this method call
@@ -291,7 +291,7 @@ public abstract class AbstractDoubleCollection
      */
     public boolean removeFirst(double value) {
         checkRemoveModifiable();
-        for (DoubleIterator it = doubleIterator(); it.hasNext(); ) {
+        for (DoubleIterator it = iterator(); it.hasNext(); ) {
             if (it.nextDouble() == value) {
                 it.remove();
                 return true;
@@ -301,9 +301,9 @@ public abstract class AbstractDoubleCollection
     }
 
     /**
-     * Removes all occurrances of the specified primitive value from this collection.
+     * Removes all occurrences of the specified primitive value from this collection.
      * <p>
-     * This implementation uses <code>doubleIterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param value  the value to remove
      * @return <code>true</code> if this collection was modified by this method call
@@ -312,7 +312,7 @@ public abstract class AbstractDoubleCollection
     public boolean removeAll(double value) {
         checkRemoveModifiable();
         boolean changed = false;
-        for (DoubleIterator it = doubleIterator(); it.hasNext(); ) {
+        for (DoubleIterator it = iterator(); it.hasNext(); ) {
             if (it.nextDouble() == value) {
                 it.remove();
                 changed = true;
@@ -322,9 +322,9 @@ public abstract class AbstractDoubleCollection
     }
 
     /**
-     * Removes all occurences from this collection of each primitive in the specified array.
+     * Removes all occurrences from this collection of each primitive in the specified array.
      * <p>
-     * This implementation uses <code>doubleIterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param values  the values to remove from this collection, null treated as empty array
      * @return <code>true</code> if this list was modified by this method call
@@ -334,7 +334,7 @@ public abstract class AbstractDoubleCollection
         checkRemoveModifiable();
         boolean changed = false;
         if (values != null) {
-            for (DoubleIterator it = doubleIterator(); it.hasNext(); ) {
+            for (DoubleIterator it = iterator(); it.hasNext(); ) {
                 double value = it.nextDouble();
                 for (int i = 0; i < values.length; i++) {
                     if (values[i] == value) {
@@ -348,9 +348,9 @@ public abstract class AbstractDoubleCollection
     }
 
     /**
-     * Removes all occurences from this collection of each primitive in the specified collection.
+     * Removes all occurrences from this collection of each primitive in the specified collection.
      * <p>
-     * This implementation uses <code>doubleIterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param values  the values to remove from this collection, null treated as empty collection
      * @return <code>true</code> if this list was modified by this method call
@@ -360,7 +360,7 @@ public abstract class AbstractDoubleCollection
         checkRemoveModifiable();
         boolean changed = false;
         if (values != null) {
-            for (DoubleIterator it = doubleIterator(); it.hasNext(); ) {
+            for (DoubleIterator it = iterator(); it.hasNext(); ) {
                 if (values.contains(it.nextDouble())) {
                     it.remove();
                     changed = true;
@@ -374,7 +374,7 @@ public abstract class AbstractDoubleCollection
      * Retains each element of this collection that is present in the specified array
      * removing all other values.
      * <p>
-     * This implementation uses <code>doubleIterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param values  the values to remove from this collection, null treated as empty array
      * @return <code>true</code> if this list was modified by this method call
@@ -387,7 +387,7 @@ public abstract class AbstractDoubleCollection
             changed = !isEmpty();
             clear();
         } else {
-            for (DoubleIterator it = doubleIterator(); it.hasNext(); ) {
+            for (DoubleIterator it = iterator(); it.hasNext(); ) {
                 double next = it.nextDouble();
                 boolean match = false;
                 for (int i = 0; i < values.length; i++) {
@@ -409,7 +409,7 @@ public abstract class AbstractDoubleCollection
      * Retains each element of this collection that is present in the specified collection
      * removing all other values.
      * <p>
-     * This implementation uses <code>doubleIterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param values  the values to retain in this collection, null treated as empty collection
      * @return <code>true</code> if this collection was modified by this method call
@@ -422,7 +422,7 @@ public abstract class AbstractDoubleCollection
             changed = !isEmpty();
             clear();
         } else {
-            for (DoubleIterator it = doubleIterator(); it.hasNext(); ) {
+            for (DoubleIterator it = iterator(); it.hasNext(); ) {
                 if (values.contains(it.nextDouble()) == false) {
                     it.remove();
                     changed = true;
@@ -434,17 +434,6 @@ public abstract class AbstractDoubleCollection
 
     // Collection integration
     //-----------------------------------------------------------------------
-    /**
-     * Gets an iterator over this collection.
-     * <p>
-     * This implementation uses <code>doubleIterator()</code>.
-     *
-     * @return an iterator over this collection
-     */
-    public Iterator<Double> iterator() {
-        return doubleIterator();
-    }
-
     /**
      * Checks whether this collection contains a specified <code>Double</code> value.
      * <p>
@@ -484,7 +473,7 @@ public abstract class AbstractDoubleCollection
      * @param coll  the collection of values to search for
      * @return <code>true</code> if at least one of the values is found
      */
-    public boolean containsAny(Collection<Double> coll) {
+    public boolean containsAny(Collection<?> coll) {
         if (size() == 0 || coll.size() == 0) {
             return false;
         }
@@ -501,7 +490,7 @@ public abstract class AbstractDoubleCollection
      */
     public Object[] toArray() {
         Object[] result = new Double[size()];
-        DoubleIterator it = doubleIterator();
+        DoubleIterator it = iterator();
         for (int i = 0; it.hasNext(); i++) {
             result[i] = it.next();
         }
@@ -645,7 +634,7 @@ public abstract class AbstractDoubleCollection
         StringBuffer buf = new StringBuffer();
         buf.append("[");
 
-        DoubleIterator it = doubleIterator();
+        DoubleIterator it = iterator();
         boolean hasNext = it.hasNext();
         while (hasNext) {
             buf.append(it.nextDouble());
@@ -671,7 +660,7 @@ public abstract class AbstractDoubleCollection
      * @param size  the number of items to copy
      */
     protected void arrayCopy(int fromIndex, double[] dest, int destIndex, int size) {
-        DoubleIterator it = doubleIterator();
+        DoubleIterator it = iterator();
         for (int i = 0; it.hasNext() && i < size; i++) {
             dest[destIndex + i] = it.nextDouble();
         }

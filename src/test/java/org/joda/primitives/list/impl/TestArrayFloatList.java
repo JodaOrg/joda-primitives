@@ -110,12 +110,12 @@ public class TestArrayFloatList extends AbstractTestFloatList {
         c = new ArrayFloatList(coll);
         assertEquals(1, c.size());
         assertEquals(1, dataLength(c));
-        assertEquals(0f, c.floatIterator().nextFloat(), 0.00001f);
+        assertEquals(0f, c.iterator().nextFloat(), 0.00001f);
         
         ArrayFloatList c2 = new ArrayFloatList(c);
         assertEquals(1, c2.size());
         assertEquals(1, dataLength(c2));
-        assertEquals(0f, c2.floatIterator().nextFloat(), 0.00001f);
+        assertEquals(0f, c2.iterator().nextFloat(), 0.00001f);
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());
@@ -163,14 +163,14 @@ public class TestArrayFloatList extends AbstractTestFloatList {
         float[] a = new float[] {0f, 0.1f, 12.6f};
         ArrayFloatList c = new ArrayFloatList(a);
         
-        assertEquals(true, c.floatIterator().isModifiable());
+        assertEquals(true, c.iterator().isModifiable());
     }
 
     public void testIteratorReset() throws Exception {
         float[] a = new float[] {0f, 0.1f, 12.6f};
         ArrayFloatList c = new ArrayFloatList(a);
         
-        FloatIterator it = c.floatIterator();
+        FloatIterator it = c.iterator();
         assertEquals(true, it.isResetable());
         assertEquals(0f, it.nextFloat(), 0.00001f);
         assertEquals(0.1f, it.nextFloat(), 0.00001f);

@@ -29,10 +29,9 @@ import org.joda.primitives.PrimitiveCollectable;
  * in the subinterface.
  * 
  * @author Stephen Colebourne
- * @version $Id: PrimitiveCollection.java,v 1.6 2006/07/15 16:01:55 scolebourne Exp $
  * @since 1.0
  */
-public interface PrimitiveCollection<N> extends PrimitiveCollectable<N>, Collection<N> {
+public interface PrimitiveCollection<E> extends PrimitiveCollectable<E>, Collection<E> {
 
     /**
      * Checks if this collection contains any of the values in the specified collection.
@@ -41,6 +40,6 @@ public interface PrimitiveCollection<N> extends PrimitiveCollectable<N>, Collect
      * @param values  the values to search for, null treated as empty collection
      * @return <code>true</code> if at least one of the values is found
      */
-    boolean containsAny(Collection<N> values);
+    boolean containsAny(Collection<?> values);
 
 }

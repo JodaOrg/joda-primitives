@@ -108,12 +108,12 @@ public class TestArrayCharCollection extends AbstractTestCharCollection {
         c = new ArrayCharCollection(coll);
         assertEquals(1, c.size());
         assertEquals(1, dataLength(c));
-        assertEquals((char) 0, c.charIterator().nextChar());
+        assertEquals((char) 0, c.iterator().nextChar());
         
         ArrayCharCollection c2 = new ArrayCharCollection(c);
         assertEquals(1, c2.size());
         assertEquals(1, dataLength(c2));
-        assertEquals((char) 0, c2.charIterator().nextChar());
+        assertEquals((char) 0, c2.iterator().nextChar());
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());
@@ -129,12 +129,12 @@ public class TestArrayCharCollection extends AbstractTestCharCollection {
         c = new ArrayCharCollection(coll.iterator());
         assertEquals(1, c.size());
         assertEquals(4, dataLength(c));
-        assertEquals((char) 0, c.charIterator().nextChar());
+        assertEquals((char) 0, c.iterator().nextChar());
         
         ArrayCharCollection c2 = new ArrayCharCollection(c.iterator());
         assertEquals(1, c2.size());
         assertEquals(4, dataLength(c2));
-        assertEquals((char) 0, c2.charIterator().nextChar());
+        assertEquals((char) 0, c2.iterator().nextChar());
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());

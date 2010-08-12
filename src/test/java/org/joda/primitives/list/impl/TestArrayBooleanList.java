@@ -110,12 +110,12 @@ public class TestArrayBooleanList extends AbstractTestBooleanList {
         c = new ArrayBooleanList(coll);
         assertEquals(1, c.size());
         assertEquals(1, dataLength(c));
-        assertEquals(false, c.booleanIterator().nextBoolean());
+        assertEquals(false, c.iterator().nextBoolean());
         
         ArrayBooleanList c2 = new ArrayBooleanList(c);
         assertEquals(1, c2.size());
         assertEquals(1, dataLength(c2));
-        assertEquals(false, c2.booleanIterator().nextBoolean());
+        assertEquals(false, c2.iterator().nextBoolean());
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());
@@ -163,14 +163,14 @@ public class TestArrayBooleanList extends AbstractTestBooleanList {
         boolean[] a = new boolean[] {false, true, false};
         ArrayBooleanList c = new ArrayBooleanList(a);
         
-        assertEquals(true, c.booleanIterator().isModifiable());
+        assertEquals(true, c.iterator().isModifiable());
     }
 
     public void testIteratorReset() throws Exception {
         boolean[] a = new boolean[] {false, true, false};
         ArrayBooleanList c = new ArrayBooleanList(a);
         
-        BooleanIterator it = c.booleanIterator();
+        BooleanIterator it = c.iterator();
         assertEquals(true, it.isResetable());
         assertEquals(false, it.nextBoolean());
         assertEquals(true, it.nextBoolean());

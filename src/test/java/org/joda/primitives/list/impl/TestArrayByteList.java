@@ -110,12 +110,12 @@ public class TestArrayByteList extends AbstractTestByteList {
         c = new ArrayByteList(coll);
         assertEquals(1, c.size());
         assertEquals(1, dataLength(c));
-        assertEquals((byte) 0, c.byteIterator().nextByte());
+        assertEquals((byte) 0, c.iterator().nextByte());
         
         ArrayByteList c2 = new ArrayByteList(c);
         assertEquals(1, c2.size());
         assertEquals(1, dataLength(c2));
-        assertEquals((byte) 0, c2.byteIterator().nextByte());
+        assertEquals((byte) 0, c2.iterator().nextByte());
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());
@@ -163,14 +163,14 @@ public class TestArrayByteList extends AbstractTestByteList {
         byte[] a = new byte[] {(byte) 0, (byte) 6, (byte) 2};
         ArrayByteList c = new ArrayByteList(a);
         
-        assertEquals(true, c.byteIterator().isModifiable());
+        assertEquals(true, c.iterator().isModifiable());
     }
 
     public void testIteratorReset() throws Exception {
         byte[] a = new byte[] {(byte) 0, (byte) 6, (byte) 2};
         ArrayByteList c = new ArrayByteList(a);
         
-        ByteIterator it = c.byteIterator();
+        ByteIterator it = c.iterator();
         assertEquals(true, it.isResetable());
         assertEquals((byte) 0, it.nextByte());
         assertEquals((byte) 6, it.nextByte());

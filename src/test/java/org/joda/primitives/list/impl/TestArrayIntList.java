@@ -110,12 +110,12 @@ public class TestArrayIntList extends AbstractTestIntList {
         c = new ArrayIntList(coll);
         assertEquals(1, c.size());
         assertEquals(1, dataLength(c));
-        assertEquals(0, c.intIterator().nextInt());
+        assertEquals(0, c.iterator().nextInt());
         
         ArrayIntList c2 = new ArrayIntList(c);
         assertEquals(1, c2.size());
         assertEquals(1, dataLength(c2));
-        assertEquals(0, c2.intIterator().nextInt());
+        assertEquals(0, c2.iterator().nextInt());
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());
@@ -163,14 +163,14 @@ public class TestArrayIntList extends AbstractTestIntList {
         int[] a = new int[] {0, 6, 2};
         ArrayIntList c = new ArrayIntList(a);
         
-        assertEquals(true, c.intIterator().isModifiable());
+        assertEquals(true, c.iterator().isModifiable());
     }
 
     public void testIteratorReset() throws Exception {
         int[] a = new int[] {0, 6, 2};
         ArrayIntList c = new ArrayIntList(a);
         
-        IntIterator it = c.intIterator();
+        IntIterator it = c.iterator();
         assertEquals(true, it.isResetable());
         assertEquals(0, it.nextInt());
         assertEquals(6, it.nextInt());

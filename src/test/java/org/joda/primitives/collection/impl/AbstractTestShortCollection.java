@@ -84,7 +84,7 @@ public abstract class AbstractTestShortCollection extends AbstractTestCollection
         ShortCollection ic = (ShortCollection) makeFullCollection();
         short[] values = ic.toShortArray();
         int i = 0;
-        for (ShortIterator it = ic.shortIterator(); it.hasNext(); i++) {
+        for (ShortIterator it = ic.iterator(); it.hasNext(); i++) {
             short next = it.nextShort();
             assertEquals(values[i], next);
         }
@@ -293,7 +293,7 @@ public abstract class AbstractTestShortCollection extends AbstractTestCollection
     public void testRemoveAll() {
         resetFull();
         ShortCollection coll = (ShortCollection) collection;
-        short first = coll.shortIterator().nextShort();
+        short first = coll.iterator().nextShort();
         coll.add(first);
         int size = coll.size();
         

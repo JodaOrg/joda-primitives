@@ -57,7 +57,7 @@ public abstract class AbstractTest${Type}List extends AbstractTestList {
         ${Type}List plist = (${Type}List) collection;
         ${type}[] values = plist.to${Type}Array();
         int i = 0;
-        for (${Type}Iterator it = plist.${type}Iterator(); it.hasNext(); i++) {
+        for (${Type}Iterator it = plist.iterator(); it.hasNext(); i++) {
             ${type} next = it.next${Type}();
             assertEquals(values[i], next${assertExtra});
         }

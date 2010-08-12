@@ -94,12 +94,12 @@ public class TestArray${Type}Collection extends AbstractTest${Type}Collection {
         c = new Array${Type}Collection(coll);
         assertEquals(1, c.size());
         assertEquals(1, dataLength(c));
-        assertEquals(${testValue0}, c.${type}Iterator().next${Type}()${assertExtra});
+        assertEquals(${testValue0}, c.iterator().next${Type}()${assertExtra});
         
         Array${Type}Collection c2 = new Array${Type}Collection(c);
         assertEquals(1, c2.size());
         assertEquals(1, dataLength(c2));
-        assertEquals(${testValue0}, c2.${type}Iterator().next${Type}()${assertExtra});
+        assertEquals(${testValue0}, c2.iterator().next${Type}()${assertExtra});
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());
@@ -115,12 +115,12 @@ public class TestArray${Type}Collection extends AbstractTest${Type}Collection {
         c = new Array${Type}Collection(coll.iterator());
         assertEquals(1, c.size());
         assertEquals(4, dataLength(c));
-        assertEquals(${testValue0}, c.${type}Iterator().next${Type}()${assertExtra});
+        assertEquals(${testValue0}, c.iterator().next${Type}()${assertExtra});
         
         Array${Type}Collection c2 = new Array${Type}Collection(c.iterator());
         assertEquals(1, c2.size());
         assertEquals(4, dataLength(c2));
-        assertEquals(${testValue0}, c2.${type}Iterator().next${Type}()${assertExtra});
+        assertEquals(${testValue0}, c2.iterator().next${Type}()${assertExtra});
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());

@@ -108,12 +108,12 @@ public class TestArrayIntCollection extends AbstractTestIntCollection {
         c = new ArrayIntCollection(coll);
         assertEquals(1, c.size());
         assertEquals(1, dataLength(c));
-        assertEquals(0, c.intIterator().nextInt());
+        assertEquals(0, c.iterator().nextInt());
         
         ArrayIntCollection c2 = new ArrayIntCollection(c);
         assertEquals(1, c2.size());
         assertEquals(1, dataLength(c2));
-        assertEquals(0, c2.intIterator().nextInt());
+        assertEquals(0, c2.iterator().nextInt());
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());
@@ -129,12 +129,12 @@ public class TestArrayIntCollection extends AbstractTestIntCollection {
         c = new ArrayIntCollection(coll.iterator());
         assertEquals(1, c.size());
         assertEquals(4, dataLength(c));
-        assertEquals(0, c.intIterator().nextInt());
+        assertEquals(0, c.iterator().nextInt());
         
         ArrayIntCollection c2 = new ArrayIntCollection(c.iterator());
         assertEquals(1, c2.size());
         assertEquals(4, dataLength(c2));
-        assertEquals(0, c2.intIterator().nextInt());
+        assertEquals(0, c2.iterator().nextInt());
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());

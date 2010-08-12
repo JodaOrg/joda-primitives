@@ -275,7 +275,7 @@ public class StringBufferCharList extends AbstractCharList {
     /**
      * Gets the String underlying the list.
      * 
-     * @return the underlying string
+     * @return the underlying string, not null
      */
     public String toStringContents() {
         return iStringBuffer.substring(0, iStringBuffer.length());

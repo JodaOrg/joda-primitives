@@ -71,7 +71,7 @@ public abstract class AbstractTestCharList extends AbstractTestList {
         CharList plist = (CharList) collection;
         char[] values = plist.toCharArray();
         int i = 0;
-        for (CharIterator it = plist.charIterator(); it.hasNext(); i++) {
+        for (CharIterator it = plist.iterator(); it.hasNext(); i++) {
             char next = it.nextChar();
             assertEquals(values[i], next);
         }

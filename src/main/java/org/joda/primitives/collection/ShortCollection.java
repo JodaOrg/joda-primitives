@@ -35,11 +35,11 @@ public interface ShortCollection extends PrimitiveCollection<Short> {
     // Mandatory operations
     //-----------------------------------------------------------------------
     /**
-     * Gets an iterator over this collection.
+     * Gets an iterator over this collection capable of accessing the primitive values.
      *
-     * @return an iterator over this collection
+     * @return an iterator over this collection, not null
      */
-    ShortIterator shortIterator();
+    ShortIterator iterator();
 
     /**
      * Checks whether this collection contains a specified primitive value.
@@ -127,9 +127,9 @@ public interface ShortCollection extends PrimitiveCollection<Short> {
      * If the array is not large enough, a new array will be created containing the
      * values from the specified array before the startIndex plus those from this collection.
      *
-     * @param array  the array to add the elements to
+     * @param array  the array to add the elements to, null creates new array
      * @param startIndex  the position in the array to start setting elements
-     * @return the array with the populated collection
+     * @return the array with the populated collection, not null
      * @throws IndexOutOfBoundsException if the index is negative
      */
     short[] toShortArray(short[] array, int startIndex);
@@ -180,7 +180,7 @@ public interface ShortCollection extends PrimitiveCollection<Short> {
      * <p>
      * The range is defined to be inclusive of the start and end.
      * If the start is greater than the end then the range is equivalent to an empty collection.
-s     * <p>
+     * <p>
      * This method is optional, throwing an UnsupportedOperationException if the
      * collection cannot be added to.
      *
@@ -193,7 +193,7 @@ s     * <p>
     boolean addAll(short startInclusive, short endInclusive);
 
     /**
-     * Removes the first occurrance of the specified primitive value from this collection
+     * Removes the first occurrence of the specified primitive value from this collection
      * (optional operation).
      * <p>
      * This method is optional, throwing an UnsupportedOperationException if the
@@ -206,7 +206,7 @@ s     * <p>
     boolean removeFirst(short value);
 
     /**
-     * Removes all occurrances of the specified primitive value from this collection
+     * Removes all occurrences of the specified primitive value from this collection
      * (optional operation).
      * <p>
      * This method is optional, throwing an UnsupportedOperationException if the
@@ -219,7 +219,7 @@ s     * <p>
     boolean removeAll(short value);
 
     /**
-     * Removes all occurences from this collection of each primitive in the specified array
+     * Removes all occurrences from this collection of each primitive in the specified array
      * (optional operation).
      * <p>
      * This method is optional, throwing an UnsupportedOperationException if the
@@ -232,7 +232,7 @@ s     * <p>
     boolean removeAll(short[] values);
 
     /**
-     * Removes all occurences from this collection of each primitive in the specified collection
+     * Removes all occurrences from this collection of each primitive in the specified collection
      * (optional operation).
      * <p>
      * This method is optional, throwing an UnsupportedOperationException if the
@@ -245,7 +245,7 @@ s     * <p>
     boolean removeAll(ShortCollection values);
 
     /**
-     * Removes all occurences of a range of primitive values from this collection
+     * Removes all occurrences of a range of primitive values from this collection
      * (optional operation).
      * <p>
      * The range is defined to be inclusive of the start and end.
@@ -290,7 +290,7 @@ s     * <p>
     boolean retainAll(ShortCollection values);
 
     /**
-     * Retains all occurences of a range of primitive values within this collection
+     * Retains all occurrences of a range of primitive values within this collection
      * removing all values outside the range (optional operation).
      * <p>
      * The range is defined to be inclusive of the start and end.

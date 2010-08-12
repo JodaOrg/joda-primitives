@@ -71,7 +71,7 @@ public abstract class AbstractTestLongList extends AbstractTestList {
         LongList plist = (LongList) collection;
         long[] values = plist.toLongArray();
         int i = 0;
-        for (LongIterator it = plist.longIterator(); it.hasNext(); i++) {
+        for (LongIterator it = plist.iterator(); it.hasNext(); i++) {
             long next = it.nextLong();
             assertEquals(values[i], next);
         }

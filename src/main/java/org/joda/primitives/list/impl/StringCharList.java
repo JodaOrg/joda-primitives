@@ -25,22 +25,21 @@ import org.joda.primitives.list.CharList;
  * seamless integration with other APIs.
  *
  * @author Stephen Colebourne
- * @version $Id: StringCharList.java,v 1.4 2006/03/27 22:42:11 scolebourne Exp $
  * @since 1.0
  */
 public class StringCharList extends AbstractCharList implements Cloneable {
 
     /** The String being wrapped */
-    protected final String iString;
-    
+    protected final String string;
+
     /**
      * Constructor that uses an empty string as the datasource.
      */
     public StringCharList() {
         super();
-        this.iString = "";
+        this.string = "";
     }
-    
+
     /**
      * Constructor that copies the specified list.
      * 
@@ -52,9 +51,9 @@ public class StringCharList extends AbstractCharList implements Cloneable {
         if (list == null) {
             throw new IllegalArgumentException("List must not be null");
         }
-        this.iString = new String(list.toCharArray());
+        this.string = new String(list.toCharArray());
     }
-    
+
     /**
      * Constructor that uses the specified string as the datasource.
      * 
@@ -66,9 +65,9 @@ public class StringCharList extends AbstractCharList implements Cloneable {
         if (str == null) {
             throw new IllegalArgumentException("String must not be null");
         }
-        this.iString = str;
+        this.string = str;
     }
-    
+
     // Implementation
     //-----------------------------------------------------------------------
     /**
@@ -78,7 +77,7 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      * @return the character at the specified index
      */
     public char getChar(int index) {
-        return iString.charAt(index);
+        return string.charAt(index);
     }
 
     /**
@@ -87,7 +86,7 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      * @return the string length
      */
     public int size() {
-        return iString.length();
+        return string.length();
     }
 
     // Optimisation
@@ -101,7 +100,7 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      * @return <code>true</code> if the value is found
      */
     public boolean contains(char value) {
-        return (iString.indexOf(value) >= 0);
+        return (string.indexOf(value) >= 0);
     }
 
     /**
@@ -113,7 +112,7 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      * @return the zero-based index, or <code>-1</code> if not found
      */
     public int indexOf(char value) {
-        return iString.indexOf(value);
+        return string.indexOf(value);
     }
 
     /**
@@ -130,7 +129,7 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      * @return the zero-based index, or <code>-1</code> if not found
      */
     public int indexOf(char value, int fromIndexInclusive) {
-        return iString.indexOf(value, fromIndexInclusive);
+        return string.indexOf(value, fromIndexInclusive);
     }
 
     /**
@@ -142,7 +141,7 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      * @return the zero-based index, or <code>-1</code> if not found
      */
     public int lastIndexOf(char value) {
-        return iString.lastIndexOf(value);
+        return string.lastIndexOf(value);
     }
 
     /**
@@ -159,16 +158,16 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      * @return the zero-based index, or <code>-1</code> if not found
      */
     public int lastIndexOf(char value, int fromIndexInclusive) {
-        return iString.lastIndexOf(value, fromIndexInclusive);
+        return string.lastIndexOf(value, fromIndexInclusive);
     }
 
     /**
      * Gets the String underlying the list.
      * 
-     * @return the underlying string
+     * @return the underlying string, not null
      */
     public String toStringContents() {
-        return iString;
+        return string;
     }
 
     /**
@@ -176,13 +175,13 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      * <p>
      * This implementation uses <code>String.toCharArray()</code>.
      *
-     * @return a new array containing a copy of the elements of this collection
+     * @return a new array containing a copy of the elements of this collection, not null
      */
     public char[] toCharArray() {
         if (size() == 0) {
             return CharUtils.EMPTY_CHAR_ARRAY;
         }
-        return iString.toCharArray();
+        return string.toCharArray();
     }
 
     /**
@@ -193,12 +192,12 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      *
      * @param fromIndexInclusive  the index to start from, inclusive
      * @param toIndexExclusive  the index to end at, exclusive
-     * @return a new CharList for the subList
+     * @return a new CharList for the subList, not null
      * @throws IndexOutOfBoundsException if either index is invalid
      */
     public CharList subCharList(int fromIndexInclusive, int toIndexExclusive) {
         checkRange(fromIndexInclusive, toIndexExclusive);
-        return new StringCharList(iString.substring(fromIndexInclusive, toIndexExclusive));
+        return new StringCharList(string.substring(fromIndexInclusive, toIndexExclusive));
     }
-    
+
 }

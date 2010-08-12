@@ -70,7 +70,7 @@ public abstract class AbstractTest${Type}Collection extends AbstractTestCollecti
         ${Type}Collection ic = (${Type}Collection) makeFullCollection();
         ${type}[] values = ic.to${Type}Array();
         int i = 0;
-        for (${Type}Iterator it = ic.${type}Iterator(); it.hasNext(); i++) {
+        for (${Type}Iterator it = ic.iterator(); it.hasNext(); i++) {
             ${type} next = it.next${Type}();
             assertEquals(values[i], next${assertExtra});
         }
@@ -297,7 +297,7 @@ public abstract class AbstractTest${Type}Collection extends AbstractTestCollecti
     public void testRemoveAll() {
         resetFull();
         ${Type}Collection coll = (${Type}Collection) collection;
-        ${type} first = coll.${type}Iterator().next${Type}();
+        ${type} first = coll.iterator().next${Type}();
         coll.add(first);
         int size = coll.size();
         

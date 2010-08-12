@@ -60,9 +60,9 @@ public abstract class AbstractBooleanList extends AbstractBooleanCollection impl
     /**
      * Gets an iterator over this list.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
-    public BooleanIterator booleanIterator() {
+    public BooleanIterator iterator() {
         return booleanListIterator(0);
     }
 
@@ -71,7 +71,7 @@ public abstract class AbstractBooleanList extends AbstractBooleanCollection impl
      * <p>
      * This implementation uses <code>booleanListIterator(int)</code>.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
     public BooleanListIterator booleanListIterator() {
         return booleanListIterator(0);
@@ -81,7 +81,7 @@ public abstract class AbstractBooleanList extends AbstractBooleanCollection impl
      * Gets a list iterator over this list from a start index.
      *
      * @param index  the index to start from
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      * @throws IndexOutOfBoundsException if the index is invalid
      */
     public BooleanListIterator booleanListIterator(int index) {

@@ -61,7 +61,7 @@ public abstract class AbstractBooleanCollection
      * @return <code>true</code> if the value is found
      */
     public boolean contains(boolean value) {
-        for (BooleanIterator it = booleanIterator(); it.hasNext();) {
+        for (BooleanIterator it = iterator(); it.hasNext();) {
             if (it.nextBoolean() == value) {
                 return true;
             }
@@ -100,7 +100,7 @@ public abstract class AbstractBooleanCollection
      */
     public boolean containsAll(BooleanCollection values) {
         if (values != null) {
-            for (BooleanIterator it = values.booleanIterator(); it.hasNext(); ) {
+            for (BooleanIterator it = values.iterator(); it.hasNext(); ) {
                 if (contains(it.nextBoolean()) == false) {
                     return false;
                 }
@@ -140,7 +140,7 @@ public abstract class AbstractBooleanCollection
      */
     public boolean containsAny(BooleanCollection values) {
         if (values != null) {
-            for (BooleanIterator it = values.booleanIterator(); it.hasNext(); ) {
+            for (BooleanIterator it = values.iterator(); it.hasNext(); ) {
                 if (contains(it.nextBoolean())) {
                     return true;
                 }
@@ -212,13 +212,13 @@ public abstract class AbstractBooleanCollection
      * This method is optional, throwing an UnsupportedOperationException if the
      * collection/map cannot be cleared.
      * <p>
-     * This implementation uses <code>booleanIterator()</code>.
+     * This implementation uses <code>iterator()</code>.
      *
      * @throws UnsupportedOperationException if method not supported by this collection
      */
     public void clear() {
         checkRemoveModifiable();
-        for (BooleanIterator it = booleanIterator(); it.hasNext();) {
+        for (BooleanIterator it = iterator(); it.hasNext();) {
             it.nextBoolean();
             it.remove();
         }
@@ -273,7 +273,7 @@ public abstract class AbstractBooleanCollection
         checkAddModifiable();
         boolean changed = false;
         if (values != null) {
-            for (BooleanIterator it = values.booleanIterator(); it.hasNext(); ) {
+            for (BooleanIterator it = values.iterator(); it.hasNext(); ) {
                 changed |= add(it.nextBoolean());
             }
         }
@@ -281,9 +281,9 @@ public abstract class AbstractBooleanCollection
     }
 
     /**
-     * Removes the first occurrance of the specified primitive value from this collection
+     * Removes the first occurrence of the specified primitive value from this collection
      * <p>
-     * This implementation uses <code>booleanIterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param value  the value to remove
      * @return <code>true</code> if this collection was modified by this method call
@@ -291,7 +291,7 @@ public abstract class AbstractBooleanCollection
      */
     public boolean removeFirst(boolean value) {
         checkRemoveModifiable();
-        for (BooleanIterator it = booleanIterator(); it.hasNext(); ) {
+        for (BooleanIterator it = iterator(); it.hasNext(); ) {
             if (it.nextBoolean() == value) {
                 it.remove();
                 return true;
@@ -301,9 +301,9 @@ public abstract class AbstractBooleanCollection
     }
 
     /**
-     * Removes all occurrances of the specified primitive value from this collection.
+     * Removes all occurrences of the specified primitive value from this collection.
      * <p>
-     * This implementation uses <code>booleanIterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param value  the value to remove
      * @return <code>true</code> if this collection was modified by this method call
@@ -312,7 +312,7 @@ public abstract class AbstractBooleanCollection
     public boolean removeAll(boolean value) {
         checkRemoveModifiable();
         boolean changed = false;
-        for (BooleanIterator it = booleanIterator(); it.hasNext(); ) {
+        for (BooleanIterator it = iterator(); it.hasNext(); ) {
             if (it.nextBoolean() == value) {
                 it.remove();
                 changed = true;
@@ -322,9 +322,9 @@ public abstract class AbstractBooleanCollection
     }
 
     /**
-     * Removes all occurences from this collection of each primitive in the specified array.
+     * Removes all occurrences from this collection of each primitive in the specified array.
      * <p>
-     * This implementation uses <code>booleanIterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param values  the values to remove from this collection, null treated as empty array
      * @return <code>true</code> if this list was modified by this method call
@@ -334,7 +334,7 @@ public abstract class AbstractBooleanCollection
         checkRemoveModifiable();
         boolean changed = false;
         if (values != null) {
-            for (BooleanIterator it = booleanIterator(); it.hasNext(); ) {
+            for (BooleanIterator it = iterator(); it.hasNext(); ) {
                 boolean value = it.nextBoolean();
                 for (int i = 0; i < values.length; i++) {
                     if (values[i] == value) {
@@ -348,9 +348,9 @@ public abstract class AbstractBooleanCollection
     }
 
     /**
-     * Removes all occurences from this collection of each primitive in the specified collection.
+     * Removes all occurrences from this collection of each primitive in the specified collection.
      * <p>
-     * This implementation uses <code>booleanIterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param values  the values to remove from this collection, null treated as empty collection
      * @return <code>true</code> if this list was modified by this method call
@@ -360,7 +360,7 @@ public abstract class AbstractBooleanCollection
         checkRemoveModifiable();
         boolean changed = false;
         if (values != null) {
-            for (BooleanIterator it = booleanIterator(); it.hasNext(); ) {
+            for (BooleanIterator it = iterator(); it.hasNext(); ) {
                 if (values.contains(it.nextBoolean())) {
                     it.remove();
                     changed = true;
@@ -374,7 +374,7 @@ public abstract class AbstractBooleanCollection
      * Retains each element of this collection that is present in the specified array
      * removing all other values.
      * <p>
-     * This implementation uses <code>booleanIterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param values  the values to remove from this collection, null treated as empty array
      * @return <code>true</code> if this list was modified by this method call
@@ -387,7 +387,7 @@ public abstract class AbstractBooleanCollection
             changed = !isEmpty();
             clear();
         } else {
-            for (BooleanIterator it = booleanIterator(); it.hasNext(); ) {
+            for (BooleanIterator it = iterator(); it.hasNext(); ) {
                 boolean next = it.nextBoolean();
                 boolean match = false;
                 for (int i = 0; i < values.length; i++) {
@@ -409,7 +409,7 @@ public abstract class AbstractBooleanCollection
      * Retains each element of this collection that is present in the specified collection
      * removing all other values.
      * <p>
-     * This implementation uses <code>booleanIterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param values  the values to retain in this collection, null treated as empty collection
      * @return <code>true</code> if this collection was modified by this method call
@@ -422,7 +422,7 @@ public abstract class AbstractBooleanCollection
             changed = !isEmpty();
             clear();
         } else {
-            for (BooleanIterator it = booleanIterator(); it.hasNext(); ) {
+            for (BooleanIterator it = iterator(); it.hasNext(); ) {
                 if (values.contains(it.nextBoolean()) == false) {
                     it.remove();
                     changed = true;
@@ -434,17 +434,6 @@ public abstract class AbstractBooleanCollection
 
     // Collection integration
     //-----------------------------------------------------------------------
-    /**
-     * Gets an iterator over this collection.
-     * <p>
-     * This implementation uses <code>booleanIterator()</code>.
-     *
-     * @return an iterator over this collection
-     */
-    public Iterator<Boolean> iterator() {
-        return booleanIterator();
-    }
-
     /**
      * Checks whether this collection contains a specified <code>Boolean</code> value.
      * <p>
@@ -484,7 +473,7 @@ public abstract class AbstractBooleanCollection
      * @param coll  the collection of values to search for
      * @return <code>true</code> if at least one of the values is found
      */
-    public boolean containsAny(Collection<Boolean> coll) {
+    public boolean containsAny(Collection<?> coll) {
         if (size() == 0 || coll.size() == 0) {
             return false;
         }
@@ -501,7 +490,7 @@ public abstract class AbstractBooleanCollection
      */
     public Object[] toArray() {
         Object[] result = new Boolean[size()];
-        BooleanIterator it = booleanIterator();
+        BooleanIterator it = iterator();
         for (int i = 0; it.hasNext(); i++) {
             result[i] = it.next();
         }
@@ -645,7 +634,7 @@ public abstract class AbstractBooleanCollection
         StringBuffer buf = new StringBuffer();
         buf.append("[");
 
-        BooleanIterator it = booleanIterator();
+        BooleanIterator it = iterator();
         boolean hasNext = it.hasNext();
         while (hasNext) {
             buf.append(it.nextBoolean());
@@ -671,7 +660,7 @@ public abstract class AbstractBooleanCollection
      * @param size  the number of items to copy
      */
     protected void arrayCopy(int fromIndex, boolean[] dest, int destIndex, int size) {
-        BooleanIterator it = booleanIterator();
+        BooleanIterator it = iterator();
         for (int i = 0; it.hasNext() && i < size; i++) {
             dest[destIndex + i] = it.nextBoolean();
         }

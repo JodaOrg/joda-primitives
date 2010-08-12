@@ -110,12 +110,12 @@ public class TestArrayShortList extends AbstractTestShortList {
         c = new ArrayShortList(coll);
         assertEquals(1, c.size());
         assertEquals(1, dataLength(c));
-        assertEquals((short) 0, c.shortIterator().nextShort());
+        assertEquals((short) 0, c.iterator().nextShort());
         
         ArrayShortList c2 = new ArrayShortList(c);
         assertEquals(1, c2.size());
         assertEquals(1, dataLength(c2));
-        assertEquals((short) 0, c2.shortIterator().nextShort());
+        assertEquals((short) 0, c2.iterator().nextShort());
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());
@@ -163,14 +163,14 @@ public class TestArrayShortList extends AbstractTestShortList {
         short[] a = new short[] {(short) 0, (short) 6, (short) 2};
         ArrayShortList c = new ArrayShortList(a);
         
-        assertEquals(true, c.shortIterator().isModifiable());
+        assertEquals(true, c.iterator().isModifiable());
     }
 
     public void testIteratorReset() throws Exception {
         short[] a = new short[] {(short) 0, (short) 6, (short) 2};
         ArrayShortList c = new ArrayShortList(a);
         
-        ShortIterator it = c.shortIterator();
+        ShortIterator it = c.iterator();
         assertEquals(true, it.isResetable());
         assertEquals((short) 0, it.nextShort());
         assertEquals((short) 6, it.nextShort());

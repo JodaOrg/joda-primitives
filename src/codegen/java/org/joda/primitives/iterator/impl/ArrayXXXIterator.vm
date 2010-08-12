@@ -23,9 +23,9 @@ public class Array${Type}Iterator implements ${Type}Iterator {
     // This file is CODE GENERATED. Do not change manually.
 
     /** The array to iterate over */
-    protected final ${type}[] iArray;
+    protected final ${type}[] array;
     /** Cursor position */
-    protected int iCursor = 0;
+    protected int cursor = 0;
 
     /**
      * Constructs an iterator over an <code>${type}</code> array.
@@ -38,7 +38,7 @@ public class Array${Type}Iterator implements ${Type}Iterator {
         if (array == null) {
             throw new IllegalArgumentException("Array must not be null");
         }
-        this.iArray = array;
+        this.array = array;
     }
 
     //-----------------------------------------------------------------------
@@ -52,14 +52,14 @@ public class Array${Type}Iterator implements ${Type}Iterator {
 
     //-----------------------------------------------------------------------
     public boolean hasNext() {
-        return (iCursor < iArray.length);
+        return (cursor < array.length);
     }
 
     public ${type} next${Type}() {
         if (hasNext() == false) {
             throw new NoSuchElementException("No more elements available");
         }
-        return iArray[iCursor++];
+        return array[cursor++];
     }
 
     public ${object} next() {
@@ -71,7 +71,7 @@ public class Array${Type}Iterator implements ${Type}Iterator {
     }
 
     public void reset() {
-        iCursor = 0;
+        cursor = 0;
     }
 
 }

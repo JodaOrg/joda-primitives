@@ -37,9 +37,9 @@ public class ArrayBooleanIterator implements BooleanIterator {
     // This file is CODE GENERATED. Do not change manually.
 
     /** The array to iterate over */
-    protected final boolean[] iArray;
+    protected final boolean[] array;
     /** Cursor position */
-    protected int iCursor = 0;
+    protected int cursor = 0;
 
     /**
      * Constructs an iterator over an <code>boolean</code> array.
@@ -52,7 +52,7 @@ public class ArrayBooleanIterator implements BooleanIterator {
         if (array == null) {
             throw new IllegalArgumentException("Array must not be null");
         }
-        this.iArray = array;
+        this.array = array;
     }
 
     //-----------------------------------------------------------------------
@@ -66,14 +66,14 @@ public class ArrayBooleanIterator implements BooleanIterator {
 
     //-----------------------------------------------------------------------
     public boolean hasNext() {
-        return (iCursor < iArray.length);
+        return (cursor < array.length);
     }
 
     public boolean nextBoolean() {
         if (hasNext() == false) {
             throw new NoSuchElementException("No more elements available");
         }
-        return iArray[iCursor++];
+        return array[cursor++];
     }
 
     public Boolean next() {
@@ -85,7 +85,7 @@ public class ArrayBooleanIterator implements BooleanIterator {
     }
 
     public void reset() {
-        iCursor = 0;
+        cursor = 0;
     }
 
 }

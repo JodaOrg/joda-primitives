@@ -71,7 +71,7 @@ public abstract class AbstractTestShortList extends AbstractTestList {
         ShortList plist = (ShortList) collection;
         short[] values = plist.toShortArray();
         int i = 0;
-        for (ShortIterator it = plist.shortIterator(); it.hasNext(); i++) {
+        for (ShortIterator it = plist.iterator(); it.hasNext(); i++) {
             short next = it.nextShort();
             assertEquals(values[i], next);
         }

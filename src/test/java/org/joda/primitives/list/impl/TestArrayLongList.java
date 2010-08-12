@@ -110,12 +110,12 @@ public class TestArrayLongList extends AbstractTestLongList {
         c = new ArrayLongList(coll);
         assertEquals(1, c.size());
         assertEquals(1, dataLength(c));
-        assertEquals(0L, c.longIterator().nextLong());
+        assertEquals(0L, c.iterator().nextLong());
         
         ArrayLongList c2 = new ArrayLongList(c);
         assertEquals(1, c2.size());
         assertEquals(1, dataLength(c2));
-        assertEquals(0L, c2.longIterator().nextLong());
+        assertEquals(0L, c2.iterator().nextLong());
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());
@@ -163,14 +163,14 @@ public class TestArrayLongList extends AbstractTestLongList {
         long[] a = new long[] {0L, 6L, 2L};
         ArrayLongList c = new ArrayLongList(a);
         
-        assertEquals(true, c.longIterator().isModifiable());
+        assertEquals(true, c.iterator().isModifiable());
     }
 
     public void testIteratorReset() throws Exception {
         long[] a = new long[] {0L, 6L, 2L};
         ArrayLongList c = new ArrayLongList(a);
         
-        LongIterator it = c.longIterator();
+        LongIterator it = c.iterator();
         assertEquals(true, it.isResetable());
         assertEquals(0L, it.nextLong());
         assertEquals(6L, it.nextLong());

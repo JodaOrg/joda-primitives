@@ -60,9 +60,9 @@ public abstract class AbstractFloatList extends AbstractFloatCollection implemen
     /**
      * Gets an iterator over this list.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
-    public FloatIterator floatIterator() {
+    public FloatIterator iterator() {
         return floatListIterator(0);
     }
 
@@ -71,7 +71,7 @@ public abstract class AbstractFloatList extends AbstractFloatCollection implemen
      * <p>
      * This implementation uses <code>floatListIterator(int)</code>.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
     public FloatListIterator floatListIterator() {
         return floatListIterator(0);
@@ -81,7 +81,7 @@ public abstract class AbstractFloatList extends AbstractFloatCollection implemen
      * Gets a list iterator over this list from a start index.
      *
      * @param index  the index to start from
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      * @throws IndexOutOfBoundsException if the index is invalid
      */
     public FloatListIterator floatListIterator(int index) {

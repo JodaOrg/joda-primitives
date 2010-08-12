@@ -50,16 +50,16 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
     private static final int GROWTH_FACTOR_DIVISOR = 2;
 
     /** The array of elements */
-    private byte[] iData;
+    private byte[] data;
     /** The current size */
-    private int iSize;
+    private int size;
 
     /**
      * Constructor.
      */
     public ArrayByteCollection() {
         super();
-        iData = ByteUtils.EMPTY_BYTE_ARRAY;
+        data = ByteUtils.EMPTY_BYTE_ARRAY;
     }
 
     /**
@@ -70,9 +70,9 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
     public ArrayByteCollection(int initialSize) {
         super();
         if (initialSize <= 0) {
-            iData = ByteUtils.EMPTY_BYTE_ARRAY;
+            data = ByteUtils.EMPTY_BYTE_ARRAY;
         } else {
-            iData = new byte[initialSize];
+            data = new byte[initialSize];
         }
     }
 
@@ -84,10 +84,10 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
     public ArrayByteCollection(byte[] values) {
         super();
         if (values == null) {
-            iData = ByteUtils.EMPTY_BYTE_ARRAY;
+            data = ByteUtils.EMPTY_BYTE_ARRAY;
         } else {
-            iData = (byte[]) values.clone();
-            iSize = values.length;
+            data = (byte[]) values.clone();
+            size = values.length;
         }
     }
 
@@ -99,15 +99,15 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
     public ArrayByteCollection(Collection<?> coll) {
         super();
         if (coll == null) {
-            iData = ByteUtils.EMPTY_BYTE_ARRAY;
+            data = ByteUtils.EMPTY_BYTE_ARRAY;
         } else if (coll instanceof ByteCollection) {
             ByteCollection c = (ByteCollection) coll;
-            iSize = c.size();
-            iData = new byte[iSize];
-            c.toByteArray(iData, 0);
+            size = c.size();
+            data = new byte[size];
+            c.toByteArray(data, 0);
         } else {
-            iData = toPrimitiveArray(coll);
-            iSize = coll.size();
+            data = toPrimitiveArray(coll);
+            size = coll.size();
         }
     }
 
@@ -119,15 +119,15 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
     public ArrayByteCollection(Iterator<Byte> it) {
         super();
         if (it == null) {
-            iData = ByteUtils.EMPTY_BYTE_ARRAY;
+            data = ByteUtils.EMPTY_BYTE_ARRAY;
         } else if (it instanceof ByteIterator) {
             ByteIterator typed = (ByteIterator) it;
-            iData = new byte[MIN_GROWTH_SIZE];
+            data = new byte[MIN_GROWTH_SIZE];
             while (typed.hasNext()) {
                 add(typed.nextByte());
             }
         } else {
-            iData = new byte[MIN_GROWTH_SIZE];
+            data = new byte[MIN_GROWTH_SIZE];
             while (it.hasNext()) {
                 add(it.next());
             }
@@ -142,15 +142,15 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
      * @return the current size
      */
     public int size() {
-        return iSize;
+        return size;
     }
 
     /**
-     * Gets an iterator over this collection.
+     * Gets an iterator over this collection capable of accessing the primitive values.
      *
      * @return an iterator over this collection
      */
-    public ByteIterator byteIterator() {
+    public ByteIterator iterator() {
         return new PIterator(this);
     }
 
@@ -162,8 +162,8 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
      * @throws IllegalArgumentException if value is rejected by this collection
      */
     public boolean add(byte value) {
-        ensureCapacity(iSize + 1);
-        iData[iSize++] = value;
+        ensureCapacity(size + 1);
+        data[size++] = value;
         return true;
     }
 
@@ -176,10 +176,10 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
      * the size of the collection.
      */
     public void optimize() {
-        if (iSize < iData.length) {
-            byte[] array = new byte[iSize];
-            System.arraycopy(iData, 0, array, 0, iSize);
-            iData = array;
+        if (size < data.length) {
+            byte[] array = new byte[size];
+            System.arraycopy(data, 0, array, 0, size);
+            data = array;
         }
     }
 
@@ -219,8 +219,8 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
      * @return <code>true</code> if the value is found
      */
     public boolean contains(byte value) {
-        for (int i = 0; i < iSize; i++) {
-            if (iData[i] == value) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == value) {
                 return true;
             }
         }
@@ -234,7 +234,7 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
      * This implementation resets the size, but does not reduce the internal storage array.
      */
     public void clear() {
-        iSize = 0;
+        size = 0;
     }
 
     /**
@@ -263,9 +263,9 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
             return false;
         }
         int len = values.size();
-        ensureCapacity(iSize + len);
-        values.toByteArray(iData, iSize);
-        iSize += len;
+        ensureCapacity(size + len);
+        values.toByteArray(data, size);
+        size += len;
         return true;
     }
 
@@ -286,12 +286,12 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
         if (increase < 0) {
             return false;
         }
-        ensureCapacity(iSize + increase);
+        ensureCapacity(size + increase);
         byte i = startInclusive;
         while (i < endInclusive) {
-            iData[iSize++] = i++;
+            data[size++] = i++;
         }
-        iData[iSize++] = i;  // handles endInclusive=MAX_VALUE
+        data[size++] = i;  // handles endInclusive=MAX_VALUE
         return true;
     }
 
@@ -302,7 +302,7 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
      */
     public Object clone() {
         ArrayByteCollection cloned = (ArrayByteCollection) super.clone();
-        cloned.iData = (byte[]) iData.clone();
+        cloned.data = (byte[]) data.clone();
         return cloned;
     }
 
@@ -316,7 +316,7 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
      * @param size  the number of items to copy
      */
     protected void arrayCopy(int fromIndex, byte[] dest, int destIndex, int size) {
-        System.arraycopy(iData, fromIndex, dest, destIndex, size);
+        System.arraycopy(data, fromIndex, dest, destIndex, size);
     }
 
     // Internal implementation
@@ -331,9 +331,9 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
      */
     protected boolean doAdd(int index, byte[] values) {
         int len = values.length;
-        ensureCapacity(iSize + len);
-        System.arraycopy(values, 0, iData, iSize, len);
-        iSize += len;
+        ensureCapacity(size + len);
+        System.arraycopy(values, 0, data, size, len);
+        size += len;
         return (len > 0);
     }
 
@@ -343,8 +343,8 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
      * @param index  the index, valid
      */
     protected void doRemoveIndex(int index) {
-        System.arraycopy(iData, index + 1, iData, index, iSize - 1 - index);
-        iSize--;
+        System.arraycopy(data, index + 1, data, index, size - 1 - index);
+        size--;
     }
 
     /**
@@ -354,7 +354,7 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
      * @param reqCapacity  the amount to expand to
      */
     protected void ensureCapacity(int reqCapacity) {
-        int curCapacity = iData.length;
+        int curCapacity = data.length;
         if (reqCapacity <= curCapacity) {
             return;
         }
@@ -366,8 +366,8 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
             newCapacity = reqCapacity;
         }
         byte[] newArray = new byte[newCapacity];
-        System.arraycopy(iData, 0, newArray, 0, curCapacity);
-        iData = newArray;
+        System.arraycopy(data, 0, newArray, 0, curCapacity);
+        data = newArray;
     }
 
     // Iterator
@@ -377,41 +377,41 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
      */
     protected static class PIterator implements ByteIterator {
 
-        private final ArrayByteCollection iCollection;
-        private int iCursor = 0;
-        private boolean iCanRemove = false;
+        private final ArrayByteCollection collection;
+        private int cursor = 0;
+        private boolean canRemove = false;
 
         protected PIterator(ArrayByteCollection coll) {
             super();
-            this.iCollection = coll;
+            this.collection = coll;
         }
 
         public boolean hasNext() {
-            return (iCursor < iCollection.iSize);
+            return (cursor < collection.size);
         }
 
         public byte nextByte() {
             if (hasNext() == false) {
                 throw new NoSuchElementException("No more elements available");
             }
-            iCanRemove = true;
-            return iCollection.iData[iCursor++];
+            canRemove = true;
+            return collection.data[cursor++];
         }
 
         public Byte next() {
-            return iCollection.toObject(nextByte());
+            return collection.toObject(nextByte());
         }
 
         public void remove() {
-            if (iCanRemove == false) {
+            if (canRemove == false) {
                 throw new IllegalStateException("Element cannot be removed");
             }
-            iCollection.doRemoveIndex(--iCursor);
-            iCanRemove = false;
+            collection.doRemoveIndex(--cursor);
+            canRemove = false;
         }
 
         public boolean isModifiable() {
-            return iCollection.isModifiable();
+            return collection.isModifiable();
         }
 
         public boolean isResetable() {
@@ -419,7 +419,7 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
         }
 
         public void reset() {
-            iCursor = 0;
+            cursor = 0;
         }
     }
 

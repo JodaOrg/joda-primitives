@@ -37,9 +37,9 @@ public class ArrayLongIterator implements LongIterator {
     // This file is CODE GENERATED. Do not change manually.
 
     /** The array to iterate over */
-    protected final long[] iArray;
+    protected final long[] array;
     /** Cursor position */
-    protected int iCursor = 0;
+    protected int cursor = 0;
 
     /**
      * Constructs an iterator over an <code>long</code> array.
@@ -52,7 +52,7 @@ public class ArrayLongIterator implements LongIterator {
         if (array == null) {
             throw new IllegalArgumentException("Array must not be null");
         }
-        this.iArray = array;
+        this.array = array;
     }
 
     //-----------------------------------------------------------------------
@@ -66,14 +66,14 @@ public class ArrayLongIterator implements LongIterator {
 
     //-----------------------------------------------------------------------
     public boolean hasNext() {
-        return (iCursor < iArray.length);
+        return (cursor < array.length);
     }
 
     public long nextLong() {
         if (hasNext() == false) {
             throw new NoSuchElementException("No more elements available");
         }
-        return iArray[iCursor++];
+        return array[cursor++];
     }
 
     public Long next() {
@@ -85,7 +85,7 @@ public class ArrayLongIterator implements LongIterator {
     }
 
     public void reset() {
-        iCursor = 0;
+        cursor = 0;
     }
 
 }

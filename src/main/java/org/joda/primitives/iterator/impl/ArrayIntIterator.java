@@ -37,9 +37,9 @@ public class ArrayIntIterator implements IntIterator {
     // This file is CODE GENERATED. Do not change manually.
 
     /** The array to iterate over */
-    protected final int[] iArray;
+    protected final int[] array;
     /** Cursor position */
-    protected int iCursor = 0;
+    protected int cursor = 0;
 
     /**
      * Constructs an iterator over an <code>int</code> array.
@@ -52,7 +52,7 @@ public class ArrayIntIterator implements IntIterator {
         if (array == null) {
             throw new IllegalArgumentException("Array must not be null");
         }
-        this.iArray = array;
+        this.array = array;
     }
 
     //-----------------------------------------------------------------------
@@ -66,14 +66,14 @@ public class ArrayIntIterator implements IntIterator {
 
     //-----------------------------------------------------------------------
     public boolean hasNext() {
-        return (iCursor < iArray.length);
+        return (cursor < array.length);
     }
 
     public int nextInt() {
         if (hasNext() == false) {
             throw new NoSuchElementException("No more elements available");
         }
-        return iArray[iCursor++];
+        return array[cursor++];
     }
 
     public Integer next() {
@@ -85,7 +85,7 @@ public class ArrayIntIterator implements IntIterator {
     }
 
     public void reset() {
-        iCursor = 0;
+        cursor = 0;
     }
 
 }

@@ -60,9 +60,9 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
     /**
      * Gets an iterator over this list.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
-    public DoubleIterator doubleIterator() {
+    public DoubleIterator iterator() {
         return doubleListIterator(0);
     }
 
@@ -71,7 +71,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      * <p>
      * This implementation uses <code>doubleListIterator(int)</code>.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
     public DoubleListIterator doubleListIterator() {
         return doubleListIterator(0);
@@ -81,7 +81,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
      * Gets a list iterator over this list from a start index.
      *
      * @param index  the index to start from
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      * @throws IndexOutOfBoundsException if the index is invalid
      */
     public DoubleListIterator doubleListIterator(int index) {

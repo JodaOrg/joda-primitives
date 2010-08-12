@@ -50,16 +50,16 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
     private static final int GROWTH_FACTOR_DIVISOR = 2;
 
     /** The array of elements */
-    private short[] iData;
+    private short[] data;
     /** The current size */
-    private int iSize;
+    private int size;
 
     /**
      * Constructor.
      */
     public ArrayShortCollection() {
         super();
-        iData = ShortUtils.EMPTY_SHORT_ARRAY;
+        data = ShortUtils.EMPTY_SHORT_ARRAY;
     }
 
     /**
@@ -70,9 +70,9 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
     public ArrayShortCollection(int initialSize) {
         super();
         if (initialSize <= 0) {
-            iData = ShortUtils.EMPTY_SHORT_ARRAY;
+            data = ShortUtils.EMPTY_SHORT_ARRAY;
         } else {
-            iData = new short[initialSize];
+            data = new short[initialSize];
         }
     }
 
@@ -84,10 +84,10 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
     public ArrayShortCollection(short[] values) {
         super();
         if (values == null) {
-            iData = ShortUtils.EMPTY_SHORT_ARRAY;
+            data = ShortUtils.EMPTY_SHORT_ARRAY;
         } else {
-            iData = (short[]) values.clone();
-            iSize = values.length;
+            data = (short[]) values.clone();
+            size = values.length;
         }
     }
 
@@ -99,15 +99,15 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
     public ArrayShortCollection(Collection<?> coll) {
         super();
         if (coll == null) {
-            iData = ShortUtils.EMPTY_SHORT_ARRAY;
+            data = ShortUtils.EMPTY_SHORT_ARRAY;
         } else if (coll instanceof ShortCollection) {
             ShortCollection c = (ShortCollection) coll;
-            iSize = c.size();
-            iData = new short[iSize];
-            c.toShortArray(iData, 0);
+            size = c.size();
+            data = new short[size];
+            c.toShortArray(data, 0);
         } else {
-            iData = toPrimitiveArray(coll);
-            iSize = coll.size();
+            data = toPrimitiveArray(coll);
+            size = coll.size();
         }
     }
 
@@ -119,15 +119,15 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
     public ArrayShortCollection(Iterator<Short> it) {
         super();
         if (it == null) {
-            iData = ShortUtils.EMPTY_SHORT_ARRAY;
+            data = ShortUtils.EMPTY_SHORT_ARRAY;
         } else if (it instanceof ShortIterator) {
             ShortIterator typed = (ShortIterator) it;
-            iData = new short[MIN_GROWTH_SIZE];
+            data = new short[MIN_GROWTH_SIZE];
             while (typed.hasNext()) {
                 add(typed.nextShort());
             }
         } else {
-            iData = new short[MIN_GROWTH_SIZE];
+            data = new short[MIN_GROWTH_SIZE];
             while (it.hasNext()) {
                 add(it.next());
             }
@@ -142,15 +142,15 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
      * @return the current size
      */
     public int size() {
-        return iSize;
+        return size;
     }
 
     /**
-     * Gets an iterator over this collection.
+     * Gets an iterator over this collection capable of accessing the primitive values.
      *
      * @return an iterator over this collection
      */
-    public ShortIterator shortIterator() {
+    public ShortIterator iterator() {
         return new PIterator(this);
     }
 
@@ -162,8 +162,8 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
      * @throws IllegalArgumentException if value is rejected by this collection
      */
     public boolean add(short value) {
-        ensureCapacity(iSize + 1);
-        iData[iSize++] = value;
+        ensureCapacity(size + 1);
+        data[size++] = value;
         return true;
     }
 
@@ -176,10 +176,10 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
      * the size of the collection.
      */
     public void optimize() {
-        if (iSize < iData.length) {
-            short[] array = new short[iSize];
-            System.arraycopy(iData, 0, array, 0, iSize);
-            iData = array;
+        if (size < data.length) {
+            short[] array = new short[size];
+            System.arraycopy(data, 0, array, 0, size);
+            data = array;
         }
     }
 
@@ -219,8 +219,8 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
      * @return <code>true</code> if the value is found
      */
     public boolean contains(short value) {
-        for (int i = 0; i < iSize; i++) {
-            if (iData[i] == value) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == value) {
                 return true;
             }
         }
@@ -234,7 +234,7 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
      * This implementation resets the size, but does not reduce the internal storage array.
      */
     public void clear() {
-        iSize = 0;
+        size = 0;
     }
 
     /**
@@ -263,9 +263,9 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
             return false;
         }
         int len = values.size();
-        ensureCapacity(iSize + len);
-        values.toShortArray(iData, iSize);
-        iSize += len;
+        ensureCapacity(size + len);
+        values.toShortArray(data, size);
+        size += len;
         return true;
     }
 
@@ -286,12 +286,12 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
         if (increase < 0) {
             return false;
         }
-        ensureCapacity(iSize + increase);
+        ensureCapacity(size + increase);
         short i = startInclusive;
         while (i < endInclusive) {
-            iData[iSize++] = i++;
+            data[size++] = i++;
         }
-        iData[iSize++] = i;  // handles endInclusive=MAX_VALUE
+        data[size++] = i;  // handles endInclusive=MAX_VALUE
         return true;
     }
 
@@ -302,7 +302,7 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
      */
     public Object clone() {
         ArrayShortCollection cloned = (ArrayShortCollection) super.clone();
-        cloned.iData = (short[]) iData.clone();
+        cloned.data = (short[]) data.clone();
         return cloned;
     }
 
@@ -316,7 +316,7 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
      * @param size  the number of items to copy
      */
     protected void arrayCopy(int fromIndex, short[] dest, int destIndex, int size) {
-        System.arraycopy(iData, fromIndex, dest, destIndex, size);
+        System.arraycopy(data, fromIndex, dest, destIndex, size);
     }
 
     // Internal implementation
@@ -331,9 +331,9 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
      */
     protected boolean doAdd(int index, short[] values) {
         int len = values.length;
-        ensureCapacity(iSize + len);
-        System.arraycopy(values, 0, iData, iSize, len);
-        iSize += len;
+        ensureCapacity(size + len);
+        System.arraycopy(values, 0, data, size, len);
+        size += len;
         return (len > 0);
     }
 
@@ -343,8 +343,8 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
      * @param index  the index, valid
      */
     protected void doRemoveIndex(int index) {
-        System.arraycopy(iData, index + 1, iData, index, iSize - 1 - index);
-        iSize--;
+        System.arraycopy(data, index + 1, data, index, size - 1 - index);
+        size--;
     }
 
     /**
@@ -354,7 +354,7 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
      * @param reqCapacity  the amount to expand to
      */
     protected void ensureCapacity(int reqCapacity) {
-        int curCapacity = iData.length;
+        int curCapacity = data.length;
         if (reqCapacity <= curCapacity) {
             return;
         }
@@ -366,8 +366,8 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
             newCapacity = reqCapacity;
         }
         short[] newArray = new short[newCapacity];
-        System.arraycopy(iData, 0, newArray, 0, curCapacity);
-        iData = newArray;
+        System.arraycopy(data, 0, newArray, 0, curCapacity);
+        data = newArray;
     }
 
     // Iterator
@@ -377,41 +377,41 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
      */
     protected static class PIterator implements ShortIterator {
 
-        private final ArrayShortCollection iCollection;
-        private int iCursor = 0;
-        private boolean iCanRemove = false;
+        private final ArrayShortCollection collection;
+        private int cursor = 0;
+        private boolean canRemove = false;
 
         protected PIterator(ArrayShortCollection coll) {
             super();
-            this.iCollection = coll;
+            this.collection = coll;
         }
 
         public boolean hasNext() {
-            return (iCursor < iCollection.iSize);
+            return (cursor < collection.size);
         }
 
         public short nextShort() {
             if (hasNext() == false) {
                 throw new NoSuchElementException("No more elements available");
             }
-            iCanRemove = true;
-            return iCollection.iData[iCursor++];
+            canRemove = true;
+            return collection.data[cursor++];
         }
 
         public Short next() {
-            return iCollection.toObject(nextShort());
+            return collection.toObject(nextShort());
         }
 
         public void remove() {
-            if (iCanRemove == false) {
+            if (canRemove == false) {
                 throw new IllegalStateException("Element cannot be removed");
             }
-            iCollection.doRemoveIndex(--iCursor);
-            iCanRemove = false;
+            collection.doRemoveIndex(--cursor);
+            canRemove = false;
         }
 
         public boolean isModifiable() {
-            return iCollection.isModifiable();
+            return collection.isModifiable();
         }
 
         public boolean isResetable() {
@@ -419,7 +419,7 @@ public class ArrayShortCollection extends AbstractShortCollection implements Clo
         }
 
         public void reset() {
-            iCursor = 0;
+            cursor = 0;
         }
     }
 

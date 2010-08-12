@@ -61,7 +61,7 @@ public abstract class AbstractByteCollection
      * @return <code>true</code> if the value is found
      */
     public boolean contains(byte value) {
-        for (ByteIterator it = byteIterator(); it.hasNext();) {
+        for (ByteIterator it = iterator(); it.hasNext();) {
             if (it.nextByte() == value) {
                 return true;
             }
@@ -100,7 +100,7 @@ public abstract class AbstractByteCollection
      */
     public boolean containsAll(ByteCollection values) {
         if (values != null) {
-            for (ByteIterator it = values.byteIterator(); it.hasNext(); ) {
+            for (ByteIterator it = values.iterator(); it.hasNext(); ) {
                 if (contains(it.nextByte()) == false) {
                     return false;
                 }
@@ -165,7 +165,7 @@ public abstract class AbstractByteCollection
      */
     public boolean containsAny(ByteCollection values) {
         if (values != null) {
-            for (ByteIterator it = values.byteIterator(); it.hasNext(); ) {
+            for (ByteIterator it = values.iterator(); it.hasNext(); ) {
                 if (contains(it.nextByte())) {
                     return true;
                 }
@@ -262,13 +262,13 @@ public abstract class AbstractByteCollection
      * This method is optional, throwing an UnsupportedOperationException if the
      * collection/map cannot be cleared.
      * <p>
-     * This implementation uses <code>byteIterator()</code>.
+     * This implementation uses <code>iterator()</code>.
      *
      * @throws UnsupportedOperationException if method not supported by this collection
      */
     public void clear() {
         checkRemoveModifiable();
-        for (ByteIterator it = byteIterator(); it.hasNext();) {
+        for (ByteIterator it = iterator(); it.hasNext();) {
             it.nextByte();
             it.remove();
         }
@@ -323,7 +323,7 @@ public abstract class AbstractByteCollection
         checkAddModifiable();
         boolean changed = false;
         if (values != null) {
-            for (ByteIterator it = values.byteIterator(); it.hasNext(); ) {
+            for (ByteIterator it = values.iterator(); it.hasNext(); ) {
                 changed |= add(it.nextByte());
             }
         }
@@ -357,9 +357,9 @@ public abstract class AbstractByteCollection
     }
 
     /**
-     * Removes the first occurrance of the specified primitive value from this collection
+     * Removes the first occurrence of the specified primitive value from this collection
      * <p>
-     * This implementation uses <code>byteIterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param value  the value to remove
      * @return <code>true</code> if this collection was modified by this method call
@@ -367,7 +367,7 @@ public abstract class AbstractByteCollection
      */
     public boolean removeFirst(byte value) {
         checkRemoveModifiable();
-        for (ByteIterator it = byteIterator(); it.hasNext(); ) {
+        for (ByteIterator it = iterator(); it.hasNext(); ) {
             if (it.nextByte() == value) {
                 it.remove();
                 return true;
@@ -377,9 +377,9 @@ public abstract class AbstractByteCollection
     }
 
     /**
-     * Removes all occurrances of the specified primitive value from this collection.
+     * Removes all occurrences of the specified primitive value from this collection.
      * <p>
-     * This implementation uses <code>byteIterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param value  the value to remove
      * @return <code>true</code> if this collection was modified by this method call
@@ -388,7 +388,7 @@ public abstract class AbstractByteCollection
     public boolean removeAll(byte value) {
         checkRemoveModifiable();
         boolean changed = false;
-        for (ByteIterator it = byteIterator(); it.hasNext(); ) {
+        for (ByteIterator it = iterator(); it.hasNext(); ) {
             if (it.nextByte() == value) {
                 it.remove();
                 changed = true;
@@ -398,9 +398,9 @@ public abstract class AbstractByteCollection
     }
 
     /**
-     * Removes all occurences from this collection of each primitive in the specified array.
+     * Removes all occurrences from this collection of each primitive in the specified array.
      * <p>
-     * This implementation uses <code>byteIterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param values  the values to remove from this collection, null treated as empty array
      * @return <code>true</code> if this list was modified by this method call
@@ -410,7 +410,7 @@ public abstract class AbstractByteCollection
         checkRemoveModifiable();
         boolean changed = false;
         if (values != null) {
-            for (ByteIterator it = byteIterator(); it.hasNext(); ) {
+            for (ByteIterator it = iterator(); it.hasNext(); ) {
                 byte value = it.nextByte();
                 for (int i = 0; i < values.length; i++) {
                     if (values[i] == value) {
@@ -424,9 +424,9 @@ public abstract class AbstractByteCollection
     }
 
     /**
-     * Removes all occurences from this collection of each primitive in the specified collection.
+     * Removes all occurrences from this collection of each primitive in the specified collection.
      * <p>
-     * This implementation uses <code>byteIterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param values  the values to remove from this collection, null treated as empty collection
      * @return <code>true</code> if this list was modified by this method call
@@ -436,7 +436,7 @@ public abstract class AbstractByteCollection
         checkRemoveModifiable();
         boolean changed = false;
         if (values != null) {
-            for (ByteIterator it = byteIterator(); it.hasNext(); ) {
+            for (ByteIterator it = iterator(); it.hasNext(); ) {
                 if (values.contains(it.nextByte())) {
                     it.remove();
                     changed = true;
@@ -447,7 +447,7 @@ public abstract class AbstractByteCollection
     }
 
     /**
-     * Removes all occurences of a range of primitive values from this collection.
+     * Removes all occurrences of a range of primitive values from this collection.
      * <p>
      * The range is defined to be inclusive of the start and end.
      * The elements removed are greater than or equal to the start and
@@ -457,7 +457,7 @@ public abstract class AbstractByteCollection
      * This method is optional, throwing an UnsupportedOperationException if the
      * set cannot be changed.
      * <p>
-     * This implementation uses <code>byteIterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param startInclusive  the inclusive range start value
      * @param endInclusive  the inclusive range end value
@@ -470,7 +470,7 @@ public abstract class AbstractByteCollection
             return false;
         }
         boolean changed = false;
-        for (ByteIterator it = byteIterator(); it.hasNext(); ) {
+        for (ByteIterator it = iterator(); it.hasNext(); ) {
             byte value = it.nextByte();
             if (value >= startInclusive && value <= endInclusive) {
                 it.remove();
@@ -484,7 +484,7 @@ public abstract class AbstractByteCollection
      * Retains each element of this collection that is present in the specified array
      * removing all other values.
      * <p>
-     * This implementation uses <code>byteIterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param values  the values to remove from this collection, null treated as empty array
      * @return <code>true</code> if this list was modified by this method call
@@ -497,7 +497,7 @@ public abstract class AbstractByteCollection
             changed = !isEmpty();
             clear();
         } else {
-            for (ByteIterator it = byteIterator(); it.hasNext(); ) {
+            for (ByteIterator it = iterator(); it.hasNext(); ) {
                 byte next = it.nextByte();
                 boolean match = false;
                 for (int i = 0; i < values.length; i++) {
@@ -519,7 +519,7 @@ public abstract class AbstractByteCollection
      * Retains each element of this collection that is present in the specified collection
      * removing all other values.
      * <p>
-     * This implementation uses <code>byteIterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param values  the values to retain in this collection, null treated as empty collection
      * @return <code>true</code> if this collection was modified by this method call
@@ -532,7 +532,7 @@ public abstract class AbstractByteCollection
             changed = !isEmpty();
             clear();
         } else {
-            for (ByteIterator it = byteIterator(); it.hasNext(); ) {
+            for (ByteIterator it = iterator(); it.hasNext(); ) {
                 if (values.contains(it.nextByte()) == false) {
                     it.remove();
                     changed = true;
@@ -560,7 +560,7 @@ public abstract class AbstractByteCollection
     public boolean retainAll(byte startInclusive, byte endInclusive) {
         checkRemoveModifiable();
         boolean changed = false;
-        for (ByteIterator it = byteIterator(); it.hasNext(); ) {
+        for (ByteIterator it = iterator(); it.hasNext(); ) {
             byte value = it.nextByte();
             if (value < startInclusive || value > endInclusive) {
                 it.remove();
@@ -572,17 +572,6 @@ public abstract class AbstractByteCollection
 
     // Collection integration
     //-----------------------------------------------------------------------
-    /**
-     * Gets an iterator over this collection.
-     * <p>
-     * This implementation uses <code>byteIterator()</code>.
-     *
-     * @return an iterator over this collection
-     */
-    public Iterator<Byte> iterator() {
-        return byteIterator();
-    }
-
     /**
      * Checks whether this collection contains a specified <code>Byte</code> value.
      * <p>
@@ -622,7 +611,7 @@ public abstract class AbstractByteCollection
      * @param coll  the collection of values to search for
      * @return <code>true</code> if at least one of the values is found
      */
-    public boolean containsAny(Collection<Byte> coll) {
+    public boolean containsAny(Collection<?> coll) {
         if (size() == 0 || coll.size() == 0) {
             return false;
         }
@@ -639,7 +628,7 @@ public abstract class AbstractByteCollection
      */
     public Object[] toArray() {
         Object[] result = new Byte[size()];
-        ByteIterator it = byteIterator();
+        ByteIterator it = iterator();
         for (int i = 0; it.hasNext(); i++) {
             result[i] = it.next();
         }
@@ -783,7 +772,7 @@ public abstract class AbstractByteCollection
         StringBuffer buf = new StringBuffer();
         buf.append("[");
 
-        ByteIterator it = byteIterator();
+        ByteIterator it = iterator();
         boolean hasNext = it.hasNext();
         while (hasNext) {
             buf.append(it.nextByte());
@@ -809,7 +798,7 @@ public abstract class AbstractByteCollection
      * @param size  the number of items to copy
      */
     protected void arrayCopy(int fromIndex, byte[] dest, int destIndex, int size) {
-        ByteIterator it = byteIterator();
+        ByteIterator it = iterator();
         for (int i = 0; it.hasNext() && i < size; i++) {
             dest[destIndex + i] = it.nextByte();
         }

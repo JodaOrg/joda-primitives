@@ -71,7 +71,7 @@ public abstract class AbstractTestFloatList extends AbstractTestList {
         FloatList plist = (FloatList) collection;
         float[] values = plist.toFloatArray();
         int i = 0;
-        for (FloatIterator it = plist.floatIterator(); it.hasNext(); i++) {
+        for (FloatIterator it = plist.iterator(); it.hasNext(); i++) {
             float next = it.nextFloat();
             assertEquals(values[i], next, 0.00001f);
         }

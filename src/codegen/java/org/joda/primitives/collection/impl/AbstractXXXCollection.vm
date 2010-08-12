@@ -47,7 +47,7 @@ public abstract class Abstract${Type}Collection
      * @return <code>true</code> if the value is found
      */
     public boolean contains(${type} value) {
-        for (${Type}Iterator it = ${type}Iterator(); it.hasNext();) {
+        for (${Type}Iterator it = iterator(); it.hasNext();) {
             if (it.next${Type}() == value) {
                 return true;
             }
@@ -86,7 +86,7 @@ public abstract class Abstract${Type}Collection
      */
     public boolean containsAll(${Type}Collection values) {
         if (values != null) {
-            for (${Type}Iterator it = values.${type}Iterator(); it.hasNext(); ) {
+            for (${Type}Iterator it = values.iterator(); it.hasNext(); ) {
                 if (contains(it.next${Type}()) == false) {
                     return false;
                 }
@@ -153,7 +153,7 @@ public abstract class Abstract${Type}Collection
      */
     public boolean containsAny(${Type}Collection values) {
         if (values != null) {
-            for (${Type}Iterator it = values.${type}Iterator(); it.hasNext(); ) {
+            for (${Type}Iterator it = values.iterator(); it.hasNext(); ) {
                 if (contains(it.next${Type}())) {
                     return true;
                 }
@@ -252,13 +252,13 @@ public abstract class Abstract${Type}Collection
      * This method is optional, throwing an UnsupportedOperationException if the
      * collection/map cannot be cleared.
      * <p>
-     * This implementation uses <code>${type}Iterator()</code>.
+     * This implementation uses <code>iterator()</code>.
      *
      * @throws UnsupportedOperationException if method not supported by this collection
      */
     public void clear() {
         checkRemoveModifiable();
-        for (${Type}Iterator it = ${type}Iterator(); it.hasNext();) {
+        for (${Type}Iterator it = iterator(); it.hasNext();) {
             it.next${Type}();
             it.remove();
         }
@@ -313,7 +313,7 @@ public abstract class Abstract${Type}Collection
         checkAddModifiable();
         boolean changed = false;
         if (values != null) {
-            for (${Type}Iterator it = values.${type}Iterator(); it.hasNext(); ) {
+            for (${Type}Iterator it = values.iterator(); it.hasNext(); ) {
                 changed |= add(it.next${Type}());
             }
         }
@@ -349,9 +349,9 @@ public abstract class Abstract${Type}Collection
 
 #end
     /**
-     * Removes the first occurrance of the specified primitive value from this collection
+     * Removes the first occurrence of the specified primitive value from this collection
      * <p>
-     * This implementation uses <code>${type}Iterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param value  the value to remove
      * @return <code>true</code> if this collection was modified by this method call
@@ -359,7 +359,7 @@ public abstract class Abstract${Type}Collection
      */
     public boolean removeFirst(${type} value) {
         checkRemoveModifiable();
-        for (${Type}Iterator it = ${type}Iterator(); it.hasNext(); ) {
+        for (${Type}Iterator it = iterator(); it.hasNext(); ) {
             if (it.next${Type}() == value) {
                 it.remove();
                 return true;
@@ -369,9 +369,9 @@ public abstract class Abstract${Type}Collection
     }
 
     /**
-     * Removes all occurrances of the specified primitive value from this collection.
+     * Removes all occurrences of the specified primitive value from this collection.
      * <p>
-     * This implementation uses <code>${type}Iterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param value  the value to remove
      * @return <code>true</code> if this collection was modified by this method call
@@ -380,7 +380,7 @@ public abstract class Abstract${Type}Collection
     public boolean removeAll(${type} value) {
         checkRemoveModifiable();
         boolean changed = false;
-        for (${Type}Iterator it = ${type}Iterator(); it.hasNext(); ) {
+        for (${Type}Iterator it = iterator(); it.hasNext(); ) {
             if (it.next${Type}() == value) {
                 it.remove();
                 changed = true;
@@ -390,9 +390,9 @@ public abstract class Abstract${Type}Collection
     }
 
     /**
-     * Removes all occurences from this collection of each primitive in the specified array.
+     * Removes all occurrences from this collection of each primitive in the specified array.
      * <p>
-     * This implementation uses <code>${type}Iterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param values  the values to remove from this collection, null treated as empty array
      * @return <code>true</code> if this list was modified by this method call
@@ -402,7 +402,7 @@ public abstract class Abstract${Type}Collection
         checkRemoveModifiable();
         boolean changed = false;
         if (values != null) {
-            for (${Type}Iterator it = ${type}Iterator(); it.hasNext(); ) {
+            for (${Type}Iterator it = iterator(); it.hasNext(); ) {
                 ${type} value = it.next${Type}();
                 for (int i = 0; i < values.length; i++) {
                     if (values[i] == value) {
@@ -416,9 +416,9 @@ public abstract class Abstract${Type}Collection
     }
 
     /**
-     * Removes all occurences from this collection of each primitive in the specified collection.
+     * Removes all occurrences from this collection of each primitive in the specified collection.
      * <p>
-     * This implementation uses <code>${type}Iterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param values  the values to remove from this collection, null treated as empty collection
      * @return <code>true</code> if this list was modified by this method call
@@ -428,7 +428,7 @@ public abstract class Abstract${Type}Collection
         checkRemoveModifiable();
         boolean changed = false;
         if (values != null) {
-            for (${Type}Iterator it = ${type}Iterator(); it.hasNext(); ) {
+            for (${Type}Iterator it = iterator(); it.hasNext(); ) {
                 if (values.contains(it.next${Type}())) {
                     it.remove();
                     changed = true;
@@ -440,7 +440,7 @@ public abstract class Abstract${Type}Collection
 
 #if(${type} != "boolean" && ${type} != "float" && ${type} != "double")
     /**
-     * Removes all occurences of a range of primitive values from this collection.
+     * Removes all occurrences of a range of primitive values from this collection.
      * <p>
      * The range is defined to be inclusive of the start and end.
      * The elements removed are greater than or equal to the start and
@@ -450,7 +450,7 @@ public abstract class Abstract${Type}Collection
      * This method is optional, throwing an UnsupportedOperationException if the
      * set cannot be changed.
      * <p>
-     * This implementation uses <code>${type}Iterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param startInclusive  the inclusive range start value
      * @param endInclusive  the inclusive range end value
@@ -463,7 +463,7 @@ public abstract class Abstract${Type}Collection
             return false;
         }
         boolean changed = false;
-        for (${Type}Iterator it = ${type}Iterator(); it.hasNext(); ) {
+        for (${Type}Iterator it = iterator(); it.hasNext(); ) {
             ${type} value = it.next${Type}();
             if (value >= startInclusive && value <= endInclusive) {
                 it.remove();
@@ -478,7 +478,7 @@ public abstract class Abstract${Type}Collection
      * Retains each element of this collection that is present in the specified array
      * removing all other values.
      * <p>
-     * This implementation uses <code>${type}Iterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param values  the values to remove from this collection, null treated as empty array
      * @return <code>true</code> if this list was modified by this method call
@@ -491,7 +491,7 @@ public abstract class Abstract${Type}Collection
             changed = !isEmpty();
             clear();
         } else {
-            for (${Type}Iterator it = ${type}Iterator(); it.hasNext(); ) {
+            for (${Type}Iterator it = iterator(); it.hasNext(); ) {
                 ${type} next = it.next${Type}();
                 boolean match = false;
                 for (int i = 0; i < values.length; i++) {
@@ -513,7 +513,7 @@ public abstract class Abstract${Type}Collection
      * Retains each element of this collection that is present in the specified collection
      * removing all other values.
      * <p>
-     * This implementation uses <code>${type}Iterator().remove()</code>.
+     * This implementation uses <code>iterator().remove()</code>.
      *
      * @param values  the values to retain in this collection, null treated as empty collection
      * @return <code>true</code> if this collection was modified by this method call
@@ -526,7 +526,7 @@ public abstract class Abstract${Type}Collection
             changed = !isEmpty();
             clear();
         } else {
-            for (${Type}Iterator it = ${type}Iterator(); it.hasNext(); ) {
+            for (${Type}Iterator it = iterator(); it.hasNext(); ) {
                 if (values.contains(it.next${Type}()) == false) {
                     it.remove();
                     changed = true;
@@ -555,7 +555,7 @@ public abstract class Abstract${Type}Collection
     public boolean retainAll(${type} startInclusive, ${type} endInclusive) {
         checkRemoveModifiable();
         boolean changed = false;
-        for (${Type}Iterator it = ${type}Iterator(); it.hasNext(); ) {
+        for (${Type}Iterator it = iterator(); it.hasNext(); ) {
             ${type} value = it.next${Type}();
             if (value < startInclusive || value > endInclusive) {
                 it.remove();
@@ -568,17 +568,6 @@ public abstract class Abstract${Type}Collection
 #end
     // Collection integration
     //-----------------------------------------------------------------------
-    /**
-     * Gets an iterator over this collection.
-     * <p>
-     * This implementation uses <code>${type}Iterator()</code>.
-     *
-     * @return an iterator over this collection
-     */
-    public Iterator<${object}> iterator() {
-        return ${type}Iterator();
-    }
-
     /**
      * Checks whether this collection contains a specified <code>${object}</code> value.
      * <p>
@@ -618,7 +607,7 @@ public abstract class Abstract${Type}Collection
      * @param coll  the collection of values to search for
      * @return <code>true</code> if at least one of the values is found
      */
-    public boolean containsAny(Collection<${object}> coll) {
+    public boolean containsAny(Collection<?> coll) {
         if (size() == 0 || coll.size() == 0) {
             return false;
         }
@@ -635,7 +624,7 @@ public abstract class Abstract${Type}Collection
      */
     public Object[] toArray() {
         Object[] result = new ${object}[size()];
-        ${Type}Iterator it = ${type}Iterator();
+        ${Type}Iterator it = iterator();
         for (int i = 0; it.hasNext(); i++) {
             result[i] = it.next();
         }
@@ -779,7 +768,7 @@ public abstract class Abstract${Type}Collection
         StringBuffer buf = new StringBuffer();
         buf.append("[");
 
-        ${Type}Iterator it = ${type}Iterator();
+        ${Type}Iterator it = iterator();
         boolean hasNext = it.hasNext();
         while (hasNext) {
             buf.append(it.next${Type}());
@@ -805,7 +794,7 @@ public abstract class Abstract${Type}Collection
      * @param size  the number of items to copy
      */
     protected void arrayCopy(int fromIndex, ${type}[] dest, int destIndex, int size) {
-        ${Type}Iterator it = ${type}Iterator();
+        ${Type}Iterator it = iterator();
         for (int i = 0; it.hasNext() && i < size; i++) {
             dest[destIndex + i] = it.next${Type}();
         }

@@ -50,16 +50,16 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
     private static final int GROWTH_FACTOR_DIVISOR = 2;
 
     /** The array of elements */
-    private boolean[] iData;
+    private boolean[] data;
     /** The current size */
-    private int iSize;
+    private int size;
 
     /**
      * Constructor.
      */
     public ArrayBooleanCollection() {
         super();
-        iData = BooleanUtils.EMPTY_BOOLEAN_ARRAY;
+        data = BooleanUtils.EMPTY_BOOLEAN_ARRAY;
     }
 
     /**
@@ -70,9 +70,9 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
     public ArrayBooleanCollection(int initialSize) {
         super();
         if (initialSize <= 0) {
-            iData = BooleanUtils.EMPTY_BOOLEAN_ARRAY;
+            data = BooleanUtils.EMPTY_BOOLEAN_ARRAY;
         } else {
-            iData = new boolean[initialSize];
+            data = new boolean[initialSize];
         }
     }
 
@@ -84,10 +84,10 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
     public ArrayBooleanCollection(boolean[] values) {
         super();
         if (values == null) {
-            iData = BooleanUtils.EMPTY_BOOLEAN_ARRAY;
+            data = BooleanUtils.EMPTY_BOOLEAN_ARRAY;
         } else {
-            iData = (boolean[]) values.clone();
-            iSize = values.length;
+            data = (boolean[]) values.clone();
+            size = values.length;
         }
     }
 
@@ -99,15 +99,15 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
     public ArrayBooleanCollection(Collection<?> coll) {
         super();
         if (coll == null) {
-            iData = BooleanUtils.EMPTY_BOOLEAN_ARRAY;
+            data = BooleanUtils.EMPTY_BOOLEAN_ARRAY;
         } else if (coll instanceof BooleanCollection) {
             BooleanCollection c = (BooleanCollection) coll;
-            iSize = c.size();
-            iData = new boolean[iSize];
-            c.toBooleanArray(iData, 0);
+            size = c.size();
+            data = new boolean[size];
+            c.toBooleanArray(data, 0);
         } else {
-            iData = toPrimitiveArray(coll);
-            iSize = coll.size();
+            data = toPrimitiveArray(coll);
+            size = coll.size();
         }
     }
 
@@ -119,15 +119,15 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
     public ArrayBooleanCollection(Iterator<Boolean> it) {
         super();
         if (it == null) {
-            iData = BooleanUtils.EMPTY_BOOLEAN_ARRAY;
+            data = BooleanUtils.EMPTY_BOOLEAN_ARRAY;
         } else if (it instanceof BooleanIterator) {
             BooleanIterator typed = (BooleanIterator) it;
-            iData = new boolean[MIN_GROWTH_SIZE];
+            data = new boolean[MIN_GROWTH_SIZE];
             while (typed.hasNext()) {
                 add(typed.nextBoolean());
             }
         } else {
-            iData = new boolean[MIN_GROWTH_SIZE];
+            data = new boolean[MIN_GROWTH_SIZE];
             while (it.hasNext()) {
                 add(it.next());
             }
@@ -142,15 +142,15 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
      * @return the current size
      */
     public int size() {
-        return iSize;
+        return size;
     }
 
     /**
-     * Gets an iterator over this collection.
+     * Gets an iterator over this collection capable of accessing the primitive values.
      *
      * @return an iterator over this collection
      */
-    public BooleanIterator booleanIterator() {
+    public BooleanIterator iterator() {
         return new PIterator(this);
     }
 
@@ -162,8 +162,8 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
      * @throws IllegalArgumentException if value is rejected by this collection
      */
     public boolean add(boolean value) {
-        ensureCapacity(iSize + 1);
-        iData[iSize++] = value;
+        ensureCapacity(size + 1);
+        data[size++] = value;
         return true;
     }
 
@@ -176,10 +176,10 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
      * the size of the collection.
      */
     public void optimize() {
-        if (iSize < iData.length) {
-            boolean[] array = new boolean[iSize];
-            System.arraycopy(iData, 0, array, 0, iSize);
-            iData = array;
+        if (size < data.length) {
+            boolean[] array = new boolean[size];
+            System.arraycopy(data, 0, array, 0, size);
+            data = array;
         }
     }
 
@@ -219,8 +219,8 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
      * @return <code>true</code> if the value is found
      */
     public boolean contains(boolean value) {
-        for (int i = 0; i < iSize; i++) {
-            if (iData[i] == value) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == value) {
                 return true;
             }
         }
@@ -234,7 +234,7 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
      * This implementation resets the size, but does not reduce the internal storage array.
      */
     public void clear() {
-        iSize = 0;
+        size = 0;
     }
 
     /**
@@ -263,9 +263,9 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
             return false;
         }
         int len = values.size();
-        ensureCapacity(iSize + len);
-        values.toBooleanArray(iData, iSize);
-        iSize += len;
+        ensureCapacity(size + len);
+        values.toBooleanArray(data, size);
+        size += len;
         return true;
     }
 
@@ -276,7 +276,7 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
      */
     public Object clone() {
         ArrayBooleanCollection cloned = (ArrayBooleanCollection) super.clone();
-        cloned.iData = (boolean[]) iData.clone();
+        cloned.data = (boolean[]) data.clone();
         return cloned;
     }
 
@@ -290,7 +290,7 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
      * @param size  the number of items to copy
      */
     protected void arrayCopy(int fromIndex, boolean[] dest, int destIndex, int size) {
-        System.arraycopy(iData, fromIndex, dest, destIndex, size);
+        System.arraycopy(data, fromIndex, dest, destIndex, size);
     }
 
     // Internal implementation
@@ -305,9 +305,9 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
      */
     protected boolean doAdd(int index, boolean[] values) {
         int len = values.length;
-        ensureCapacity(iSize + len);
-        System.arraycopy(values, 0, iData, iSize, len);
-        iSize += len;
+        ensureCapacity(size + len);
+        System.arraycopy(values, 0, data, size, len);
+        size += len;
         return (len > 0);
     }
 
@@ -317,8 +317,8 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
      * @param index  the index, valid
      */
     protected void doRemoveIndex(int index) {
-        System.arraycopy(iData, index + 1, iData, index, iSize - 1 - index);
-        iSize--;
+        System.arraycopy(data, index + 1, data, index, size - 1 - index);
+        size--;
     }
 
     /**
@@ -328,7 +328,7 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
      * @param reqCapacity  the amount to expand to
      */
     protected void ensureCapacity(int reqCapacity) {
-        int curCapacity = iData.length;
+        int curCapacity = data.length;
         if (reqCapacity <= curCapacity) {
             return;
         }
@@ -340,8 +340,8 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
             newCapacity = reqCapacity;
         }
         boolean[] newArray = new boolean[newCapacity];
-        System.arraycopy(iData, 0, newArray, 0, curCapacity);
-        iData = newArray;
+        System.arraycopy(data, 0, newArray, 0, curCapacity);
+        data = newArray;
     }
 
     // Iterator
@@ -351,41 +351,41 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
      */
     protected static class PIterator implements BooleanIterator {
 
-        private final ArrayBooleanCollection iCollection;
-        private int iCursor = 0;
-        private boolean iCanRemove = false;
+        private final ArrayBooleanCollection collection;
+        private int cursor = 0;
+        private boolean canRemove = false;
 
         protected PIterator(ArrayBooleanCollection coll) {
             super();
-            this.iCollection = coll;
+            this.collection = coll;
         }
 
         public boolean hasNext() {
-            return (iCursor < iCollection.iSize);
+            return (cursor < collection.size);
         }
 
         public boolean nextBoolean() {
             if (hasNext() == false) {
                 throw new NoSuchElementException("No more elements available");
             }
-            iCanRemove = true;
-            return iCollection.iData[iCursor++];
+            canRemove = true;
+            return collection.data[cursor++];
         }
 
         public Boolean next() {
-            return iCollection.toObject(nextBoolean());
+            return collection.toObject(nextBoolean());
         }
 
         public void remove() {
-            if (iCanRemove == false) {
+            if (canRemove == false) {
                 throw new IllegalStateException("Element cannot be removed");
             }
-            iCollection.doRemoveIndex(--iCursor);
-            iCanRemove = false;
+            collection.doRemoveIndex(--cursor);
+            canRemove = false;
         }
 
         public boolean isModifiable() {
-            return iCollection.isModifiable();
+            return collection.isModifiable();
         }
 
         public boolean isResetable() {
@@ -393,7 +393,7 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
         }
 
         public void reset() {
-            iCursor = 0;
+            cursor = 0;
         }
     }
 

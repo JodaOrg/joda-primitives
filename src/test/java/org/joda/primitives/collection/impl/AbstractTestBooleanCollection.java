@@ -84,7 +84,7 @@ public abstract class AbstractTestBooleanCollection extends AbstractTestCollecti
         BooleanCollection ic = (BooleanCollection) makeFullCollection();
         boolean[] values = ic.toBooleanArray();
         int i = 0;
-        for (BooleanIterator it = ic.booleanIterator(); it.hasNext(); i++) {
+        for (BooleanIterator it = ic.iterator(); it.hasNext(); i++) {
             boolean next = it.nextBoolean();
             assertEquals(values[i], next);
         }
@@ -209,7 +209,7 @@ public abstract class AbstractTestBooleanCollection extends AbstractTestCollecti
     public void testRemoveAll() {
         resetFull();
         BooleanCollection coll = (BooleanCollection) collection;
-        boolean first = coll.booleanIterator().nextBoolean();
+        boolean first = coll.iterator().nextBoolean();
         coll.add(first);
         int size = coll.size();
         

@@ -60,9 +60,9 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
     /**
      * Gets an iterator over this list.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
-    public ShortIterator shortIterator() {
+    public ShortIterator iterator() {
         return shortListIterator(0);
     }
 
@@ -71,7 +71,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
      * <p>
      * This implementation uses <code>shortListIterator(int)</code>.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
     public ShortListIterator shortListIterator() {
         return shortListIterator(0);
@@ -81,7 +81,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
      * Gets a list iterator over this list from a start index.
      *
      * @param index  the index to start from
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      * @throws IndexOutOfBoundsException if the index is invalid
      */
     public ShortListIterator shortListIterator(int index) {

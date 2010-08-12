@@ -84,7 +84,7 @@ public abstract class AbstractTestCharCollection extends AbstractTestCollection 
         CharCollection ic = (CharCollection) makeFullCollection();
         char[] values = ic.toCharArray();
         int i = 0;
-        for (CharIterator it = ic.charIterator(); it.hasNext(); i++) {
+        for (CharIterator it = ic.iterator(); it.hasNext(); i++) {
             char next = it.nextChar();
             assertEquals(values[i], next);
         }
@@ -293,7 +293,7 @@ public abstract class AbstractTestCharCollection extends AbstractTestCollection 
     public void testRemoveAll() {
         resetFull();
         CharCollection coll = (CharCollection) collection;
-        char first = coll.charIterator().nextChar();
+        char first = coll.iterator().nextChar();
         coll.add(first);
         int size = coll.size();
         

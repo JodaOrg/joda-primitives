@@ -71,7 +71,7 @@ public abstract class AbstractTestDoubleList extends AbstractTestList {
         DoubleList plist = (DoubleList) collection;
         double[] values = plist.toDoubleArray();
         int i = 0;
-        for (DoubleIterator it = plist.doubleIterator(); it.hasNext(); i++) {
+        for (DoubleIterator it = plist.iterator(); it.hasNext(); i++) {
             double next = it.nextDouble();
             assertEquals(values[i], next, 0.00001d);
         }

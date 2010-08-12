@@ -84,7 +84,7 @@ public abstract class AbstractTestLongCollection extends AbstractTestCollection 
         LongCollection ic = (LongCollection) makeFullCollection();
         long[] values = ic.toLongArray();
         int i = 0;
-        for (LongIterator it = ic.longIterator(); it.hasNext(); i++) {
+        for (LongIterator it = ic.iterator(); it.hasNext(); i++) {
             long next = it.nextLong();
             assertEquals(values[i], next);
         }
@@ -293,7 +293,7 @@ public abstract class AbstractTestLongCollection extends AbstractTestCollection 
     public void testRemoveAll() {
         resetFull();
         LongCollection coll = (LongCollection) collection;
-        long first = coll.longIterator().nextLong();
+        long first = coll.iterator().nextLong();
         coll.add(first);
         int size = coll.size();
         

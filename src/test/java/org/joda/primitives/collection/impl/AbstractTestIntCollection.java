@@ -84,7 +84,7 @@ public abstract class AbstractTestIntCollection extends AbstractTestCollection {
         IntCollection ic = (IntCollection) makeFullCollection();
         int[] values = ic.toIntArray();
         int i = 0;
-        for (IntIterator it = ic.intIterator(); it.hasNext(); i++) {
+        for (IntIterator it = ic.iterator(); it.hasNext(); i++) {
             int next = it.nextInt();
             assertEquals(values[i], next);
         }
@@ -293,7 +293,7 @@ public abstract class AbstractTestIntCollection extends AbstractTestCollection {
     public void testRemoveAll() {
         resetFull();
         IntCollection coll = (IntCollection) collection;
-        int first = coll.intIterator().nextInt();
+        int first = coll.iterator().nextInt();
         coll.add(first);
         int size = coll.size();
         

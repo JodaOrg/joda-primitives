@@ -21,18 +21,17 @@ import org.joda.primitives.PrimitiveCollectable;
  * Abstract base class for collections of primitive elements.
  *
  * @author Stephen Colebourne
- * @version $Id: AbstractPrimitiveCollectable.java,v 1.4 2006/03/27 22:42:11 scolebourne Exp $
  * @since 1.0
  */
 public abstract class AbstractPrimitiveCollectable<N> implements PrimitiveCollectable<N> {
-    
+
     /**
      * Constructor.
      */
     protected AbstractPrimitiveCollectable() {
         super();
     }
-    
+
     // PrimitiveCollectable
     //-----------------------------------------------------------------------
     /**
@@ -76,5 +75,5 @@ public abstract class AbstractPrimitiveCollectable<N> implements PrimitiveCollec
             throw new UnsupportedOperationException("Clone not supported");
         }
     }
-    
+
 }

@@ -60,9 +60,9 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
     /**
      * Gets an iterator over this list.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
-    public CharIterator charIterator() {
+    public CharIterator iterator() {
         return charListIterator(0);
     }
 
@@ -71,7 +71,7 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
      * <p>
      * This implementation uses <code>charListIterator(int)</code>.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
     public CharListIterator charListIterator() {
         return charListIterator(0);
@@ -81,7 +81,7 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
      * Gets a list iterator over this list from a start index.
      *
      * @param index  the index to start from
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      * @throws IndexOutOfBoundsException if the index is invalid
      */
     public CharListIterator charListIterator(int index) {

@@ -108,12 +108,12 @@ public class TestArrayDoubleCollection extends AbstractTestDoubleCollection {
         c = new ArrayDoubleCollection(coll);
         assertEquals(1, c.size());
         assertEquals(1, dataLength(c));
-        assertEquals(0d, c.doubleIterator().nextDouble(), 0.00001d);
+        assertEquals(0d, c.iterator().nextDouble(), 0.00001d);
         
         ArrayDoubleCollection c2 = new ArrayDoubleCollection(c);
         assertEquals(1, c2.size());
         assertEquals(1, dataLength(c2));
-        assertEquals(0d, c2.doubleIterator().nextDouble(), 0.00001d);
+        assertEquals(0d, c2.iterator().nextDouble(), 0.00001d);
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());
@@ -129,12 +129,12 @@ public class TestArrayDoubleCollection extends AbstractTestDoubleCollection {
         c = new ArrayDoubleCollection(coll.iterator());
         assertEquals(1, c.size());
         assertEquals(4, dataLength(c));
-        assertEquals(0d, c.doubleIterator().nextDouble(), 0.00001d);
+        assertEquals(0d, c.iterator().nextDouble(), 0.00001d);
         
         ArrayDoubleCollection c2 = new ArrayDoubleCollection(c.iterator());
         assertEquals(1, c2.size());
         assertEquals(4, dataLength(c2));
-        assertEquals(0d, c2.doubleIterator().nextDouble(), 0.00001d);
+        assertEquals(0d, c2.iterator().nextDouble(), 0.00001d);
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());

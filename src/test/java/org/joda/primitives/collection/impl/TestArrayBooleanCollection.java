@@ -108,12 +108,12 @@ public class TestArrayBooleanCollection extends AbstractTestBooleanCollection {
         c = new ArrayBooleanCollection(coll);
         assertEquals(1, c.size());
         assertEquals(1, dataLength(c));
-        assertEquals(false, c.booleanIterator().nextBoolean());
+        assertEquals(false, c.iterator().nextBoolean());
         
         ArrayBooleanCollection c2 = new ArrayBooleanCollection(c);
         assertEquals(1, c2.size());
         assertEquals(1, dataLength(c2));
-        assertEquals(false, c2.booleanIterator().nextBoolean());
+        assertEquals(false, c2.iterator().nextBoolean());
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());
@@ -129,12 +129,12 @@ public class TestArrayBooleanCollection extends AbstractTestBooleanCollection {
         c = new ArrayBooleanCollection(coll.iterator());
         assertEquals(1, c.size());
         assertEquals(4, dataLength(c));
-        assertEquals(false, c.booleanIterator().nextBoolean());
+        assertEquals(false, c.iterator().nextBoolean());
         
         ArrayBooleanCollection c2 = new ArrayBooleanCollection(c.iterator());
         assertEquals(1, c2.size());
         assertEquals(4, dataLength(c2));
-        assertEquals(false, c2.booleanIterator().nextBoolean());
+        assertEquals(false, c2.iterator().nextBoolean());
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());

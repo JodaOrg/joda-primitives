@@ -60,9 +60,9 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
     /**
      * Gets an iterator over this list.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
-    public LongIterator longIterator() {
+    public LongIterator iterator() {
         return longListIterator(0);
     }
 
@@ -71,7 +71,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
      * <p>
      * This implementation uses <code>longListIterator(int)</code>.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
     public LongListIterator longListIterator() {
         return longListIterator(0);
@@ -81,7 +81,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
      * Gets a list iterator over this list from a start index.
      *
      * @param index  the index to start from
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      * @throws IndexOutOfBoundsException if the index is invalid
      */
     public LongListIterator longListIterator(int index) {

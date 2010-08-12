@@ -110,12 +110,12 @@ public class TestArrayCharList extends AbstractTestCharList {
         c = new ArrayCharList(coll);
         assertEquals(1, c.size());
         assertEquals(1, dataLength(c));
-        assertEquals((char) 0, c.charIterator().nextChar());
+        assertEquals((char) 0, c.iterator().nextChar());
         
         ArrayCharList c2 = new ArrayCharList(c);
         assertEquals(1, c2.size());
         assertEquals(1, dataLength(c2));
-        assertEquals((char) 0, c2.charIterator().nextChar());
+        assertEquals((char) 0, c2.iterator().nextChar());
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());
@@ -163,14 +163,14 @@ public class TestArrayCharList extends AbstractTestCharList {
         char[] a = new char[] {(char) 0, 'A', 'Z'};
         ArrayCharList c = new ArrayCharList(a);
         
-        assertEquals(true, c.charIterator().isModifiable());
+        assertEquals(true, c.iterator().isModifiable());
     }
 
     public void testIteratorReset() throws Exception {
         char[] a = new char[] {(char) 0, 'A', 'Z'};
         ArrayCharList c = new ArrayCharList(a);
         
-        CharIterator it = c.charIterator();
+        CharIterator it = c.iterator();
         assertEquals(true, it.isResetable());
         assertEquals((char) 0, it.nextChar());
         assertEquals('A', it.nextChar());

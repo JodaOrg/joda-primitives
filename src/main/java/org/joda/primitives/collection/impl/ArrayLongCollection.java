@@ -50,16 +50,16 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
     private static final int GROWTH_FACTOR_DIVISOR = 2;
 
     /** The array of elements */
-    private long[] iData;
+    private long[] data;
     /** The current size */
-    private int iSize;
+    private int size;
 
     /**
      * Constructor.
      */
     public ArrayLongCollection() {
         super();
-        iData = LongUtils.EMPTY_LONG_ARRAY;
+        data = LongUtils.EMPTY_LONG_ARRAY;
     }
 
     /**
@@ -70,9 +70,9 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
     public ArrayLongCollection(int initialSize) {
         super();
         if (initialSize <= 0) {
-            iData = LongUtils.EMPTY_LONG_ARRAY;
+            data = LongUtils.EMPTY_LONG_ARRAY;
         } else {
-            iData = new long[initialSize];
+            data = new long[initialSize];
         }
     }
 
@@ -84,10 +84,10 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
     public ArrayLongCollection(long[] values) {
         super();
         if (values == null) {
-            iData = LongUtils.EMPTY_LONG_ARRAY;
+            data = LongUtils.EMPTY_LONG_ARRAY;
         } else {
-            iData = (long[]) values.clone();
-            iSize = values.length;
+            data = (long[]) values.clone();
+            size = values.length;
         }
     }
 
@@ -99,15 +99,15 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
     public ArrayLongCollection(Collection<?> coll) {
         super();
         if (coll == null) {
-            iData = LongUtils.EMPTY_LONG_ARRAY;
+            data = LongUtils.EMPTY_LONG_ARRAY;
         } else if (coll instanceof LongCollection) {
             LongCollection c = (LongCollection) coll;
-            iSize = c.size();
-            iData = new long[iSize];
-            c.toLongArray(iData, 0);
+            size = c.size();
+            data = new long[size];
+            c.toLongArray(data, 0);
         } else {
-            iData = toPrimitiveArray(coll);
-            iSize = coll.size();
+            data = toPrimitiveArray(coll);
+            size = coll.size();
         }
     }
 
@@ -119,15 +119,15 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
     public ArrayLongCollection(Iterator<Long> it) {
         super();
         if (it == null) {
-            iData = LongUtils.EMPTY_LONG_ARRAY;
+            data = LongUtils.EMPTY_LONG_ARRAY;
         } else if (it instanceof LongIterator) {
             LongIterator typed = (LongIterator) it;
-            iData = new long[MIN_GROWTH_SIZE];
+            data = new long[MIN_GROWTH_SIZE];
             while (typed.hasNext()) {
                 add(typed.nextLong());
             }
         } else {
-            iData = new long[MIN_GROWTH_SIZE];
+            data = new long[MIN_GROWTH_SIZE];
             while (it.hasNext()) {
                 add(it.next());
             }
@@ -142,15 +142,15 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
      * @return the current size
      */
     public int size() {
-        return iSize;
+        return size;
     }
 
     /**
-     * Gets an iterator over this collection.
+     * Gets an iterator over this collection capable of accessing the primitive values.
      *
      * @return an iterator over this collection
      */
-    public LongIterator longIterator() {
+    public LongIterator iterator() {
         return new PIterator(this);
     }
 
@@ -162,8 +162,8 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
      * @throws IllegalArgumentException if value is rejected by this collection
      */
     public boolean add(long value) {
-        ensureCapacity(iSize + 1);
-        iData[iSize++] = value;
+        ensureCapacity(size + 1);
+        data[size++] = value;
         return true;
     }
 
@@ -176,10 +176,10 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
      * the size of the collection.
      */
     public void optimize() {
-        if (iSize < iData.length) {
-            long[] array = new long[iSize];
-            System.arraycopy(iData, 0, array, 0, iSize);
-            iData = array;
+        if (size < data.length) {
+            long[] array = new long[size];
+            System.arraycopy(data, 0, array, 0, size);
+            data = array;
         }
     }
 
@@ -219,8 +219,8 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
      * @return <code>true</code> if the value is found
      */
     public boolean contains(long value) {
-        for (int i = 0; i < iSize; i++) {
-            if (iData[i] == value) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == value) {
                 return true;
             }
         }
@@ -234,7 +234,7 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
      * This implementation resets the size, but does not reduce the internal storage array.
      */
     public void clear() {
-        iSize = 0;
+        size = 0;
     }
 
     /**
@@ -263,9 +263,9 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
             return false;
         }
         int len = values.size();
-        ensureCapacity(iSize + len);
-        values.toLongArray(iData, iSize);
-        iSize += len;
+        ensureCapacity(size + len);
+        values.toLongArray(data, size);
+        size += len;
         return true;
     }
 
@@ -286,16 +286,16 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
         if (increaseLong < 0L) {
             return false;
         }
-        long newSize = iSize + increaseLong;
+        long newSize = size + increaseLong;
         if (newSize > Integer.MAX_VALUE) {
             throw new IllegalArgumentException("Range too large");
         }
         ensureCapacity((int) newSize);
         long i = startInclusive;
         while (i < endInclusive) {
-            iData[iSize++] = i++;
+            data[size++] = i++;
         }
-        iData[iSize++] = i;  // handles endInclusive=MAX_VALUE
+        data[size++] = i;  // handles endInclusive=MAX_VALUE
         return true;
     }
 
@@ -306,7 +306,7 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
      */
     public Object clone() {
         ArrayLongCollection cloned = (ArrayLongCollection) super.clone();
-        cloned.iData = (long[]) iData.clone();
+        cloned.data = (long[]) data.clone();
         return cloned;
     }
 
@@ -320,7 +320,7 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
      * @param size  the number of items to copy
      */
     protected void arrayCopy(int fromIndex, long[] dest, int destIndex, int size) {
-        System.arraycopy(iData, fromIndex, dest, destIndex, size);
+        System.arraycopy(data, fromIndex, dest, destIndex, size);
     }
 
     // Internal implementation
@@ -335,9 +335,9 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
      */
     protected boolean doAdd(int index, long[] values) {
         int len = values.length;
-        ensureCapacity(iSize + len);
-        System.arraycopy(values, 0, iData, iSize, len);
-        iSize += len;
+        ensureCapacity(size + len);
+        System.arraycopy(values, 0, data, size, len);
+        size += len;
         return (len > 0);
     }
 
@@ -347,8 +347,8 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
      * @param index  the index, valid
      */
     protected void doRemoveIndex(int index) {
-        System.arraycopy(iData, index + 1, iData, index, iSize - 1 - index);
-        iSize--;
+        System.arraycopy(data, index + 1, data, index, size - 1 - index);
+        size--;
     }
 
     /**
@@ -358,7 +358,7 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
      * @param reqCapacity  the amount to expand to
      */
     protected void ensureCapacity(int reqCapacity) {
-        int curCapacity = iData.length;
+        int curCapacity = data.length;
         if (reqCapacity <= curCapacity) {
             return;
         }
@@ -370,8 +370,8 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
             newCapacity = reqCapacity;
         }
         long[] newArray = new long[newCapacity];
-        System.arraycopy(iData, 0, newArray, 0, curCapacity);
-        iData = newArray;
+        System.arraycopy(data, 0, newArray, 0, curCapacity);
+        data = newArray;
     }
 
     // Iterator
@@ -381,41 +381,41 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
      */
     protected static class PIterator implements LongIterator {
 
-        private final ArrayLongCollection iCollection;
-        private int iCursor = 0;
-        private boolean iCanRemove = false;
+        private final ArrayLongCollection collection;
+        private int cursor = 0;
+        private boolean canRemove = false;
 
         protected PIterator(ArrayLongCollection coll) {
             super();
-            this.iCollection = coll;
+            this.collection = coll;
         }
 
         public boolean hasNext() {
-            return (iCursor < iCollection.iSize);
+            return (cursor < collection.size);
         }
 
         public long nextLong() {
             if (hasNext() == false) {
                 throw new NoSuchElementException("No more elements available");
             }
-            iCanRemove = true;
-            return iCollection.iData[iCursor++];
+            canRemove = true;
+            return collection.data[cursor++];
         }
 
         public Long next() {
-            return iCollection.toObject(nextLong());
+            return collection.toObject(nextLong());
         }
 
         public void remove() {
-            if (iCanRemove == false) {
+            if (canRemove == false) {
                 throw new IllegalStateException("Element cannot be removed");
             }
-            iCollection.doRemoveIndex(--iCursor);
-            iCanRemove = false;
+            collection.doRemoveIndex(--cursor);
+            canRemove = false;
         }
 
         public boolean isModifiable() {
-            return iCollection.isModifiable();
+            return collection.isModifiable();
         }
 
         public boolean isResetable() {
@@ -423,7 +423,7 @@ public class ArrayLongCollection extends AbstractLongCollection implements Clone
         }
 
         public void reset() {
-            iCursor = 0;
+            cursor = 0;
         }
     }
 

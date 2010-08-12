@@ -35,11 +35,11 @@ public interface DoubleCollection extends PrimitiveCollection<Double> {
     // Mandatory operations
     //-----------------------------------------------------------------------
     /**
-     * Gets an iterator over this collection.
+     * Gets an iterator over this collection capable of accessing the primitive values.
      *
-     * @return an iterator over this collection
+     * @return an iterator over this collection, not null
      */
-    DoubleIterator doubleIterator();
+    DoubleIterator iterator();
 
     /**
      * Checks whether this collection contains a specified primitive value.
@@ -101,9 +101,9 @@ public interface DoubleCollection extends PrimitiveCollection<Double> {
      * If the array is not large enough, a new array will be created containing the
      * values from the specified array before the startIndex plus those from this collection.
      *
-     * @param array  the array to add the elements to
+     * @param array  the array to add the elements to, null creates new array
      * @param startIndex  the position in the array to start setting elements
-     * @return the array with the populated collection
+     * @return the array with the populated collection, not null
      * @throws IndexOutOfBoundsException if the index is negative
      */
     double[] toDoubleArray(double[] array, int startIndex);
@@ -150,7 +150,7 @@ public interface DoubleCollection extends PrimitiveCollection<Double> {
     boolean addAll(DoubleCollection values);
 
     /**
-     * Removes the first occurrance of the specified primitive value from this collection
+     * Removes the first occurrence of the specified primitive value from this collection
      * (optional operation).
      * <p>
      * This method is optional, throwing an UnsupportedOperationException if the
@@ -163,7 +163,7 @@ public interface DoubleCollection extends PrimitiveCollection<Double> {
     boolean removeFirst(double value);
 
     /**
-     * Removes all occurrances of the specified primitive value from this collection
+     * Removes all occurrences of the specified primitive value from this collection
      * (optional operation).
      * <p>
      * This method is optional, throwing an UnsupportedOperationException if the
@@ -176,7 +176,7 @@ public interface DoubleCollection extends PrimitiveCollection<Double> {
     boolean removeAll(double value);
 
     /**
-     * Removes all occurences from this collection of each primitive in the specified array
+     * Removes all occurrences from this collection of each primitive in the specified array
      * (optional operation).
      * <p>
      * This method is optional, throwing an UnsupportedOperationException if the
@@ -189,7 +189,7 @@ public interface DoubleCollection extends PrimitiveCollection<Double> {
     boolean removeAll(double[] values);
 
     /**
-     * Removes all occurences from this collection of each primitive in the specified collection
+     * Removes all occurrences from this collection of each primitive in the specified collection
      * (optional operation).
      * <p>
      * This method is optional, throwing an UnsupportedOperationException if the

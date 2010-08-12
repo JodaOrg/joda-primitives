@@ -39,7 +39,6 @@ import org.joda.primitives.list.impl.TestArrayShortList;
  * Overall test manager.
  * 
  * @author Stephen Colebourne
- * @version $Id: AllTestSuite.java,v 1.4 2006/03/27 22:42:12 scolebourne Exp $
  * @since 1.0
  */
 public class AllTestSuite extends TestSuite {

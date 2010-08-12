@@ -71,7 +71,7 @@ public abstract class AbstractTestIntList extends AbstractTestList {
         IntList plist = (IntList) collection;
         int[] values = plist.toIntArray();
         int i = 0;
-        for (IntIterator it = plist.intIterator(); it.hasNext(); i++) {
+        for (IntIterator it = plist.iterator(); it.hasNext(); i++) {
             int next = it.nextInt();
             assertEquals(values[i], next);
         }

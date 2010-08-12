@@ -46,9 +46,9 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
     /**
      * Gets an iterator over this list.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
-    public ${Type}Iterator ${type}Iterator() {
+    public ${Type}Iterator iterator() {
         return ${type}ListIterator(0);
     }
 
@@ -57,7 +57,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      * <p>
      * This implementation uses <code>${type}ListIterator(int)</code>.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
     public ${Type}ListIterator ${type}ListIterator() {
         return ${type}ListIterator(0);
@@ -67,7 +67,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      * Gets a list iterator over this list from a start index.
      *
      * @param index  the index to start from
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      * @throws IndexOutOfBoundsException if the index is invalid
      */
     public ${Type}ListIterator ${type}ListIterator(int index) {

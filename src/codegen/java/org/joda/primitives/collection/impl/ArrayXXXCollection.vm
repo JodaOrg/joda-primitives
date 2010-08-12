@@ -36,16 +36,16 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
     private static final int GROWTH_FACTOR_DIVISOR = 2;
 
     /** The array of elements */
-    private ${type}[] iData;
+    private ${type}[] data;
     /** The current size */
-    private int iSize;
+    private int size;
 
     /**
      * Constructor.
      */
     public Array${Type}Collection() {
         super();
-        iData = ${Type}Utils.${emptyArray};
+        data = ${Type}Utils.${emptyArray};
     }
 
     /**
@@ -56,9 +56,9 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
     public Array${Type}Collection(int initialSize) {
         super();
         if (initialSize <= 0) {
-            iData = ${Type}Utils.${emptyArray};
+            data = ${Type}Utils.${emptyArray};
         } else {
-            iData = new ${type}[initialSize];
+            data = new ${type}[initialSize];
         }
     }
 
@@ -70,10 +70,10 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
     public Array${Type}Collection(${type}[] values) {
         super();
         if (values == null) {
-            iData = ${Type}Utils.${emptyArray};
+            data = ${Type}Utils.${emptyArray};
         } else {
-            iData = (${type}[]) values.clone();
-            iSize = values.length;
+            data = (${type}[]) values.clone();
+            size = values.length;
         }
     }
 
@@ -85,15 +85,15 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
     public Array${Type}Collection(Collection<?> coll) {
         super();
         if (coll == null) {
-            iData = ${Type}Utils.${emptyArray};
+            data = ${Type}Utils.${emptyArray};
         } else if (coll instanceof ${Type}Collection) {
             ${Type}Collection c = (${Type}Collection) coll;
-            iSize = c.size();
-            iData = new ${type}[iSize];
-            c.to${Type}Array(iData, 0);
+            size = c.size();
+            data = new ${type}[size];
+            c.to${Type}Array(data, 0);
         } else {
-            iData = toPrimitiveArray(coll);
-            iSize = coll.size();
+            data = toPrimitiveArray(coll);
+            size = coll.size();
         }
     }
 
@@ -105,15 +105,15 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
     public Array${Type}Collection(Iterator<${object}> it) {
         super();
         if (it == null) {
-            iData = ${Type}Utils.${emptyArray};
+            data = ${Type}Utils.${emptyArray};
         } else if (it instanceof ${Type}Iterator) {
             ${Type}Iterator typed = (${Type}Iterator) it;
-            iData = new ${type}[MIN_GROWTH_SIZE];
+            data = new ${type}[MIN_GROWTH_SIZE];
             while (typed.hasNext()) {
                 add(typed.next${Type}());
             }
         } else {
-            iData = new ${type}[MIN_GROWTH_SIZE];
+            data = new ${type}[MIN_GROWTH_SIZE];
             while (it.hasNext()) {
                 add(it.next());
             }
@@ -128,15 +128,15 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
      * @return the current size
      */
     public int size() {
-        return iSize;
+        return size;
     }
 
     /**
-     * Gets an iterator over this collection.
+     * Gets an iterator over this collection capable of accessing the primitive values.
      *
      * @return an iterator over this collection
      */
-    public ${Type}Iterator ${type}Iterator() {
+    public ${Type}Iterator iterator() {
         return new PIterator(this);
     }
 
@@ -148,8 +148,8 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
      * @throws IllegalArgumentException if value is rejected by this collection
      */
     public boolean add(${type} value) {
-        ensureCapacity(iSize + 1);
-        iData[iSize++] = value;
+        ensureCapacity(size + 1);
+        data[size++] = value;
         return true;
     }
 
@@ -162,10 +162,10 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
      * the size of the collection.
      */
     public void optimize() {
-        if (iSize < iData.length) {
-            ${type}[] array = new ${type}[iSize];
-            System.arraycopy(iData, 0, array, 0, iSize);
-            iData = array;
+        if (size < data.length) {
+            ${type}[] array = new ${type}[size];
+            System.arraycopy(data, 0, array, 0, size);
+            data = array;
         }
     }
 
@@ -205,8 +205,8 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
      * @return <code>true</code> if the value is found
      */
     public boolean contains(${type} value) {
-        for (int i = 0; i < iSize; i++) {
-            if (iData[i] == value) {
+        for (int i = 0; i < size; i++) {
+            if (data[i] == value) {
                 return true;
             }
         }
@@ -220,7 +220,7 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
      * This implementation resets the size, but does not reduce the internal storage array.
      */
     public void clear() {
-        iSize = 0;
+        size = 0;
     }
 
     /**
@@ -249,9 +249,9 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
             return false;
         }
         int len = values.size();
-        ensureCapacity(iSize + len);
-        values.to${Type}Array(iData, iSize);
-        iSize += len;
+        ensureCapacity(size + len);
+        values.to${Type}Array(data, size);
+        size += len;
         return true;
     }
 
@@ -274,7 +274,7 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
         if (increaseLong < 0L) {
             return false;
         }
-        long newSize = iSize + increaseLong;
+        long newSize = size + increaseLong;
         if (newSize > Integer.MAX_VALUE) {
             throw new IllegalArgumentException("Range too large");
         }
@@ -284,13 +284,13 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
         if (increase < 0) {
             return false;
         }
-        ensureCapacity(iSize + increase);
+        ensureCapacity(size + increase);
 #end
         ${type} i = startInclusive;
         while (i < endInclusive) {
-            iData[iSize++] = i++;
+            data[size++] = i++;
         }
-        iData[iSize++] = i;  // handles endInclusive=MAX_VALUE
+        data[size++] = i;  // handles endInclusive=MAX_VALUE
         return true;
     }
 
@@ -302,7 +302,7 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
      */
     public Object clone() {
         Array${Type}Collection cloned = (Array${Type}Collection) super.clone();
-        cloned.iData = (${type}[]) iData.clone();
+        cloned.data = (${type}[]) data.clone();
         return cloned;
     }
 
@@ -316,7 +316,7 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
      * @param size  the number of items to copy
      */
     protected void arrayCopy(int fromIndex, ${type}[] dest, int destIndex, int size) {
-        System.arraycopy(iData, fromIndex, dest, destIndex, size);
+        System.arraycopy(data, fromIndex, dest, destIndex, size);
     }
 
     // Internal implementation
@@ -331,9 +331,9 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
      */
     protected boolean doAdd(int index, ${type}[] values) {
         int len = values.length;
-        ensureCapacity(iSize + len);
-        System.arraycopy(values, 0, iData, iSize, len);
-        iSize += len;
+        ensureCapacity(size + len);
+        System.arraycopy(values, 0, data, size, len);
+        size += len;
         return (len > 0);
     }
 
@@ -343,8 +343,8 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
      * @param index  the index, valid
      */
     protected void doRemoveIndex(int index) {
-        System.arraycopy(iData, index + 1, iData, index, iSize - 1 - index);
-        iSize--;
+        System.arraycopy(data, index + 1, data, index, size - 1 - index);
+        size--;
     }
 
     /**
@@ -354,7 +354,7 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
      * @param reqCapacity  the amount to expand to
      */
     protected void ensureCapacity(int reqCapacity) {
-        int curCapacity = iData.length;
+        int curCapacity = data.length;
         if (reqCapacity <= curCapacity) {
             return;
         }
@@ -366,8 +366,8 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
             newCapacity = reqCapacity;
         }
         ${type}[] newArray = new ${type}[newCapacity];
-        System.arraycopy(iData, 0, newArray, 0, curCapacity);
-        iData = newArray;
+        System.arraycopy(data, 0, newArray, 0, curCapacity);
+        data = newArray;
     }
 
     // Iterator
@@ -377,41 +377,41 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
      */
     protected static class PIterator implements ${Type}Iterator {
 
-        private final Array${Type}Collection iCollection;
-        private int iCursor = 0;
-        private boolean iCanRemove = false;
+        private final Array${Type}Collection collection;
+        private int cursor = 0;
+        private boolean canRemove = false;
 
         protected PIterator(Array${Type}Collection coll) {
             super();
-            this.iCollection = coll;
+            this.collection = coll;
         }
 
         public boolean hasNext() {
-            return (iCursor < iCollection.iSize);
+            return (cursor < collection.size);
         }
 
         public ${type} next${Type}() {
             if (hasNext() == false) {
                 throw new NoSuchElementException("No more elements available");
             }
-            iCanRemove = true;
-            return iCollection.iData[iCursor++];
+            canRemove = true;
+            return collection.data[cursor++];
         }
 
         public ${object} next() {
-            return iCollection.toObject(next${Type}());
+            return collection.toObject(next${Type}());
         }
 
         public void remove() {
-            if (iCanRemove == false) {
+            if (canRemove == false) {
                 throw new IllegalStateException("Element cannot be removed");
             }
-            iCollection.doRemoveIndex(--iCursor);
-            iCanRemove = false;
+            collection.doRemoveIndex(--cursor);
+            canRemove = false;
         }
 
         public boolean isModifiable() {
-            return iCollection.isModifiable();
+            return collection.isModifiable();
         }
 
         public boolean isResetable() {
@@ -419,7 +419,7 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
         }
 
         public void reset() {
-            iCursor = 0;
+            cursor = 0;
         }
     }
 

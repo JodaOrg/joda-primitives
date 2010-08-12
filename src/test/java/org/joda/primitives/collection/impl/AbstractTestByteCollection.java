@@ -84,7 +84,7 @@ public abstract class AbstractTestByteCollection extends AbstractTestCollection 
         ByteCollection ic = (ByteCollection) makeFullCollection();
         byte[] values = ic.toByteArray();
         int i = 0;
-        for (ByteIterator it = ic.byteIterator(); it.hasNext(); i++) {
+        for (ByteIterator it = ic.iterator(); it.hasNext(); i++) {
             byte next = it.nextByte();
             assertEquals(values[i], next);
         }
@@ -293,7 +293,7 @@ public abstract class AbstractTestByteCollection extends AbstractTestCollection 
     public void testRemoveAll() {
         resetFull();
         ByteCollection coll = (ByteCollection) collection;
-        byte first = coll.byteIterator().nextByte();
+        byte first = coll.iterator().nextByte();
         coll.add(first);
         int size = coll.size();
         

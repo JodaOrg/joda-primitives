@@ -108,12 +108,12 @@ public class TestArrayLongCollection extends AbstractTestLongCollection {
         c = new ArrayLongCollection(coll);
         assertEquals(1, c.size());
         assertEquals(1, dataLength(c));
-        assertEquals(0L, c.longIterator().nextLong());
+        assertEquals(0L, c.iterator().nextLong());
         
         ArrayLongCollection c2 = new ArrayLongCollection(c);
         assertEquals(1, c2.size());
         assertEquals(1, dataLength(c2));
-        assertEquals(0L, c2.longIterator().nextLong());
+        assertEquals(0L, c2.iterator().nextLong());
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());
@@ -129,12 +129,12 @@ public class TestArrayLongCollection extends AbstractTestLongCollection {
         c = new ArrayLongCollection(coll.iterator());
         assertEquals(1, c.size());
         assertEquals(4, dataLength(c));
-        assertEquals(0L, c.longIterator().nextLong());
+        assertEquals(0L, c.iterator().nextLong());
         
         ArrayLongCollection c2 = new ArrayLongCollection(c.iterator());
         assertEquals(1, c2.size());
         assertEquals(4, dataLength(c2));
-        assertEquals(0L, c2.longIterator().nextLong());
+        assertEquals(0L, c2.iterator().nextLong());
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());

@@ -60,9 +60,9 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
     /**
      * Gets an iterator over this list.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
-    public IntIterator intIterator() {
+    public IntIterator iterator() {
         return intListIterator(0);
     }
 
@@ -71,7 +71,7 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
      * <p>
      * This implementation uses <code>intListIterator(int)</code>.
      *
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      */
     public IntListIterator intListIterator() {
         return intListIterator(0);
@@ -81,7 +81,7 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
      * Gets a list iterator over this list from a start index.
      *
      * @param index  the index to start from
-     * @return an iterator over this list
+     * @return an iterator over this list, not null
      * @throws IndexOutOfBoundsException if the index is invalid
      */
     public IntListIterator intListIterator(int index) {

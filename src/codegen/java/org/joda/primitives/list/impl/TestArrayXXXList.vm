@@ -96,12 +96,12 @@ public class TestArray${Type}List extends AbstractTest${Type}List {
         c = new Array${Type}List(coll);
         assertEquals(1, c.size());
         assertEquals(1, dataLength(c));
-        assertEquals(${testValue0}, c.${type}Iterator().next${Type}()${assertExtra});
+        assertEquals(${testValue0}, c.iterator().next${Type}()${assertExtra});
         
         Array${Type}List c2 = new Array${Type}List(c);
         assertEquals(1, c2.size());
         assertEquals(1, dataLength(c2));
-        assertEquals(${testValue0}, c2.${type}Iterator().next${Type}()${assertExtra});
+        assertEquals(${testValue0}, c2.iterator().next${Type}()${assertExtra});
         c2.clear();
         assertEquals(0, c2.size());
         assertEquals(1, c.size());
@@ -149,14 +149,14 @@ public class TestArray${Type}List extends AbstractTest${Type}List {
         ${type}[] a = new ${type}[] {${testValue0}, ${testValue1}, ${testValue2}};
         Array${Type}List c = new Array${Type}List(a);
         
-        assertEquals(true, c.${type}Iterator().isModifiable());
+        assertEquals(true, c.iterator().isModifiable());
     }
 
     public void testIteratorReset() throws Exception {
         ${type}[] a = new ${type}[] {${testValue0}, ${testValue1}, ${testValue2}};
         Array${Type}List c = new Array${Type}List(a);
         
-        ${Type}Iterator it = c.${type}Iterator();
+        ${Type}Iterator it = c.iterator();
         assertEquals(true, it.isResetable());
         assertEquals(${testValue0}, it.next${Type}()${assertExtra});
         assertEquals(${testValue1}, it.next${Type}()${assertExtra});

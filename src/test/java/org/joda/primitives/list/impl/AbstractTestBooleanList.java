@@ -71,7 +71,7 @@ public abstract class AbstractTestBooleanList extends AbstractTestList {
         BooleanList plist = (BooleanList) collection;
         boolean[] values = plist.toBooleanArray();
         int i = 0;
-        for (BooleanIterator it = plist.booleanIterator(); it.hasNext(); i++) {
+        for (BooleanIterator it = plist.iterator(); it.hasNext(); i++) {
             boolean next = it.nextBoolean();
             assertEquals(values[i], next);
         }
