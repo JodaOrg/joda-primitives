@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2006 Stephen Colebourne
+ *  Copyright 2001-2010 Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,10 +21,9 @@ import java.util.Iterator;
  * Base interface for all primitive iterator interfaces.
  * 
  * @author Stephen Colebourne
- * @version $Id: PrimitiveIterator.java,v 1.4 2006/03/27 22:42:11 scolebourne Exp $
  * @since 1.0
  */
-public interface PrimitiveIterator<N> extends Iterator<N> {
+public interface PrimitiveIterator<E> extends Iterator<E> {
 
     /**
      * Checks whether the iterator can currently be modified.

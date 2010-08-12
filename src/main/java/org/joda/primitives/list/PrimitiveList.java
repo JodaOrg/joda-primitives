@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2006 Stephen Colebourne
+ *  Copyright 2001-2010 Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -28,24 +28,23 @@ import org.joda.primitives.collection.PrimitiveCollection;
  * in the subinterface.
  * 
  * @author Stephen Colebourne
- * @version $Id: PrimitiveList.java,v 1.5 2006/03/27 22:42:12 scolebourne Exp $
  * @since 1.0
  */
-public interface PrimitiveList<N> extends PrimitiveCollection<N>, List<N> {
+public interface PrimitiveList<E> extends PrimitiveCollection<E>, List<E> {
 
     /**
      * Gets the first list value.
      *
      * @return value at index zero, or null if the size is zero
      */
-    Object first();
+    E first();
 
     /**
      * Gets the last list value.
      *
      * @return value at index <code>size() - 1</code> or null if the size is zero
      */
-    Object last();
+    E last();
 
     /**
      * Removes a range of values from the list (optional operation).
