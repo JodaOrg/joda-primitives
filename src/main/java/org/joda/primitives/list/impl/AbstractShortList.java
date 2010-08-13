@@ -332,13 +332,12 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
     }
 
     /**
-     * Removes the first occurance of a primitive value from the list (optional operation).
+     * Removes the first occurrence of a primitive value from the list (optional operation).
      * <p>
      * This implementation uses <code>get(int)</code> and <code>removeShortAt(int)</code>.
      *
      * @param value  the value to remove
      * @return the primitive value previously at this index
-     * @throws IndexOutOfBoundsException if the index is invalid
      * @throws UnsupportedOperationException if not supported by this collection
      */
     public boolean removeShort(short value) {
@@ -360,6 +359,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
      * @param fromIndexInclusive  the start of the range to remove, inclusive
      * @param toIndexExclusive  the end of the range to remove, exclusive
      * @return <code>true</code> if the collection was modified
+     * @throws IndexOutOfBoundsException if the index is invalid
      * @throws UnsupportedOperationException if remove is not supported
      */
     public boolean removeRange(int fromIndexInclusive, int toIndexExclusive) {
