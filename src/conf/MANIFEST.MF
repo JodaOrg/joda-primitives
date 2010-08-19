@@ -11,7 +11,7 @@ Bundle-ManifestVersion: 2
 Bundle-Vendor: Joda.org
 Bundle-Name: Joda-Primitives
 Bundle-SymbolicName: joda-primitives
-Bundle-Version: 2.0
+Bundle-Version: 0.6
 Bundle-License: Apache 2.0
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-DocURL: http://joda-primitives.sourceforge.net/
