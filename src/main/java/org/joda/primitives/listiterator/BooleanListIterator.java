@@ -41,7 +41,7 @@ public interface BooleanListIterator extends BooleanIterator, PrimitiveListItera
     //-----------------------------------------------------------------------
     /**
      * Adds the specified value to the list underlying the iterator at the
-     * current iteration index.
+     * current iteration index (optional operation).
      *
      * @param value  the value to add
      * @throws IllegalStateException if the iterator cannot be added to at present
@@ -50,7 +50,7 @@ public interface BooleanListIterator extends BooleanIterator, PrimitiveListItera
     void add(boolean value);
 
     /**
-     * Sets the last retrieved value from the iterator.
+     * Sets the last retrieved value from the iterator (optional operation).
      *
      * @param value  the value to set
      * @throws IllegalStateException if the iterator cannot be set to at present

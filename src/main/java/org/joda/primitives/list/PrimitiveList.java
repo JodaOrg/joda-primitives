@@ -32,6 +32,8 @@ import org.joda.primitives.collection.PrimitiveCollection;
  */
 public interface PrimitiveList<E> extends PrimitiveCollection<E>, List<E> {
 
+    // Mandatory operations
+    //-----------------------------------------------------------------------
     /**
      * Gets the first list value.
      *
@@ -46,6 +48,8 @@ public interface PrimitiveList<E> extends PrimitiveCollection<E>, List<E> {
      */
     E last();
 
+    // Optional operations
+    //-----------------------------------------------------------------------
     /**
      * Removes a range of values from the list (optional operation).
      * <p>

@@ -178,13 +178,19 @@ public interface ByteList extends PrimitiveList<Byte>, ByteCollection {
      * <p>
      * This method is optional, throwing an UnsupportedOperationException if the
      * collection cannot be added to.
+     * <p>
+     * This method is deprecated to serve as a warning to developers.
+     * Using it can be confusing as it removes by index rather than by primitive.
+     * The method will still function correctly as the method is defined in the List interface.
+     * Use {@link #removeByteAt} instead.
      *
-     * @deprecated use byte removeByteAt(int) (will remain as in List interface)
+     * @deprecated use byte removeByteAt(int)
      * @param index  the index to remove from
      * @return the primitive value previously at this index
      * @throws IndexOutOfBoundsException if the index is invalid
      * @throws UnsupportedOperationException if not supported by this collection
      */
+    @Deprecated
     Byte remove(int index);
 
     /**
@@ -201,7 +207,7 @@ public interface ByteList extends PrimitiveList<Byte>, ByteCollection {
     byte removeByteAt(int index);
 
     /**
-     * Sets the primitive value at a specified index.
+     * Sets the primitive value at a specified index (optional operation).
      * <p>
      * This method is optional, throwing an UnsupportedOperationException if the
      * collection cannot be changed.

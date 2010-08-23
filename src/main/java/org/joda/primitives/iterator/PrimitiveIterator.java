@@ -25,10 +25,12 @@ import java.util.Iterator;
  */
 public interface PrimitiveIterator<E> extends Iterator<E> {
 
+    // Mandatory operations
+    //-----------------------------------------------------------------------
     /**
      * Checks whether the iterator can currently be modified.
      *
-     * @return <code>true</code> if the object can be modified
+     * @return <code>true</code> if the modification methods of the iterator can be used
      */
     boolean isModifiable();
 
@@ -39,8 +41,12 @@ public interface PrimitiveIterator<E> extends Iterator<E> {
      */
     boolean isResetable();
 
+    // Optional operations
+    //-----------------------------------------------------------------------
     /**
-     * Resets the iterator back to its initial state.
+     * Resets the iterator back to its initial state (optional operation).
+     * 
+     * @throws UnsupportedOperationException if the iterator cannot be reset
      */
     void reset();
 

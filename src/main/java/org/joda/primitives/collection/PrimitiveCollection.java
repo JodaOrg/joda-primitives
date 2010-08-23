@@ -33,6 +33,8 @@ import org.joda.primitives.PrimitiveCollectable;
  */
 public interface PrimitiveCollection<E> extends PrimitiveCollectable<E>, Collection<E> {
 
+    // Mandatory operations
+    //-----------------------------------------------------------------------
     /**
      * Checks if this collection contains any of the values in the specified collection.
      * If the specified collection is empty, <code>false</code> is returned.
