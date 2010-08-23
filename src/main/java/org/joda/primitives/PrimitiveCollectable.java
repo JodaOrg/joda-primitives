@@ -60,6 +60,15 @@ public interface PrimitiveCollectable<E> {
      */
     boolean isModifiable();
 
+    /**
+     * Clones the object, returning an independent copy.
+     * <p>
+     * If the implementation is immutable, the object may be returned unaltered.
+     * 
+     * @return a newly cloned object, not null
+     */
+    Object clone();
+
     // Optional operations
     //-----------------------------------------------------------------------
     /**
@@ -72,13 +81,5 @@ public interface PrimitiveCollectable<E> {
      * @throws UnsupportedOperationException if method not supported by this collection
      */
     void clear();
-
-    /**
-     * Clones the object (optional operation).
-     * 
-     * @return a newly cloned object
-     * @throws UnsupportedOperationException if method not supported by this collection
-     */
-    Object clone();
 
 }
