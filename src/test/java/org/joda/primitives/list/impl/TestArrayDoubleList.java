@@ -172,7 +172,7 @@ public class TestArrayDoubleList extends AbstractTestDoubleList {
         ArrayDoubleList c = new ArrayDoubleList(a);
         
         DoubleIterator it = c.iterator();
-        assertEquals(true, it.isResetable());
+        assertEquals(true, it.isResettable());
         assertEquals(0d, it.nextDouble(), 0.00001d);
         assertEquals(-0.9d, it.nextDouble(), 0.00001d);
         it.reset();

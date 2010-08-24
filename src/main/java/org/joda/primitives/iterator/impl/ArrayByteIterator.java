@@ -81,7 +81,7 @@ public class ArrayByteIterator implements ByteIterator {
         return false;
     }
 
-    public boolean isResetable() {
+    public boolean isResettable() {
         return true;
     }
 

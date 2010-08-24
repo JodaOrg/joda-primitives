@@ -81,7 +81,7 @@ public class ArrayDoubleIterator implements DoubleIterator {
         return false;
     }
 
-    public boolean isResetable() {
+    public boolean isResettable() {
         return true;
     }
 

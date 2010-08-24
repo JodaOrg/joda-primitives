@@ -172,7 +172,7 @@ public class TestArrayByteList extends AbstractTestByteList {
         ArrayByteList c = new ArrayByteList(a);
         
         ByteIterator it = c.iterator();
-        assertEquals(true, it.isResetable());
+        assertEquals(true, it.isResettable());
         assertEquals((byte) 0, it.nextByte());
         assertEquals((byte) 6, it.nextByte());
         it.reset();

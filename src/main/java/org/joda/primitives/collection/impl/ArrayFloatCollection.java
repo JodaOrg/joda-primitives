@@ -389,7 +389,7 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
             return collection.isModifiable();
         }
 
-        public boolean isResetable() {
+        public boolean isResettable() {
             return true;
         }
 

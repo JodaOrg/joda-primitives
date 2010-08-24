@@ -81,7 +81,7 @@ public class ArrayLongIterator implements LongIterator {
         return false;
     }
 
-    public boolean isResetable() {
+    public boolean isResettable() {
         return true;
     }
 

@@ -81,7 +81,7 @@ public class ArrayBooleanIterator implements BooleanIterator {
         return false;
     }
 
-    public boolean isResetable() {
+    public boolean isResettable() {
         return true;
     }
 

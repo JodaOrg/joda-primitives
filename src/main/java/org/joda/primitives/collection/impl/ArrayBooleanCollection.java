@@ -389,7 +389,7 @@ public class ArrayBooleanCollection extends AbstractBooleanCollection implements
             return collection.isModifiable();
         }
 
-        public boolean isResetable() {
+        public boolean isResettable() {
             return true;
         }
 

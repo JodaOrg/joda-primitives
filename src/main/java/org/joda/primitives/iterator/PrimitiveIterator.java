@@ -39,7 +39,7 @@ public interface PrimitiveIterator<E> extends Iterator<E> {
      *
      * @return <code>true</code> if the object can be reset
      */
-    boolean isResetable();
+    boolean isResettable();
 
     // Optional operations
     //-----------------------------------------------------------------------

@@ -172,7 +172,7 @@ public class TestArrayShortList extends AbstractTestShortList {
         ArrayShortList c = new ArrayShortList(a);
         
         ShortIterator it = c.iterator();
-        assertEquals(true, it.isResetable());
+        assertEquals(true, it.isResettable());
         assertEquals((short) 0, it.nextShort());
         assertEquals((short) 6, it.nextShort());
         it.reset();

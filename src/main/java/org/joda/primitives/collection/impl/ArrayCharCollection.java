@@ -415,7 +415,7 @@ public class ArrayCharCollection extends AbstractCharCollection implements Clone
             return collection.isModifiable();
         }
 
-        public boolean isResetable() {
+        public boolean isResettable() {
             return true;
         }
 

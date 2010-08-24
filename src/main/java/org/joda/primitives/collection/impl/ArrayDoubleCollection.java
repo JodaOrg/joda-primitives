@@ -389,7 +389,7 @@ public class ArrayDoubleCollection extends AbstractDoubleCollection implements C
             return collection.isModifiable();
         }
 
-        public boolean isResetable() {
+        public boolean isResettable() {
             return true;
         }
 

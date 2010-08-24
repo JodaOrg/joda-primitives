@@ -84,7 +84,7 @@ public class ArrayCharListIterator implements CharListIterator {
         return true;
     }
 
-    public boolean isResetable() {
+    public boolean isResettable() {
         return true;
     }
 

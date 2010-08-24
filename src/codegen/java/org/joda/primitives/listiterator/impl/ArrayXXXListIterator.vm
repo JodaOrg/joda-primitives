@@ -70,7 +70,7 @@ public class Array${Type}ListIterator implements ${Type}ListIterator {
         return true;
     }
 
-    public boolean isResetable() {
+    public boolean isResettable() {
         return true;
     }
 

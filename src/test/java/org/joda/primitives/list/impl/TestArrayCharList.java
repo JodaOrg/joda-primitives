@@ -172,7 +172,7 @@ public class TestArrayCharList extends AbstractTestCharList {
         ArrayCharList c = new ArrayCharList(a);
         
         CharIterator it = c.iterator();
-        assertEquals(true, it.isResetable());
+        assertEquals(true, it.isResettable());
         assertEquals((char) 0, it.nextChar());
         assertEquals('A', it.nextChar());
         it.reset();

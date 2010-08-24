@@ -846,7 +846,7 @@ public abstract class AbstractIntList extends AbstractIntCollection implements I
             return iList.isModifiable();
         }
 
-        public boolean isResetable() {
+        public boolean isResettable() {
             return true;
         }
 

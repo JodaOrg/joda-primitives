@@ -415,7 +415,7 @@ public class ArrayIntCollection extends AbstractIntCollection implements Cloneab
             return collection.isModifiable();
         }
 
-        public boolean isResetable() {
+        public boolean isResettable() {
             return true;
         }
 

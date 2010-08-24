@@ -172,7 +172,7 @@ public class TestArrayIntList extends AbstractTestIntList {
         ArrayIntList c = new ArrayIntList(a);
         
         IntIterator it = c.iterator();
-        assertEquals(true, it.isResetable());
+        assertEquals(true, it.isResettable());
         assertEquals(0, it.nextInt());
         assertEquals(6, it.nextInt());
         it.reset();

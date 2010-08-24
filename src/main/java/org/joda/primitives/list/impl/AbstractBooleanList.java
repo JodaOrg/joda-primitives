@@ -846,7 +846,7 @@ public abstract class AbstractBooleanList extends AbstractBooleanCollection impl
             return iList.isModifiable();
         }
 
-        public boolean isResetable() {
+        public boolean isResettable() {
             return true;
         }
 

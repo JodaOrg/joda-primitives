@@ -84,7 +84,7 @@ public class ArrayDoubleListIterator implements DoubleListIterator {
         return true;
     }
 
-    public boolean isResetable() {
+    public boolean isResettable() {
         return true;
     }
 

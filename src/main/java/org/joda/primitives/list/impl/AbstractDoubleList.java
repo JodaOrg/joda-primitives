@@ -846,7 +846,7 @@ public abstract class AbstractDoubleList extends AbstractDoubleCollection implem
             return iList.isModifiable();
         }
 
-        public boolean isResetable() {
+        public boolean isResettable() {
             return true;
         }
 

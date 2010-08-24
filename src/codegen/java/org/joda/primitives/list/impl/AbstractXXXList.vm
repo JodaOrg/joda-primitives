@@ -843,7 +843,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
             return iList.isModifiable();
         }
 
-        public boolean isResetable() {
+        public boolean isResettable() {
             return true;
         }
 

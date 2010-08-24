@@ -67,7 +67,7 @@ public class Array${Type}Iterator implements ${Type}Iterator {
         return false;
     }
 
-    public boolean isResetable() {
+    public boolean isResettable() {
         return true;
     }
 

@@ -846,7 +846,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
             return iList.isModifiable();
         }
 
-        public boolean isResetable() {
+        public boolean isResettable() {
             return true;
         }
 

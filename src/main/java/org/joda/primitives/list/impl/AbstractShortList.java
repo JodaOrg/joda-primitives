@@ -846,7 +846,7 @@ public abstract class AbstractShortList extends AbstractShortCollection implemen
             return iList.isModifiable();
         }
 
-        public boolean isResetable() {
+        public boolean isResettable() {
             return true;
         }
 

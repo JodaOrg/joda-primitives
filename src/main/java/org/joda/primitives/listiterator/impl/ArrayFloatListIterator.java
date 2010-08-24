@@ -84,7 +84,7 @@ public class ArrayFloatListIterator implements FloatListIterator {
         return true;
     }
 
-    public boolean isResetable() {
+    public boolean isResettable() {
         return true;
     }
 

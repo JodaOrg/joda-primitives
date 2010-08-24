@@ -415,7 +415,7 @@ public class ArrayByteCollection extends AbstractByteCollection implements Clone
             return collection.isModifiable();
         }
 
-        public boolean isResetable() {
+        public boolean isResettable() {
             return true;
         }
 

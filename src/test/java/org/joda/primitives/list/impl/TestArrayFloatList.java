@@ -172,7 +172,7 @@ public class TestArrayFloatList extends AbstractTestFloatList {
         ArrayFloatList c = new ArrayFloatList(a);
         
         FloatIterator it = c.iterator();
-        assertEquals(true, it.isResetable());
+        assertEquals(true, it.isResettable());
         assertEquals(0f, it.nextFloat(), 0.00001f);
         assertEquals(0.1f, it.nextFloat(), 0.00001f);
         it.reset();

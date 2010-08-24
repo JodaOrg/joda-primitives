@@ -84,7 +84,7 @@ public class ArrayIntListIterator implements IntListIterator {
         return true;
     }
 
-    public boolean isResetable() {
+    public boolean isResettable() {
         return true;
     }
 

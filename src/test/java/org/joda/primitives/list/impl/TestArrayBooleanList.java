@@ -172,7 +172,7 @@ public class TestArrayBooleanList extends AbstractTestBooleanList {
         ArrayBooleanList c = new ArrayBooleanList(a);
         
         BooleanIterator it = c.iterator();
-        assertEquals(true, it.isResetable());
+        assertEquals(true, it.isResettable());
         assertEquals(false, it.nextBoolean());
         assertEquals(true, it.nextBoolean());
         it.reset();

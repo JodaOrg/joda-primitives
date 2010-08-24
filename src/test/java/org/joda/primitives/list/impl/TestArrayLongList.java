@@ -172,7 +172,7 @@ public class TestArrayLongList extends AbstractTestLongList {
         ArrayLongList c = new ArrayLongList(a);
         
         LongIterator it = c.iterator();
-        assertEquals(true, it.isResetable());
+        assertEquals(true, it.isResettable());
         assertEquals(0L, it.nextLong());
         assertEquals(6L, it.nextLong());
         it.reset();

@@ -158,7 +158,7 @@ public class TestArray${Type}List extends AbstractTest${Type}List {
         Array${Type}List c = new Array${Type}List(a);
         
         ${Type}Iterator it = c.iterator();
-        assertEquals(true, it.isResetable());
+        assertEquals(true, it.isResettable());
         assertEquals(${testValue0}, it.next${Type}()${assertExtra});
         assertEquals(${testValue1}, it.next${Type}()${assertExtra});
         it.reset();

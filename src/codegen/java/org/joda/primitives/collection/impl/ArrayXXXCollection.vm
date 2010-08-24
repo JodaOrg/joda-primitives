@@ -415,7 +415,7 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
             return collection.isModifiable();
         }
 
-        public boolean isResetable() {
+        public boolean isResettable() {
             return true;
         }
 

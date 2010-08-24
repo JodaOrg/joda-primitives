@@ -81,7 +81,7 @@ public class ArrayShortIterator implements ShortIterator {
         return false;
     }
 
-    public boolean isResetable() {
+    public boolean isResettable() {
         return true;
     }
 

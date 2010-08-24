@@ -855,7 +855,7 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
             return iList.isModifiable();
         }
 
-        public boolean isResetable() {
+        public boolean isResettable() {
             return true;
         }
 
