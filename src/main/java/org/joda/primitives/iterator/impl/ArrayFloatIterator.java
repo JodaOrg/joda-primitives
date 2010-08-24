@@ -42,7 +42,27 @@ public class ArrayFloatIterator implements FloatIterator {
     protected int cursor = 0;
 
     /**
-     * Constructs an iterator over an <code>float</code> array.
+     * Creates an iterator over a copy of an array of <code>float</code> values.
+     * <p>
+     * The specified array is copied, making this class effectively immutable.
+     * Note that the class is not {@code final} thus it is not truly immutable.
+     * 
+     * @param array  the array to iterate over, must not be null
+     * @throws IllegalArgumentException if the array is null
+     */
+    public static ArrayFloatIterator copyOf(float[] array) {
+        if (array == null) {
+            throw new IllegalArgumentException("Array must not be null");
+        }
+        return new ArrayFloatIterator(array.clone());
+    }
+
+    /**
+     * Constructs an iterator over an array of <code>float</code> values.
+     * <p>
+     * The array is assigned internally, thus the caller holds a reference to
+     * the internal state of the returned iterator. It is not recommended to
+     * modify the state of the array after construction.
      * 
      * @param array  the array to iterate over, must not be null
      * @throws IllegalArgumentException if the array is null

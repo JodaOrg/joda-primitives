@@ -286,6 +286,7 @@ public class CodeGenerator {
         
         "org/joda/primitives/collection/impl/AbstractTestXXXCollection",
         "org/joda/primitives/collection/impl/TestArrayXXXCollection",
+        "org/joda/primitives/iterator/impl/TestArrayXXXIterator",
         "org/joda/primitives/list/impl/AbstractTestXXXList",
         "org/joda/primitives/list/impl/TestArrayXXXList",
     };

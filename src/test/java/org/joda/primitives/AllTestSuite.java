@@ -26,6 +26,14 @@ import org.joda.primitives.collection.impl.TestArrayFloatCollection;
 import org.joda.primitives.collection.impl.TestArrayIntCollection;
 import org.joda.primitives.collection.impl.TestArrayLongCollection;
 import org.joda.primitives.collection.impl.TestArrayShortCollection;
+import org.joda.primitives.iterator.impl.TestArrayBooleanIterator;
+import org.joda.primitives.iterator.impl.TestArrayByteIterator;
+import org.joda.primitives.iterator.impl.TestArrayCharIterator;
+import org.joda.primitives.iterator.impl.TestArrayDoubleIterator;
+import org.joda.primitives.iterator.impl.TestArrayFloatIterator;
+import org.joda.primitives.iterator.impl.TestArrayIntIterator;
+import org.joda.primitives.iterator.impl.TestArrayLongIterator;
+import org.joda.primitives.iterator.impl.TestArrayShortIterator;
 import org.joda.primitives.list.impl.TestArrayBooleanList;
 import org.joda.primitives.list.impl.TestArrayByteList;
 import org.joda.primitives.list.impl.TestArrayCharList;
@@ -62,6 +70,15 @@ public class AllTestSuite extends TestSuite {
         suite.addTest(TestArrayFloatCollection.suite());
         suite.addTest(TestArrayCharCollection.suite());
         suite.addTest(TestArrayBooleanCollection.suite());
+        
+        suite.addTest(TestArrayLongIterator.suite());
+        suite.addTest(TestArrayIntIterator.suite());
+        suite.addTest(TestArrayShortIterator.suite());
+        suite.addTest(TestArrayByteIterator.suite());
+        suite.addTest(TestArrayDoubleIterator.suite());
+        suite.addTest(TestArrayFloatIterator.suite());
+        suite.addTest(TestArrayCharIterator.suite());
+        suite.addTest(TestArrayBooleanIterator.suite());
         
         suite.addTest(TestArrayLongList.suite());
         suite.addTest(TestArrayIntList.suite());

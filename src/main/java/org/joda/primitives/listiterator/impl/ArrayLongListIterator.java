@@ -45,7 +45,27 @@ public class ArrayLongListIterator implements LongListIterator {
     protected int last = -1;
 
     /**
-     * Constructs an iterator over an <code>long</code> array.
+     * Creates an iterator over a copy of an array of <code>long</code> values.
+     * <p>
+     * The specified array is copied, ensuring the original data is unaltered.
+     * Note that the class is not immutable due to the {@code set} methods.
+     * 
+     * @param array  the array to iterate over, must not be null
+     * @throws IllegalArgumentException if the array is null
+     */
+    public static ArrayLongListIterator copyOf(long[] array) {
+        if (array == null) {
+            throw new IllegalArgumentException("Array must not be null");
+        }
+        return new ArrayLongListIterator(array.clone());
+    }
+
+    /**
+     * Constructs an iterator over an array of <code>long</code> values.
+     * <p>
+     * The array is assigned internally, thus the caller holds a reference to
+     * the internal state of the returned iterator. It is not recommended to
+     * modify the state of the array after construction.
      * 
      * @param array  the array to iterate over, must not be null
      * @throws IllegalArgumentException if the array is null

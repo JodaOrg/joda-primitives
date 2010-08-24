@@ -1,0 +1,63 @@
+${license}
+package org.joda.primitives.iterator.impl;
+
+import java.util.Iterator;
+
+import junit.framework.TestSuite;
+import junit.textui.TestRunner;
+
+import org.apache.commons.collections.iterators.AbstractTestIterator;
+import org.joda.primitives.${Type}Utils;
+
+/**
+ * Test Array${Type}Iterator.
+ *
+ * @author Stephen Colebourne
+ * @version CODE GENERATED
+ * @since 1.0
+ */
+public class TestArray${Type}Iterator extends AbstractTestIterator {
+    // This file is CODE GENERATED. Do not change manually.
+
+    public TestArray${Type}Iterator(String name) {
+        super(name);
+    }
+
+    //-----------------------------------------------------------------------
+    public static void main(String[] args) {
+        TestRunner.run(suite());
+    }
+
+    public static TestSuite suite() {
+        return new TestSuite(TestArray${Type}Iterator.class);
+    }
+
+    //-----------------------------------------------------------------------
+    @Override
+    public boolean supportsRemove() {
+        return false;
+    }
+
+    //-----------------------------------------------------------------------
+    @Override
+    public Iterator<${object}> makeEmptyIterator() {
+        return new Array${Type}Iterator(${Type}Utils.${emptyArray});
+    }
+
+    @Override
+    public Iterator<${object}> makeFullIterator() {
+        ${type}[] data = new ${type}[] {${testValues}};
+        return new Array${Type}Iterator(data);
+    }
+
+    //-----------------------------------------------------------------------
+    public void test_copyOf() {
+        ${type}[] data = new ${type}[] {${testValue0}, ${testValue1}, ${testValue2}};
+        Array${Type}Iterator test = Array${Type}Iterator.copyOf(data);
+        assertEquals(${testValue0}, test.next${Type}());
+        assertEquals(${testValue1}, test.next${Type}());
+        assertEquals(${testValue2}, test.next${Type}());
+        assertEquals(false, test.hasNext());
+   }
+
+}
