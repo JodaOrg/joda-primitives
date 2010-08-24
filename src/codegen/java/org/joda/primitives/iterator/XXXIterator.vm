@@ -8,6 +8,7 @@ package org.joda.primitives.iterator;
  * seamless integration with other APIs.
  * 
  * @author Stephen Colebourne
+ * @author Jason Tiscione
  * @version CODE GENERATED
  * @since 1.0
  */

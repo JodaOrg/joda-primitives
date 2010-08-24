@@ -17,6 +17,7 @@ import org.joda.primitives.listiterator.${Type}ListIterator;
  * <code>set()</code> is supported.
  *
  * @author Stephen Colebourne
+ * @author Jason Tiscione
  * @version CODE GENERATED
  * @since 1.0
  */

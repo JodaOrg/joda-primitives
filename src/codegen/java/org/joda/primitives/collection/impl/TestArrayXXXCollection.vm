@@ -15,6 +15,7 @@ import junit.textui.TestRunner;
  * Test Array${Type}Collection.
  *
  * @author Stephen Colebourne
+ * @author Jason Tiscione
  * @version CODE GENERATED
  * @since 1.0
  */

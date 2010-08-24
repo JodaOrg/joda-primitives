@@ -21,6 +21,7 @@ import org.joda.primitives.iterator.${Type}Iterator;
  * Subclasses may override other methods to increase efficiency.
  *
  * @author Stephen Colebourne
+ * @author Jason Tiscione
  * @version CODE GENERATED
  * @since 1.0
  */

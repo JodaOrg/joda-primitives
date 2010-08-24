@@ -12,6 +12,7 @@ import org.joda.primitives.iterator.${Type}Iterator;
  * Abstract base class for testing Abstract${Type}List subclasses.
  *
  * @author Stephen Colebourne
+ * @author Jason Tiscione
  * @version CODE GENERATED
  * @since 1.0
  */

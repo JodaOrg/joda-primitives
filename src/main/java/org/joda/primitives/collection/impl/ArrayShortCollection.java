@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2010 Stephen Colebourne, Jason Tiscione
+ *  Copyright 2001-2010 Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -36,6 +36,7 @@ import org.joda.primitives.iterator.ShortIterator;
  * Add, Remove and Clear are supported.
  *
  * @author Stephen Colebourne
+ * @author Jason Tiscione
  * @version CODE GENERATED
  * @since 1.0
  */

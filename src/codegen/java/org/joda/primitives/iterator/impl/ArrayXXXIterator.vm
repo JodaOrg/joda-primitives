@@ -16,6 +16,7 @@ import org.joda.primitives.iterator.${Type}Iterator;
  * It is unmodifiable and <code>remove()</code> is unsupported.
  *
  * @author Stephen Colebourne
+ * @author Jason Tiscione
  * @version CODE GENERATED
  * @since 1.0
  */

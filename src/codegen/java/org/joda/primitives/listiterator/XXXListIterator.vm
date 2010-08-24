@@ -7,6 +7,7 @@ import org.joda.primitives.iterator.${Type}Iterator;
  * Defines a list iterator over primitive <code>${type}</code> values.
  * 
  * @author Stephen Colebourne
+ * @author Jason Tiscione
  * @version CODE GENERATED
  * @since 1.0
  */

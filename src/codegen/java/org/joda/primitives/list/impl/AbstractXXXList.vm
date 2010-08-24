@@ -27,6 +27,7 @@ import org.joda.primitives.listiterator.${Type}ListIterator;
  *
  * @author Stephen Colebourne
  * @author Rodney Waldhoff
+ * @author Jason Tiscione
  * @version CODE GENERATED
  * @since 1.0
  */
