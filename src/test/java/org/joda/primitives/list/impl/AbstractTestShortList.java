@@ -124,6 +124,9 @@ public abstract class AbstractTestShortList extends AbstractTestList {
 
     //-----------------------------------------------------------------------
     public void testRemoveRange() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         int size = collection.size();
         ShortList plist = (ShortList) collection;
@@ -141,6 +144,9 @@ public abstract class AbstractTestShortList extends AbstractTestList {
     }
 
     public void testAddAllArray() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetFull();
         ShortList plist = (ShortList) collection;
         plist.addAll((short[]) null);
@@ -148,6 +154,9 @@ public abstract class AbstractTestShortList extends AbstractTestList {
     }
 
     public void testAddAllArrayIndexed() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetFull();
         ShortList plist = (ShortList) collection;
         plist.addAll(0, (short[]) null);
@@ -155,6 +164,9 @@ public abstract class AbstractTestShortList extends AbstractTestList {
     }
 
     public void testRemoveAllArray() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         ShortList plist = (ShortList) collection;
         plist.removeAll((short[]) null);
@@ -162,6 +174,9 @@ public abstract class AbstractTestShortList extends AbstractTestList {
     }
 
     public void testRetainAllArray() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         ShortList plist = (ShortList) collection;
         plist.retainAll((short[]) null);
@@ -216,6 +231,9 @@ public abstract class AbstractTestShortList extends AbstractTestList {
     }
 
     public void testFirst_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         ShortList plist = (ShortList) collection;
         plist.add((short) 0);
@@ -230,6 +248,9 @@ public abstract class AbstractTestShortList extends AbstractTestList {
     }
 
     public void testLast_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         ShortList plist = (ShortList) collection;
         plist.add((short) 0);

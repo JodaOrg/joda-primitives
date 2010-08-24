@@ -122,6 +122,9 @@ public abstract class AbstractTest${Type}List extends AbstractTestList {
 
     //-----------------------------------------------------------------------
     public void testRemoveRange() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         int size = collection.size();
         ${Type}List plist = (${Type}List) collection;
@@ -144,6 +147,9 @@ public abstract class AbstractTest${Type}List extends AbstractTestList {
     }
 
     public void testAddAllArray() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetFull();
         ${Type}List plist = (${Type}List) collection;
         plist.addAll((${type}[]) null);
@@ -151,6 +157,9 @@ public abstract class AbstractTest${Type}List extends AbstractTestList {
     }
 
     public void testAddAllArrayIndexed() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetFull();
         ${Type}List plist = (${Type}List) collection;
         plist.addAll(0, (${type}[]) null);
@@ -158,6 +167,9 @@ public abstract class AbstractTest${Type}List extends AbstractTestList {
     }
 
     public void testRemoveAllArray() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         ${Type}List plist = (${Type}List) collection;
         plist.removeAll((${type}[]) null);
@@ -165,6 +177,9 @@ public abstract class AbstractTest${Type}List extends AbstractTestList {
     }
 
     public void testRetainAllArray() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         ${Type}List plist = (${Type}List) collection;
         plist.retainAll((${type}[]) null);
@@ -231,6 +246,9 @@ public abstract class AbstractTest${Type}List extends AbstractTestList {
     }
 
     public void testFirst_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         ${Type}List plist = (${Type}List) collection;
         plist.add(${testValue0});
@@ -245,6 +263,9 @@ public abstract class AbstractTest${Type}List extends AbstractTestList {
     }
 
     public void testLast_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         ${Type}List plist = (${Type}List) collection;
         plist.add(${testValue0});

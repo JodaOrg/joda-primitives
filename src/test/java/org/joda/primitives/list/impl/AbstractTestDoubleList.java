@@ -124,6 +124,9 @@ public abstract class AbstractTestDoubleList extends AbstractTestList {
 
     //-----------------------------------------------------------------------
     public void testRemoveRange() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         int size = collection.size();
         DoubleList plist = (DoubleList) collection;
@@ -141,6 +144,9 @@ public abstract class AbstractTestDoubleList extends AbstractTestList {
     }
 
     public void testAddAllArray() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetFull();
         DoubleList plist = (DoubleList) collection;
         plist.addAll((double[]) null);
@@ -148,6 +154,9 @@ public abstract class AbstractTestDoubleList extends AbstractTestList {
     }
 
     public void testAddAllArrayIndexed() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetFull();
         DoubleList plist = (DoubleList) collection;
         plist.addAll(0, (double[]) null);
@@ -155,6 +164,9 @@ public abstract class AbstractTestDoubleList extends AbstractTestList {
     }
 
     public void testRemoveAllArray() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         DoubleList plist = (DoubleList) collection;
         plist.removeAll((double[]) null);
@@ -162,6 +174,9 @@ public abstract class AbstractTestDoubleList extends AbstractTestList {
     }
 
     public void testRetainAllArray() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         DoubleList plist = (DoubleList) collection;
         plist.retainAll((double[]) null);
@@ -216,6 +231,9 @@ public abstract class AbstractTestDoubleList extends AbstractTestList {
     }
 
     public void testFirst_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         DoubleList plist = (DoubleList) collection;
         plist.add(0d);
@@ -230,6 +248,9 @@ public abstract class AbstractTestDoubleList extends AbstractTestList {
     }
 
     public void testLast_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         DoubleList plist = (DoubleList) collection;
         plist.add(0d);

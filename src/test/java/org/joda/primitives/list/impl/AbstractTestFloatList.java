@@ -124,6 +124,9 @@ public abstract class AbstractTestFloatList extends AbstractTestList {
 
     //-----------------------------------------------------------------------
     public void testRemoveRange() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         int size = collection.size();
         FloatList plist = (FloatList) collection;
@@ -141,6 +144,9 @@ public abstract class AbstractTestFloatList extends AbstractTestList {
     }
 
     public void testAddAllArray() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetFull();
         FloatList plist = (FloatList) collection;
         plist.addAll((float[]) null);
@@ -148,6 +154,9 @@ public abstract class AbstractTestFloatList extends AbstractTestList {
     }
 
     public void testAddAllArrayIndexed() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetFull();
         FloatList plist = (FloatList) collection;
         plist.addAll(0, (float[]) null);
@@ -155,6 +164,9 @@ public abstract class AbstractTestFloatList extends AbstractTestList {
     }
 
     public void testRemoveAllArray() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         FloatList plist = (FloatList) collection;
         plist.removeAll((float[]) null);
@@ -162,6 +174,9 @@ public abstract class AbstractTestFloatList extends AbstractTestList {
     }
 
     public void testRetainAllArray() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         FloatList plist = (FloatList) collection;
         plist.retainAll((float[]) null);
@@ -216,6 +231,9 @@ public abstract class AbstractTestFloatList extends AbstractTestList {
     }
 
     public void testFirst_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         FloatList plist = (FloatList) collection;
         plist.add(0f);
@@ -230,6 +248,9 @@ public abstract class AbstractTestFloatList extends AbstractTestList {
     }
 
     public void testLast_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         FloatList plist = (FloatList) collection;
         plist.add(0f);

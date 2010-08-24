@@ -124,6 +124,9 @@ public abstract class AbstractTestLongList extends AbstractTestList {
 
     //-----------------------------------------------------------------------
     public void testRemoveRange() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         int size = collection.size();
         LongList plist = (LongList) collection;
@@ -141,6 +144,9 @@ public abstract class AbstractTestLongList extends AbstractTestList {
     }
 
     public void testAddAllArray() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetFull();
         LongList plist = (LongList) collection;
         plist.addAll((long[]) null);
@@ -148,6 +154,9 @@ public abstract class AbstractTestLongList extends AbstractTestList {
     }
 
     public void testAddAllArrayIndexed() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetFull();
         LongList plist = (LongList) collection;
         plist.addAll(0, (long[]) null);
@@ -155,6 +164,9 @@ public abstract class AbstractTestLongList extends AbstractTestList {
     }
 
     public void testRemoveAllArray() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         LongList plist = (LongList) collection;
         plist.removeAll((long[]) null);
@@ -162,6 +174,9 @@ public abstract class AbstractTestLongList extends AbstractTestList {
     }
 
     public void testRetainAllArray() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         LongList plist = (LongList) collection;
         plist.retainAll((long[]) null);
@@ -216,6 +231,9 @@ public abstract class AbstractTestLongList extends AbstractTestList {
     }
 
     public void testFirst_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         LongList plist = (LongList) collection;
         plist.add(0L);
@@ -230,6 +248,9 @@ public abstract class AbstractTestLongList extends AbstractTestList {
     }
 
     public void testLast_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         LongList plist = (LongList) collection;
         plist.add(0L);

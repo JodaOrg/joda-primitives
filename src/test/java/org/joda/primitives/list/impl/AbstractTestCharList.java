@@ -124,6 +124,9 @@ public abstract class AbstractTestCharList extends AbstractTestList {
 
     //-----------------------------------------------------------------------
     public void testRemoveRange() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         int size = collection.size();
         CharList plist = (CharList) collection;
@@ -141,6 +144,9 @@ public abstract class AbstractTestCharList extends AbstractTestList {
     }
 
     public void testAddAllArray() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetFull();
         CharList plist = (CharList) collection;
         plist.addAll((char[]) null);
@@ -148,6 +154,9 @@ public abstract class AbstractTestCharList extends AbstractTestList {
     }
 
     public void testAddAllArrayIndexed() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetFull();
         CharList plist = (CharList) collection;
         plist.addAll(0, (char[]) null);
@@ -155,6 +164,9 @@ public abstract class AbstractTestCharList extends AbstractTestList {
     }
 
     public void testRemoveAllArray() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         CharList plist = (CharList) collection;
         plist.removeAll((char[]) null);
@@ -162,6 +174,9 @@ public abstract class AbstractTestCharList extends AbstractTestList {
     }
 
     public void testRetainAllArray() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         CharList plist = (CharList) collection;
         plist.retainAll((char[]) null);
@@ -226,6 +241,9 @@ public abstract class AbstractTestCharList extends AbstractTestList {
     }
 
     public void testFirst_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         CharList plist = (CharList) collection;
         plist.add((char) 0);
@@ -240,6 +258,9 @@ public abstract class AbstractTestCharList extends AbstractTestList {
     }
 
     public void testLast_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         CharList plist = (CharList) collection;
         plist.add((char) 0);

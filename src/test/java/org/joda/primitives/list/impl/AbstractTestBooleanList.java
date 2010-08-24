@@ -122,6 +122,9 @@ public abstract class AbstractTestBooleanList extends AbstractTestList {
 
     //-----------------------------------------------------------------------
     public void testRemoveRange() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         int size = collection.size();
         BooleanList plist = (BooleanList) collection;
@@ -138,6 +141,9 @@ public abstract class AbstractTestBooleanList extends AbstractTestList {
     }
 
     public void testAddAllArray() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetFull();
         BooleanList plist = (BooleanList) collection;
         plist.addAll((boolean[]) null);
@@ -145,6 +151,9 @@ public abstract class AbstractTestBooleanList extends AbstractTestList {
     }
 
     public void testAddAllArrayIndexed() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetFull();
         BooleanList plist = (BooleanList) collection;
         plist.addAll(0, (boolean[]) null);
@@ -152,6 +161,9 @@ public abstract class AbstractTestBooleanList extends AbstractTestList {
     }
 
     public void testRemoveAllArray() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         BooleanList plist = (BooleanList) collection;
         plist.removeAll((boolean[]) null);
@@ -159,6 +171,9 @@ public abstract class AbstractTestBooleanList extends AbstractTestList {
     }
 
     public void testRetainAllArray() {
+        if (isRemoveSupported() == false) {
+            return;
+        }
         resetFull();
         BooleanList plist = (BooleanList) collection;
         plist.retainAll((boolean[]) null);
@@ -213,6 +228,9 @@ public abstract class AbstractTestBooleanList extends AbstractTestList {
     }
 
     public void testFirst_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         BooleanList plist = (BooleanList) collection;
         plist.add(false);
@@ -227,6 +245,9 @@ public abstract class AbstractTestBooleanList extends AbstractTestList {
     }
 
     public void testLast_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         BooleanList plist = (BooleanList) collection;
         plist.add(false);
