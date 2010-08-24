@@ -194,6 +194,9 @@ public abstract class AbstractTestBooleanList extends AbstractTestList {
     }
 
     public void testFirstBoolean_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         BooleanList plist = (BooleanList) collection;
         plist.add(false);
@@ -213,6 +216,9 @@ public abstract class AbstractTestBooleanList extends AbstractTestList {
     }
 
     public void testLastBoolean_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         BooleanList plist = (BooleanList) collection;
         plist.add(false);

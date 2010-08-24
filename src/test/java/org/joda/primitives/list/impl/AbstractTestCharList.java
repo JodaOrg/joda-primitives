@@ -186,6 +186,9 @@ public abstract class AbstractTestCharList extends AbstractTestList {
 
     //-----------------------------------------------------------------------
     public void testToStringContents() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         CharList plist = (CharList) collection;
         plist.add('a');
@@ -207,6 +210,9 @@ public abstract class AbstractTestCharList extends AbstractTestList {
     }
 
     public void testFirstChar_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         CharList plist = (CharList) collection;
         plist.add((char) 0);
@@ -226,6 +232,9 @@ public abstract class AbstractTestCharList extends AbstractTestList {
     }
 
     public void testLastChar_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         CharList plist = (CharList) collection;
         plist.add((char) 0);

@@ -197,6 +197,9 @@ public abstract class AbstractTestShortList extends AbstractTestList {
     }
 
     public void testFirstShort_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         ShortList plist = (ShortList) collection;
         plist.add((short) 0);
@@ -216,6 +219,9 @@ public abstract class AbstractTestShortList extends AbstractTestList {
     }
 
     public void testLastShort_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         ShortList plist = (ShortList) collection;
         plist.add((short) 0);

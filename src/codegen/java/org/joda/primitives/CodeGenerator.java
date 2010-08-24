@@ -283,12 +283,14 @@ public class CodeGenerator {
         "org/joda/primitives/listiterator/impl/ArrayXXXListIterator",
         "org/joda/primitives/list/impl/AbstractXXXList",
         "org/joda/primitives/list/impl/ArrayXXXList",
+        "org/joda/primitives/list/impl/ImmutableArrayXXXList",
         
         "org/joda/primitives/collection/impl/AbstractTestXXXCollection",
         "org/joda/primitives/collection/impl/TestArrayXXXCollection",
         "org/joda/primitives/iterator/impl/TestArrayXXXIterator",
         "org/joda/primitives/list/impl/AbstractTestXXXList",
         "org/joda/primitives/list/impl/TestArrayXXXList",
+        "org/joda/primitives/list/impl/TestImmutableArrayXXXList",
     };
 
 }

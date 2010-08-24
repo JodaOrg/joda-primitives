@@ -197,6 +197,9 @@ public abstract class AbstractTestDoubleList extends AbstractTestList {
     }
 
     public void testFirstDouble_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         DoubleList plist = (DoubleList) collection;
         plist.add(0d);
@@ -216,6 +219,9 @@ public abstract class AbstractTestDoubleList extends AbstractTestList {
     }
 
     public void testLastDouble_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         DoubleList plist = (DoubleList) collection;
         plist.add(0d);

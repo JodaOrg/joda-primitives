@@ -197,6 +197,9 @@ public abstract class AbstractTestIntList extends AbstractTestList {
     }
 
     public void testFirstInt_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         IntList plist = (IntList) collection;
         plist.add(0);
@@ -216,6 +219,9 @@ public abstract class AbstractTestIntList extends AbstractTestList {
     }
 
     public void testLastInt_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         IntList plist = (IntList) collection;
         plist.add(0);

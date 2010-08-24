@@ -42,6 +42,14 @@ import org.joda.primitives.list.impl.TestArrayFloatList;
 import org.joda.primitives.list.impl.TestArrayIntList;
 import org.joda.primitives.list.impl.TestArrayLongList;
 import org.joda.primitives.list.impl.TestArrayShortList;
+import org.joda.primitives.list.impl.TestImmutableArrayBooleanList;
+import org.joda.primitives.list.impl.TestImmutableArrayByteList;
+import org.joda.primitives.list.impl.TestImmutableArrayCharList;
+import org.joda.primitives.list.impl.TestImmutableArrayDoubleList;
+import org.joda.primitives.list.impl.TestImmutableArrayFloatList;
+import org.joda.primitives.list.impl.TestImmutableArrayIntList;
+import org.joda.primitives.list.impl.TestImmutableArrayLongList;
+import org.joda.primitives.list.impl.TestImmutableArrayShortList;
 
 /**
  * Overall test manager.
@@ -88,6 +96,15 @@ public class AllTestSuite extends TestSuite {
         suite.addTest(TestArrayFloatList.suite());
         suite.addTest(TestArrayCharList.suite());
         suite.addTest(TestArrayBooleanList.suite());
+        
+        suite.addTest(TestImmutableArrayLongList.suite());
+        suite.addTest(TestImmutableArrayIntList.suite());
+        suite.addTest(TestImmutableArrayShortList.suite());
+        suite.addTest(TestImmutableArrayByteList.suite());
+        suite.addTest(TestImmutableArrayDoubleList.suite());
+        suite.addTest(TestImmutableArrayFloatList.suite());
+        suite.addTest(TestImmutableArrayCharList.suite());
+        suite.addTest(TestImmutableArrayBooleanList.suite());
         return suite;
     }
 

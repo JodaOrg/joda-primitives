@@ -197,6 +197,9 @@ public abstract class AbstractTestLongList extends AbstractTestList {
     }
 
     public void testFirstLong_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         LongList plist = (LongList) collection;
         plist.add(0L);
@@ -216,6 +219,9 @@ public abstract class AbstractTestLongList extends AbstractTestList {
     }
 
     public void testLastLong_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         LongList plist = (LongList) collection;
         plist.add(0L);

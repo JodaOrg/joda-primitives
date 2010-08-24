@@ -197,6 +197,9 @@ public abstract class AbstractTestFloatList extends AbstractTestList {
     }
 
     public void testFirstFloat_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         FloatList plist = (FloatList) collection;
         plist.add(0f);
@@ -216,6 +219,9 @@ public abstract class AbstractTestFloatList extends AbstractTestList {
     }
 
     public void testLastFloat_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         FloatList plist = (FloatList) collection;
         plist.add(0f);

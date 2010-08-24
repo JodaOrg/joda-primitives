@@ -1,0 +1,154 @@
+${license}
+package org.joda.primitives.list.impl;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
+import junit.framework.TestSuite;
+import junit.textui.TestRunner;
+
+import org.joda.primitives.${Type}Utils;
+import org.joda.primitives.iterator.${Type}Iterator;
+import org.joda.primitives.list.${Type}List;
+
+/**
+ * Tests for ImmutableArray${Type}List.
+ *
+ * @author Stephen Colebourne
+ * @version CODE GENERATED
+ * @since 1.0
+ */
+public class TestImmutableArray${Type}List extends AbstractTest${Type}List {
+    // This file is CODE GENERATED. Do not change manually.
+
+    public TestImmutableArray${Type}List(String name) {
+        super(name);
+    }
+
+    //-----------------------------------------------------------------------
+    public static void main(String[] args) {
+        TestRunner.run(suite());
+    }
+
+    public static TestSuite suite() {
+        return new TestSuite(TestImmutableArray${Type}List.class);
+    }
+
+    //-----------------------------------------------------------------------
+    public boolean isFailFastSupported() {
+        return false;
+    }
+
+    public boolean isAddSupported() {
+        return false;
+    }
+
+    public boolean isRemoveSupported() {
+        return false;
+    }
+
+    public boolean isSetSupported() {
+        return false;
+    }
+
+    public List<${object}> makeEmptyList() {
+        return ImmutableArray${Type}List.empty();
+    }
+
+    public List<${object}> makeFullList() {
+        ${type}[] a = new ${type}[] {${testValues}};
+        return ImmutableArray${Type}List.copyOf(a);
+    }
+
+    public List<${object}> makeConfirmedFullCollection() {
+        ${type}[] a = new ${type}[] {${testValues}};
+        return ImmutableArray${Type}List.copyOf(a);
+    }
+
+    public Object[] getFullElements() {
+        ${type}[] a = new ${type}[] {${testValues}};
+        Object[] objs = new Object[a.length];
+        for (int i = 0; i < a.length; i++) {
+            objs[i] = ${Type}Utils.toObject(a[i]);
+        }
+        return objs;
+    }
+
+    //-----------------------------------------------------------------------
+    public void testUnsupportedAdd() {
+        try {
+            makeEmptyList().add(${testValue0});
+        } catch (UnsupportedOperationException ex) {
+            
+        }
+    }
+
+    public void testUnsupportedSet() {
+        try {
+            makeEmptyList().set(0, ${testValue0});
+        } catch (UnsupportedOperationException ex) {
+            
+        }
+    }
+
+    //-----------------------------------------------------------------------
+    public void testConstructor() throws Exception {
+        ImmutableArray${Type}List c = ImmutableArray${Type}List.empty();
+        assertEquals(0, c.size());
+    }
+
+    public void testConstructor_array() throws Exception {
+        ${type}[] a = new ${type}[] {${testValues}};
+        ImmutableArray${Type}List c = ImmutableArray${Type}List.copyOf(a);
+        assertEquals(a.length, c.size());
+        assertEquals(true, Arrays.equals(c.to${Type}Array(), a));
+        
+        c = ImmutableArray${Type}List.copyOf((${type}[]) null);
+        assertEquals(0, c.size());
+    }
+
+    public void testConstructor_Collection() throws Exception {
+        ImmutableArray${Type}List c = ImmutableArray${Type}List.copyOf((Collection<${object}>) null);
+        assertEquals(0, c.size());
+        
+        Collection<${object}> coll = new ArrayList<${object}>();
+        coll.add(${testValue0});
+        c = ImmutableArray${Type}List.copyOf(coll);
+        assertEquals(1, c.size());
+        assertEquals(${testValue0}, c.iterator().next${Type}());
+        
+        ImmutableArray${Type}List c2 = ImmutableArray${Type}List.copyOf(c);
+        assertSame(c, c2);
+    }
+
+    public void testIteratorIsNotModifiable() throws Exception {
+        ${type}[] a = new ${type}[] {${testValues}};
+        ImmutableArray${Type}List c = ImmutableArray${Type}List.copyOf(a);
+        
+        assertEquals(false, c.iterator().isModifiable());
+    }
+
+    public void testIteratorReset() throws Exception {
+        ${type}[] a = new ${type}[] {${testValue0}, ${testValue1}, ${testValue2}};
+        ImmutableArray${Type}List c = ImmutableArray${Type}List.copyOf(a);
+        
+        ${Type}Iterator it = c.iterator();
+        assertEquals(true, it.isResettable());
+        assertEquals(${testValue0}, it.next${Type}()${assertExtra});
+        assertEquals(${testValue1}, it.next${Type}()${assertExtra});
+        it.reset();
+        assertEquals(${testValue0}, it.next${Type}()${assertExtra});
+        assertEquals(${testValue1}, it.next${Type}()${assertExtra});
+    }
+
+    //-----------------------------------------------------------------------
+    public void testClone() {
+        resetFull();
+        ${Type}List coll = (${Type}List) collection;
+        ${Type}List coll2 = (${Type}List) coll.clone();
+        assertTrue(coll == coll2);
+    }
+
+}

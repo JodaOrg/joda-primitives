@@ -197,6 +197,9 @@ public abstract class AbstractTestByteList extends AbstractTestList {
     }
 
     public void testFirstByte_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         ByteList plist = (ByteList) collection;
         plist.add((byte) 0);
@@ -216,6 +219,9 @@ public abstract class AbstractTestByteList extends AbstractTestList {
     }
 
     public void testLastByte_notEmpty() {
+        if (isAddSupported() == false) {
+            return;
+        }
         resetEmpty();
         ByteList plist = (ByteList) collection;
         plist.add((byte) 0);
