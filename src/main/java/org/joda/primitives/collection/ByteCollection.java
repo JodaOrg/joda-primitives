@@ -15,6 +15,7 @@
  */
 package org.joda.primitives.collection;
 
+import org.joda.primitives.iterable.ByteIterable;
 import org.joda.primitives.iterator.ByteIterator;
 
 /**
@@ -30,7 +31,7 @@ import org.joda.primitives.iterator.ByteIterator;
  * @version CODE GENERATED
  * @since 1.0
  */
-public interface ByteCollection extends PrimitiveCollection<Byte> {
+public interface ByteCollection extends PrimitiveCollection<Byte>, ByteIterable {
     // This file is CODE GENERATED. Do not change manually.
 
     // Mandatory operations
@@ -41,6 +42,8 @@ public interface ByteCollection extends PrimitiveCollection<Byte> {
      * @return an iterator over this collection, not null
      */
     ByteIterator iterator();
+    // This method is specified here, despite being in {@code ByteIterable},
+    // due to compiler bug 6487370.
 
     /**
      * Checks whether this collection contains a specified primitive value.

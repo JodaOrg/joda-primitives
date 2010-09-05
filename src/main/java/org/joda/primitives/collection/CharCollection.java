@@ -15,6 +15,7 @@
  */
 package org.joda.primitives.collection;
 
+import org.joda.primitives.iterable.CharIterable;
 import org.joda.primitives.iterator.CharIterator;
 
 /**
@@ -30,7 +31,7 @@ import org.joda.primitives.iterator.CharIterator;
  * @version CODE GENERATED
  * @since 1.0
  */
-public interface CharCollection extends PrimitiveCollection<Character> {
+public interface CharCollection extends PrimitiveCollection<Character>, CharIterable {
     // This file is CODE GENERATED. Do not change manually.
 
     // Mandatory operations
@@ -41,6 +42,8 @@ public interface CharCollection extends PrimitiveCollection<Character> {
      * @return an iterator over this collection, not null
      */
     CharIterator iterator();
+    // This method is specified here, despite being in {@code CharIterable},
+    // due to compiler bug 6487370.
 
     /**
      * Checks whether this collection contains a specified primitive value.

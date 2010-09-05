@@ -15,6 +15,7 @@
  */
 package org.joda.primitives.collection;
 
+import org.joda.primitives.iterable.ShortIterable;
 import org.joda.primitives.iterator.ShortIterator;
 
 /**
@@ -30,7 +31,7 @@ import org.joda.primitives.iterator.ShortIterator;
  * @version CODE GENERATED
  * @since 1.0
  */
-public interface ShortCollection extends PrimitiveCollection<Short> {
+public interface ShortCollection extends PrimitiveCollection<Short>, ShortIterable {
     // This file is CODE GENERATED. Do not change manually.
 
     // Mandatory operations
@@ -41,6 +42,8 @@ public interface ShortCollection extends PrimitiveCollection<Short> {
      * @return an iterator over this collection, not null
      */
     ShortIterator iterator();
+    // This method is specified here, despite being in {@code ShortIterable},
+    // due to compiler bug 6487370.
 
     /**
      * Checks whether this collection contains a specified primitive value.

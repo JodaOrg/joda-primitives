@@ -15,6 +15,7 @@
  */
 package org.joda.primitives.collection;
 
+import org.joda.primitives.iterable.DoubleIterable;
 import org.joda.primitives.iterator.DoubleIterator;
 
 /**
@@ -30,7 +31,7 @@ import org.joda.primitives.iterator.DoubleIterator;
  * @version CODE GENERATED
  * @since 1.0
  */
-public interface DoubleCollection extends PrimitiveCollection<Double> {
+public interface DoubleCollection extends PrimitiveCollection<Double>, DoubleIterable {
     // This file is CODE GENERATED. Do not change manually.
 
     // Mandatory operations
@@ -41,6 +42,8 @@ public interface DoubleCollection extends PrimitiveCollection<Double> {
      * @return an iterator over this collection, not null
      */
     DoubleIterator iterator();
+    // This method is specified here, despite being in {@code DoubleIterable},
+    // due to compiler bug 6487370.
 
     /**
      * Checks whether this collection contains a specified primitive value.

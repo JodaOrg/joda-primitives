@@ -15,6 +15,7 @@
  */
 package org.joda.primitives.collection;
 
+import org.joda.primitives.iterable.BooleanIterable;
 import org.joda.primitives.iterator.BooleanIterator;
 
 /**
@@ -30,7 +31,7 @@ import org.joda.primitives.iterator.BooleanIterator;
  * @version CODE GENERATED
  * @since 1.0
  */
-public interface BooleanCollection extends PrimitiveCollection<Boolean> {
+public interface BooleanCollection extends PrimitiveCollection<Boolean>, BooleanIterable {
     // This file is CODE GENERATED. Do not change manually.
 
     // Mandatory operations
@@ -41,6 +42,8 @@ public interface BooleanCollection extends PrimitiveCollection<Boolean> {
      * @return an iterator over this collection, not null
      */
     BooleanIterator iterator();
+    // This method is specified here, despite being in {@code BooleanIterable},
+    // due to compiler bug 6487370.
 
     /**
      * Checks whether this collection contains a specified primitive value.

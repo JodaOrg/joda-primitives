@@ -272,8 +272,9 @@ public class CodeGenerator {
     private static final String[] TEMPLATE_FILENAMES = new String[] {
         "org/joda/primitives/XXXUtils",
         
-        "org/joda/primitives/collection/XXXCollection",
         "org/joda/primitives/iterator/XXXIterator",
+        "org/joda/primitives/iterable/XXXIterable",
+        "org/joda/primitives/collection/XXXCollection",
         "org/joda/primitives/list/XXXList",
         "org/joda/primitives/listiterator/XXXListIterator",
         

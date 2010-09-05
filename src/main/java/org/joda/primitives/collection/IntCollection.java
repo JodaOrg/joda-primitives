@@ -15,6 +15,7 @@
  */
 package org.joda.primitives.collection;
 
+import org.joda.primitives.iterable.IntIterable;
 import org.joda.primitives.iterator.IntIterator;
 
 /**
@@ -30,7 +31,7 @@ import org.joda.primitives.iterator.IntIterator;
  * @version CODE GENERATED
  * @since 1.0
  */
-public interface IntCollection extends PrimitiveCollection<Integer> {
+public interface IntCollection extends PrimitiveCollection<Integer>, IntIterable {
     // This file is CODE GENERATED. Do not change manually.
 
     // Mandatory operations
@@ -41,6 +42,8 @@ public interface IntCollection extends PrimitiveCollection<Integer> {
      * @return an iterator over this collection, not null
      */
     IntIterator iterator();
+    // This method is specified here, despite being in {@code IntIterable},
+    // due to compiler bug 6487370.
 
     /**
      * Checks whether this collection contains a specified primitive value.

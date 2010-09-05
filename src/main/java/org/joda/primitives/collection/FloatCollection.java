@@ -15,6 +15,7 @@
  */
 package org.joda.primitives.collection;
 
+import org.joda.primitives.iterable.FloatIterable;
 import org.joda.primitives.iterator.FloatIterator;
 
 /**
@@ -30,7 +31,7 @@ import org.joda.primitives.iterator.FloatIterator;
  * @version CODE GENERATED
  * @since 1.0
  */
-public interface FloatCollection extends PrimitiveCollection<Float> {
+public interface FloatCollection extends PrimitiveCollection<Float>, FloatIterable {
     // This file is CODE GENERATED. Do not change manually.
 
     // Mandatory operations
@@ -41,6 +42,8 @@ public interface FloatCollection extends PrimitiveCollection<Float> {
      * @return an iterator over this collection, not null
      */
     FloatIterator iterator();
+    // This method is specified here, despite being in {@code FloatIterable},
+    // due to compiler bug 6487370.
 
     /**
      * Checks whether this collection contains a specified primitive value.

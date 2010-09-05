@@ -15,6 +15,7 @@
  */
 package org.joda.primitives.collection;
 
+import org.joda.primitives.iterable.LongIterable;
 import org.joda.primitives.iterator.LongIterator;
 
 /**
@@ -30,7 +31,7 @@ import org.joda.primitives.iterator.LongIterator;
  * @version CODE GENERATED
  * @since 1.0
  */
-public interface LongCollection extends PrimitiveCollection<Long> {
+public interface LongCollection extends PrimitiveCollection<Long>, LongIterable {
     // This file is CODE GENERATED. Do not change manually.
 
     // Mandatory operations
@@ -41,6 +42,8 @@ public interface LongCollection extends PrimitiveCollection<Long> {
      * @return an iterator over this collection, not null
      */
     LongIterator iterator();
+    // This method is specified here, despite being in {@code LongIterable},
+    // due to compiler bug 6487370.
 
     /**
      * Checks whether this collection contains a specified primitive value.

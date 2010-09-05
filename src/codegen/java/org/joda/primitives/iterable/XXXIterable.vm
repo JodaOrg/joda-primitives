@@ -1,0 +1,28 @@
+${license}
+package org.joda.primitives.iterable;
+
+import org.joda.primitives.iterator.${Type}Iterator;
+
+/**
+ * Defines a provider of iteration over a collection of primitive <code>${type}</code> values.
+ * <p>
+ * This interface extends {@link java.util.Iterable Iterable} allowing
+ * seamless integration with other APIs.
+ * 
+ * @author Stephen Colebourne
+ * @version CODE GENERATED
+ * @since 1.0
+ */
+public interface ${Type}Iterable extends Iterable<${object}> {
+    // This file is CODE GENERATED. Do not change manually.
+
+    // Mandatory operations
+    //-----------------------------------------------------------------------
+    /**
+     * Gets an iterator over this collection capable of accessing the primitive values.
+     *
+     * @return an iterator, not null
+     */
+    ${Type}Iterator iterator();
+
+}
