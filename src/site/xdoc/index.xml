@@ -22,6 +22,7 @@ Current interfaces and implementations include:
 <ul>
 <li>Collection</li>
 <li>List</li>
+<li>Iterable</li>
 <li>Iterator</li>
 <li>ListIterator</li>
 </ul>
