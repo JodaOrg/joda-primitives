@@ -8,7 +8,7 @@
   <artifactId>joda-primitives</artifactId>
   <packaging>jar</packaging>
   <name>Joda primitives</name>
-  <version>0.6</version>
+  <version>1.0</version>
   <description>Collections and utilities based on primitives types</description>
   <url>http://joda-primitives.sourceforge.net</url>
   <issueManagement>
@@ -23,7 +23,7 @@
       <unsubscribe>http://lists.sourceforge.net/lists/listinfo/joda-primitives-interest</unsubscribe>
       <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=joda-primitives-interest</archive>
       <otherArchives>
-        <otherArchive>http://n2.nabble.com/Joda-Interest-f219941.html</otherArchive>
+        <otherArchive>http://joda-interest.219941.n2.nabble.com/</otherArchive>
       </otherArchives>
     </mailingList>
   </mailingLists>
@@ -35,6 +35,7 @@
       <roles>
         <role>Project Lead</role>
       </roles>
+      <timezone>0</timezone>
     </developer>
     <developer>
       <name>Maarten Coene</name>
