@@ -38,9 +38,9 @@ public interface ByteList extends PrimitiveList<Byte>, ByteCollection {
     // Mandatory operations
     //-----------------------------------------------------------------------
     /**
-     * Gets an iterator over this collection capable of accessing the primitive values.
+     * Gets an iterator over this list capable of accessing the primitive values.
      *
-     * @return an iterator over this collection, not null
+     * @return an iterator over this list, not null
      */
     ByteIterator iterator();
     // This method is specified here, despite being in {@code ByteCollection},

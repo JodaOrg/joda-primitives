@@ -38,9 +38,9 @@ public interface ShortList extends PrimitiveList<Short>, ShortCollection {
     // Mandatory operations
     //-----------------------------------------------------------------------
     /**
-     * Gets an iterator over this collection capable of accessing the primitive values.
+     * Gets an iterator over this list capable of accessing the primitive values.
      *
-     * @return an iterator over this collection, not null
+     * @return an iterator over this list, not null
      */
     ShortIterator iterator();
     // This method is specified here, despite being in {@code ShortCollection},
