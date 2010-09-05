@@ -16,6 +16,7 @@
 package org.joda.primitives.list;
 
 import org.joda.primitives.collection.LongCollection;
+import org.joda.primitives.iterator.LongIterator;
 import org.joda.primitives.listiterator.LongListIterator;
 
 /**
@@ -36,6 +37,15 @@ public interface LongList extends PrimitiveList<Long>, LongCollection {
 
     // Mandatory operations
     //-----------------------------------------------------------------------
+    /**
+     * Gets an iterator over this collection capable of accessing the primitive values.
+     *
+     * @return an iterator over this collection, not null
+     */
+    LongIterator iterator();
+    // This method is specified here, despite being in {@code LongCollection},
+    // due to compiler bug 6487370.
+
     /**
      * Gets the primitive value at the specified index.
      *

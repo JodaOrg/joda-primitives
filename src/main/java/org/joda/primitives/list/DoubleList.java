@@ -16,6 +16,7 @@
 package org.joda.primitives.list;
 
 import org.joda.primitives.collection.DoubleCollection;
+import org.joda.primitives.iterator.DoubleIterator;
 import org.joda.primitives.listiterator.DoubleListIterator;
 
 /**
@@ -36,6 +37,15 @@ public interface DoubleList extends PrimitiveList<Double>, DoubleCollection {
 
     // Mandatory operations
     //-----------------------------------------------------------------------
+    /**
+     * Gets an iterator over this collection capable of accessing the primitive values.
+     *
+     * @return an iterator over this collection, not null
+     */
+    DoubleIterator iterator();
+    // This method is specified here, despite being in {@code DoubleCollection},
+    // due to compiler bug 6487370.
+
     /**
      * Gets the primitive value at the specified index.
      *

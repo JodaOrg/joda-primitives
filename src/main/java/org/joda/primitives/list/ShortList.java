@@ -16,6 +16,7 @@
 package org.joda.primitives.list;
 
 import org.joda.primitives.collection.ShortCollection;
+import org.joda.primitives.iterator.ShortIterator;
 import org.joda.primitives.listiterator.ShortListIterator;
 
 /**
@@ -36,6 +37,15 @@ public interface ShortList extends PrimitiveList<Short>, ShortCollection {
 
     // Mandatory operations
     //-----------------------------------------------------------------------
+    /**
+     * Gets an iterator over this collection capable of accessing the primitive values.
+     *
+     * @return an iterator over this collection, not null
+     */
+    ShortIterator iterator();
+    // This method is specified here, despite being in {@code ShortCollection},
+    // due to compiler bug 6487370.
+
     /**
      * Gets the primitive value at the specified index.
      *

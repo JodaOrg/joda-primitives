@@ -16,6 +16,7 @@
 package org.joda.primitives.list;
 
 import org.joda.primitives.collection.ByteCollection;
+import org.joda.primitives.iterator.ByteIterator;
 import org.joda.primitives.listiterator.ByteListIterator;
 
 /**
@@ -36,6 +37,15 @@ public interface ByteList extends PrimitiveList<Byte>, ByteCollection {
 
     // Mandatory operations
     //-----------------------------------------------------------------------
+    /**
+     * Gets an iterator over this collection capable of accessing the primitive values.
+     *
+     * @return an iterator over this collection, not null
+     */
+    ByteIterator iterator();
+    // This method is specified here, despite being in {@code ByteCollection},
+    // due to compiler bug 6487370.
+
     /**
      * Gets the primitive value at the specified index.
      *

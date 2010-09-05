@@ -16,6 +16,7 @@
 package org.joda.primitives.list;
 
 import org.joda.primitives.collection.IntCollection;
+import org.joda.primitives.iterator.IntIterator;
 import org.joda.primitives.listiterator.IntListIterator;
 
 /**
@@ -36,6 +37,15 @@ public interface IntList extends PrimitiveList<Integer>, IntCollection {
 
     // Mandatory operations
     //-----------------------------------------------------------------------
+    /**
+     * Gets an iterator over this collection capable of accessing the primitive values.
+     *
+     * @return an iterator over this collection, not null
+     */
+    IntIterator iterator();
+    // This method is specified here, despite being in {@code IntCollection},
+    // due to compiler bug 6487370.
+
     /**
      * Gets the primitive value at the specified index.
      *

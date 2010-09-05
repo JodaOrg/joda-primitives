@@ -16,6 +16,7 @@
 package org.joda.primitives.list;
 
 import org.joda.primitives.collection.CharCollection;
+import org.joda.primitives.iterator.CharIterator;
 import org.joda.primitives.listiterator.CharListIterator;
 
 /**
@@ -36,6 +37,15 @@ public interface CharList extends PrimitiveList<Character>, CharCollection {
 
     // Mandatory operations
     //-----------------------------------------------------------------------
+    /**
+     * Gets an iterator over this collection capable of accessing the primitive values.
+     *
+     * @return an iterator over this collection, not null
+     */
+    CharIterator iterator();
+    // This method is specified here, despite being in {@code CharCollection},
+    // due to compiler bug 6487370.
+
     /**
      * Gets the primitive value at the specified index.
      *
