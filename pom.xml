@@ -22,9 +22,6 @@
       <subscribe>http://lists.sourceforge.net/lists/listinfo/joda-primitives-interest</subscribe>
       <unsubscribe>http://lists.sourceforge.net/lists/listinfo/joda-primitives-interest</unsubscribe>
       <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=joda-primitives-interest</archive>
-      <otherArchives>
-        <otherArchive>http://joda-interest.219941.n2.nabble.com/</otherArchive>
-      </otherArchives>
     </mailingList>
   </mailingLists>
   <developers>
@@ -63,9 +60,9 @@
     </license>
   </licenses>
   <scm>
-    <connection>scm:svn:http://joda-primitives.svn.sourceforge.net/svnroot/joda-primitives/trunk/</connection>
-    <developerConnection>scm:svn:https://joda-primitives.svn.sourceforge.net/svnroot/joda-primitives/trunk/</developerConnection>
-    <url>http://joda-primitives.svn.sourceforge.net/viewvc/joda-primitives/trunk/JodaPrimitives/</url>
+    <connection>scm:git:git@github.com:JodaOrg/joda-primitives.git</connection>
+    <developerConnection>scm:git:git@github.com:JodaOrg/joda-primitives.git</developerConnection>
+    <url>https://github.com/JodaOrg/joda-primitives</url>
   </scm>
   <organization>
     <name>Joda.org</name>
@@ -102,27 +99,6 @@
           <debuglevel>lines,source</debuglevel>
           <optimize>true</optimize>
           <showDeprecation>false</showDeprecation>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-toolchains-plugin</artifactId>
-        <version>1.0</version>
-        <executions>
-          <execution>
-            <phase>validate</phase>
-            <goals>
-              <goal>toolchain</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <toolchains>
-            <jdk>
-              <version>1.5</version>
-              <vendor>sun</vendor>
-            </jdk>
-          </toolchains>
         </configuration>
       </plugin>
       <plugin>
@@ -282,12 +258,8 @@
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jxr-plugin</artifactId>
-        <version>2.2</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-changes-plugin</artifactId>
+        <version>2.3</version>
         <reportSets>
           <reportSet>
             <reports>
@@ -295,6 +267,22 @@
             </reports>
           </reportSet>
         </reportSets>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>2.2</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>2.5</version>
+        <configuration>
+          <linkXref>true</linkXref>
+          <sourceEncoding>utf-8</sourceEncoding>
+          <minimumTokens>100</minimumTokens>
+          <targetJdk>1.5</targetJdk>
+        </configuration>
       </plugin>
   	</plugins>
   </reporting>
@@ -315,7 +303,7 @@
     <site>
       <id>sf-web-joda-primitives</id>
       <name>Sourceforge Site</name>
-      <url>scp://shell.sourceforge.net/home/groups/j/jo/joda-primitives/htdocs</url>
+      <url>scpexe://shell.sourceforge.net/home/project-web/joda-primitives/htdocs</url>
     </site>
     <downloadUrl>http://oss.sonatype.org/content/repositories/joda-releases</downloadUrl>
   </distributionManagement>
@@ -330,6 +318,27 @@
       </activation>
       <build>
         <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-toolchains-plugin</artifactId>
+            <version>1.0</version>
+            <executions>
+              <execution>
+                <phase>validate</phase>
+                <goals>
+                  <goal>toolchain</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <toolchains>
+                <jdk>
+                  <version>1.5</version>
+                  <vendor>sun</vendor>
+                </jdk>
+              </toolchains>
+            </configuration>
+          </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
