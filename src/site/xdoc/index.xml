@@ -10,7 +10,6 @@
  <body>
 
 <section name="Joda Primitives">
-
 <p>
 Joda Primitives provides collections and utilities to bridge the gap between objects
 and primitive types in Java.
@@ -50,6 +49,7 @@ Joda Primitives is licensed under the business-friendly <a href="license.html">A
 
 </section>
 
+
 <section name="Documentation">
 <p>
 Various documentation is available:
@@ -64,6 +64,7 @@ Various documentation is available:
 </p>
 </section>
 
+
 <section name="Releases">
 <p>
 <a href="http://sourceforge.net/projects/joda-primitives/files/joda-primitives/">Release 1.0</a>
@@ -71,18 +72,29 @@ is the current latest release.
 This release is considered stable and worthy of the 1.x tag.
 It depends on JDK 1.5 or later.
 </p>
+<p>
+Available in <a href="http://search.maven.org/#artifactdetails|org.joda|joda-primitives|1.0|jar">Maven Central</a>.
+</p>
 </section>
 
-<section name="Contact">
+
+<section name="Support">
 <p>
+Support on bugs, library usage or enhancement requests is available on a best efforts basis.
 If you have any questions, or want to volunteer to help, just email Stephen Colebourne
 via scolebourne.at.users.sourceforge.net.
 </p>
 <p>
+To suggest enhancements or contribute, please <a href="https://github.com/JodaOrg/joda-primitives">fork the source code</a> on GitHub.
+Alternatively, use GitHub <a href="https://github.com/JodaOrg/joda-primitives/issues">issues</a>.
+</p>
+<p>
 <br />
+</p>
+<p>
 <br />
-<br />
-<br />
+</p>
+<p>
 <br />
 </p>
 </section>
