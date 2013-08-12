@@ -550,6 +550,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
      * @throws IndexOutOfBoundsException if the index is invalid
      * @throws UnsupportedOperationException if not supported by this collection
      */
+    @Deprecated
     public ${object} remove(int index) {
         checkRemoveModifiable();
         return ${Type}Utils.toObject(remove${Type}At(index));
@@ -743,7 +744,7 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
 
         private final Abstract${Type}List iList;
         private final int iStart;
-        private int iCursor = 0;
+        private int iCursor;
         private int iLastIndex = -1;
         
         protected PListIterator(Abstract${Type}List list, int start) {
@@ -854,4 +855,3 @@ public abstract class Abstract${Type}List extends Abstract${Type}Collection impl
     }
 
 }
-    

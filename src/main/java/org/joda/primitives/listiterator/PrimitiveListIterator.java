@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2010 Stephen Colebourne
+ *  Copyright 2001-2013 Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@ import org.joda.primitives.iterator.PrimitiveIterator;
  * 
  * @author Stephen Colebourne
  * @since 1.0
+ * @param <E>  the primitive type
  */
 public interface PrimitiveListIterator<E> extends PrimitiveIterator<E>, ListIterator<E> {
 

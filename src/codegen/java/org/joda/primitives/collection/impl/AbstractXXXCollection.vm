@@ -48,7 +48,7 @@ public abstract class Abstract${Type}Collection
      * @return <code>true</code> if the value is found
      */
     public boolean contains(${type} value) {
-        for (${Type}Iterator it = iterator(); it.hasNext();) {
+        for (${Type}Iterator it = iterator(); it.hasNext(); ) {
             if (it.next${Type}() == value) {
                 return true;
             }
@@ -259,7 +259,7 @@ public abstract class Abstract${Type}Collection
      */
     public void clear() {
         checkRemoveModifiable();
-        for (${Type}Iterator it = iterator(); it.hasNext();) {
+        for (${Type}Iterator it = iterator(); it.hasNext(); ) {
             it.next${Type}();
             it.remove();
         }
@@ -345,7 +345,7 @@ public abstract class Abstract${Type}Collection
         for (${type} i = startInclusive; i <= endInclusive; i++) {
             changed |= add(i);
         }
-        return false;
+        return changed;
     }
 
 #end
@@ -635,6 +635,7 @@ public abstract class Abstract${Type}Collection
     /**
      * Gets the collection as an array, using the array provided.
      * 
+     * @param <T>  the array type
      * @param array  the array to populate
      * @return an array of <code>${object}</code>
      */
@@ -642,12 +643,12 @@ public abstract class Abstract${Type}Collection
     public <T> T[] toArray(T[] array) {
         int size = size();
         if (array.length < size) {
-          array = (T[]) Array.newInstance(array.getClass().getComponentType(), size);
+            array = (T[]) Array.newInstance(array.getClass().getComponentType(), size);
         }
 
         Iterator<${object}> it = iterator();
         for (int i = 0; i < size; i++) {
-            array[i] = (T)it.next();
+            array[i] = (T) it.next();
         }
 
         if (array.length > size) {

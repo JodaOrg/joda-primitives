@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2010 Stephen Colebourne
+ *  Copyright 2001-2013 Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -553,6 +553,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
      * @throws IndexOutOfBoundsException if the index is invalid
      * @throws UnsupportedOperationException if not supported by this collection
      */
+    @Deprecated
     public Byte remove(int index) {
         checkRemoveModifiable();
         return ByteUtils.toObject(removeByteAt(index));
@@ -746,7 +747,7 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
 
         private final AbstractByteList iList;
         private final int iStart;
-        private int iCursor = 0;
+        private int iCursor;
         private int iLastIndex = -1;
         
         protected PListIterator(AbstractByteList list, int start) {
@@ -857,4 +858,3 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
     }
 
 }
-    

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2010 Stephen Colebourne
+ *  Copyright 2001-2013 Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,6 +14,8 @@
  *  limitations under the License.
  */
 package org.joda.primitives.listiterator;
+
+import java.util.NoSuchElementException;
 
 import org.joda.primitives.iterator.BooleanIterator;
 
@@ -36,7 +38,7 @@ public interface BooleanListIterator extends BooleanIterator, PrimitiveListItera
      * @return the previous available value
      * @throws NoSuchElementException if there are no more values available
      */
-    boolean previousBoolean();
+    boolean previousBoolean() throws NoSuchElementException;
 
     // Optional operations
     //-----------------------------------------------------------------------

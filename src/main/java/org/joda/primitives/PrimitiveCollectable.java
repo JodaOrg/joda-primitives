@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2010 Stephen Colebourne
+ *  Copyright 2001-2013 Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ package org.joda.primitives;
  * @author Stephen Colebourne
  * @version $Id: PrimitiveCollectable.java,v 1.4 2006/03/27 22:42:11 scolebourne Exp $
  * @since 1.0
+ * @param <E>  the primitive type
  */
 public interface PrimitiveCollectable<E> {
 

@@ -26,7 +26,7 @@ public class Array${Type}Iterator implements ${Type}Iterator {
     /** The array to iterate over */
     protected final ${type}[] array;
     /** Cursor position */
-    protected int cursor = 0;
+    protected int cursor;
 
     /**
      * Creates an iterator over a copy of an array of <code>${type}</code> values.
@@ -35,6 +35,7 @@ public class Array${Type}Iterator implements ${Type}Iterator {
      * Note that the class is not {@code final} thus it is not truly immutable.
      * 
      * @param array  the array to iterate over, must not be null
+     * @return an iterator based on a copy of the input array, not null
      * @throws IllegalArgumentException if the array is null
      */
     public static Array${Type}Iterator copyOf(${type}[] array) {

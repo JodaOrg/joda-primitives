@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2010 Stephen Colebourne
+ *  Copyright 2001-2013 Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ public abstract class AbstractDoubleCollection
      * @return <code>true</code> if the value is found
      */
     public boolean contains(double value) {
-        for (DoubleIterator it = iterator(); it.hasNext();) {
+        for (DoubleIterator it = iterator(); it.hasNext(); ) {
             if (it.nextDouble() == value) {
                 return true;
             }
@@ -219,7 +219,7 @@ public abstract class AbstractDoubleCollection
      */
     public void clear() {
         checkRemoveModifiable();
-        for (DoubleIterator it = iterator(); it.hasNext();) {
+        for (DoubleIterator it = iterator(); it.hasNext(); ) {
             it.nextDouble();
             it.remove();
         }
@@ -501,6 +501,7 @@ public abstract class AbstractDoubleCollection
     /**
      * Gets the collection as an array, using the array provided.
      * 
+     * @param <T>  the array type
      * @param array  the array to populate
      * @return an array of <code>Double</code>
      */
@@ -508,12 +509,12 @@ public abstract class AbstractDoubleCollection
     public <T> T[] toArray(T[] array) {
         int size = size();
         if (array.length < size) {
-          array = (T[]) Array.newInstance(array.getClass().getComponentType(), size);
+            array = (T[]) Array.newInstance(array.getClass().getComponentType(), size);
         }
 
         Iterator<Double> it = iterator();
         for (int i = 0; i < size; i++) {
-            array[i] = (T)it.next();
+            array[i] = (T) it.next();
         }
 
         if (array.length > size) {

@@ -59,7 +59,7 @@ public class ${Type}Utils {
      * @throws NullPointerException if the collection if null
      * @throws ClassCastException if any object is not <code>${object}</code>
      */
-    public static ${type}[] toPrimitiveArray(Collection <?> coll) {
+    public static ${type}[] toPrimitiveArray(Collection<?> coll) {
         if (coll instanceof ${Type}Collection) {
             return ((${Type}Collection) coll).to${Type}Array();
         }

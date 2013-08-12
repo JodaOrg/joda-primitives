@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2010 Stephen Colebourne
+ *  Copyright 2001-2013 Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -553,6 +553,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
      * @throws IndexOutOfBoundsException if the index is invalid
      * @throws UnsupportedOperationException if not supported by this collection
      */
+    @Deprecated
     public Long remove(int index) {
         checkRemoveModifiable();
         return LongUtils.toObject(removeLongAt(index));
@@ -746,7 +747,7 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
 
         private final AbstractLongList iList;
         private final int iStart;
-        private int iCursor = 0;
+        private int iCursor;
         private int iLastIndex = -1;
         
         protected PListIterator(AbstractLongList list, int start) {
@@ -857,4 +858,3 @@ public abstract class AbstractLongList extends AbstractLongCollection implements
     }
 
 }
-    

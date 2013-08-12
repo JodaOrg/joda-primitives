@@ -379,8 +379,8 @@ public class Array${Type}Collection extends Abstract${Type}Collection implements
     protected static class PIterator implements ${Type}Iterator {
 
         private final Array${Type}Collection collection;
-        private int cursor = 0;
-        private boolean canRemove = false;
+        private int cursor;
+        private boolean canRemove;
 
         protected PIterator(Array${Type}Collection coll) {
             super();

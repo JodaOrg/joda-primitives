@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2010 Stephen Colebourne
+ *  Copyright 2001-2013 Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ public abstract class AbstractByteCollection
      * @return <code>true</code> if the value is found
      */
     public boolean contains(byte value) {
-        for (ByteIterator it = iterator(); it.hasNext();) {
+        for (ByteIterator it = iterator(); it.hasNext(); ) {
             if (it.nextByte() == value) {
                 return true;
             }
@@ -269,7 +269,7 @@ public abstract class AbstractByteCollection
      */
     public void clear() {
         checkRemoveModifiable();
-        for (ByteIterator it = iterator(); it.hasNext();) {
+        for (ByteIterator it = iterator(); it.hasNext(); ) {
             it.nextByte();
             it.remove();
         }
@@ -354,7 +354,7 @@ public abstract class AbstractByteCollection
         for (byte i = startInclusive; i <= endInclusive; i++) {
             changed |= add(i);
         }
-        return false;
+        return changed;
     }
 
     /**
@@ -639,6 +639,7 @@ public abstract class AbstractByteCollection
     /**
      * Gets the collection as an array, using the array provided.
      * 
+     * @param <T>  the array type
      * @param array  the array to populate
      * @return an array of <code>Byte</code>
      */
@@ -646,12 +647,12 @@ public abstract class AbstractByteCollection
     public <T> T[] toArray(T[] array) {
         int size = size();
         if (array.length < size) {
-          array = (T[]) Array.newInstance(array.getClass().getComponentType(), size);
+            array = (T[]) Array.newInstance(array.getClass().getComponentType(), size);
         }
 
         Iterator<Byte> it = iterator();
         for (int i = 0; i < size; i++) {
-            array[i] = (T)it.next();
+            array[i] = (T) it.next();
         }
 
         if (array.length > size) {

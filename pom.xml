@@ -316,7 +316,6 @@
       <groupId>velocity</groupId>
       <artifactId>velocity-dep</artifactId>
       <version>1.4</version>
-      <scope>test</scope>
     </dependency>
   </dependencies>
 

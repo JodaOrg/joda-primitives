@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2006 Stephen Colebourne
+ *  Copyright 2001-2013 Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -22,8 +22,9 @@ import org.joda.primitives.PrimitiveCollectable;
  *
  * @author Stephen Colebourne
  * @since 1.0
+ * @param <E>  the primitive type
  */
-public abstract class AbstractPrimitiveCollectable<N> implements PrimitiveCollectable<N> {
+public abstract class AbstractPrimitiveCollectable<E> implements PrimitiveCollectable<E> {
 
     /**
      * Constructor.

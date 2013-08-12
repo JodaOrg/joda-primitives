@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2010 Stephen Colebourne
+ *  Copyright 2001-2013 Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ public class ArrayFloatIterator implements FloatIterator {
     /** The array to iterate over */
     protected final float[] array;
     /** Cursor position */
-    protected int cursor = 0;
+    protected int cursor;
 
     /**
      * Creates an iterator over a copy of an array of <code>float</code> values.
@@ -49,6 +49,7 @@ public class ArrayFloatIterator implements FloatIterator {
      * Note that the class is not {@code final} thus it is not truly immutable.
      * 
      * @param array  the array to iterate over, must not be null
+     * @return an iterator based on a copy of the input array, not null
      * @throws IllegalArgumentException if the array is null
      */
     public static ArrayFloatIterator copyOf(float[] array) {

@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2010 Stephen Colebourne
+ *  Copyright 2001-2013 Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,6 +14,8 @@
  *  limitations under the License.
  */
 package org.joda.primitives.listiterator;
+
+import java.util.NoSuchElementException;
 
 import org.joda.primitives.iterator.ByteIterator;
 
@@ -36,7 +38,7 @@ public interface ByteListIterator extends ByteIterator, PrimitiveListIterator<By
      * @return the previous available value
      * @throws NoSuchElementException if there are no more values available
      */
-    byte previousByte();
+    byte previousByte() throws NoSuchElementException;
 
     // Optional operations
     //-----------------------------------------------------------------------

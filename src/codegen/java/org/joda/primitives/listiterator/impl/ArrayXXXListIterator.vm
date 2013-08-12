@@ -27,7 +27,7 @@ public class Array${Type}ListIterator implements ${Type}ListIterator {
     /** The array to iterate over */
     protected final ${type}[] array;
     /** Cursor position */
-    protected int cursor = 0;
+    protected int cursor;
     /** Last returned position */
     protected int last = -1;
 
@@ -38,6 +38,7 @@ public class Array${Type}ListIterator implements ${Type}ListIterator {
      * Note that the class is not immutable due to the {@code set} methods.
      * 
      * @param array  the array to iterate over, must not be null
+     * @return an iterator based on a copy of the input array, not null
      * @throws IllegalArgumentException if the array is null
      */
     public static Array${Type}ListIterator copyOf(${type}[] array) {

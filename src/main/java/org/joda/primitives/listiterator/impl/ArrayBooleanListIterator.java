@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2010 Stephen Colebourne
+ *  Copyright 2001-2013 Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -41,7 +41,7 @@ public class ArrayBooleanListIterator implements BooleanListIterator {
     /** The array to iterate over */
     protected final boolean[] array;
     /** Cursor position */
-    protected int cursor = 0;
+    protected int cursor;
     /** Last returned position */
     protected int last = -1;
 
@@ -52,6 +52,7 @@ public class ArrayBooleanListIterator implements BooleanListIterator {
      * Note that the class is not immutable due to the {@code set} methods.
      * 
      * @param array  the array to iterate over, must not be null
+     * @return an iterator based on a copy of the input array, not null
      * @throws IllegalArgumentException if the array is null
      */
     public static ArrayBooleanListIterator copyOf(boolean[] array) {

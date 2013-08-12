@@ -19,6 +19,9 @@ import junit.textui.TestRunner;
  * @version CODE GENERATED
  * @since 1.0
  */
+#if(${type} == 'boolean')
+@SuppressWarnings("unused")
+#end
 public class TestArray${Type}Collection extends AbstractTest${Type}Collection {
     // This file is CODE GENERATED. Do not change manually.
 

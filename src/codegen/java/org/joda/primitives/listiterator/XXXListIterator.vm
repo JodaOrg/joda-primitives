@@ -1,6 +1,8 @@
 ${license}
 package org.joda.primitives.listiterator;
 
+import java.util.NoSuchElementException;
+
 import org.joda.primitives.iterator.${Type}Iterator;
 
 /**
@@ -22,7 +24,7 @@ public interface ${Type}ListIterator extends ${Type}Iterator, PrimitiveListItera
      * @return the previous available value
      * @throws NoSuchElementException if there are no more values available
      */
-    ${type} previous${Type}();
+    ${type} previous${Type}() throws NoSuchElementException;
 
     // Optional operations
     //-----------------------------------------------------------------------

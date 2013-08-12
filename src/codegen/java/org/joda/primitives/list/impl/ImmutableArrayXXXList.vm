@@ -29,6 +29,8 @@ public final class ImmutableArray${Type}List extends Abstract${Type}List {
 
     /**
      * Gets a list that is empty.
+     * 
+     * @return the empty list, not null
      */
     public static ImmutableArray${Type}List empty() {
         return EMPTY;
@@ -142,4 +144,3 @@ public final class ImmutableArray${Type}List extends Abstract${Type}List {
     }
 
 }
-    

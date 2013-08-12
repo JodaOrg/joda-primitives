@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2010 Stephen Colebourne
+ *  Copyright 2001-2013 Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -353,8 +353,8 @@ public class ArrayFloatCollection extends AbstractFloatCollection implements Clo
     protected static class PIterator implements FloatIterator {
 
         private final ArrayFloatCollection collection;
-        private int cursor = 0;
-        private boolean canRemove = false;
+        private int cursor;
+        private boolean canRemove;
 
         protected PIterator(ArrayFloatCollection coll) {
             super();

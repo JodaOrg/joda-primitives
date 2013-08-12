@@ -16,6 +16,9 @@ import org.joda.primitives.iterator.${Type}Iterator;
  * @version CODE GENERATED
  * @since 1.0
  */
+#if(${type} == 'boolean')
+@SuppressWarnings("unused")
+#end
 public abstract class AbstractTest${Type}List extends AbstractTestList {
     // This file is CODE GENERATED. Do not change manually.
 

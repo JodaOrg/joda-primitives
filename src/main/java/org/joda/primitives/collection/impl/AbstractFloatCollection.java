@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2010 Stephen Colebourne
+ *  Copyright 2001-2013 Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -62,7 +62,7 @@ public abstract class AbstractFloatCollection
      * @return <code>true</code> if the value is found
      */
     public boolean contains(float value) {
-        for (FloatIterator it = iterator(); it.hasNext();) {
+        for (FloatIterator it = iterator(); it.hasNext(); ) {
             if (it.nextFloat() == value) {
                 return true;
             }
@@ -219,7 +219,7 @@ public abstract class AbstractFloatCollection
      */
     public void clear() {
         checkRemoveModifiable();
-        for (FloatIterator it = iterator(); it.hasNext();) {
+        for (FloatIterator it = iterator(); it.hasNext(); ) {
             it.nextFloat();
             it.remove();
         }
@@ -501,6 +501,7 @@ public abstract class AbstractFloatCollection
     /**
      * Gets the collection as an array, using the array provided.
      * 
+     * @param <T>  the array type
      * @param array  the array to populate
      * @return an array of <code>Float</code>
      */
@@ -508,12 +509,12 @@ public abstract class AbstractFloatCollection
     public <T> T[] toArray(T[] array) {
         int size = size();
         if (array.length < size) {
-          array = (T[]) Array.newInstance(array.getClass().getComponentType(), size);
+            array = (T[]) Array.newInstance(array.getClass().getComponentType(), size);
         }
 
         Iterator<Float> it = iterator();
         for (int i = 0; i < size; i++) {
-            array[i] = (T)it.next();
+            array[i] = (T) it.next();
         }
 
         if (array.length > size) {

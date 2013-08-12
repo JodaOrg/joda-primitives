@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2010 Stephen Colebourne
+ *  Copyright 2001-2013 Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,6 +14,8 @@
  *  limitations under the License.
  */
 package org.joda.primitives.iterator;
+
+import java.util.NoSuchElementException;
 
 /**
  * Defines an iterator over primitive <code>int</code> values.
@@ -37,6 +39,6 @@ public interface IntIterator extends PrimitiveIterator<Integer> {
      * @return the next available value
      * @throws NoSuchElementException if there are no more values available
      */
-    int nextInt();
+    int nextInt() throws NoSuchElementException;
 
 }
