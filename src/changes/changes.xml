@@ -6,6 +6,11 @@
   </properties>
 
   <body>
+    <release version="1.1" date="xxxx-xx-xx">
+      <action dev="scolebourne" type="update" >
+        Change to use m2e Maven Eclipse.
+      </action>
+    </release>
     <release version="1.0" date="2010-09-05">
       <action dev="scolebourne" type="fix" >
         Make code compile under javac avoiding a compiler bug
