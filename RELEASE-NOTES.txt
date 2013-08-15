@@ -3,11 +3,9 @@ Joda-Primitives
 ===============
 Joda-Primitives provides collections and utilities for working with primitive types.
 
-This is release 1.0 of Joda-Primitives.
-
 The release runs on JDK 5 or later.
 
-See http://joda-primitives.sourceforge.net/changes-report.html for changes
+See http://jodaorg.github.io/joda-primitives/changes-report.html for changes
 
 Joda-Primitives is licensed under the business-friendly Apache License Version 2.
 This is the same license as all of Apache, plus other open source projects such as Spring.
