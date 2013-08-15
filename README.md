@@ -24,16 +24,16 @@ Joda Primitives defines interfaces that extend the JDK collection interfaces.
 This project offers deeper direct integration, however this results in certain method
 names being different from JDK collections.
 
-Joda-Primitives is licensed under the business-friendly [Apache 2.0 licence](http://jodaorg.github.io/joda-primitives/license.html).
+Joda-Primitives is licensed under the business-friendly [Apache 2.0 licence](http://www.joda.org/joda-primitives/license.html).
 
 
 ### Documentation
 Various documentation is available:
 
-* The [home page](http://jodaorg.github.io/joda-primitives/)
-* The [Javadoc](http://jodaorg.github.io/joda-primitives/apidocs/index.html)
-* The [FAQ](http://jodaorg.github.io/joda-primitives/faq.html) list
-* The change notes for the [releases](http://jodaorg.github.io/joda-primitives/changes-report.html)
+* The [home page](http://www.joda.org/joda-primitives/)
+* The [Javadoc](http://www.joda.org/joda-primitives/apidocs/index.html)
+* The [FAQ](http://www.joda.org/joda-primitives/faq.html) list
+* The change notes for the [releases](http://www.joda.org/joda-primitives/changes-report.html)
 
 
 ### Releases

@@ -13,4 +13,4 @@ Bundle-Name: Joda-Primitives
 Bundle-SymbolicName: joda-primitives
 Bundle-Version: 1.0
 Bundle-License: Apache 2.0
-Bundle-DocURL: http://jodaorg.github.io/joda-primitives/
+Bundle-DocURL: http://www.joda.org/joda-primitives/
