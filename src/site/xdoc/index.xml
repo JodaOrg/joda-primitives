@@ -65,7 +65,7 @@ Various documentation is available:
 
 <section name="Releases">
 <p>
-<a href="http://sourceforge.net/projects/joda-primitives/files/joda-primitives/">Release 1.0</a>
+<a href="download.html">Release 1.0</a>
 is the current latest release.
 This release is considered stable and worthy of the 1.x tag.
 It depends on JDK 1.5 or later.

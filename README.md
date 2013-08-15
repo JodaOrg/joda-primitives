@@ -37,7 +37,7 @@ Various documentation is available:
 
 
 ### Releases
-[Release 1.0](http://sourceforge.net/projects/joda-primitives/files/joda-primitives/1.0/) is the current latest release.
+[Release 1.0](http://www.joda.org/joda-primitives/download.html) is the current latest release.
 This release is considered stable and worthy of the 1.x tag.
 It depends on JDK 1.6 or later.
 
