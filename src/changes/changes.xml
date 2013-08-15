@@ -7,6 +7,9 @@
 
   <body>
     <release version="1.1" date="xxxx-xx-xx">
+      <action dev="scolebourne" type="add" >
+        Home page at GitHub.
+      </action>
       <action dev="scolebourne" type="update" >
         Change to use m2e Maven Eclipse.
       </action>
