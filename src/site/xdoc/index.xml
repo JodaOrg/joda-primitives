@@ -11,7 +11,7 @@
 
 <section name="Joda Primitives">
 <p>
-Joda Primitives provides collections and utilities to bridge the gap between objects
+Joda-Primitives provides collections and utilities to bridge the gap between objects
 and primitive types in Java.
 </p>
 
@@ -38,13 +38,13 @@ All this is due to the fact that no Object wrapper class has to be created.
 This project is an offshoot of <a href="http://commons.apache.org/proper/commons-primitives/">Commons Primitives</a>.
 The two projects have very different designs.
 Commons Primitives defines interfaces independent of the JDK collection interfaces.
-Joda Primitives defines interfaces that extend the JDK collection interfaces.
+Joda-Primitives defines interfaces that extend the JDK collection interfaces.
 This project offers deeper direct integration, however this results in certain method names
 being different from JDK collections.
 </p>
 
 <p>
-Joda Primitives is licensed under the business-friendly <a href="license.html">Apache 2.0 licence</a>.
+Joda-Primitives is licensed under the business-friendly <a href="license.html">Apache 2.0 licence</a>.
 </p>
 
 </section>
@@ -65,8 +65,7 @@ Various documentation is available:
 
 <section name="Releases">
 <p>
-<a href="download.html">Release 1.0</a>
-is the current latest release.
+Release 1.0 is the current latest release.
 This release is considered stable and worthy of the 1.x tag.
 It depends on JDK 1.5 or later.
 </p>

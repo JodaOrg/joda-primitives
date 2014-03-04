@@ -19,21 +19,12 @@
     <url>https://github.com/JodaOrg/joda-primitives/issues</url>
   </issueManagement>
   <inceptionYear>2005</inceptionYear>
-  <mailingLists>
-    <mailingList>
-      <name>Joda Primitives Interest list</name>
-      <subscribe>http://lists.sourceforge.net/lists/listinfo/joda-primitives-interest</subscribe>
-      <unsubscribe>http://lists.sourceforge.net/lists/listinfo/joda-primitives-interest</unsubscribe>
-      <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=joda-primitives-interest</archive>
-    </mailingList>
-  </mailingLists>
 
   <!-- ==================================================================== -->
   <developers>
     <developer>
-      <id>scolebourne</id>
+      <id>jodastephen</id>
       <name>Stephen Colebourne</name>
-      <email></email>
       <roles>
         <role>Project Lead</role>
       </roles>
@@ -81,15 +72,15 @@
   <build>
     <resources>
       <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+      <resource>
         <targetPath>META-INF</targetPath>
         <directory>${project.basedir}</directory>
         <includes>
           <include>LICENSE.txt</include>
           <include>NOTICE.txt</include>
         </includes>
-      </resource>
-      <resource>
-        <directory>${project.basedir}/src/main/resources</directory>
       </resource>
     </resources>
     <!-- define build -->
@@ -176,7 +167,7 @@
           <skipDeploy>true</skipDeploy>
         </configuration>
       </plugin>
-      <plugin>
+      <plugin><!-- invoke with mvn site-deploy -->
         <groupId>com.github.github</groupId>
         <artifactId>site-maven-plugin</artifactId>
         <version>0.9</version>
@@ -191,7 +182,7 @@
         </executions>
         <configuration>
           <message>Create website for ${project.artifactId} v${project.version}</message>
-          <path>joda-primitives</path>
+          <path>${project.artifactId}</path>
           <merge>true</merge>
           <server>github</server>
           <repositoryOwner>JodaOrg</repositoryOwner>
@@ -368,6 +359,11 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
         <version>${maven-checkstyle-plugin.version}</version>
+        <configuration>
+          <includeResources>false</includeResources>
+          <includeTestResources>false</includeTestResources>
+          <includeTestSourceDirectory>false</includeTestSourceDirectory>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -489,13 +485,13 @@
     <!-- Plugin version numbers -->
     <maven-assembly-plugin.version>2.4</maven-assembly-plugin.version>
     <maven-changes-plugin.version>2.9</maven-changes-plugin.version>
-    <maven-checkstyle-plugin.version>2.10</maven-checkstyle-plugin.version>
+    <maven-checkstyle-plugin.version>2.11</maven-checkstyle-plugin.version>
     <maven-clean-plugin.version>2.5</maven-clean-plugin.version>
     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
-    <maven-deploy-plugin.version>2.7</maven-deploy-plugin.version>
+    <maven-deploy-plugin.version>2.8.1</maven-deploy-plugin.version>
     <maven-dependency-plugin.version>2.8</maven-dependency-plugin.version>
     <maven-gpg-plugin.version>1.4</maven-gpg-plugin.version>
-    <maven-install-plugin.version>2.4</maven-install-plugin.version>
+    <maven-install-plugin.version>2.5.1</maven-install-plugin.version>
     <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
     <maven-javadoc-plugin.version>2.9.1</maven-javadoc-plugin.version>
     <maven-jxr-plugin.version>2.3</maven-jxr-plugin.version>
@@ -506,8 +502,8 @@
     <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
     <maven-site-plugin.version>3.3</maven-site-plugin.version>
     <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
-    <maven-surefire-plugin.version>2.15</maven-surefire-plugin.version>
-    <maven-surefire-report-plugin.version>2.15</maven-surefire-report-plugin.version>
+    <maven-surefire-plugin.version>2.16</maven-surefire-plugin.version>
+    <maven-surefire-report-plugin.version>2.16</maven-surefire-report-plugin.version>
     <maven-toolchains-plugin.version>1.0</maven-toolchains-plugin.version>
     <!-- Properties for maven-compiler-plugin -->
     <maven.compiler.compilerVersion>1.5</maven.compiler.compilerVersion>
