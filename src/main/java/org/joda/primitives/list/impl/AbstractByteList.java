@@ -42,6 +42,7 @@ import org.joda.primitives.listiterator.ByteListIterator;
  * @author Stephen Colebourne
  * @author Rodney Waldhoff
  * @author Jason Tiscione
+ * @author Grzegorz Rozniecki
  * @version CODE GENERATED
  * @since 1.0
  */
@@ -228,11 +229,13 @@ public abstract class AbstractByteList extends AbstractByteCollection implements
      *
      * @param fromIndexInclusive  the index to start from, inclusive
      * @param toIndexExclusive  the index to end at, exclusive
-     * @return a new ByteList for the subList, not null
-     * @throws IndexOutOfBoundsException if either index is invalid
+     * @return always throws
+     * @throws UnsupportedOperationException always
+     * @deprecated Not implemented yet.
      */
+    @Deprecated
     public ByteList subList(int fromIndexInclusive, int toIndexExclusive) {
-        return null; // TODO
+        throw new UnsupportedOperationException("Not implemented yet"); // TODO
     }
 
     /**

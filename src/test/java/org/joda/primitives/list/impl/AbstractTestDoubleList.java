@@ -27,6 +27,7 @@ import org.joda.primitives.iterator.DoubleIterator;
  *
  * @author Stephen Colebourne
  * @author Jason Tiscione
+ * @author Grzegorz Rozniecki
  * @version CODE GENERATED
  * @since 1.0
  */
@@ -278,6 +279,16 @@ public abstract class AbstractTestDoubleList extends AbstractTestList {
                 fail();
             } catch (UnsupportedOperationException ex) {}
         }
+    }
+
+    //-----------------------------------------------------------------------
+    public void testSubListNotImplemented() {
+        resetFull();
+        DoubleList coll = (DoubleList) collection;
+        try {
+            coll.subList(0, coll.size());
+            fail();
+        } catch (UnsupportedOperationException expected) {}
     }
 
 }
