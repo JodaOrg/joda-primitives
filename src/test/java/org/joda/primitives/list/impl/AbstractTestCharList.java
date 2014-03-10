@@ -27,6 +27,7 @@ import org.joda.primitives.iterator.CharIterator;
  *
  * @author Stephen Colebourne
  * @author Jason Tiscione
+ * @author Grzegorz Rozniecki
  * @version CODE GENERATED
  * @since 1.0
  */
@@ -291,6 +292,16 @@ public abstract class AbstractTestCharList extends AbstractTestList {
                 fail();
             } catch (UnsupportedOperationException ex) {}
         }
+    }
+
+    //-----------------------------------------------------------------------
+    public void testSubListNotImplemented() {
+        resetFull();
+        CharList coll = (CharList) collection;
+        try {
+            coll.subList(0, coll.size());
+            fail();
+        } catch (UnsupportedOperationException expected) {}
     }
 
 }

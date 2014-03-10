@@ -27,6 +27,7 @@ import org.joda.primitives.iterator.BooleanIterator;
  *
  * @author Stephen Colebourne
  * @author Jason Tiscione
+ * @author Grzegorz Rozniecki
  * @version CODE GENERATED
  * @since 1.0
  */
@@ -276,6 +277,16 @@ public abstract class AbstractTestBooleanList extends AbstractTestList {
                 fail();
             } catch (UnsupportedOperationException ex) {}
         }
+    }
+
+    //-----------------------------------------------------------------------
+    public void testSubListNotImplemented() {
+        resetFull();
+        BooleanList coll = (BooleanList) collection;
+        try {
+            coll.subList(0, coll.size());
+            fail();
+        } catch (UnsupportedOperationException expected) {}
     }
 
 }

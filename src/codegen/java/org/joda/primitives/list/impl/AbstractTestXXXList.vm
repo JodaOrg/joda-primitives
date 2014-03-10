@@ -13,6 +13,7 @@ import org.joda.primitives.iterator.${Type}Iterator;
  *
  * @author Stephen Colebourne
  * @author Jason Tiscione
+ * @author Grzegorz Rozniecki
  * @version CODE GENERATED
  * @since 1.0
  */
@@ -299,6 +300,16 @@ public abstract class AbstractTest${Type}List extends AbstractTestList {
                 fail();
             } catch (UnsupportedOperationException ex) {}
         }
+    }
+
+    //-----------------------------------------------------------------------
+    public void testSubListNotImplemented() {
+        resetFull();
+        ${Type}List coll = (${Type}List) collection;
+        try {
+            coll.subList(0, coll.size());
+            fail();
+        } catch (UnsupportedOperationException expected) {}
     }
 
 }

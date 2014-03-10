@@ -27,6 +27,7 @@ import org.joda.primitives.iterator.FloatIterator;
  *
  * @author Stephen Colebourne
  * @author Jason Tiscione
+ * @author Grzegorz Rozniecki
  * @version CODE GENERATED
  * @since 1.0
  */
@@ -278,6 +279,16 @@ public abstract class AbstractTestFloatList extends AbstractTestList {
                 fail();
             } catch (UnsupportedOperationException ex) {}
         }
+    }
+
+    //-----------------------------------------------------------------------
+    public void testSubListNotImplemented() {
+        resetFull();
+        FloatList coll = (FloatList) collection;
+        try {
+            coll.subList(0, coll.size());
+            fail();
+        } catch (UnsupportedOperationException expected) {}
     }
 
 }

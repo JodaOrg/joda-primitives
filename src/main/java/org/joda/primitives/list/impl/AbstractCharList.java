@@ -42,6 +42,7 @@ import org.joda.primitives.listiterator.CharListIterator;
  * @author Stephen Colebourne
  * @author Rodney Waldhoff
  * @author Jason Tiscione
+ * @author Grzegorz Rozniecki
  * @version CODE GENERATED
  * @since 1.0
  */
@@ -237,11 +238,13 @@ public abstract class AbstractCharList extends AbstractCharCollection implements
      *
      * @param fromIndexInclusive  the index to start from, inclusive
      * @param toIndexExclusive  the index to end at, exclusive
-     * @return a new CharList for the subList, not null
-     * @throws IndexOutOfBoundsException if either index is invalid
+     * @return always throws
+     * @throws UnsupportedOperationException always
+     * @deprecated Not implemented yet.
      */
+    @Deprecated
     public CharList subList(int fromIndexInclusive, int toIndexExclusive) {
-        return null; // TODO
+        throw new UnsupportedOperationException("Not implemented yet"); // TODO
     }
 
     /**
