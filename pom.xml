@@ -46,6 +46,10 @@
   </developers>
   <contributors>
     <contributor>
+      <name>Grzegorz Rozniecki</name>
+      <url>https://github.com/Xaerxess</url>
+    </contributor>
+    <contributor>
       <name>Rodney Waldorf</name>
     </contributor>
   </contributors>
@@ -493,7 +497,7 @@
             <configuration>
               <toolchains>
                 <jdk>
-                  <version>1.5</version>
+                  <version>1.6</version>
                   <vendor>sun</vendor>
                 </jdk>
               </toolchains>
