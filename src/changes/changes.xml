@@ -6,7 +6,7 @@
   </properties>
 
   <body>
-    <release version="1.1" date="xxxx-xx-xx">
+    <release version="1.1" date="SNAPSHOT">
       <action dev="jodastephen" type="add" >
         Home page at GitHub.
       </action>
