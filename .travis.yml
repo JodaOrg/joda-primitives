@@ -1,15 +1,20 @@
-# This file enables the Travis continuous integration system, which
-# automatically builds and tests joda-primitives for each GitHub commit or 
-# pull request on three separate JDKs.
-#
-# For more information, see https://travis-ci.org
-
 sudo: false
-
 language: java
-
-jdk: 
-  - oraclejdk7
-  - openjdk7
-  - openjdk6
-
+jdk:
+  - oraclejdk8
+cache:
+  directories:
+    - "$HOME/.m2/repository"
+before_cache:
+  - rm -rf $HOME/.m2/repository/org/joda/primitives
+# install
+install:
+  - mvn --version
+script:
+  - mvn install site -e -B
+after_success:
+  - if [[ $TRAVIS_TAG =~ ^v.*$ ]] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_JDK_VERSION" == "oraclejdk8" ]; then travis_wait 40 mvn clean install site-deploy -e -B --settings .github/maven-settings.xml; fi
+# secure keys for GITHUB_TOKEN
+env:
+  global:
+  - secure: MHMlNPX3U/rW3QMBh2wa5YJDfrZ0rL7CvxZSI9Luc/p1+NP/eqZ47t/+SxZrLIvrD7rh7pwwcaGiHshCXCWlFsihTEG8TtrhNGFOgQ9ONTMMEFWPTExL4XaAbE2pPBw7SlHfIC/yu+6fg4PYCOfgQG0FK5qHn55EoImYpOimAXw=
