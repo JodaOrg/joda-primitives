@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2006 Stephen Colebourne
+ *  Copyright 2001-present Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -14,9 +14,6 @@
  *  limitations under the License.
  */
 package org.joda.primitives;
-
-import junit.framework.TestSuite;
-import junit.textui.TestRunner;
 
 import org.joda.primitives.collection.impl.TestArrayBooleanCollection;
 import org.joda.primitives.collection.impl.TestArrayByteCollection;
@@ -50,6 +47,9 @@ import org.joda.primitives.list.impl.TestImmutableArrayFloatList;
 import org.joda.primitives.list.impl.TestImmutableArrayIntList;
 import org.joda.primitives.list.impl.TestImmutableArrayLongList;
 import org.joda.primitives.list.impl.TestImmutableArrayShortList;
+
+import junit.framework.TestSuite;
+import junit.textui.TestRunner;
 
 /**
  * Overall test manager.

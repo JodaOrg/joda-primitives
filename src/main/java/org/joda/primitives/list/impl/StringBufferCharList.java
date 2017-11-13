@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2010 Stephen Colebourne
+ *  Copyright 2001-present Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -108,6 +108,7 @@ public class StringBufferCharList extends AbstractCharList {
      * @param index  the index to retrieve
      * @return the character at the specified index
      */
+    @Override
     public char getChar(int index) {
         checkIndexExists(index);
         return stringBuffer.charAt(index);
@@ -118,6 +119,7 @@ public class StringBufferCharList extends AbstractCharList {
      * 
      * @return the string length
      */
+    @Override
     public int size() {
         return stringBuffer.length();
     }
@@ -130,6 +132,7 @@ public class StringBufferCharList extends AbstractCharList {
      * @return <code>true</code> if this list was modified by this method call
      * @throws IndexOutOfBoundsException if the index is invalid
      */
+    @Override
     public boolean add(int index, char value) {
         checkAddModifiable();
         checkIndex(index);
@@ -162,6 +165,7 @@ public class StringBufferCharList extends AbstractCharList {
      * @return the previous value at the index
      * @throws IndexOutOfBoundsException if the index is invalid
      */
+    @Override
     public char set(int index, char value) {
         checkSetModifiable();
         checkIndexExists(index);
@@ -175,6 +179,7 @@ public class StringBufferCharList extends AbstractCharList {
      *
      * @return true
      */
+    @Override
     protected boolean isAddModifiable() {
         return true;
     }
@@ -184,6 +189,7 @@ public class StringBufferCharList extends AbstractCharList {
      *
      * @return true
      */
+    @Override
     protected boolean isRemoveModifiable() {
         return true;
     }
@@ -193,6 +199,7 @@ public class StringBufferCharList extends AbstractCharList {
      *
      * @return true
      */
+    @Override
     protected boolean isSetModifiable() {
         return true;
     }
@@ -202,6 +209,7 @@ public class StringBufferCharList extends AbstractCharList {
      *
      * @return true if supported
      */
+    @Override
     public boolean isModifiable() {
         return true;
     }
@@ -214,6 +222,7 @@ public class StringBufferCharList extends AbstractCharList {
      * @param value  the value to add to this collection
      * @return <code>true</code> if this collection was modified by this method call
      */
+    @Override
     public boolean add(char value) {
         checkAddModifiable();
         stringBuffer.append(value);
@@ -227,6 +236,7 @@ public class StringBufferCharList extends AbstractCharList {
      * @return <code>true</code> if this list was modified by this method call
      * @throws IndexOutOfBoundsException if the index is invalid
      */
+    @Override
     public boolean addAll(char[] values) {
         checkAddModifiable();
         if (values == null || values.length == 0) {
@@ -244,6 +254,7 @@ public class StringBufferCharList extends AbstractCharList {
      * @return <code>true</code> if this list was modified by this method call
      * @throws IndexOutOfBoundsException if the index is invalid
      */
+    @Override
     public boolean addAll(int index, char[] values) {
         checkAddModifiable();
         checkIndex(index);
@@ -261,6 +272,7 @@ public class StringBufferCharList extends AbstractCharList {
      * @param toIndexExclusive  the end of the range to remove, exclusive
      * @return <code>true</code> if the collection was modified
      */
+    @Override
     public boolean removeRange(int fromIndexInclusive, int toIndexExclusive) {
         checkRemoveModifiable();
         checkRange(fromIndexInclusive, toIndexExclusive);
@@ -276,6 +288,7 @@ public class StringBufferCharList extends AbstractCharList {
      * 
      * @return the underlying string, not null
      */
+    @Override
     public String toStringContents() {
         return stringBuffer.substring(0, stringBuffer.length());
     }
@@ -290,6 +303,7 @@ public class StringBufferCharList extends AbstractCharList {
      * @param destIndex  the destination start index
      * @param size  the number of items to copy
      */
+    @Override
     protected void arrayCopy(int fromIndex, char[] dest, int destIndex, int size) {
         stringBuffer.getChars(fromIndex, fromIndex + size, dest, destIndex);
     }

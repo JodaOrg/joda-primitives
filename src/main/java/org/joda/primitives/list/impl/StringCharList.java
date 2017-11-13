@@ -1,5 +1,5 @@
 /*
- *  Copyright 2001-2010 Stephen Colebourne
+ *  Copyright 2001-present Stephen Colebourne
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -76,6 +76,7 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      * @param index  the index to retrieve
      * @return the character at the specified index
      */
+    @Override
     public char getChar(int index) {
         return string.charAt(index);
     }
@@ -85,6 +86,7 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      * 
      * @return the string length
      */
+    @Override
     public int size() {
         return string.length();
     }
@@ -99,6 +101,7 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      * @param value  the value to search for
      * @return <code>true</code> if the value is found
      */
+    @Override
     public boolean contains(char value) {
         return (string.indexOf(value) >= 0);
     }
@@ -111,6 +114,7 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      * @param value  the value to search for
      * @return the zero-based index, or <code>-1</code> if not found
      */
+    @Override
     public int indexOf(char value) {
         return string.indexOf(value);
     }
@@ -128,6 +132,7 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      * @param fromIndexInclusive  the index to start searching from, inclusive
      * @return the zero-based index, or <code>-1</code> if not found
      */
+    @Override
     public int indexOf(char value, int fromIndexInclusive) {
         return string.indexOf(value, fromIndexInclusive);
     }
@@ -140,6 +145,7 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      * @param value  the value to search for
      * @return the zero-based index, or <code>-1</code> if not found
      */
+    @Override
     public int lastIndexOf(char value) {
         return string.lastIndexOf(value);
     }
@@ -157,6 +163,7 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      * @param fromIndexInclusive  the index to start searching from, inclusive
      * @return the zero-based index, or <code>-1</code> if not found
      */
+    @Override
     public int lastIndexOf(char value, int fromIndexInclusive) {
         return string.lastIndexOf(value, fromIndexInclusive);
     }
@@ -166,6 +173,7 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      * 
      * @return the underlying string, not null
      */
+    @Override
     public String toStringContents() {
         return string;
     }
@@ -177,6 +185,7 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      *
      * @return a new array containing a copy of the elements of this collection, not null
      */
+    @Override
     public char[] toCharArray() {
         if (size() == 0) {
             return CharUtils.EMPTY_CHAR_ARRAY;
@@ -195,6 +204,7 @@ public class StringCharList extends AbstractCharList implements Cloneable {
      * @return a new CharList for the subList, not null
      * @throws IndexOutOfBoundsException if either index is invalid
      */
+    @Override
     public CharList subList(int fromIndexInclusive, int toIndexExclusive) {
         checkRange(fromIndexInclusive, toIndexExclusive);
         return new StringCharList(string.substring(fromIndexInclusive, toIndexExclusive));
