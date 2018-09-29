@@ -24,24 +24,24 @@ Joda-Primitives defines interfaces that extend the JDK collection interfaces.
 This project offers deeper direct integration, however this results in certain method
 names being different from JDK collections.
 
-Joda-Primitives is licensed under the business-friendly [Apache 2.0 licence](http://www.joda.org/joda-primitives/license.html).
+Joda-Primitives is licensed under the business-friendly [Apache 2.0 licence](https://www.joda.org/joda-primitives/licenses.html).
 
 
 ### Documentation
 Various documentation is available:
 
-* The [home page](http://www.joda.org/joda-primitives/)
-* The [Javadoc](http://www.joda.org/joda-primitives/apidocs/index.html)
-* The [FAQ](http://www.joda.org/joda-primitives/faq.html) list
-* The change notes for the [releases](http://www.joda.org/joda-primitives/changes-report.html)
+* The [home page](https://www.joda.org/joda-primitives/)
+* The [Javadoc](https://www.joda.org/joda-primitives/apidocs/index.html)
+* The [FAQ](https://www.joda.org/joda-primitives/faq.html) list
+* The change notes for the [releases](https://www.joda.org/joda-primitives/changes-report.html)
 
 
 ### Releases
-[Release 1.0](http://www.joda.org/joda-primitives/download.html) is the current latest release.
+[Release 1.0](https://www.joda.org/joda-primitives/download.html) is the current latest release.
 This release is considered stable and worthy of the 1.x tag.
 It depends on JDK 1.6 or later.
 
-Available in the [Maven Central repository](http://search.maven.org/#artifactdetails|org.joda|joda-primitives|1.0|jar)
+Available in the [Maven Central repository](https://search.maven.org/search?q=g:org.joda%20AND%20a:joda-primitives&core=gav)
 
 
 ### Support

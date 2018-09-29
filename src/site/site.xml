@@ -5,9 +5,9 @@
   <googleAnalyticsAccountId>UA-1425975-4</googleAnalyticsAccountId>
 
   <skin>
-    <groupId>lt.velykis.maven.skins</groupId>
+    <groupId>org.joda.external</groupId>
     <artifactId>reflow-maven-skin</artifactId>
-    <version>1.1.1</version>
+    <version>1.2</version>
   </skin>
 
   <custom>
@@ -34,6 +34,7 @@
       <toc>false</toc>
       <breadcrumbs>false</breadcrumbs>
       <markPageHeader>false</markPageHeader>
+      <protocolRelativeURLs>true</protocolRelativeURLs>
       <pages>
         <index>
           <sections>
@@ -60,14 +61,15 @@
 
   <body>
     <head>
-      <link href="http://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.css" rel="stylesheet"/>
-      <link rel="author" href="https://plus.google.com/113137868744510231215"/>
+      <![CDATA[
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
+        <link rel="author" href="https://plus.google.com/113137868744510231215"/>]]>
     </head>
 
     <menu name="Documentation">
       <item name="Home" href="index.html"/>
       <item name="Javadoc" href="apidocs/index.html"/>
-      <item name="License" href="license.html"/>
+      <item name="License" href="licenses.html"/>
     </menu>
 
     <menu name="Releases">
@@ -83,11 +85,12 @@
     </menu>
 
     <menu name="Joda">
-      <item name="Home" href="http://www.joda.org"/>
-      <item name="Beans" href="http://www.joda.org/joda-beans/"/>
-      <item name="Convert" href="http://www.joda.org/joda-convert/"/>
-      <item name="Money" href="http://www.joda.org/joda-money/"/>
-      <item name="Time" href="http://www.joda.org/joda-time/"/>
+      <item name="Home" href="https://www.joda.org"/>
+      <item name="Beans" href="https://www.joda.org/joda-beans/"/>
+      <item name="Collect" href="https://www.joda.org/joda-collect/"/>
+      <item name="Convert" href="https://www.joda.org/joda-convert/"/>
+      <item name="Money" href="https://www.joda.org/joda-money/"/>
+      <item name="Time" href="https://www.joda.org/joda-time/"/>
     </menu>
 
     <menu name="Reports" ref="reports"/>

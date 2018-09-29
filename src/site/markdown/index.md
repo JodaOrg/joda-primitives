@@ -6,7 +6,7 @@ and primitive types in Java.
 The standard Java collections API only operates on reference types, not primitives, like `int`.
 This project provides interfaces and implementations for primitives.
 
-Joda-Primitives is licensed under the business-friendly [Apache 2.0 licence](license.html).
+Joda-Primitives is licensed under the business-friendly [Apache 2.0 licence](licenses.html).
 
 
 ## <i></i> Features
@@ -45,7 +45,7 @@ Interfaces and implementations are provided for each primitive type.
 The interface has additional dedicated methods relevant to the primitive type.
 See the [Javadoc](apidocs/index.html) for more details.
 
-This project is an offshoot of <a href="http://commons.apache.org/proper/commons-primitives/">Commons Primitives</a>.
+This project is an offshoot of <a href="https://commons.apache.org/proper/commons-primitives/">Commons Primitives</a>.
 The two projects have very different designs.
 Commons Primitives defines interfaces independent of the JDK collection interfaces.
 Joda-Primitives defines interfaces that extend the JDK collection interfaces.
@@ -62,7 +62,7 @@ This release is considered stable and worthy of the 1.x tag.
 
 Joda-Primitives requires Java SE 5 or later and has [no dependencies](dependencies.html).
 
-Available in [Maven Central](http://search.maven.org/#artifactdetails%7Corg.joda%7Cjoda-primitives%7C1.0%7Cjar).
+Available in [Maven Central](https://search.maven.org/search?q=g:org.joda%20AND%20a:joda-primitives&core=gav).
 
 ```xml
 <dependency>

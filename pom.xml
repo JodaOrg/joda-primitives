@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project
-    xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.joda</groupId>
@@ -11,7 +8,7 @@
   <name>Joda-Primitives</name>
   <version>1.1-SNAPSHOT</version>
   <description>Collections and utilities based on primitives types</description>
-  <url>http://www.joda.org/joda-primitives/</url>
+  <url>https://www.joda.org/joda-primitives/</url>
 
   <!-- ==================================================================== -->
   <issueManagement>
@@ -58,18 +55,19 @@
   <licenses>
     <license>
       <name>Apache 2</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
       <distribution>repo</distribution>
     </license>
   </licenses>
   <scm>
     <connection>scm:git:https://github.com/JodaOrg/joda-primitives.git</connection>
-    <developerConnection>scm:git:git@github.com:JodaOrg/joda-primitives.git</developerConnection>
+    <developerConnection>scm:git:https://github.com/JodaOrg/joda-primitives.git</developerConnection>
     <url>https://github.com/JodaOrg/joda-primitives</url>
+    <tag>HEAD</tag>
   </scm>
   <organization>
     <name>Joda.org</name>
-    <url>http://www.joda.org</url>
+    <url>https://www.joda.org</url>
   </organization>
 
   <!-- ==================================================================== -->
@@ -89,19 +87,60 @@
     </resources>
     <!-- define build -->
     <plugins>
+      <!-- Enforce Maven 3.5.0 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
+        <artifactId>maven-enforcer-plugin</artifactId>
         <executions>
           <execution>
-            <id>run-checkstyle</id>
-            <phase>process-sources</phase>
+            <id>enforce-maven</id>
             <goals>
-              <goal>checkstyle</goal>
+              <goal>enforce</goal>
             </goals>
+            <configuration>
+              <rules>
+                <requireMavenVersion>
+                  <version>3.5.0</version>
+                </requireMavenVersion>
+              </rules>
+            </configuration>
           </execution>
         </executions>
       </plugin>
+      <!-- Setup OSGi bundle data, with fix for Java 9 -->
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <version>${maven-bundle-plugin.version}</version>
+        <dependencies>
+          <dependency>
+            <groupId>biz.aQute.bnd</groupId>
+            <artifactId>biz.aQute.bndlib</artifactId>
+            <version>${bndlib.version}</version>
+          </dependency>
+        </dependencies>
+        <executions>
+          <execution>
+            <id>bundle-manifest</id>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>manifest</goal>
+            </goals>
+            <configuration>
+              <instructions>
+                <Export-Package>${joda.osgi.packages}</Export-Package>
+                <Require-Capability>${joda.osgi.require.capability}</Require-Capability>
+              </instructions>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- Turn on Checkstyle -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+      </plugin>
+      <!-- Fix TestNG -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -114,6 +153,7 @@
           </properties>
         </configuration>
       </plugin>
+      <!-- Setup Jar file manifest entries -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -127,20 +167,7 @@
           </archive>
         </configuration>
       </plugin>
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <version>2.4.0</version>
-        <executions>
-          <execution>
-            <id>bundle-manifest</id>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>manifest</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+      <!-- Setup Javadoc jar -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
@@ -154,6 +181,7 @@
           </execution>
         </executions>
       </plugin>
+      <!-- Setup source jar -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
@@ -190,48 +218,6 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <configuration>
-          <skipDeploy>true</skipDeploy>
-        </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>lt.velykis.maven.skins</groupId>
-            <artifactId>reflow-velocity-tools</artifactId>
-            <version>1.1.1</version>
-          </dependency>
-          <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>1.7</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-      <plugin><!-- invoke with mvn site-deploy -->
-        <groupId>com.github.github</groupId>
-        <artifactId>site-maven-plugin</artifactId>
-        <version>0.10</version>
-        <executions>
-          <execution>
-            <id>github-site</id>
-            <goals>
-              <goal>site</goal>
-            </goals>
-            <phase>site-deploy</phase>
-          </execution>
-        </executions>
-        <configuration>
-          <message>Create website for ${project.artifactId} v${project.version}</message>
-          <path>${project.artifactId}</path>
-          <merge>true</merge>
-          <server>github</server>
-          <repositoryOwner>JodaOrg</repositoryOwner>
-          <repositoryName>jodaorg.github.io</repositoryName>
-          <branch>refs/heads/master</branch>
-        </configuration>
-      </plugin>
     </plugins>
     <!-- Manage plugin versions -->
     <pluginManagement>
@@ -241,11 +227,6 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-assembly-plugin</artifactId>
           <version>${maven-assembly-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>${maven-checkstyle-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -271,6 +252,11 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-dependency-plugin</artifactId>
           <version>${maven-dependency-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>${maven-enforcer-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -324,11 +310,6 @@
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-site-plugin</artifactId>
-          <version>${maven-site-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>
           <version>${maven-source-plugin.version}</version>
         </plugin>
@@ -347,6 +328,60 @@
           <artifactId>maven-toolchains-plugin</artifactId>
           <version>${maven-toolchains-plugin.version}</version>
         </plugin>
+        <!-- Setup release -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>${maven-release-plugin.version}</version>
+          <configuration>
+            <arguments>-Doss.repo</arguments>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+            <tagNameFormat>v@{project.version}</tagNameFormat>
+            <localCheckout>true</localCheckout>
+          </configuration>
+        </plugin>
+        <!-- Setup Checkstyle, excluding module-info -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-checkstyle-plugin</artifactId>
+          <version>${maven-checkstyle-plugin.version}</version>
+          <executions>
+            <execution>
+              <id>run-checkstyle</id>
+              <phase>process-sources</phase>
+              <goals>
+                <goal>checkstyle</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <excludes>module-info.java</excludes>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>com.puppycrawl.tools</groupId>
+              <artifactId>checkstyle</artifactId>
+              <version>${checkstyle.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <!-- Setup site with reflow maven skin -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>${maven-site-plugin.version}</version>
+          <configuration>
+            <skipDeploy>true</skipDeploy>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>org.joda.external</groupId>
+              <artifactId>reflow-velocity-tools</artifactId>
+              <version>1.2</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+        <!-- for Eclipse -->
         <plugin>
           <groupId>org.eclipse.m2e</groupId>
           <artifactId>lifecycle-mapping</artifactId>
@@ -358,13 +393,13 @@
                   <pluginExecutionFilter>
                     <groupId>org.apache.felix</groupId>
                     <artifactId>maven-bundle-plugin</artifactId>
-                    <versionRange>[2.4.0,)</versionRange>
+                    <versionRange>[2.5.4,)</versionRange>
                     <goals>
                       <goal>manifest</goal>
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore />
                   </action>
                 </pluginExecution>
               </pluginExecutions>
@@ -376,9 +411,6 @@
   </build>
 
   <!-- ==================================================================== -->
-  <prerequisites>
-    <maven>3.0.4</maven>
-  </prerequisites>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -403,24 +435,27 @@
   <!-- ==================================================================== -->
   <reporting>
     <plugins>
+      <!-- Setup standard project info reports -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>${maven-project-info-plugin.version}</version>
+        <version>${maven-project-info-reports-plugin.version}</version>
         <reportSets>
           <reportSet>
             <reports>
+              <report>ci-management</report>
               <report>dependencies</report>
               <report>dependency-info</report>
-              <report>issue-tracking</report>
-              <report>license</report>
-              <report>project-team</report>
+              <report>issue-management</report>
+              <report>licenses</report>
+              <report>team</report>
               <report>scm</report>
               <report>summary</report>
             </reports>
           </reportSet>
         </reportSets>
       </plugin>
+      <!-- Setup Checkstyle report, excluding module-info -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
@@ -429,8 +464,10 @@
           <includeResources>false</includeResources>
           <includeTestResources>false</includeTestResources>
           <includeTestSourceDirectory>false</includeTestSourceDirectory>
+          <excludes>module-info.java</excludes>
         </configuration>
       </plugin>
+      <!-- Setup Javadoc report -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
@@ -443,14 +480,16 @@
           </reportSet>
         </reportSets>
       </plugin>
+      <!-- Setup Surefire report -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-report-plugin</artifactId>
         <version>${maven-surefire-report-plugin.version}</version>
         <configuration>
-           <showSuccess>true</showSuccess>
+          <showSuccess>true</showSuccess>
         </configuration>
       </plugin>
+      <!-- Setup changes (release notes) -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-changes-plugin</artifactId>
@@ -471,36 +510,27 @@
     <repository>
       <id>sonatype-joda-staging</id>
       <name>Sonatype OSS staging repository</name>
-      <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
       <layout>default</layout>
     </repository>
     <snapshotRepository>
       <uniqueVersion>false</uniqueVersion>
       <id>sonatype-joda-snapshot</id>
       <name>Sonatype OSS snapshot repository</name>
-      <url>http://oss.sonatype.org/content/repositories/joda-snapshots</url>
+      <url>https://oss.sonatype.org/content/repositories/joda-snapshots</url>
       <layout>default</layout>
     </snapshotRepository>
-    <downloadUrl>http://oss.sonatype.org/content/repositories/joda-releases</downloadUrl>
+    <downloadUrl>https://oss.sonatype.org/content/repositories/joda-releases</downloadUrl>
   </distributionManagement>
 
   <!-- ==================================================================== -->
   <profiles>
-    <profile>
-      <id>java8</id>
-      <activation>
-        <jdk>1.8</jdk>
-      </activation>
-      <properties>
-        <additionalparam>-Xdoclint:none</additionalparam>
-      </properties>
-    </profile>
+    <!-- Base deployment profile, activated by -Doss.repo -->
     <profile>
       <id>repo-sign-artifacts</id>
       <activation>
         <property>
           <name>oss.repo</name>
-          <value>true</value>
         </property>
       </activation>
       <build>
@@ -525,6 +555,7 @@
               </toolchains>
             </configuration>
           </plugin>
+          <!-- Sign artifacts -->
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
@@ -538,53 +569,79 @@
               </execution>
             </executions>
           </plugin>
+          <!-- Use nexus plugin to directly release -->
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>${nexus-staging-maven-plugin.version}</version>
+            <extensions>true</extensions>
+            <configuration>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <serverId>sonatype-joda-staging</serverId>
+              <description>Releasing ${project.groupId}:${project.artifactId}:${project.version}</description>
+              <autoReleaseAfterClose>${joda.nexus.auto.release}</autoReleaseAfterClose>
+              <keepStagingRepositoryOnCloseRuleFailure>true</keepStagingRepositoryOnCloseRuleFailure>
+            </configuration>
+          </plugin>
         </plugins>
       </build>
-      <properties>
-        <additionalparam></additionalparam>
-      </properties>
     </profile>
   </profiles>
 
   <!-- ==================================================================== -->
   <properties>
+    <!-- pom.xml control -->
+    <joda.osgi.packages>org.joda.*</joda.osgi.packages>
+    <joda.osgi.require.capability>osgi.ee;filter:="(&amp;(osgi.ee=JavaSE)(version=${maven.compiler.source}))"</joda.osgi.require.capability>
+    <joda.artifactId>joda-parent</joda.artifactId>
+    <joda.release.version>6</joda.release.version>
+    <joda.nexus.auto.release>true</joda.nexus.auto.release>
+    <joda.surefire.moduleargs />
+    <joda.javadoc.moduleargs />
     <!-- Plugin version numbers -->
-    <maven-assembly-plugin.version>2.4</maven-assembly-plugin.version>
-    <maven-changes-plugin.version>2.9</maven-changes-plugin.version>
-    <maven-checkstyle-plugin.version>2.11</maven-checkstyle-plugin.version>
-    <maven-clean-plugin.version>2.5</maven-clean-plugin.version>
-    <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
-    <maven-deploy-plugin.version>2.8.1</maven-deploy-plugin.version>
-    <maven-dependency-plugin.version>2.8</maven-dependency-plugin.version>
-    <maven-gpg-plugin.version>1.4</maven-gpg-plugin.version>
-    <maven-install-plugin.version>2.5.1</maven-install-plugin.version>
-    <maven-jar-plugin.version>2.4</maven-jar-plugin.version>
-    <maven-javadoc-plugin.version>2.9.1</maven-javadoc-plugin.version>
-    <maven-jxr-plugin.version>2.3</maven-jxr-plugin.version>
-    <maven-plugin-plugin.version>3.2</maven-plugin-plugin.version>
-    <maven-pmd-plugin.version>3.0.1</maven-pmd-plugin.version>
-    <maven-project-info-reports-plugin.version>2.7</maven-project-info-reports-plugin.version>
-    <maven-repository-plugin.version>2.3.1</maven-repository-plugin.version>
-    <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
-    <maven-site-plugin.version>3.3</maven-site-plugin.version>
-    <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
-    <maven-surefire-plugin.version>2.16</maven-surefire-plugin.version>
-    <maven-surefire-report-plugin.version>2.16</maven-surefire-report-plugin.version>
-    <maven-toolchains-plugin.version>1.0</maven-toolchains-plugin.version>
+    <maven-assembly-plugin.version>3.1.0</maven-assembly-plugin.version>
+    <maven-bundle-plugin.version>2.5.4</maven-bundle-plugin.version>
+    <maven-changes-plugin.version>2.12.1</maven-changes-plugin.version>
+    <!-- v3.0.0 does not work with Eclipse -->
+    <maven-checkstyle-plugin.version>2.17</maven-checkstyle-plugin.version>
+    <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
+    <maven-compiler-plugin.version>3.8.0</maven-compiler-plugin.version>
+    <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+    <maven-dependency-plugin.version>3.1.1</maven-dependency-plugin.version>
+    <maven-enforcer-plugin.version>3.0.0-M1</maven-enforcer-plugin.version>
+    <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+    <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
+    <maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
+    <maven-javadoc-plugin.version>3.0.0-M1</maven-javadoc-plugin.version>
+    <maven-jxr-plugin.version>2.5</maven-jxr-plugin.version>
+    <maven-plugin-plugin.version>3.5.2</maven-plugin-plugin.version>
+    <maven-pmd-plugin.version>3.10.0</maven-pmd-plugin.version>
+    <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
+    <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+    <maven-repository-plugin.version>2.4</maven-repository-plugin.version>
+    <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+    <maven-site-plugin.version>3.7.1</maven-site-plugin.version>
+    <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+    <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
+    <maven-surefire-report-plugin.version>2.22.0</maven-surefire-report-plugin.version>
+    <maven-toolchains-plugin.version>1.1</maven-toolchains-plugin.version>
+    <bndlib.version>3.5.0</bndlib.version>
+    <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
+    <revapi-maven-plugin.version>0.9.5</revapi-maven-plugin.version>
+    <revapi-java.version>0.14.4</revapi-java.version>
     <!-- Properties for maven-compiler-plugin -->
     <maven.compiler.compilerVersion>1.6</maven.compiler.compilerVersion>
     <maven.compiler.source>1.6</maven.compiler.source>
     <maven.compiler.target>1.6</maven.compiler.target>
     <maven.compiler.fork>true</maven.compiler.fork>
-    <maven.compiler.verbose>true</maven.compiler.verbose>
-    <maven.compiler.debug>true</maven.compiler.debug>
-    <maven.compiler.optimize>true</maven.compiler.optimize>
-    <maven.compiler.debuglevel>lines,source</maven.compiler.debuglevel>
     <!-- Properties for maven-javadoc-plugin -->
     <author>false</author>
     <notimestamp>true</notimestamp>
+    <doclint>none</doclint>
     <!-- Properties for maven-checkstyle-plugin -->
-    <checkstyle.config.location>${project.basedir}/src/main/checkstyle/checkstyle.xml</checkstyle.config.location>
+    <checkstyle.version>8.12</checkstyle.version>
+    <checkstyle.config.location>src/main/checkstyle/checkstyle.xml</checkstyle.config.location>
+    <linkXRef>false</linkXRef>
     <!-- Other properties -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
